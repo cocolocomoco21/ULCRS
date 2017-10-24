@@ -4,9 +4,14 @@
     "description": "ULC Resource Scheduler",
     "main": "main.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "electron ."
     },
+    "repository": "https://github.com/cocolocomoco21/ULCRS",
     "author": "Matt Henricks",
-    "license": "ISC"
-  }
+    "license": "BSD-3-Clause",
+    "devDependencies": {
+      "electron": "~1.7.9"
+    }
+}
   
