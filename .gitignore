@@ -4,6 +4,7 @@ build
 
 # Idea
 .idea
+.iml
 
 # Logs
 logs
