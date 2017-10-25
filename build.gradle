@@ -19,4 +19,5 @@ allprojects {
 
 dependencies {
     compile 'com.sparkjava:spark-core:2.6.0'
+    compile 'com.google.code.gson:gson:2.8.2'
 }
