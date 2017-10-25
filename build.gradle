@@ -1,0 +1,25 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+    }
+}
+
+apply plugin: 'java'
+
+description = 'ULCRS - ULC Resource Scheduler'
+version = '1.0'
+
+allprojects {
+    repositories {
+    }
+}
+
+dependencies {
+    //compile 'com.sparkjava:spark-core:2.6.0'
+}
+
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
