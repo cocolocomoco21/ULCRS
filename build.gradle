@@ -20,7 +20,3 @@ allprojects {
 dependencies {
     compile 'com.sparkjava:spark-core:2.6.0'
 }
-
-//task clean(type: Delete) {
-//    delete rootProject.buildDir
-//}
