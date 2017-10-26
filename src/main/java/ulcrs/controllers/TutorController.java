@@ -8,9 +8,9 @@ import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
 
-import ulcrs.models.Tutor;
-import ulcrs.models.TutorPreferences;
-import ulcrs.models.TutorStatus;
+import ulcrs.models.tutor.Tutor;
+import ulcrs.models.tutor.TutorPreferences;
+import ulcrs.models.tutor.TutorStatus;
 
 public class TutorController implements BaseController {
 
