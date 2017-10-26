@@ -12,9 +12,10 @@ import ulcrs.models.tutor.Tutor;
 import ulcrs.models.tutor.TutorPreferences;
 import ulcrs.models.tutor.TutorStatus;
 
-public class TutorController implements BaseController {
+public class TutorController extends BaseController {
 
-    public static RouteGroup routes() {
+    @Override
+    public RouteGroup routes() {
         return () -> {
             get("", TutorController::getTutorList, gson::toJson);
             get("/:id", TutorController::getTutor, gson::toJson);
