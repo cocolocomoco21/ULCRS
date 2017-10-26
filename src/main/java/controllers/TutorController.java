@@ -8,20 +8,24 @@ import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
 
+import models.Tutor;
+
 public class TutorController implements BaseController {
 
     public static RouteGroup routes() {
         return () -> {
-            get("", TutorController::getTutorList);
-            get("/:id", TutorController::getTutor);
+            get("", TutorController::getTutorList, gson::toJson);
+            get("/:id", TutorController::getTutor, gson::toJson);
         };
     }
 
-    private static List<String> getTutorList(Request request, Response response) {
-        return Arrays.asList("This would give a list of tutors, like so:", "1", "14", "3");
+    private static List<Tutor> getTutorList(Request request, Response response) {
+        return Arrays.asList(
+                new Tutor(4, "Bilbo", "Baggins"),
+                new Tutor(9, "Spicy", "Memelord"));
     }
 
-    private static String getTutor(Request request, Response response) {
-        return "this would give details on a specific tutor (i.e. tutor id = " + request.params(":id") + ")";
+    private static Tutor getTutor(Request request, Response response) {
+        return new Tutor(Integer.valueOf(request.params(":id")), "Bilbo", "Baggins");
     }
 }
