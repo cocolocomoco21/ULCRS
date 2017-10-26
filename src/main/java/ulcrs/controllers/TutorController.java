@@ -17,12 +17,12 @@ public class TutorController extends BaseController {
     @Override
     public RouteGroup routes() {
         return () -> {
-            get("", TutorController::getTutorList, gson::toJson);
-            get("/:id", TutorController::getTutor, gson::toJson);
+            get("", this::getTutorList, gson::toJson);
+            get("/:id", this::getTutor, gson::toJson);
         };
     }
 
-    private static List<Tutor> getTutorList(Request request, Response response) {
+    private List<Tutor> getTutorList(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
         return Arrays.asList(
                 new Tutor(4, "Bilbo", "Baggins", new TutorPreferences(), TutorStatus.ACTIVE),
@@ -30,7 +30,7 @@ public class TutorController extends BaseController {
         );
     }
 
-    private static Tutor getTutor(Request request, Response response) {
+    private Tutor getTutor(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
         return new Tutor(Integer.valueOf(request.params(":id")), "Bilbo", "Baggins", new TutorPreferences(), TutorStatus.INACTIVE);
     }
