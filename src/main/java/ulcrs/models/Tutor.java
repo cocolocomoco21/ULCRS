@@ -1,4 +1,4 @@
-package models;
+package ulcrs.models;
 
 public class Tutor {
     private int id;

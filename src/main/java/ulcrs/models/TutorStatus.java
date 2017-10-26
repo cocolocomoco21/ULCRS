@@ -1,4 +1,4 @@
-package models;
+package ulcrs.models;
 
 public enum TutorStatus {
     ACTIVE("Active"),

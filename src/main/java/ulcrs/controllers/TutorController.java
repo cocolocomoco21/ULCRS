@@ -1,4 +1,4 @@
-package controllers;
+package ulcrs.controllers;
 
 import static spark.Spark.get;
 
@@ -8,9 +8,9 @@ import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
 
-import models.Tutor;
-import models.TutorPreferences;
-import models.TutorStatus;
+import ulcrs.models.Tutor;
+import ulcrs.models.TutorPreferences;
+import ulcrs.models.TutorStatus;
 
 public class TutorController implements BaseController {
 
@@ -22,7 +22,7 @@ public class TutorController implements BaseController {
     }
 
     private static List<Tutor> getTutorList(Request request, Response response) {
-        response.type("application/json");
+        response.type(CONTENT_TYPE_JSON);
         return Arrays.asList(
                 new Tutor(4, "Bilbo", "Baggins", new TutorPreferences(), TutorStatus.ACTIVE),
                 new Tutor(9, "Spicy", "Memelord", new TutorPreferences(), TutorStatus.GHOST)
@@ -30,7 +30,7 @@ public class TutorController implements BaseController {
     }
 
     private static Tutor getTutor(Request request, Response response) {
-        response.type("application/json");
+        response.type(CONTENT_TYPE_JSON);
         return new Tutor(Integer.valueOf(request.params(":id")), "Bilbo", "Baggins", new TutorPreferences(), TutorStatus.INACTIVE);
     }
 }
