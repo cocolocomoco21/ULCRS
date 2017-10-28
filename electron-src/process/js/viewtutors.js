@@ -3,6 +3,7 @@ let ReactDOM = require('react-dom');
 let React = require('react');
 let ViewToolBar = require('./viewtoolbar');
 let TutorTable = require('./tutortable');
+let electron = eRequire ("electron");
 
 class MainInterface extends React.Component {
     render() {
