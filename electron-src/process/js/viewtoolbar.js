@@ -1,6 +1,10 @@
 let React = require("react");
+let electron = eRequire("electron");
+let ipc = electron.ipcRenderer;
+
 
 class ViewToolbar extends React.Component {
+
     render(){
         return (
             <div id="toolbar" className="card">
@@ -10,7 +14,9 @@ class ViewToolbar extends React.Component {
 
                 <div className = "card-body">
                     <div className="card-title"> hello </div>
-                    <button type="button" className="btn btn-info"> Button</button>
+                    <button type="button" className="btn btn-info">
+                        Button
+                    </button>
                 </div> {/*tool bar */}
             </div>
             )
