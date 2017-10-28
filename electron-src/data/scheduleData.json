@@ -1,0 +1,70 @@
+[
+    {
+        "Sunday1":
+        [
+            {
+                "Name": "Davidson",
+                "Course": "CS 200"
+            },
+            {
+                "Name": "Lily",
+                "Course": "CS 300"
+            },
+            {
+                "Name": "Lisa",
+                "Course": "CS 367"
+            }
+        ]
+    },
+    {
+        "Sunday2":
+        [
+            {
+                "Name": "Davidson",
+                "Course": "CS 200"
+            },
+            {
+                "Name": "Davidson",
+                "Course": "CS 200"
+            },
+            {
+                "Name": "Davidson",
+                "Course": "CS 200"
+            }
+        ]
+    },
+    {
+        "Monday":
+        [
+            {
+                "Name": "Davidson",
+                "Course": "CS 200"
+            },
+            {
+                "Name": "Davidson",
+                "Course": "CS 200"
+            },
+            {
+                "Name": "Davidson",
+                "Course": "CS 200"
+            }
+        ]
+    },
+    {
+        "Tuesday":
+        [
+            {
+                "Name": "Davidson",
+                "Course": "CS 200"
+            },
+            {
+                "Name": "Davidson",
+                "Course": "CS 200"
+            },
+            {
+                "Name": "Davidson",
+                "Course": "CS 200"
+            }
+        ]
+    }
+]

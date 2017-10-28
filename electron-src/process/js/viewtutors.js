@@ -3,10 +3,25 @@ let ReactDOM = require('react-dom');
 let React = require('react');
 let ViewToolBar = require('./viewtoolbar');
 let TutorTable = require('./tutortable');
-let electron = eRequire ("electron");
-
+let fs = eRequire('fs');
+let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
 class MainInterface extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      tutors: loadTutors
+      //this.state.tutors[0]
+    };
+  }
     render() {
+
+      //let tutors = this.state.tutors.map(function(item, index){
+      //  return(
+    //    <TutorTable key = {index}
+    //      singleItem = {item}
+    //    />
+    //    )
+    //  }.bind(this));
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -15,7 +30,7 @@ class MainInterface extends React.Component {
                     </div>
 
                     <div className="col-8">
-                        <TutorTable /> {/* Still thinking about how to load in CourseTable */}
+                        <TutorTable singleItem = {this.state.tutors[0]}/> {/* Still thinking about how to load in CourseTable */}
                     </div>
                 </div>
             </div>
