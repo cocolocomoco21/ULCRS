@@ -11,8 +11,11 @@ app.on('ready', function() {
     show: false
   }); //appWindow
 
-  appWindow.loadURL('file://' + __dirname + '/viewtutors.html');
-  //appWindow.loadURL('http://www.wisc.edu');
+  //appWindow.loadURL('file://' + __dirname + '/viewschedules.html');
+     appWindow.loadURL('file://' + __dirname + '/viewtutors.html');
+
+
+    //appWindow.loadURL('http://www.wisc.edu');
 
   infoWindow = new BrowserWindow({
     //width: 400,
