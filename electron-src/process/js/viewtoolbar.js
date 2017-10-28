@@ -1,11 +1,11 @@
 let React = require("react");
 
-class Toolbar extends React.Component {
+class ViewToolbar extends React.Component {
     render(){
         return (
             <div id="toolbar" className="card">
                 <h3 className="card-header">
-                Information
+                    Information
                 </h3>
 
                 <div className = "card-body">
@@ -17,4 +17,4 @@ class Toolbar extends React.Component {
     }
 }
 
-module.exports = Toolbar;
+module.exports = ViewToolbar;

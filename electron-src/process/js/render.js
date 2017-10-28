@@ -1,7 +1,8 @@
 
 let ReactDOM = require('react-dom');
 let React = require('react');
-let ToolBar = require('./toolbar');
+let ViewToolBar = require('./viewtoolbar');
+let TutorTable = require('./tutortable');
 
 class MainInterface extends React.Component {
     render() {
@@ -9,11 +10,11 @@ class MainInterface extends React.Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-4">
-                        <ToolBar />
+                        <ViewToolBar />
                     </div>
 
                     <div className="col-8">
-
+                        <TutorTable /> {/* Still thinking about how to load in CourseTable */}
                     </div>
                 </div>
             </div>
