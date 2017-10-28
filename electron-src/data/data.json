@@ -1,0 +1,11 @@
+[
+  {
+    "id": "1",
+    "firstName": "Junjie",
+    "lastName": "Xu",
+    "tStatus": "ghost",
+    "coursePreference": "CS301",
+    "shiftPreference": "Wed",
+    "shiftFrequency": "1/week"
+  }
+]
