@@ -1,14 +1,17 @@
 package ulcrs;
 
-import lombok.extern.slf4j.Slf4j;
+import static spark.Spark.before;
+import static spark.Spark.init;
+import static spark.Spark.path;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ulcrs.controllers.CourseController;
 import ulcrs.controllers.TutorController;
 
-import static spark.Spark.*;
-
-@Slf4j
 public class Server {
 
+    private static Logger log = LoggerFactory.getLogger(Server.class);
     private TutorController tutorController;
     private CourseController courseController;
 

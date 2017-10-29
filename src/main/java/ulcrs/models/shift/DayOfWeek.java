@@ -1,9 +1,5 @@
 package ulcrs.models.shift;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@AllArgsConstructor
 public enum DayOfWeek {
 
     MONDAY("Monday"),
@@ -14,6 +10,9 @@ public enum DayOfWeek {
     SATURDAY("Saturday"),
     SUNDAY("Sunday");
 
-    @Getter
     private String value;
+
+    DayOfWeek(String value) {
+        this.value = value;
+    }
 }

@@ -1,11 +1,7 @@
 package ulcrs.models.session;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import ulcrs.models.schedule.Schedule;
 
-@AllArgsConstructor
-@Data
 public class Session {
 
     String name;

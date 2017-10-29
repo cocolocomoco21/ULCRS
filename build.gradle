@@ -20,10 +20,4 @@ allprojects {
 dependencies {
     compile 'com.sparkjava:spark-core:2.6.0'
     compile 'com.google.code.gson:gson:2.8.2'
-    compileOnly 'org.projectlombok:lombok:1.16.18'
-    apt "org.projectlombok:lombok:1.16.18"
-}
-
-plugins {
-    id 'net.ltgt.apt' version '0.10'
 }

@@ -1,13 +1,8 @@
 package ulcrs.models.schedule;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.Set;
 import ulcrs.models.shift.ScheduledShift;
 
-import java.util.Set;
-
-@NoArgsConstructor
-@Data
 public class Schedule {
 
     Set<ScheduledShift> scheduledShifts;

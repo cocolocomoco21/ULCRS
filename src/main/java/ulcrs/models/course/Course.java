@@ -1,13 +1,13 @@
 package ulcrs.models.course;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Data
-@AllArgsConstructor
 public class Course {
-
     int id;
     String name;
     CourseRequirements courseRequirements;
+
+    public Course(int id, String name, CourseRequirements courseRequirements) {
+        this.id = id;
+        this.name = name;
+        this.courseRequirements = courseRequirements;
+    }
 }

@@ -1,8 +1,5 @@
 package ulcrs.models.shift;
 
-import lombok.Data;
-
-@Data
 public class Shift {
 
     int id;
