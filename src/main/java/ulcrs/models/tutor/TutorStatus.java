@@ -1,18 +1,15 @@
 package ulcrs.models.tutor;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
 public enum TutorStatus {
+
     ACTIVE("Active"),
     INACTIVE("Inactive"),
     GHOST("Ghost");
 
+    @Getter
     private String value;
-
-    TutorStatus(String value) {
-        this.value = value;
-    }
-
-    public String getValue() {
-        return this.value;
-    }
-
 }
