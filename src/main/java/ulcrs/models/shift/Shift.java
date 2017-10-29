@@ -1,13 +1,18 @@
 package ulcrs.models.shift;
 
-public class Shift {
+import java.time.DayOfWeek;
+import java.time.OffsetTime;
 
+public class Shift {
     int id;
     DayOfWeek day;
+    OffsetTime startTime;
+    OffsetTime endTime;
 
-    // TODO: representing time without date?
-    int startHour;
-    int startMinute;
-    int endHour;
-    int endMinute;
+    public Shift(int id, DayOfWeek day, OffsetTime startTime, OffsetTime endTime) {
+        this.id = id;
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
 }
