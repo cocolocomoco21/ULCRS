@@ -1,17 +1,17 @@
 package ulcrs.controllers;
 
-import static spark.Spark.get;
-
-import java.util.Arrays;
-import java.util.List;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
-
 import ulcrs.models.course.Course;
 import ulcrs.models.course.CourseRequirements;
 
-public class CourseController extends BaseController{
+import java.util.Arrays;
+import java.util.List;
+
+import static spark.Spark.get;
+
+public class CourseController extends BaseController {
 
     @Override
     public RouteGroup routes() {
@@ -33,5 +33,4 @@ public class CourseController extends BaseController{
         response.type(CONTENT_TYPE_JSON);
         return new Course(Integer.valueOf(request.params("id")), "CS 302", new CourseRequirements());
     }
-
 }

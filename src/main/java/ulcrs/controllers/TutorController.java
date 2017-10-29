@@ -1,16 +1,16 @@
 package ulcrs.controllers;
 
-import static spark.Spark.get;
-
-import java.util.Arrays;
-import java.util.List;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
-
 import ulcrs.models.tutor.Tutor;
 import ulcrs.models.tutor.TutorPreferences;
 import ulcrs.models.tutor.TutorStatus;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static spark.Spark.get;
 
 public class TutorController extends BaseController {
 

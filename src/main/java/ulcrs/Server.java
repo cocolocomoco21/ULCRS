@@ -1,15 +1,10 @@
 package ulcrs;
 
-import static spark.Spark.before;
-import static spark.Spark.init;
-import static spark.Spark.path;
-
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import ulcrs.controllers.CourseController;
 import ulcrs.controllers.TutorController;
+
+import static spark.Spark.*;
 
 @Slf4j
 public class Server {
@@ -32,6 +27,7 @@ public class Server {
     /**
      * Create and start the Server object used to route API calls. The Server object simply acts as a container for
      * API routing facilitated by Sparkjava and controllers used in this routing.
+     *
      * @return Server - the Server object to act as the server
      */
     private static Server startServer() {
