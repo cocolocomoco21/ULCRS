@@ -6,10 +6,15 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
+plugins {
+    id 'java'
+    id 'application'
+    id "com.github.johnrengelman.shadow" version "2.0.1"
+}
 
 description = 'ULCRS - ULC Resource Scheduler'
 version = '1.0'
+mainClassName = 'ulcrs.Server'
 
 allprojects {
     repositories {
