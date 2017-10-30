@@ -5,15 +5,17 @@ let ScheduleToolBar = require('./scheduletoolbar');
 let ScheduleTable = require('./scheduletable');
 let fs = eRequire('fs');
 let loadSchedules = JSON.parse(fs.readFileSync(dataLocation));
+
 console.log(loadSchedules);
 class ViewSchedulePage  extends React.Component {
     constructor(props){
-        super(props)
+        super(props);
         this.state = {
             schedules : loadSchedules
         }
     }
     render() {
+
         return (
             <div className="container-fluid">
                 <div className="row">

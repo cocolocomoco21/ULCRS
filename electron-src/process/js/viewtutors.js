@@ -5,23 +5,36 @@ let ViewToolBar = require('./viewtoolbar');
 let TutorTable = require('./tutortable');
 let fs = eRequire('fs');
 let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
+let mock = JSON.parse(fs.readFileSync(mockData));
+let electron = eRequire('electron');
+let ipc = electron.ipcRenderer;
+let Parser = require("./parser");
+
+
+ipc.send("request_data");
 class MainInterface extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      tutors: loadTutors
-      //this.state.tutors[0]
+      tutors: loadTutors,
+      data: null,
+      parser: null
     };
   }
+    prepareInfo(){
+      if (this.state.data === null){
+          return "placeholder"
+      }
+      return this.state.data
+    }
     render() {
+        ipc.on("get_data",  (event, text) => {
+            this.setState({
+                data: text,
+                parser: new Parser(mock)
+            });
+        });
 
-      //let tutors = this.state.tutors.map(function(item, index){
-      //  return(
-    //    <TutorTable key = {index}
-    //      singleItem = {item}
-    //    />
-    //    )
-    //  }.bind(this));
         return (
             <div className="container-fluid">
                 <div className="row">
