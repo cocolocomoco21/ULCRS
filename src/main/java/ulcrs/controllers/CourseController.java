@@ -23,6 +23,8 @@ public class CourseController extends BaseController {
 
     private List<Course> getCourseList(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
+
+        // TODO implement
         return Arrays.asList(
                 new Course(4, "CS 301", new CourseRequirements(null, 3, 4, CourseIntensity.HIGH)),
                 new Course(16, "CS 302", new CourseRequirements(null, 8, 12, CourseIntensity.HIGH)),
@@ -31,6 +33,8 @@ public class CourseController extends BaseController {
 
     private Course getCourse(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
+
+        // TODO implement
         return new Course(Integer.valueOf(request.params("id")), "CS 302", new CourseRequirements( null, 8, 12, CourseIntensity.HIGH));
     }
 }

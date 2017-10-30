@@ -413,5 +413,92 @@
             }
         },
         "tutorStatus": "GHOST"
+    },
+    {
+        "id": 14,
+        "firstName": "Steve",
+        "lastName": "Balmer",
+        "tutorPreferences": {
+            "coursePreferences": {
+                "PREFER": [
+                    {
+                        "id": 0,
+                        "name": "CS 302",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 0,
+                                    "day": "MONDAY",
+                                    "startTime": {
+                                        "time": {
+                                            "hour": 17,
+                                            "minute": 7,
+                                            "second": 53,
+                                            "nano": 525000000
+                                        },
+                                        "offset": {
+                                            "totalSeconds": -18000
+                                        }
+                                    },
+                                    "endTime": {
+                                        "time": {
+                                            "hour": 20,
+                                            "minute": 7,
+                                            "second": 53,
+                                            "nano": 536000000
+                                        },
+                                        "offset": {
+                                            "totalSeconds": -18000
+                                        }
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 1,
+                            "preferredShiftAmount": 3,
+                            "intensity": "MEDIUM"
+                        }
+                    }
+                ],
+                "WILLING": [
+                ]
+            },
+            "shiftPreferences": {
+                "PREFER": [
+                    {
+                        "id": 0,
+                        "day": "MONDAY",
+                        "startTime": {
+                            "time": {
+                                "hour": 17,
+                                "minute": 7,
+                                "second": 53,
+                                "nano": 525000000
+                            },
+                            "offset": {
+                                "totalSeconds": -18000
+                            }
+                        },
+                        "endTime": {
+                            "time": {
+                                "hour": 20,
+                                "minute": 7,
+                                "second": 53,
+                                "nano": 536000000
+                            },
+                            "offset": {
+                                "totalSeconds": -18000
+                            }
+                        }
+                    }
+                ],
+                "WILLING": [
+                ]
+            },
+            "shiftFrequencyPreferences": {
+                "PREFER": 1,
+                "WILLING": 2
+            }
+        },
+        "tutorStatus": "GHOST"
     }
 ]

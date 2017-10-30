@@ -14,4 +14,8 @@ public class Tutor {
         this.tutorPreferences = tutorPreferences;
         this.tutorStatus = tutorStatus;
     }
+
+    public int getId() {
+        return this.id;
+    }
 }

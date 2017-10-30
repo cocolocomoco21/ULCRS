@@ -3,6 +3,7 @@ package ulcrs;
 import static spark.Spark.before;
 import static spark.Spark.init;
 import static spark.Spark.path;
+import static spark.Spark.staticFiles;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,8 @@ public class Server {
      */
     private static Server startServer() {
         Server server = new Server();
+        staticFiles.location("/");
+
         server.initializeControllers();
         init();
 
