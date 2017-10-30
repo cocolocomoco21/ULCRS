@@ -8,6 +8,7 @@ import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
 import ulcrs.models.schedule.Schedule;
+import ulcrs.scheduler.Scheduler;
 
 public class ScheduleController extends BaseController {
 
@@ -23,13 +24,14 @@ public class ScheduleController extends BaseController {
         response.type(CONTENT_TYPE_JSON);
 
         // TODO implement
-        return null;
+        return Scheduler.generateSchedule();
     }
 
     private boolean validateSchedule(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
 
         // TODO implement
-        return false;
+        Schedule schedule = gson.fromJson(request.body(), Schedule.class);
+        return Scheduler.verifySchedule(schedule);
     }
 }
