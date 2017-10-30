@@ -13,8 +13,7 @@ app.on('ready', function() {
     show: false
   }); //appWindow
 
-  //appWindow.loadURL('file://' + __dirname + '/viewschedules.html');
-    appWindow.loadURL('file://' + __dirname + '/index.html');
+  appWindow.loadURL('file://' + __dirname + '/index.html');
 
 
     //appWindow.loadURL('http://www.wisc.edu');
@@ -43,10 +42,20 @@ app.on('ready', function() {
       frame: true
   });
 
-  viewSchedulesWindow.loadURL('file://' + __dirname + '/viewschedules.html')
+  viewSchedulesWindow.loadURL('file://' + __dirname + '/viewschedules.html');
 
     ipc.on("ShowViewSchedules", function (event, args) {
         event.returnValue = '';
         viewSchedulesWindow.show();
     });
+
+  // change the api for receive actual data
+  ipc.on("request_data", (event, args) => {
+      let fetch = require('electron-fetch');
+      fetch('https://jsonplaceholder.typicode.com/posts/1')
+          .then(res=> res.text())
+          .then(body=> event.sender.send("get_data", body));
+  });
+
+
 }); //app is ready
