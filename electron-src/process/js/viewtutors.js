@@ -41,10 +41,11 @@ class MainInterface extends React.Component {
                     <div className="col-4">
                         <ViewToolBar />
                     </div>
-
                     <div className="col-8">
                         <TutorTable singleItem = {this.state.tutors[0]}/> {/* Still thinking about how to load in CourseTable */}
                     </div>
+
+                    <div>TEST</div>
                 </div>
             </div>
 
