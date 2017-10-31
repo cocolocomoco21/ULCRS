@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import spark.Spark;
 import ulcrs.controllers.CourseController;
 import ulcrs.controllers.ScheduleController;
+import ulcrs.controllers.SessionController;
 import ulcrs.controllers.ShiftController;
 import ulcrs.controllers.TutorController;
 
@@ -15,6 +16,7 @@ public class Server {
     private CourseController courseController;
     private ScheduleController scheduleController;
     private ShiftController shiftController;
+    private SessionController sessionController;
 
     public static void main(String args[]) {
         Server server = startServer();
@@ -26,6 +28,7 @@ public class Server {
             Spark.path("/course", server.courseController.routes());
             Spark.path("/schedule", server.scheduleController.routes());
             Spark.path("/shift", server.shiftController.routes());
+            Spark.path("/session", server.sessionController.routes());
         });
     }
 
@@ -53,6 +56,7 @@ public class Server {
         this.courseController = new CourseController();
         this.scheduleController = new ScheduleController();
         this.shiftController = new ShiftController();
+        this.sessionController = new SessionController();
     }
 
 }

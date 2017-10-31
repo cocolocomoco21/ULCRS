@@ -17,6 +17,7 @@ public class ShiftController extends BaseController {
     @Override
     public RouteGroup routes() {
         return () -> {
+            Spark.before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
             Spark.get("", this::getShiftList, gson::toJson);
         };
     }
