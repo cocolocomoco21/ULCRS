@@ -24,37 +24,6 @@ class ShiftCard extends React.Component {
         )
     }
 }
-
-class Row extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            schedules: this.props.schedules,
-            j: this.props.j
-        }
-    }
-    render(){
-        var emptyRow = true;
-        let row = [];
-        for (var i = 0; i < this.state.schedules.length; i++){
-            console.log(i);
-            if (this.state.schedules[i].Data.length >= this.state.j){
-                emptyRow = false;
-                row.push(<td><ShiftCard info={this.state.schedules[i].Data[this.state.j]} /></td>);
-            }
-            else{
-                row.push(<td></td>);
-            }
-        }
-        console.log(row);
-        if (emptyRow==true){
-            return([]);
-        }
-        else{
-            return(row);
-        }
-    }
-}
  
 
 class ScheduleTable extends React.Component {
@@ -70,17 +39,10 @@ class ScheduleTable extends React.Component {
         for (var i = 0; i < this.state.schedules.length; i++){
             a.push(<th>{this.state.schedules[i].Slot}</th>)
         };
-        let cards = [<ShiftCard info={this.state.schedules[0].Data[0]} key="0"/>,
-        <ShiftCard info={this.state.schedules[1].Data[0]} key="1" />,
-        <ShiftCard info={this.state.schedules[2].Data[0]} key="2" />];
-        console.log(this.state.schedules);
 
         let b = [];
         var j = 0;
         while (true){
-            console.log(j);
-            // let row = <Row schedules={this.state.schedules} j={j} />;
-            // console.log(row == []);
             var emptyRow = true;
             let row = [];
             for (var i = 0; i < this.state.schedules.length; i++){
@@ -101,15 +63,7 @@ class ScheduleTable extends React.Component {
                 b.push(<tr>{row}</tr>);
             }
             j++;
-            // b.push(<tr>{row}</tr>);
-            // if (j==3){
-            //     break;
-            // }
         }
-        let row = <Row schedules={this.state.schedules} j={3} />;
-        console.log("test");
-        console.log(row == []);
-        console.log(row);
         return (
             <div className="card" style={{overflow: "auto", background: "#00ffff", border: "#333"}}>
                 <div className="card-block">
