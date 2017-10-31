@@ -10,6 +10,12 @@ class CourseTable extends React.Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            courses: nextProps.courses
+        })
+    }
+
     render() {
         let courses = this.state.courses.map(function(item, index){
             return(

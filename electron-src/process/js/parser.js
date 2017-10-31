@@ -3,6 +3,7 @@ let loadData = JSON.parse(fs.readFileSync(dataLocation));
 let _ = require("lodash");
 let electron = eRequire('electron');
 
+
 class Parser{
 
     constructor(data){

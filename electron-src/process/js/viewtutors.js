@@ -16,13 +16,14 @@ class MainInterface extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      // tutors: loadTutors,
-      tutors: [],
+       // tutors: loadTutors,
+        tutors: [],
       courses: [],
       data: null,
       parser: null,
       view: "tutor" // view will only be tutor or course
     };
+
     this.clickViewButton = this.clickViewButton.bind(this);
     this.prepareView = this.prepareView.bind(this);
       ipc.on("get_data",  (event, text) => {
@@ -30,7 +31,8 @@ class MainInterface extends React.Component {
           this.setState({
               data: text,
               parser: p,
-              courses: p.getCourses()
+              courses: p.getCourses(),
+              tutors: loadTutors
           });
       });
   }
@@ -61,12 +63,12 @@ class MainInterface extends React.Component {
     render() {
 
         return (
-            <div className="container-fluid">
+            <div className="container-fluid ">
                 <div className="row">
-                    <div className="col-4">
-                        <ViewToolBar clickViewButton={this.clickViewButton} curView = {this.state.view}/>
+                    <div className="col-3">
+                        <ViewToolBar clickViewButton={this.clickViewButton}/>
                     </div>
-                    <div className="col-8">
+                    <div className="col-9">
                         {/* <TutorTable tutors = {this.state.tutors}/> */}{/* Still thinking about how to load in CourseTable */}
                         {/*<CourseTable courses = {this.state.courses}/>*/}
                         {this.prepareView()}
