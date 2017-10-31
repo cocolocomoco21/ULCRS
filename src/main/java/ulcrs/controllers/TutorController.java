@@ -1,16 +1,17 @@
 package ulcrs.controllers;
 
-import static spark.Spark.get;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.List;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
 import ulcrs.models.tutor.Tutor;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
+
+import static spark.Spark.get;
 
 public class TutorController extends BaseController {
 
@@ -31,7 +32,8 @@ public class TutorController extends BaseController {
         InputStream is = getClass().getClassLoader().getResourceAsStream("mockTutorData.json");
 
         JsonReader reader = new JsonReader(new InputStreamReader(is));
-        List<Tutor> tutors = gson.fromJson(reader, new TypeToken<List<Tutor>>(){}.getType());
+        List<Tutor> tutors = gson.fromJson(reader, new TypeToken<List<Tutor>>() {
+        }.getType());
 
         return tutors;
     }

@@ -1,7 +1,8 @@
 package ulcrs.scheduler;
 
-import java.util.List;
 import ulcrs.models.schedule.Schedule;
+
+import java.util.List;
 
 public class Scheduler {
 

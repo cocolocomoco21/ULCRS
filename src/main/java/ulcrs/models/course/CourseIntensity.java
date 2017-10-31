@@ -1,6 +1,7 @@
 package ulcrs.models.course;
 
 public enum CourseIntensity {
+
     LOW("Low"),
     MEDIUM("Medium"),
     HIGH("High");

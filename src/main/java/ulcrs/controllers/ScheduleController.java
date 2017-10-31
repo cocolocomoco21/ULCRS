@@ -1,14 +1,15 @@
 package ulcrs.controllers;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
-
-import java.util.List;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
 import ulcrs.models.schedule.Schedule;
 import ulcrs.scheduler.Scheduler;
+
+import java.util.List;
+
+import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class ScheduleController extends BaseController {
 

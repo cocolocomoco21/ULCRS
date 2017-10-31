@@ -4,10 +4,10 @@ import ulcrs.models.schedule.Schedule;
 
 public class Session {
 
-    String name;
-    Schedule existingSchedule;
-    long generatedTimestamp;
-    long lastEditedTimestamp;
+    private String name;
+    private Schedule existingSchedule;
+    private long generatedTimestamp;
+    private long lastEditedTimestamp;
 
     public void save() {
         // TODO: implement
@@ -16,5 +16,37 @@ public class Session {
     public boolean saveAs(String filename) {
         // TODO: implement
         return false;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Schedule getExistingSchedule() {
+        return existingSchedule;
+    }
+
+    public void setExistingSchedule(Schedule existingSchedule) {
+        this.existingSchedule = existingSchedule;
+    }
+
+    public long getGeneratedTimestamp() {
+        return generatedTimestamp;
+    }
+
+    public void setGeneratedTimestamp(long generatedTimestamp) {
+        this.generatedTimestamp = generatedTimestamp;
+    }
+
+    public long getLastEditedTimestamp() {
+        return lastEditedTimestamp;
+    }
+
+    public void setLastEditedTimestamp(long lastEditedTimestamp) {
+        this.lastEditedTimestamp = lastEditedTimestamp;
     }
 }

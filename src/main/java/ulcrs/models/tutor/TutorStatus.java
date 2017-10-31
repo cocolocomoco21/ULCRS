@@ -1,6 +1,7 @@
 package ulcrs.models.tutor;
 
 public enum TutorStatus {
+
     ACTIVE("Active"),
     INACTIVE("Inactive"),
     GHOST("Ghost");

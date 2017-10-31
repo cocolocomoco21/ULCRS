@@ -1,15 +1,12 @@
 package ulcrs;
 
-import static spark.Spark.before;
-import static spark.Spark.init;
-import static spark.Spark.path;
-import static spark.Spark.staticFiles;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ulcrs.controllers.CourseController;
 import ulcrs.controllers.ScheduleController;
 import ulcrs.controllers.TutorController;
+
+import static spark.Spark.*;
 
 public class Server {
 
