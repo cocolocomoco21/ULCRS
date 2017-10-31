@@ -1,7 +1,7 @@
 let ReactDOM = require('react-dom');
 let React = require('react');
 
-let ScheduleToolBar = require('./scheduletoolbar');
+let ScheduleToolbar = require('./scheduletoolbar');
 let ScheduleTable = require('./scheduletable');
 let fs = eRequire('fs');
 let loadSchedules = JSON.parse(fs.readFileSync(dataLocation));
@@ -20,7 +20,7 @@ class ViewSchedulePage  extends React.Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-2">
-                        {/* <ScheduleToolbar /> */}
+                        <ScheduleToolbar />
                     </div>
 
                     <div className="col-8">
