@@ -19,7 +19,9 @@ app.on('ready', function() {
     //appWindow.loadURL('http://www.wisc.edu');
 
   viewTutorsWindow = new BrowserWindow({
-    transparent: false,
+    width : 1600,
+    height: 900,
+      transparent: false,
     show: false,
     frame: true
   }); //infoWindow
@@ -37,6 +39,8 @@ app.on('ready', function() {
   });
 
   viewSchedulesWindow = new BrowserWindow({
+      width : 1600,
+      height: 900,
       transparent: false,
       show: false,
       frame: true

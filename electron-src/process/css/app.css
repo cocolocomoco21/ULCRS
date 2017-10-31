@@ -1,2 +1,12 @@
 @import url('../../node_modules/bootstrap/dist/css/bootstrap.css');
-@import url("../../node_modules/font-awesome/css/font-awesome.css");
+@import url('../../node_modules/font-awesome/css/font-awesome.css');
+
+.padding-2{
+    padding-right:2px;
+    padding-left:2px;
+}
+
+.fill {
+    min-height: 70%;
+    height:100%;
+}

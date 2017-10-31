@@ -10,6 +10,13 @@ class TutorTable extends React.Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+                tutors: nextProps.tutors
+            })
+    }
+
+
     render() {
         let tutors = this.state.tutors.map(function(item, index){
             return(
