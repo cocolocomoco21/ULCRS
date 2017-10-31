@@ -1,6 +1,7 @@
 [
     {
-        "Sunday1":
+        "Slot": "Sunday1",
+        "Data":
         [
             {
                 "Name": "Davidson",
@@ -17,53 +18,56 @@
         ]
     },
     {
-        "Sunday2":
+        "Slot": "Sunday2",
+        "Data":
         [
             {
-                "Name": "Davidson",
+                "Name": "Lily",
                 "Course": "CS 200"
             },
             {
-                "Name": "Davidson",
-                "Course": "CS 200"
+                "Name": "Sally",
+                "Course": "CS 540"
             },
             {
-                "Name": "Davidson",
-                "Course": "CS 200"
+                "Name": "Wid",
+                "Course": "CS 800"
             }
         ]
     },
     {
-        "Monday":
+        "Slot": "Monday",
+        "Data":
         [
             {
-                "Name": "Davidson",
-                "Course": "CS 200"
+                "Name": "Doon",
+                "Course": "CS 430"
+            },
+            {
+                "Name": "Caitlyn",
+                "Course": "CS 536"
             },
             {
                 "Name": "Davidson",
-                "Course": "CS 200"
-            },
-            {
-                "Name": "Davidson",
-                "Course": "CS 200"
+                "Course": "CS 210"
             }
         ]
     },
     {
-        "Tuesday":
+        "Slot": "Tuesday",
+        "Data":
         [
             {
-                "Name": "Davidson",
-                "Course": "CS 200"
+                "Name": "Mike",
+                "Course": "CS 320"
             },
             {
-                "Name": "Davidson",
-                "Course": "CS 200"
+                "Name": "Jason",
+                "Course": "CS 205"
             },
             {
-                "Name": "Davidson",
-                "Course": "CS 200"
+                "Name": "Wil",
+                "Course": "CS 537"
             }
         ]
     }
