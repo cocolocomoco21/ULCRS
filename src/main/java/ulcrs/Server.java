@@ -19,9 +19,9 @@ public class Server {
     public static void main(String args[]) {
         Server server = startServer();
 
-        // Route do the proper methods
+        // Route to the proper methods
         path("/ulcrs", () -> {
-            before("/*", (q, a) -> log.info("Received api call"));
+            // Paths for resources, handled by appropriate Controllers
             path("/tutor", server.tutorController.routes());
             path("/course", server.courseController.routes());
             path("/schedule", server.scheduleController.routes());

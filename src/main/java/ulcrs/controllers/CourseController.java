@@ -10,6 +10,7 @@ import ulcrs.models.course.CourseRequirements;
 import java.util.Arrays;
 import java.util.List;
 
+import static spark.Spark.before;
 import static spark.Spark.get;
 
 public class CourseController extends BaseController {
@@ -17,7 +18,8 @@ public class CourseController extends BaseController {
     @Override
     public RouteGroup routes() {
         return () -> {
-            get("", this::getCourseList, gson::toJson);
+            before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
+            get("/", this::getCourseList, gson::toJson);
             get("/:id", this::getCourse, gson::toJson);
         };
     }
