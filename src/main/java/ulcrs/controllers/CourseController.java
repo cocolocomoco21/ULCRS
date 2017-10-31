@@ -17,7 +17,7 @@ public class CourseController extends BaseController {
     public RouteGroup routes() {
         return () -> {
             Spark.before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            Spark.get("", this::getCourseList, gson::toJson);
+            Spark.get("/", this::getCourseList, gson::toJson);
             Spark.get("/:id", this::getCourse, gson::toJson);
         };
     }
