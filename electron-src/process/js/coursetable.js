@@ -1,19 +1,19 @@
 let ReactDOM = require('react-dom');
 let React = require('react');
-let TutorEntry = require('./tutorentry');
+let CourseEntry = require('./courseentry');
 
-class TutorTable extends React.Component {
+class CourseTable extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            tutors : this.props.tutors
+            courses : this.props.courses
         }
     }
 
     render() {
-        let tutors = this.state.tutors.map(function(item, index){
+        let courses = this.state.courses.map(function(item, index){
             return(
-                <TutorEntry key = {index}
+                <CourseEntry key = {index}
                             singleItem = {item}
                 />
             )
@@ -22,23 +22,22 @@ class TutorTable extends React.Component {
             <div className="card card-inverse" style={{background: "#3a99ff", border: "#ffffff"}}>
                 <div className="card-block">
                     <h3 className="card-header">
-                        Tutor
+                        Courses
                     </h3>
                     <div className = "card-body">
                         <table className="table table-striped">
                             <thead>
                             <tr>
                                 <th>id</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Status</th>
-                                <th>Course Preferences</th>
-                                <th>Shift Preferences</th>
-                                <th>Shift Frequency</th>
+                                <th>name</th>
+                                <th>Course Requirement</th>
+                                <th>Require Shift Amount</th>
+                                <th>Require Shift Amount</th>
+                                <th>Intensity</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {tutors}
+                            {courses}
                             </tbody>
                         </table>
                     </div> {/*tool bar */}
@@ -53,4 +52,4 @@ class TutorTable extends React.Component {
     Tutor
 </h3>*/
 
-module.exports = TutorTable;
+module.exports = CourseTable;

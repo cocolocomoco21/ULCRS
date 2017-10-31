@@ -3,25 +3,42 @@ let electron = eRequire("electron");
 let ipc = electron.ipcRenderer;
 
 class ViewToolbar extends React.Component {
-    myFunction() {
-        let card1 = document.getElementById("card1");
-        let card2 = document.getElementById("card2");
-        let listTitle = document.getElementById("ListTitle");
-        let listBody = document.getElementById("ListBody");
-        card1.style.backgroundColor = "#A9A9A9";
-        card2.style.backgroundColor = "#D3D3D3";
-        listTitle.innerHTML = "Tutors";
-        listBody.innerHTML = "Hello, this is the tutors page.";
+    constructor(props){
+        super(props);
+        this.state = {
+            curView : this.props.curView
+        };
+        this.decideColor = this.decideColor.bind(this);
+        this.clickTutorButton = this.clickTutorButton.bind(this);
+        this.clickCourseButton =  this.clickCourseButton.bind(this);
+        this.clickViewButton = this.props.clickViewButton.bind(this);
     }
-    myFunctionTwo() {
+
+
+    decideColor( view ) {
+        if (this.state.curView === view) {
+            return {backgroundColor: "#A9A9A9"};
+        }
+        return {backgroundColor: "#D3D3D3"};
+    }
+
+    clickTutorButton() {
         let card1 = document.getElementById("card1");
         let card2 = document.getElementById("card2");
-        let listTitle = document.getElementById("ListTitle");
-        let listBody = document.getElementById("ListBody");
-        card1.style.backgroundColor = "#D3D3D3";
-        card2.style.backgroundColor = "#A9A9A9";
-        listTitle.innerHTML = "Courses";
-        listBody.innerHTML = "Hello, this is the courses page.";
+        //card1.style.backgroundColor = "#A9A9A9";
+        //card2.style.backgroundColor = "#D3D3D3";
+
+        this.clickViewButton("tutor");
+    }
+
+
+    clickCourseButton() {
+        let card1 = document.getElementById("card1");
+        let card2 = document.getElementById("card2");
+        //card1.style.backgroundColor = "#D3D3D3";
+      //  card2.style.backgroundColor = "#A9A9A9";
+
+        this.clickViewButton("course");
     }
     render(){
         return (
@@ -30,12 +47,12 @@ class ViewToolbar extends React.Component {
                     Information
                 </h3>
 
-                <div id = "card1" type = "button" className = "card-body" onClick={this.myFunction} style = {{backgroundColor: "#A9A9A9"}}>
+                <div id = "card1" type = "button" className = "card-body" onClick={this.clickTutorButton} style = {this.decideColor("tutor")}>
                     <h5>
                         <i className="fa fa-user" aria-hidden="true"></i>  Tutor
                     </h5>
                 </div> {/*tool bar */}
-                <div id = "card2" type = "button" className = "card-body" onClick={this.myFunctionTwo} style = {{backgroundColor: "#D3D3D3"}}>
+                <div id = "card2" type = "button" className = "card-body" onClick={this.clickCourseButton} style = {this.decideColor("course")}>
                     <h5>
                         <i className="fa fa-book" aria-hidden="true"></i>  Course
                     </h5>
