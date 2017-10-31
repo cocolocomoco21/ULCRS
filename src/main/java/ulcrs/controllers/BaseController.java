@@ -10,7 +10,7 @@ abstract class BaseController {
     static final String CONTENT_TYPE_JSON = "application/json";
 
     static Gson gson = new Gson();
-    static Logger log = LoggerFactory.getLogger(BaseController.class);;
+    static Logger log = LoggerFactory.getLogger(BaseController.class);
 
     abstract RouteGroup routes();
 }

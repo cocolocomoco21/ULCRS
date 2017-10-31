@@ -2,11 +2,11 @@ package ulcrs;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import spark.Spark;
 import ulcrs.controllers.CourseController;
 import ulcrs.controllers.ScheduleController;
+import ulcrs.controllers.ShiftController;
 import ulcrs.controllers.TutorController;
-
-import static spark.Spark.*;
 
 public class Server {
 
@@ -14,17 +14,18 @@ public class Server {
     private TutorController tutorController;
     private CourseController courseController;
     private ScheduleController scheduleController;
-
+    private ShiftController shiftController;
 
     public static void main(String args[]) {
         Server server = startServer();
 
         // Route to the proper methods
-        path("/ulcrs", () -> {
+        Spark.path("/ulcrs", () -> {
             // Paths for resources, handled by appropriate Controllers
-            path("/tutor", server.tutorController.routes());
-            path("/course", server.courseController.routes());
-            path("/schedule", server.scheduleController.routes());
+            Spark.path("/tutor", server.tutorController.routes());
+            Spark.path("/course", server.courseController.routes());
+            Spark.path("/schedule", server.scheduleController.routes());
+            Spark.path("/shift", server.shiftController.routes());
         });
     }
 
@@ -36,10 +37,10 @@ public class Server {
      */
     private static Server startServer() {
         Server server = new Server();
-        staticFiles.location("/");
+        Spark.staticFiles.location("/");
 
         server.initializeControllers();
-        init();
+        Spark.init();
 
         return server;
     }
@@ -51,6 +52,7 @@ public class Server {
         this.tutorController = new TutorController();
         this.courseController = new CourseController();
         this.scheduleController = new ScheduleController();
+        this.shiftController = new ShiftController();
     }
 
 }

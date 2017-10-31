@@ -3,23 +3,20 @@ package ulcrs.controllers;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
+import spark.Spark;
 import ulcrs.models.schedule.Schedule;
 import ulcrs.scheduler.Scheduler;
 
 import java.util.List;
-
-import static spark.Spark.before;
-import static spark.Spark.get;
-import static spark.Spark.post;
 
 public class ScheduleController extends BaseController {
 
     @Override
     public RouteGroup routes() {
         return () -> {
-            before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            get("/generate", this::generateSchedule, gson::toJson);
-            post("/validate", this::validateSchedule, gson::toJson);
+            Spark.before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
+            Spark.get("/generate", this::generateSchedule, gson::toJson);
+            Spark.post("/validate", this::validateSchedule, gson::toJson);
         };
     }
 

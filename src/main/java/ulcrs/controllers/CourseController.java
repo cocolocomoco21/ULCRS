@@ -3,6 +3,7 @@ package ulcrs.controllers;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
+import spark.Spark;
 import ulcrs.models.course.Course;
 import ulcrs.models.course.CourseIntensity;
 import ulcrs.models.course.CourseRequirements;
@@ -10,17 +11,14 @@ import ulcrs.models.course.CourseRequirements;
 import java.util.Arrays;
 import java.util.List;
 
-import static spark.Spark.before;
-import static spark.Spark.get;
-
 public class CourseController extends BaseController {
 
     @Override
     public RouteGroup routes() {
         return () -> {
-            before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            get("/", this::getCourseList, gson::toJson);
-            get("/:id", this::getCourse, gson::toJson);
+            Spark.before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
+            Spark.get("", this::getCourseList, gson::toJson);
+            Spark.get("/:id", this::getCourse, gson::toJson);
         };
     }
 
