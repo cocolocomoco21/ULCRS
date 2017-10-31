@@ -23,9 +23,7 @@ class ShiftCard extends React.Component {
             </td>
         )
     }
-
 }
-
  
 
 class ScheduleTable extends React.Component {
@@ -37,44 +35,50 @@ class ScheduleTable extends React.Component {
     }
     // Put your code here.
     render() {
-        let cards = [<ShiftCard info={this.state.schedules[0].Sunday1[0]} key="0"/>,   
-        <ShiftCard info={this.state.schedules[0].Sunday1[1]} key="1" />,
-        <ShiftCard info={this.state.schedules[0].Sunday1[2]} key="2" />]
-        return (
+        let a = [];
+        for (var i = 0; i < this.state.schedules.length; i++){
+            a.push(<th>{this.state.schedules[i].Slot}</th>)
+        };
 
-            <div className="card" style={{background: "#00ffff", border: "#333"}}>
+        let b = [];
+        var j = 0;
+        while (true){
+            var emptyRow = true;
+            let row = [];
+            for (var i = 0; i < this.state.schedules.length; i++){
+                console.log(i);
+                if (this.state.schedules[i].Data.length > j){
+                    emptyRow = false;
+                    row.push(<td><ShiftCard info={this.state.schedules[i].Data[j]} /></td>);
+                }
+                else{
+                    row.push(<td></td>);
+                }
+            }
+            console.log(emptyRow);
+            if (emptyRow==true){
+                break;
+            }
+            else{
+                b.push(<tr>{row}</tr>);
+            }
+            j++;
+        }
+        return (
+            <div className="card" style={{overflow: "auto", background: "#00ffff", border: "#333"}}>
                 <div className="card-block">
                     <h3 className="card-header">
                         Schedule: schedule 1
                     </h3>
-
                     <div className = "card-body">
                     <table className="table">
                         <thead>
                             <tr>
-                                <th>Sunday</th>
-                                <th>Monday</th>
-                                <th>Tuesday</th>
-                                <th>Wednesday</th>
+                                {a}
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                {cards}
-                                <td>Chandler</td>
-                            </tr>
-                            <tr>
-                                <td scope="row"></td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">3</td>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                            {b}
                         </tbody>
                     </table>
                     </div> {/*tool bar */}
