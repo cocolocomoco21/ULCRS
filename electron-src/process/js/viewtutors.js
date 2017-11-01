@@ -61,6 +61,9 @@ class MainInterface extends React.Component {
       }
       return this.state.data
     }
+    ShowViewSchedules(){
+        ipc.sendSync("ShowViewSchedules")
+    }
     render() {
 
         return (
@@ -74,6 +77,9 @@ class MainInterface extends React.Component {
                         {/*<CourseTable courses = {this.state.courses}/>*/}
                         {this.prepareView()}
                     </div>
+
+                        <button type="button" className="btn btn-lg btn-success" id="generate-button-pos" onClick={this.ShowViewSchedules} > Generate Schedules! </button>
+
                 </div>
             </div>
 

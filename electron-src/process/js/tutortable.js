@@ -26,10 +26,10 @@ class TutorTable extends React.Component {
             )
         }.bind(this));
         return (
-            <div className="card card-inverse" style={{background: "#3a99ff", border: "#ffffff"}}>
+            <div className="card card-inverse" style={{background: "#049cdb", border: "#ffffff", color: "#ffffff"}}>
                 <div className="card-block">
                     <h3 className="card-header">
-                        Tutor
+                        Review your tutors
                     </h3>
                     <div className = "card-body">
                         <table className="table table-striped">
