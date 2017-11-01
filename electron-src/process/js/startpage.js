@@ -8,30 +8,31 @@ class StartPage extends React.Component{
     ShowViewTutor(){
         ipc.sendSync("ShowViewTutor")
     }
-    ShowViewSchedules(){
-        ipc.sendSync("ShowViewSchedules")
-    }
 
     render(){
         return (
         <div className="container-fluid">
 
             <div className="row justify-content-center">
-                <div className="col-4">
-                    <div className="row">
-                        <div style={{font:"23"}}>
-                            ULCRS
+                <div className="col">
+                    <div className="row justify-content-center">
+                        <div style={{fontSize:42}}>
+                            <strong>ULCRS</strong>
                         </div>
                     </div>
-                    <div className="row">
-                        <div>
-                            <button type="button" className="btn btn-info" onClick={this.ShowViewTutor} > Show view tutor </button>
+                    <div className="row justify-content-center">
+                        <div style={{fontSize:15}}>
+                            Welcome to ULCRS! What do you want to do today?
                         </div>
                     </div>
-
-                    <div className="row">
+                    <div className="row justify-content-center">
                         <div>
-                            <button type="button" className="btn btn-info" onClick={this.ShowViewSchedules}> Show view Schedules </button>
+                            <button type="button" className="btn btn-info" onClick={this.ShowViewTutor} > Load data from server </button>
+                        </div>
+                    </div>
+                    <div className="row justify-content-center">
+                        <div>
+                            <button type="button" className="btn btn-info">Resume a saved session</button>
                         </div>
                     </div>
                 </div>
