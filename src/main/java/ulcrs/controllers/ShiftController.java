@@ -3,22 +3,23 @@ package ulcrs.controllers;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
-import spark.Spark;
 import ulcrs.models.shift.Shift;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.List;
+
+import static spark.Spark.before;
+import static spark.Spark.get;
 
 public class ShiftController extends BaseController {
 
     @Override
     public RouteGroup routes() {
         return () -> {
-            Spark.before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            Spark.get("/", this::getShiftList, gson::toJson);
+            before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
+            get("/", this::getShiftList, gson::toJson);
         };
     }
 

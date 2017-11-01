@@ -2,12 +2,15 @@ package ulcrs;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import spark.Spark;
 import ulcrs.controllers.CourseController;
 import ulcrs.controllers.ScheduleController;
 import ulcrs.controllers.SessionController;
 import ulcrs.controllers.ShiftController;
 import ulcrs.controllers.TutorController;
+
+import static spark.Spark.init;
+import static spark.Spark.path;
+import static spark.Spark.staticFiles;
 
 public class Server {
 
@@ -22,13 +25,13 @@ public class Server {
         Server server = startServer();
 
         // Route to the proper methods
-        Spark.path("/ulcrs", () -> {
+        path("/ulcrs", () -> {
             // Paths for resources, handled by appropriate Controllers
-            Spark.path("/tutor", server.tutorController.routes());
-            Spark.path("/course", server.courseController.routes());
-            Spark.path("/schedule", server.scheduleController.routes());
-            Spark.path("/shift", server.shiftController.routes());
-            Spark.path("/session", server.sessionController.routes());
+            path("/tutor", server.tutorController.routes());
+            path("/course", server.courseController.routes());
+            path("/schedule", server.scheduleController.routes());
+            path("/shift", server.shiftController.routes());
+            path("/session", server.sessionController.routes());
         });
 
         log.info("Server is running...");
@@ -44,9 +47,9 @@ public class Server {
         Server server = new Server();
 
         // Must be done before route mapping
-        Spark.staticFiles.location("/");
+        staticFiles.location("/");
 
-        Spark.init();
+        init();
         server.initializeControllers();
 
         return server;

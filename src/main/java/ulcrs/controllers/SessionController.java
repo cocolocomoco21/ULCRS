@@ -3,21 +3,25 @@ package ulcrs.controllers;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
-import spark.Spark;
 import ulcrs.models.session.Session;
 
 import java.util.List;
+
+import static spark.Spark.before;
+import static spark.Spark.delete;
+import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class SessionController extends BaseController {
 
     @Override
     public RouteGroup routes() {
         return () -> {
-            Spark.before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            Spark.get("/", this::getSessionList, gson::toJson);
-            Spark.get("/:name", this::getSession, gson::toJson);
-            Spark.post("/:name", this::updateSession, gson::toJson);
-            Spark.delete("/:name", this::deleteSession, gson::toJson);
+            before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
+            get("/", this::getSessionList, gson::toJson);
+            get("/:name", this::getSession, gson::toJson);
+            post("/:name", this::updateSession, gson::toJson);
+            delete("/:name", this::deleteSession, gson::toJson);
         };
     }
 

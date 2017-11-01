@@ -5,21 +5,23 @@ import com.google.gson.stream.JsonReader;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
-import spark.Spark;
 import ulcrs.models.course.Course;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
+import static spark.Spark.before;
+import static spark.Spark.get;
+
 public class CourseController extends BaseController {
 
     @Override
     public RouteGroup routes() {
         return () -> {
-            Spark.before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            Spark.get("/", this::getCourseList, gson::toJson);
-            Spark.get("/:id", this::getCourse, gson::toJson);
+            before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
+            get("/", this::getCourseList, gson::toJson);
+            get("/:id", this::getCourse, gson::toJson);
         };
     }
 
