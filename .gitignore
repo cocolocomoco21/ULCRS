@@ -1,3 +1,13 @@
+.metadata
+build
+.gradle
+electron-src/app/
+out/
+
+# Idea
+.idea
+*.iml
+
 # Logs
 logs
 *.log
@@ -70,7 +80,6 @@ typings/
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 *.zip
