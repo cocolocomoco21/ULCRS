@@ -2,14 +2,14 @@ package ulcrs.models.session;
 
 import ulcrs.models.schedule.Schedule;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 public class Session {
 
     private String name;
     private Schedule existingSchedule;
-    private LocalTime generatedTimestamp;
-    private LocalTime lastEditedTimestamp;
+    private LocalDateTime generatedTimestamp;
+    private LocalDateTime lastEditedTimestamp;
 
     public void save() {
         // TODO: implement
@@ -36,19 +36,19 @@ public class Session {
         this.existingSchedule = existingSchedule;
     }
 
-    public LocalTime getGeneratedTimestamp() {
+    public LocalDateTime getGeneratedTimestamp() {
         return generatedTimestamp;
     }
 
-    public void setGeneratedTimestamp(LocalTime generatedTimestamp) {
+    public void setGeneratedTimestamp(LocalDateTime generatedTimestamp) {
         this.generatedTimestamp = generatedTimestamp;
     }
 
-    public LocalTime getLastEditedTimestamp() {
+    public LocalDateTime getLastEditedTimestamp() {
         return lastEditedTimestamp;
     }
 
-    public void setLastEditedTimestamp(LocalTime lastEditedTimestamp) {
+    public void setLastEditedTimestamp(LocalDateTime lastEditedTimestamp) {
         this.lastEditedTimestamp = lastEditedTimestamp;
     }
 }
