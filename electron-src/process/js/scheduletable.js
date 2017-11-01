@@ -24,7 +24,7 @@ class ShiftCard extends React.Component {
         )
     }
 }
- 
+
 
 class ScheduleTable extends React.Component {
     constructor(props){
@@ -65,12 +65,12 @@ class ScheduleTable extends React.Component {
             j++;
         }
         return (
-            <div className="card" style={{overflow: "auto", background: "#00ffff", border: "#333"}}>
+            <div className="card" style={{overflow: "auto", background: "#049cdb", border: "#333", color: "#ffffff"}}>
                 <div className="card-block">
                     <h3 className="card-header">
-                        Schedule: schedule 1
+                        Schedule: Schedule 1
                     </h3>
-                    <div className = "card-body">
+                    <div className = "card-body" style={{color: "#000000"}}>
                     <table className="table">
                         <thead>
                             <tr>
