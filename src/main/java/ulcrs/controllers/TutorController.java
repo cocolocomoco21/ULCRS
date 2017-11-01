@@ -47,7 +47,7 @@ public class TutorController extends BaseController {
 
         List<Tutor> tutors = gson.fromJson(reader, new TypeToken<List<Tutor>>() {}.getType());
 
-        int id = Integer.valueOf(request.params(":id"));
+        int id = Integer.valueOf(request.params("id"));
         return tutors.stream()
                 .filter(tutor -> tutor.getId() == id)
                 .findFirst()

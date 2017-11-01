@@ -1,5 +1,7 @@
 package ulcrs.controllers;
 
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
@@ -7,7 +9,10 @@ import spark.Spark;
 import ulcrs.models.course.Course;
 import ulcrs.models.course.CourseIntensity;
 import ulcrs.models.course.CourseRequirements;
+import ulcrs.models.tutor.Tutor;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,17 +30,22 @@ public class CourseController extends BaseController {
     private List<Course> getCourseList(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
 
-        // TODO implement
-        return Arrays.asList(
-                new Course(4, "CS 301", new CourseRequirements(null, 3, 4, CourseIntensity.HIGH)),
-                new Course(16, "CS 302", new CourseRequirements(null, 8, 12, CourseIntensity.HIGH)),
-                new Course(13, "CS 577", new CourseRequirements(null, 2, 3, CourseIntensity.LOW)));
+        InputStream is = getClass().getClassLoader().getResourceAsStream("mockCoursesNoTime.json");
+        JsonReader reader = new JsonReader(new InputStreamReader(is));
+
+        List<Course> courses = gson.fromJson(reader, new TypeToken<List<Course>>() {}.getType());
+        return courses;
     }
 
     private Course getCourse(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
 
-        // TODO implement
-        return new Course(Integer.valueOf(request.params("id")), "CS 302", new CourseRequirements(null, 8, 12, CourseIntensity.HIGH));
+        List<Course> courses = getCourseList(request, response);
+        int id = Integer.valueOf(request.params("id"));
+
+        return courses.stream()
+                .filter(course -> course.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 }
