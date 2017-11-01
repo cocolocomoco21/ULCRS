@@ -2,6 +2,7 @@ package ulcrs.models.shift;
 
 import java.time.DayOfWeek;
 import java.time.OffsetTime;
+import java.util.Objects;
 
 public class Shift {
 
@@ -47,5 +48,21 @@ public class Shift {
 
     public void setEndTime(OffsetTime endTime) {
         this.endTime = endTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Shift shift = (Shift) o;
+        return id == shift.id &&
+                day == shift.day &&
+                Objects.equals(startTime, shift.startTime) &&
+                Objects.equals(endTime, shift.endTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, day, startTime, endTime);
     }
 }

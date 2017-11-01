@@ -2,6 +2,7 @@ package ulcrs.models.course;
 
 import ulcrs.models.shift.Shift;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class CourseRequirements {
@@ -48,5 +49,21 @@ public class CourseRequirements {
 
     public void setIntensity(CourseIntensity intensity) {
         this.intensity = intensity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseRequirements that = (CourseRequirements) o;
+        return requiredShiftAmount == that.requiredShiftAmount &&
+                preferredShiftAmount == that.preferredShiftAmount &&
+                Objects.equals(requiredShifts, that.requiredShifts) &&
+                intensity == that.intensity;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(requiredShifts, requiredShiftAmount, preferredShiftAmount, intensity);
     }
 }
