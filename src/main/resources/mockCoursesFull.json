@@ -1,139 +1,139 @@
 [
-    {
-        "id": 0,
-        "name": "CS 302",
-        "courseRequirements": {
-            "requiredShifts": [
-                {
-                    "id": 0,
-                    "day": "MONDAY",
-                    "startTime": {
-                        "time": {
-                            "hour": 17,
-                            "minute": 7,
-                            "second": 53,
-                            "nano": 525000000
-                        },
-                        "offset": {
-                            "totalSeconds": -18000
-                        }
-                    },
-                    "endTime": {
-                        "time": {
-                            "hour": 20,
-                            "minute": 7,
-                            "second": 53,
-                            "nano": 536000000
-                        },
-                        "offset": {
-                            "totalSeconds": -18000
-                        }
-                    }
-                }
-            ],
-            "requiredShiftAmount": 1,
-            "preferredShiftAmount": 3,
-            "intensity": "MEDIUM"
+  {
+    "id": 0,
+    "name": "CS 302",
+    "courseRequirements": {
+      "requiredShifts": [
+        {
+          "id": 0,
+          "day": "MONDAY",
+          "startTime": {
+            "time": {
+              "hour": 17,
+              "minute": 7,
+              "second": 53,
+              "nano": 525000000
+            },
+            "offset": {
+              "totalSeconds": -18000
+            }
+          },
+          "endTime": {
+            "time": {
+              "hour": 20,
+              "minute": 7,
+              "second": 53,
+              "nano": 536000000
+            },
+            "offset": {
+              "totalSeconds": -18000
+            }
+          }
         }
-    },
-    {
-        "id": 1,
-        "name": "CS 301",
-        "courseRequirements": {
-            "requiredShifts": [
-                {
-                    "id": 0,
-                    "day": "MONDAY",
-                    "startTime": {
-                        "time": {
-                            "hour": 17,
-                            "minute": 7,
-                            "second": 53,
-                            "nano": 525000000
-                        },
-                        "offset": {
-                            "totalSeconds": -18000
-                        }
-                    },
-                    "endTime": {
-                        "time": {
-                            "hour": 20,
-                            "minute": 7,
-                            "second": 53,
-                            "nano": 536000000
-                        },
-                        "offset": {
-                            "totalSeconds": -18000
-                        }
-                    }
-                }
-            ],
-            "requiredShiftAmount": 1,
-            "preferredShiftAmount": 2,
-            "intensity": "LOW"
-        }
-    },
-    {
-        "id": 2,
-        "name": "CS 577",
-        "courseRequirements": {
-            "requiredShifts": [
-                {
-                    "id": 1,
-                    "day": "TUESDAY",
-                    "startTime": {
-                        "time": {
-                            "hour": 0,
-                            "minute": 0,
-                            "second": 0,
-                            "nano": 0
-                        },
-                        "offset": {
-                            "totalSeconds": 64800
-                        }
-                    },
-                    "endTime": {
-                        "time": {
-                            "hour": 20,
-                            "minute": 7,
-                            "second": 53,
-                            "nano": 536000000
-                        },
-                        "offset": {
-                            "totalSeconds": -18000
-                        }
-                    }
-                },
-                {
-                    "id": 2,
-                    "day": "WEDNESDAY",
-                    "startTime": {
-                        "time": {
-                            "hour": 0,
-                            "minute": 0,
-                            "second": 0,
-                            "nano": 0
-                        },
-                        "offset": {
-                            "totalSeconds": 64800
-                        }
-                    },
-                    "endTime": {
-                        "time": {
-                            "hour": 20,
-                            "minute": 7,
-                            "second": 53,
-                            "nano": 536000000
-                        },
-                        "offset": {
-                            "totalSeconds": -18000
-                        }
-                    }
-                }
-            ],
-            "requiredShiftAmount": 2,
-            "preferredShiftAmount": 4,
-            "intensity": "HIGH"
-        }
+      ],
+      "requiredShiftAmount": 1,
+      "preferredShiftAmount": 3,
+      "intensity": "MEDIUM"
     }
+  },
+  {
+    "id": 1,
+    "name": "CS 301",
+    "courseRequirements": {
+      "requiredShifts": [
+        {
+          "id": 0,
+          "day": "MONDAY",
+          "startTime": {
+            "time": {
+              "hour": 17,
+              "minute": 7,
+              "second": 53,
+              "nano": 525000000
+            },
+            "offset": {
+              "totalSeconds": -18000
+            }
+          },
+          "endTime": {
+            "time": {
+              "hour": 20,
+              "minute": 7,
+              "second": 53,
+              "nano": 536000000
+            },
+            "offset": {
+              "totalSeconds": -18000
+            }
+          }
+        }
+      ],
+      "requiredShiftAmount": 1,
+      "preferredShiftAmount": 2,
+      "intensity": "LOW"
+    }
+  },
+  {
+    "id": 2,
+    "name": "CS 577",
+    "courseRequirements": {
+      "requiredShifts": [
+        {
+          "id": 1,
+          "day": "TUESDAY",
+          "startTime": {
+            "time": {
+              "hour": 0,
+              "minute": 0,
+              "second": 0,
+              "nano": 0
+            },
+            "offset": {
+              "totalSeconds": 64800
+            }
+          },
+          "endTime": {
+            "time": {
+              "hour": 20,
+              "minute": 7,
+              "second": 53,
+              "nano": 536000000
+            },
+            "offset": {
+              "totalSeconds": -18000
+            }
+          }
+        },
+        {
+          "id": 2,
+          "day": "WEDNESDAY",
+          "startTime": {
+            "time": {
+              "hour": 0,
+              "minute": 0,
+              "second": 0,
+              "nano": 0
+            },
+            "offset": {
+              "totalSeconds": 64800
+            }
+          },
+          "endTime": {
+            "time": {
+              "hour": 20,
+              "minute": 7,
+              "second": 53,
+              "nano": 536000000
+            },
+            "offset": {
+              "totalSeconds": -18000
+            }
+          }
+        }
+      ],
+      "requiredShiftAmount": 2,
+      "preferredShiftAmount": 4,
+      "intensity": "HIGH"
+    }
+  }
 ]

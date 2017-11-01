@@ -7,13 +7,9 @@ import spark.Response;
 import spark.RouteGroup;
 import spark.Spark;
 import ulcrs.models.course.Course;
-import ulcrs.models.course.CourseIntensity;
-import ulcrs.models.course.CourseRequirements;
-import ulcrs.models.tutor.Tutor;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.List;
 
 public class CourseController extends BaseController {
@@ -33,7 +29,8 @@ public class CourseController extends BaseController {
         InputStream is = getClass().getClassLoader().getResourceAsStream("mockCoursesNoTime.json");
         JsonReader reader = new JsonReader(new InputStreamReader(is));
 
-        List<Course> courses = gson.fromJson(reader, new TypeToken<List<Course>>() {}.getType());
+        List<Course> courses = gson.fromJson(reader, new TypeToken<List<Course>>() {
+        }.getType());
         return courses;
     }
 

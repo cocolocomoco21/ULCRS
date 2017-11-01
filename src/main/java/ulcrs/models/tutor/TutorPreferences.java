@@ -46,8 +46,12 @@ public class TutorPreferences {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         TutorPreferences that = (TutorPreferences) o;
         return Objects.equals(coursePreferences, that.coursePreferences) &&
                 Objects.equals(shiftPreferences, that.shiftPreferences) &&

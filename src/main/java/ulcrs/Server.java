@@ -62,5 +62,4 @@ public class Server {
         this.shiftController = new ShiftController();
         this.sessionController = new SessionController();
     }
-
 }

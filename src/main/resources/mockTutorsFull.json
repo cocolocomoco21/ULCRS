@@ -1,504 +1,504 @@
 [
-    {
-        "id": 4,
-        "firstName": "Bilbo",
-        "lastName": "Baggins",
-        "tutorPreferences": {
-            "coursePreferences": {
-                "PREFER": [
-                    {
-                        "id": 0,
-                        "name": "CS 302",
-                        "courseRequirements": {
-                            "requiredShifts": [
-                                {
-                                    "id": 0,
-                                    "day": "MONDAY",
-                                    "startTime": {
-                                        "time": {
-                                            "hour": 17,
-                                            "minute": 7,
-                                            "second": 53,
-                                            "nano": 525000000
-                                        },
-                                        "offset": {
-                                            "totalSeconds": -18000
-                                        }
-                                    },
-                                    "endTime": {
-                                        "time": {
-                                            "hour": 20,
-                                            "minute": 7,
-                                            "second": 53,
-                                            "nano": 536000000
-                                        },
-                                        "offset": {
-                                            "totalSeconds": -18000
-                                        }
-                                    }
-                                }
-                            ],
-                            "requiredShiftAmount": 1,
-                            "preferredShiftAmount": 3,
-                            "intensity": "MEDIUM"
-                        }
+  {
+    "id": 4,
+    "firstName": "Bilbo",
+    "lastName": "Baggins",
+    "tutorPreferences": {
+      "coursePreferences": {
+        "PREFER": [
+          {
+            "id": 0,
+            "name": "CS 302",
+            "courseRequirements": {
+              "requiredShifts": [
+                {
+                  "id": 0,
+                  "day": "MONDAY",
+                  "startTime": {
+                    "time": {
+                      "hour": 17,
+                      "minute": 7,
+                      "second": 53,
+                      "nano": 525000000
                     },
-                    {
-                        "id": 1,
-                        "name": "CS 301",
-                        "courseRequirements": {
-                            "requiredShifts": [
-                                {
-                                    "id": 0,
-                                    "day": "MONDAY",
-                                    "startTime": {
-                                        "time": {
-                                            "hour": 17,
-                                            "minute": 7,
-                                            "second": 53,
-                                            "nano": 525000000
-                                        },
-                                        "offset": {
-                                            "totalSeconds": -18000
-                                        }
-                                    },
-                                    "endTime": {
-                                        "time": {
-                                            "hour": 20,
-                                            "minute": 7,
-                                            "second": 53,
-                                            "nano": 536000000
-                                        },
-                                        "offset": {
-                                            "totalSeconds": -18000
-                                        }
-                                    }
-                                }
-                            ],
-                            "requiredShiftAmount": 1,
-                            "preferredShiftAmount": 2,
-                            "intensity": "LOW"
-                        }
+                    "offset": {
+                      "totalSeconds": -18000
                     }
-                ],
-                "WILLING": [
-                    {
-                        "id": 2,
-                        "name": "CS 577",
-                        "courseRequirements": {
-                            "requiredShifts": [
-                                {
-                                    "id": 1,
-                                    "day": "TUESDAY",
-                                    "startTime": {
-                                        "time": {
-                                            "hour": 0,
-                                            "minute": 0,
-                                            "second": 0,
-                                            "nano": 0
-                                        },
-                                        "offset": {
-                                            "totalSeconds": 64800
-                                        }
-                                    },
-                                    "endTime": {
-                                        "time": {
-                                            "hour": 20,
-                                            "minute": 7,
-                                            "second": 53,
-                                            "nano": 536000000
-                                        },
-                                        "offset": {
-                                            "totalSeconds": -18000
-                                        }
-                                    }
-                                },
-                                {
-                                    "id": 2,
-                                    "day": "WEDNESDAY",
-                                    "startTime": {
-                                        "time": {
-                                            "hour": 0,
-                                            "minute": 0,
-                                            "second": 0,
-                                            "nano": 0
-                                        },
-                                        "offset": {
-                                            "totalSeconds": 64800
-                                        }
-                                    },
-                                    "endTime": {
-                                        "time": {
-                                            "hour": 20,
-                                            "minute": 7,
-                                            "second": 53,
-                                            "nano": 536000000
-                                        },
-                                        "offset": {
-                                            "totalSeconds": -18000
-                                        }
-                                    }
-                                }
-                            ],
-                            "requiredShiftAmount": 2,
-                            "preferredShiftAmount": 4,
-                            "intensity": "HIGH"
-                        }
-                    }
-                ]
-            },
-            "shiftPreferences": {
-                "PREFER": [
-                    {
-                        "id": 0,
-                        "day": "MONDAY",
-                        "startTime": {
-                            "time": {
-                                "hour": 17,
-                                "minute": 7,
-                                "second": 53,
-                                "nano": 525000000
-                            },
-                            "offset": {
-                                "totalSeconds": -18000
-                            }
-                        },
-                        "endTime": {
-                            "time": {
-                                "hour": 20,
-                                "minute": 7,
-                                "second": 53,
-                                "nano": 536000000
-                            },
-                            "offset": {
-                                "totalSeconds": -18000
-                            }
-                        }
-                    }
-                ],
-                "WILLING": [
-                    {
-                        "id": 1,
-                        "day": "TUESDAY",
-                        "startTime": {
-                            "time": {
-                                "hour": 0,
-                                "minute": 0,
-                                "second": 0,
-                                "nano": 0
-                            },
-                            "offset": {
-                                "totalSeconds": 64800
-                            }
-                        },
-                        "endTime": {
-                            "time": {
-                                "hour": 20,
-                                "minute": 7,
-                                "second": 53,
-                                "nano": 536000000
-                            },
-                            "offset": {
-                                "totalSeconds": -18000
-                            }
-                        }
+                  },
+                  "endTime": {
+                    "time": {
+                      "hour": 20,
+                      "minute": 7,
+                      "second": 53,
+                      "nano": 536000000
                     },
-                    {
-                        "id": 2,
-                        "day": "WEDNESDAY",
-                        "startTime": {
-                            "time": {
-                                "hour": 0,
-                                "minute": 0,
-                                "second": 0,
-                                "nano": 0
-                            },
-                            "offset": {
-                                "totalSeconds": 64800
-                            }
-                        },
-                        "endTime": {
-                            "time": {
-                                "hour": 20,
-                                "minute": 7,
-                                "second": 53,
-                                "nano": 536000000
-                            },
-                            "offset": {
-                                "totalSeconds": -18000
-                            }
-                        }
+                    "offset": {
+                      "totalSeconds": -18000
                     }
-                ]
-            },
-            "shiftFrequencyPreferences": {
-                "PREFER": 4,
-                "WILLING": 6
+                  }
+                }
+              ],
+              "requiredShiftAmount": 1,
+              "preferredShiftAmount": 3,
+              "intensity": "MEDIUM"
             }
-        },
-        "tutorStatus": "ACTIVE"
+          },
+          {
+            "id": 1,
+            "name": "CS 301",
+            "courseRequirements": {
+              "requiredShifts": [
+                {
+                  "id": 0,
+                  "day": "MONDAY",
+                  "startTime": {
+                    "time": {
+                      "hour": 17,
+                      "minute": 7,
+                      "second": 53,
+                      "nano": 525000000
+                    },
+                    "offset": {
+                      "totalSeconds": -18000
+                    }
+                  },
+                  "endTime": {
+                    "time": {
+                      "hour": 20,
+                      "minute": 7,
+                      "second": 53,
+                      "nano": 536000000
+                    },
+                    "offset": {
+                      "totalSeconds": -18000
+                    }
+                  }
+                }
+              ],
+              "requiredShiftAmount": 1,
+              "preferredShiftAmount": 2,
+              "intensity": "LOW"
+            }
+          }
+        ],
+        "WILLING": [
+          {
+            "id": 2,
+            "name": "CS 577",
+            "courseRequirements": {
+              "requiredShifts": [
+                {
+                  "id": 1,
+                  "day": "TUESDAY",
+                  "startTime": {
+                    "time": {
+                      "hour": 0,
+                      "minute": 0,
+                      "second": 0,
+                      "nano": 0
+                    },
+                    "offset": {
+                      "totalSeconds": 64800
+                    }
+                  },
+                  "endTime": {
+                    "time": {
+                      "hour": 20,
+                      "minute": 7,
+                      "second": 53,
+                      "nano": 536000000
+                    },
+                    "offset": {
+                      "totalSeconds": -18000
+                    }
+                  }
+                },
+                {
+                  "id": 2,
+                  "day": "WEDNESDAY",
+                  "startTime": {
+                    "time": {
+                      "hour": 0,
+                      "minute": 0,
+                      "second": 0,
+                      "nano": 0
+                    },
+                    "offset": {
+                      "totalSeconds": 64800
+                    }
+                  },
+                  "endTime": {
+                    "time": {
+                      "hour": 20,
+                      "minute": 7,
+                      "second": 53,
+                      "nano": 536000000
+                    },
+                    "offset": {
+                      "totalSeconds": -18000
+                    }
+                  }
+                }
+              ],
+              "requiredShiftAmount": 2,
+              "preferredShiftAmount": 4,
+              "intensity": "HIGH"
+            }
+          }
+        ]
+      },
+      "shiftPreferences": {
+        "PREFER": [
+          {
+            "id": 0,
+            "day": "MONDAY",
+            "startTime": {
+              "time": {
+                "hour": 17,
+                "minute": 7,
+                "second": 53,
+                "nano": 525000000
+              },
+              "offset": {
+                "totalSeconds": -18000
+              }
+            },
+            "endTime": {
+              "time": {
+                "hour": 20,
+                "minute": 7,
+                "second": 53,
+                "nano": 536000000
+              },
+              "offset": {
+                "totalSeconds": -18000
+              }
+            }
+          }
+        ],
+        "WILLING": [
+          {
+            "id": 1,
+            "day": "TUESDAY",
+            "startTime": {
+              "time": {
+                "hour": 0,
+                "minute": 0,
+                "second": 0,
+                "nano": 0
+              },
+              "offset": {
+                "totalSeconds": 64800
+              }
+            },
+            "endTime": {
+              "time": {
+                "hour": 20,
+                "minute": 7,
+                "second": 53,
+                "nano": 536000000
+              },
+              "offset": {
+                "totalSeconds": -18000
+              }
+            }
+          },
+          {
+            "id": 2,
+            "day": "WEDNESDAY",
+            "startTime": {
+              "time": {
+                "hour": 0,
+                "minute": 0,
+                "second": 0,
+                "nano": 0
+              },
+              "offset": {
+                "totalSeconds": 64800
+              }
+            },
+            "endTime": {
+              "time": {
+                "hour": 20,
+                "minute": 7,
+                "second": 53,
+                "nano": 536000000
+              },
+              "offset": {
+                "totalSeconds": -18000
+              }
+            }
+          }
+        ]
+      },
+      "shiftFrequencyPreferences": {
+        "PREFER": 4,
+        "WILLING": 6
+      }
     },
-    {
-        "id": 9,
-        "firstName": "Spicy",
-        "lastName": "Memelord",
-        "tutorPreferences": {
-            "coursePreferences": {
-                "PREFER": [
-                    {
-                        "id": 0,
-                        "name": "CS 302",
-                        "courseRequirements": {
-                            "requiredShifts": [
-                                {
-                                    "id": 0,
-                                    "day": "MONDAY",
-                                    "startTime": {
-                                        "time": {
-                                            "hour": 17,
-                                            "minute": 7,
-                                            "second": 53,
-                                            "nano": 525000000
-                                        },
-                                        "offset": {
-                                            "totalSeconds": -18000
-                                        }
-                                    },
-                                    "endTime": {
-                                        "time": {
-                                            "hour": 20,
-                                            "minute": 7,
-                                            "second": 53,
-                                            "nano": 536000000
-                                        },
-                                        "offset": {
-                                            "totalSeconds": -18000
-                                        }
-                                    }
-                                }
-                            ],
-                            "requiredShiftAmount": 1,
-                            "preferredShiftAmount": 3,
-                            "intensity": "MEDIUM"
-                        }
-                    }
-                ],
-                "WILLING": [
-                    {
-                        "id": 1,
-                        "name": "CS 301",
-                        "courseRequirements": {
-                            "requiredShifts": [
-                                {
-                                    "id": 0,
-                                    "day": "MONDAY",
-                                    "startTime": {
-                                        "time": {
-                                            "hour": 17,
-                                            "minute": 7,
-                                            "second": 53,
-                                            "nano": 525000000
-                                        },
-                                        "offset": {
-                                            "totalSeconds": -18000
-                                        }
-                                    },
-                                    "endTime": {
-                                        "time": {
-                                            "hour": 20,
-                                            "minute": 7,
-                                            "second": 53,
-                                            "nano": 536000000
-                                        },
-                                        "offset": {
-                                            "totalSeconds": -18000
-                                        }
-                                    }
-                                }
-                            ],
-                            "requiredShiftAmount": 1,
-                            "preferredShiftAmount": 2,
-                            "intensity": "LOW"
-                        }
-                    }
-                ]
-            },
-            "shiftPreferences": {
-                "PREFER": [
-                    {
-                        "id": 0,
-                        "day": "MONDAY",
-                        "startTime": {
-                            "time": {
-                                "hour": 17,
-                                "minute": 7,
-                                "second": 53,
-                                "nano": 525000000
-                            },
-                            "offset": {
-                                "totalSeconds": -18000
-                            }
-                        },
-                        "endTime": {
-                            "time": {
-                                "hour": 20,
-                                "minute": 7,
-                                "second": 53,
-                                "nano": 536000000
-                            },
-                            "offset": {
-                                "totalSeconds": -18000
-                            }
-                        }
+    "tutorStatus": "ACTIVE"
+  },
+  {
+    "id": 9,
+    "firstName": "Spicy",
+    "lastName": "Memelord",
+    "tutorPreferences": {
+      "coursePreferences": {
+        "PREFER": [
+          {
+            "id": 0,
+            "name": "CS 302",
+            "courseRequirements": {
+              "requiredShifts": [
+                {
+                  "id": 0,
+                  "day": "MONDAY",
+                  "startTime": {
+                    "time": {
+                      "hour": 17,
+                      "minute": 7,
+                      "second": 53,
+                      "nano": 525000000
                     },
-                    {
-                        "id": 1,
-                        "day": "TUESDAY",
-                        "startTime": {
-                            "time": {
-                                "hour": 0,
-                                "minute": 0,
-                                "second": 0,
-                                "nano": 0
-                            },
-                            "offset": {
-                                "totalSeconds": 64800
-                            }
-                        },
-                        "endTime": {
-                            "time": {
-                                "hour": 20,
-                                "minute": 7,
-                                "second": 53,
-                                "nano": 536000000
-                            },
-                            "offset": {
-                                "totalSeconds": -18000
-                            }
-                        }
+                    "offset": {
+                      "totalSeconds": -18000
                     }
-                ],
-                "WILLING": [
-                    {
-                        "id": 2,
-                        "day": "WEDNESDAY",
-                        "startTime": {
-                            "time": {
-                                "hour": 0,
-                                "minute": 0,
-                                "second": 0,
-                                "nano": 0
-                            },
-                            "offset": {
-                                "totalSeconds": 64800
-                            }
-                        },
-                        "endTime": {
-                            "time": {
-                                "hour": 20,
-                                "minute": 7,
-                                "second": 53,
-                                "nano": 536000000
-                            },
-                            "offset": {
-                                "totalSeconds": -18000
-                            }
-                        }
+                  },
+                  "endTime": {
+                    "time": {
+                      "hour": 20,
+                      "minute": 7,
+                      "second": 53,
+                      "nano": 536000000
+                    },
+                    "offset": {
+                      "totalSeconds": -18000
                     }
-                ]
-            },
-            "shiftFrequencyPreferences": {
-                "PREFER": 3,
-                "WILLING": 5
+                  }
+                }
+              ],
+              "requiredShiftAmount": 1,
+              "preferredShiftAmount": 3,
+              "intensity": "MEDIUM"
             }
-        },
-        "tutorStatus": "GHOST"
+          }
+        ],
+        "WILLING": [
+          {
+            "id": 1,
+            "name": "CS 301",
+            "courseRequirements": {
+              "requiredShifts": [
+                {
+                  "id": 0,
+                  "day": "MONDAY",
+                  "startTime": {
+                    "time": {
+                      "hour": 17,
+                      "minute": 7,
+                      "second": 53,
+                      "nano": 525000000
+                    },
+                    "offset": {
+                      "totalSeconds": -18000
+                    }
+                  },
+                  "endTime": {
+                    "time": {
+                      "hour": 20,
+                      "minute": 7,
+                      "second": 53,
+                      "nano": 536000000
+                    },
+                    "offset": {
+                      "totalSeconds": -18000
+                    }
+                  }
+                }
+              ],
+              "requiredShiftAmount": 1,
+              "preferredShiftAmount": 2,
+              "intensity": "LOW"
+            }
+          }
+        ]
+      },
+      "shiftPreferences": {
+        "PREFER": [
+          {
+            "id": 0,
+            "day": "MONDAY",
+            "startTime": {
+              "time": {
+                "hour": 17,
+                "minute": 7,
+                "second": 53,
+                "nano": 525000000
+              },
+              "offset": {
+                "totalSeconds": -18000
+              }
+            },
+            "endTime": {
+              "time": {
+                "hour": 20,
+                "minute": 7,
+                "second": 53,
+                "nano": 536000000
+              },
+              "offset": {
+                "totalSeconds": -18000
+              }
+            }
+          },
+          {
+            "id": 1,
+            "day": "TUESDAY",
+            "startTime": {
+              "time": {
+                "hour": 0,
+                "minute": 0,
+                "second": 0,
+                "nano": 0
+              },
+              "offset": {
+                "totalSeconds": 64800
+              }
+            },
+            "endTime": {
+              "time": {
+                "hour": 20,
+                "minute": 7,
+                "second": 53,
+                "nano": 536000000
+              },
+              "offset": {
+                "totalSeconds": -18000
+              }
+            }
+          }
+        ],
+        "WILLING": [
+          {
+            "id": 2,
+            "day": "WEDNESDAY",
+            "startTime": {
+              "time": {
+                "hour": 0,
+                "minute": 0,
+                "second": 0,
+                "nano": 0
+              },
+              "offset": {
+                "totalSeconds": 64800
+              }
+            },
+            "endTime": {
+              "time": {
+                "hour": 20,
+                "minute": 7,
+                "second": 53,
+                "nano": 536000000
+              },
+              "offset": {
+                "totalSeconds": -18000
+              }
+            }
+          }
+        ]
+      },
+      "shiftFrequencyPreferences": {
+        "PREFER": 3,
+        "WILLING": 5
+      }
     },
-    {
-        "id": 14,
-        "firstName": "Steve",
-        "lastName": "Balmer",
-        "tutorPreferences": {
-            "coursePreferences": {
-                "PREFER": [
-                    {
-                        "id": 0,
-                        "name": "CS 302",
-                        "courseRequirements": {
-                            "requiredShifts": [
-                                {
-                                    "id": 0,
-                                    "day": "MONDAY",
-                                    "startTime": {
-                                        "time": {
-                                            "hour": 17,
-                                            "minute": 7,
-                                            "second": 53,
-                                            "nano": 525000000
-                                        },
-                                        "offset": {
-                                            "totalSeconds": -18000
-                                        }
-                                    },
-                                    "endTime": {
-                                        "time": {
-                                            "hour": 20,
-                                            "minute": 7,
-                                            "second": 53,
-                                            "nano": 536000000
-                                        },
-                                        "offset": {
-                                            "totalSeconds": -18000
-                                        }
-                                    }
-                                }
-                            ],
-                            "requiredShiftAmount": 1,
-                            "preferredShiftAmount": 3,
-                            "intensity": "MEDIUM"
-                        }
+    "tutorStatus": "GHOST"
+  },
+  {
+    "id": 14,
+    "firstName": "Steve",
+    "lastName": "Balmer",
+    "tutorPreferences": {
+      "coursePreferences": {
+        "PREFER": [
+          {
+            "id": 0,
+            "name": "CS 302",
+            "courseRequirements": {
+              "requiredShifts": [
+                {
+                  "id": 0,
+                  "day": "MONDAY",
+                  "startTime": {
+                    "time": {
+                      "hour": 17,
+                      "minute": 7,
+                      "second": 53,
+                      "nano": 525000000
+                    },
+                    "offset": {
+                      "totalSeconds": -18000
                     }
-                ],
-                "WILLING": [
-                ]
-            },
-            "shiftPreferences": {
-                "PREFER": [
-                    {
-                        "id": 0,
-                        "day": "MONDAY",
-                        "startTime": {
-                            "time": {
-                                "hour": 17,
-                                "minute": 7,
-                                "second": 53,
-                                "nano": 525000000
-                            },
-                            "offset": {
-                                "totalSeconds": -18000
-                            }
-                        },
-                        "endTime": {
-                            "time": {
-                                "hour": 20,
-                                "minute": 7,
-                                "second": 53,
-                                "nano": 536000000
-                            },
-                            "offset": {
-                                "totalSeconds": -18000
-                            }
-                        }
+                  },
+                  "endTime": {
+                    "time": {
+                      "hour": 20,
+                      "minute": 7,
+                      "second": 53,
+                      "nano": 536000000
+                    },
+                    "offset": {
+                      "totalSeconds": -18000
                     }
-                ],
-                "WILLING": [
-                ]
-            },
-            "shiftFrequencyPreferences": {
-                "PREFER": 1,
-                "WILLING": 2
+                  }
+                }
+              ],
+              "requiredShiftAmount": 1,
+              "preferredShiftAmount": 3,
+              "intensity": "MEDIUM"
             }
-        },
-        "tutorStatus": "GHOST"
-    }
+          }
+        ],
+        "WILLING": [
+        ]
+      },
+      "shiftPreferences": {
+        "PREFER": [
+          {
+            "id": 0,
+            "day": "MONDAY",
+            "startTime": {
+              "time": {
+                "hour": 17,
+                "minute": 7,
+                "second": 53,
+                "nano": 525000000
+              },
+              "offset": {
+                "totalSeconds": -18000
+              }
+            },
+            "endTime": {
+              "time": {
+                "hour": 20,
+                "minute": 7,
+                "second": 53,
+                "nano": 536000000
+              },
+              "offset": {
+                "totalSeconds": -18000
+              }
+            }
+          }
+        ],
+        "WILLING": [
+        ]
+      },
+      "shiftFrequencyPreferences": {
+        "PREFER": 1,
+        "WILLING": 2
+      }
+    },
+    "tutorStatus": "GHOST"
+  }
 ]
