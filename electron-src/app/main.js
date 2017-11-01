@@ -55,12 +55,18 @@ app.on('ready', function() {
     });
 
   // change the api for receive actual data
-  ipc.on("request_data", (event, args) => {
+  ipc.on("request_course_data", (event, args) => {
       let fetch = require('electron-fetch');
-      fetch('https://jsonplaceholder.typicode.com/posts/1')
+      fetch('http://localhost:4567/ulcrs/tutor/')
           .then(res=> res.text())
-          .then(body=> event.sender.send("get_data", body));
+          .then(body=> event.sender.send("get_tutor_data", body));
   });
 
+  ipc.on("request_tutor_data", (event, args) =>{
+      let fetch = require('electron-fetch');
+      fetch('http://localhost:4567/ulcrs/course/')
+          .then(res=> res.text())
+          .then(body=> event.sender.send("get_course_data", body));
 
+  })
 }); //app is ready

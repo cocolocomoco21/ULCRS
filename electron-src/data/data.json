@@ -3,7 +3,7 @@
     "id": "1",
     "firstName": "Junjie",
     "lastName": "Xu",
-    "tStatus": "ghost",
+    "tutorStatus": "ghost",
     "coursePreference": "CS301",
     "shiftPreference": "Wed",
     "shiftFrequency": "1/week"
@@ -12,7 +12,7 @@
     "id": "2",
     "firstName": "Daniel",
     "lastName": "Han",
-    "tStatus": "Student",
+    "tutorStatus": "Student",
     "coursePreference": "CS537",
     "shiftPreference": "Sunday",
     "shiftFrequency": "7/week"

@@ -10,10 +10,10 @@ class CourseEntry extends React.Component {
 
                 <th scope="row">{this.props.singleItem.id}</th>
                 <td>{this.props.singleItem.name}</td>
-                <td>{courseRequirements.requiredShifts[0].day}</td>
-                <td>{courseRequirements.requiredShiftAmount}</td>
-                <td>{courseRequirements.preferredShiftAmount}</td>
-                <td>{courseRequirements.intensity}</td>
+                <td>{this.props.singleItem.requiredShifts }</td>
+                <td>{this.props.singleItem.requiredShiftAmount}</td>
+                <td>{this.props.singleItem.preferredShiftAmount}</td>
+                <td>{this.props.singleItem.intensity}</td>
             </tr>
         )
     }
