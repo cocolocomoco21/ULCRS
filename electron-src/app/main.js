@@ -37,6 +37,7 @@ app.on('ready', function() {
   ipc.on("ShowViewTutor", function (event, args) {
       event.returnValue = '';
       viewTutorsWindow.show();
+      appWindow.hide();
   });
 
   viewSchedulesWindow = new BrowserWindow({
@@ -52,6 +53,7 @@ app.on('ready', function() {
     ipc.on("ShowViewSchedules", function (event, args) {
         event.returnValue = '';
         viewSchedulesWindow.show();
+        viewTutorsWindow.hide();
     });
 
   // change the api for receive actual data
