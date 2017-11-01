@@ -18,4 +18,5 @@ dependencies {
     compile 'com.sparkjava:spark-core:2.6.0'
     compile 'com.google.code.gson:gson:2.8.2'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    testCompile 'junit:junit:4.12'
 }
