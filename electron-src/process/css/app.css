@@ -10,3 +10,24 @@
     min-height: 70%;
     height:100%;
 }
+
+#generate-button-pos{
+  position: absolute;
+  bottom: 50px;
+  right: 200px;
+}
+
+.btn-lg{
+  padding: 1rem 8rem;
+  font-size: 30px;
+}
+
+.table-striped{
+
+  tbody:{
+    td{
+      height:500px;
+      background-color: "#ffffff";
+    }
+  }
+}
