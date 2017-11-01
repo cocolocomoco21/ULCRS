@@ -62,8 +62,6 @@ npm start
 ```
 This will pull in dependencies and display the Electron application. 
 
-
-<<<<<<< HEAD
 ### Java Server
 **Dependencies:** You must have Java 8 and Gradle installed. 
 
@@ -105,14 +103,3 @@ To grab dependencies, build, and run the backend server, from the top-level dire
 This builds and runs the backend server. 
 
 The backend server exposes the `localhost:4567/ulcrs` resource. For instance, to get tutor information for all tutors, hit the `localhost:4567/ulcrs/tutor/` endpoint with a get request to get all tutors, or `localhost:4567/ulcrs/tutor/{id}` to get the tutor with the specified id.
-
-
-=======
->>>>>>> updated README.md
-## References
-These are references to dependencies and resources used by ULCRS, for ULCRS team members. Feel free to look at them if you are not a team member, but they do not tell you how to use ULCRS. 
-### Spark - Backend:
-- Spark GitHub: https://github.com/perwendel/spark
-- Spark documentation: http://sparkjava.com/documentation
-- Spark review and overview: https://zeroturnaround.com/rebellabs/sparkjava-is-an-amazing-java-web-framework-do-you-really-need-it/
-- Spark and Gradle: https://www.twilio.com/blog/2015/09/getting-started-with-gradle-and-the-spark-framework-3.html
