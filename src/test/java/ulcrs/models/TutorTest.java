@@ -27,11 +27,12 @@ import static org.hamcrest.core.Is.is;
 
 public class TutorTest {
 
-    List<Shift> shifts = new ArrayList<Shift>();
-    List<Course> courses = new ArrayList<Course>();
+    private List<Shift> shifts = new ArrayList<>();
+    private List<Course> courses = new ArrayList<>();
 
     @Before
     public void setup() {
+
         // Create shifts
         Shift shift0 = new Shift(0, DayOfWeek.MONDAY, OffsetTime.of(LocalTime.of(16, 45), ZoneOffset.UTC), OffsetTime.of(LocalTime.of(19, 45), ZoneOffset.UTC));
         Shift shift1 = new Shift(1, DayOfWeek.TUESDAY, OffsetTime.of(LocalTime.of(18, 0), ZoneOffset.UTC), OffsetTime.of(LocalTime.of(21, 0), ZoneOffset.UTC));
@@ -45,16 +46,16 @@ public class TutorTest {
         this.shifts.add(shift4);
 
         // Required shifts for courses
-        Set shiftSet0 = new HashSet<Shift>();
+        Set<Shift> shiftSet0 = new HashSet<>();
         shiftSet0.add(shift0);
-        Set shiftSet1 = new HashSet<Shift>();
+        Set<Shift> shiftSet1 = new HashSet<>();
         shiftSet1.add(shift1);
         shiftSet1.add(shift4);
-        Set shiftSet2 = new HashSet<Shift>();
+        Set<Shift> shiftSet2 = new HashSet<>();
         shiftSet2.add(shift1);
         shiftSet2.add(shift2);
         shiftSet2.add(shift3);
-        Set shiftSet3 = new HashSet<Shift>();
+        Set<Shift> shiftSet3 = new HashSet<>();
         shiftSet3.add(shift0);
         shiftSet3.add(shift2);
         shiftSet3.add(shift3);
@@ -75,11 +76,12 @@ public class TutorTest {
 
     @Test
     public void testConstructor_tutor_returnsFieldsCorrectly() {
+
         // Shift preference
-        Set preferredShifts = new HashSet<Shift>();
+        Set<Shift> preferredShifts = new HashSet<>();
         preferredShifts.add(shifts.get(0));         // Monday
         preferredShifts.add(shifts.get(2));         // Wednesday
-        Set willingShifts = new HashSet<Shift>();
+        Set<Shift> willingShifts = new HashSet<>();
         willingShifts.add(shifts.get(3));           // Thursday
 
         Map<Rank, Set<Shift>> shiftPreference = new HashMap<>();
@@ -87,18 +89,18 @@ public class TutorTest {
         shiftPreference.put(Rank.WILLING, willingShifts);
 
         // Course preference
-        Set preferredCourses = new HashSet<Course>();
+        Set<Course> preferredCourses = new HashSet<>();
         preferredCourses.add(courses.get(0));       // CS 302
         preferredCourses.add(courses.get(1));       // CS 301
-        Set willingCourses = new HashSet<Course>();
+        Set<Course> willingCourses = new HashSet<>();
         willingCourses.add(courses.get(2));         // CS 577
 
-        Map coursePreferences = new HashMap<Rank, Set<Course>>();
+        Map<Rank, Set<Course>> coursePreferences = new HashMap<>();
         coursePreferences.put(Rank.PREFER, preferredCourses);
         coursePreferences.put(Rank.WILLING, willingCourses);
 
         // Shift frequency preference
-        Map shiftFrequencyPreferences = new HashMap<Rank, Integer>();
+        Map<Rank, Integer> shiftFrequencyPreferences = new HashMap<>();
         shiftFrequencyPreferences.put(Rank.PREFER, 2);
         shiftFrequencyPreferences.put(Rank.WILLING, 4);
 
@@ -115,5 +117,4 @@ public class TutorTest {
         assertThat(tutor0.getTutorPreferences(), is(new TutorPreferences(coursePreferences, shiftPreference, shiftFrequencyPreferences)));
         assertThat(tutor0.getTutorStatus(), is(TutorStatus.ACTIVE));
     }
-
 }

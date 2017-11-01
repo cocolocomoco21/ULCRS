@@ -8,5 +8,4 @@ public class ScheduleTest {
     public void testConstructor_schedule_returnsFieldsCorrectly() {
         // TODO
     }
-
 }
