@@ -22,12 +22,17 @@
   font-size: 30px;
 }
 
-.table-striped{
-
-  tbody:{
-    td{
-      height:500px;
-      background-color: "#ffffff";
-    }
-  }
+.top-buffer {
+    margin-top:15px;
 }
+
+
+/*.table-striped{*/
+
+  /*tbody:{*/
+    /*td{*/
+      /*height:500px;*/
+      /*background-color: "#ffffff";*/
+    /*}*/
+  /*}*/
+/*}*/

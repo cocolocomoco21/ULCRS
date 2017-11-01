@@ -13,7 +13,7 @@ class StartPage extends React.Component{
         return (
         <div className="container-fluid">
 
-            <div className="row justify-content-center">
+            <div className="row justify-content-center ">
                 <div className="col">
                     <div className="row justify-content-center">
                         <div style={{fontSize:42}}>
@@ -25,15 +25,16 @@ class StartPage extends React.Component{
                             Welcome to ULCRS! What do you want to do today?
                         </div>
                     </div>
-                    <div className="row justify-content-center">
-                        <div>
-                            <button type="button" className="btn btn-info" onClick={this.ShowViewTutor} > Load data from server </button>
-                        </div>
+
+
+                    <div className="row justify-content-center top-buffer">
+                            <button className="btn btn-info" onClick={this.ShowViewTutor} > Load data from server </button>
                     </div>
-                    <div className="row justify-content-center">
-                        <div>
-                            <button type="button" className="btn btn-info">Resume a saved session</button>
-                        </div>
+
+                    <div className="row justify-content-center top-buffer">
+
+                            <button className="btn btn-info">Resume a saved session</button>
+
                     </div>
                 </div>
 
