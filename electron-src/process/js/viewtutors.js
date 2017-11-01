@@ -11,31 +11,40 @@ let electron = eRequire('electron');
 let ipc = electron.ipcRenderer;
 let Parser = require("./parser");
 
-ipc.send("request_data");
+ipc.send("request_tutor_data");
+ipc.send("request_course_data");
 class MainInterface extends React.Component {
   constructor(props){
     super(props);
     this.state = {
        // tutors: loadTutors,
+        tutorData: null,
+        courseData: null,
         tutors: [],
       courses: [],
-      data: null,
-      parser: null,
       view: "tutor" // view will only be tutor or course
     };
 
     this.clickViewButton = this.clickViewButton.bind(this);
     this.prepareView = this.prepareView.bind(this);
-      ipc.on("get_data",  (event, text) => {
-          let p = new Parser(mock);
-          console.log(text);
-          this.setState({
-              data: text,
-              parser: p,
-              courses: p.getCourses(),
-              tutors: loadTutors
-          });
+    ipc.on("get_tutor_data",  (event, text) => {
+      let d = JSON.parse(text);
+      let p = new Parser();
+      this.setState({
+          tutors: p.getTutors(d),
+          tutorData: d
       });
+    });
+
+    ipc.on("get_course_data",  (event, text) => {
+      let d = JSON.parse(text);
+      let p = new Parser();
+      this.setState({
+          courses: p.getCourses(d),
+          courseData: d
+      });
+    });
+
   }
 
   clickViewButton(v){
