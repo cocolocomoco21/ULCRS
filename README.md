@@ -1,20 +1,23 @@
 # ULCRS
-ULCRS, or Undergraduate Learning Center (ULC) Resource Scheduler, is a tutor scheduling desktop application intended for the ULC at UW-Madison. ULCRS is a project for the CS 506: Software Engineering course during Fall 2017.
+ULCRS, or Undergraduate Learning Center (ULC) Resource Scheduler, is a tutor scheduling desktop application intended for the ULC at UW-Madison. ULCRS is a project for the CS 506: Software Engineering course during the Fall 2017 semester.
+
+The intent of ULCRS is to schedule 20-40 tutors to 50+ courses for the ULC's Drop-in Tutoring service. Here, tutors are scheduled to courses, rather than a typical tutor-to-student scheduling. Students needing help can then "drop in" for help with a course during that course's scheduled time. ULCRS aims to addresses this scheduling problem for the ULC.
+
+About the name: Yes, it is pronounced "ulcers." Our client at the ULC has always wanted to have some software called "ULCers," which would incorporate their name of ULC in a comical way. We said "heck, we can do that," and ULCRS was born.
 
 
 ## Overview
-ULCRS has frontend and backend local processes that communicate using a RESTful API. ULCRS uses the Electron framework to function as a cross-platform desktop application which uses technologies like a webapp does, but on the desktop. Accordingly, ULCRS uses React for the UI hosted within Electron and Java for a separate backend server process. Electron acts as its UI/frontend and Sparkjava is used to create a backend Java server. 
+ULCRS  mimics a webapp, but localized on a desktop. ULCRS has frontend and backend local processes that communicate using a RESTful API over localhost. ULCRS uses the [Electron](https://electron.atom.io/) framework to function as a cross-platform desktop application which uses technologies as a webapp does, but on the desktop. Accordingly, ULCRS uses React for the UI hosted within Electron. For the backend, ULCRS (i.e. Electron) spins off a separate Java process to act as a backend server. [Spark](http://sparkjava.com/) is used to handle the REST API and spin up the actual Jetty server for the backend. So, Electron acts as the UI/frontend and Spark is used to create a backend Java server. 
 
 
 ## Building
 ### Electron UI
 **Dependencies:** TODO. npm
 
-To grab dependencies and run the UI, run:
+To grab dependencies and build the UI, from the top-level directory, run:
 ``` 
 cd electron-src
 sudo npm install
-npm start
 ```
 
 To run the tests:
@@ -23,13 +26,13 @@ npm test
 ```
 
 ### Java Server
-**Dependencies:** To run the Java Server process which acts as the backend, you must have Java 8 and Gradle installed. 
+**Dependencies:** You must have Java 8 and Gradle installed. 
 
-There are two ways of running the backend server:
-1) Use IntelliJ to manage and run Gradle tasks (including running the server) 
+There are two ways of interacting with the backend server:
+1) Use IntelliJ to manage and run Gradle tasks (including building, running, and testing the server) 
 2) Interact with the ULCRS backend server from the command line
 
-Here, we discuss (2), how to interact with the ULCRS backend server from the command line:
+Option 1 should be straightforward using Gradle, so we discuss Option 2, how to interact with the ULCRS backend server from the command line:
 
 **Build:**
 ```
@@ -37,15 +40,14 @@ Here, we discuss (2), how to interact with the ULCRS backend server from the com
 ```
 This compiles the code and pulls the necessary dependencies using Gradle and Maven so you don't have to.
 
-**Run:**
-```
-./gradlew run
-```
-This runs the backend service. This is discussed in the "Running" section below.
-
 
 ## Running
-To run ULCRS, you currently must run the Electron UI and the Java backend server independently (this will eventually all be handled for the user). Follow these instructions to run ULCRS:
+To run ULCRS, you currently must run the Electron UI and the Java backend server **independently** (this will eventually all be managed by Electron so the user does not need to). Follow these instructions to run ULCRS:
+
+### Running Together
+Running each process is discussed below. However, to run ULCRS, you must first run the Java server. Once the server is running, then run the Electron UI. This allows for communication between the two. 
+
+To exit, simply kill the Java server and close the Electron UI window(s).
 
 ### Electron UI
 To grab dependencies and run the UI, from the top-level directory, run:
@@ -54,23 +56,22 @@ cd electron-src
 npm install
 npm start
 ```
+This will pull in dependencies and display the Electron application. 
 
 ### Java Server
 To grab dependencies, build, and run the backend server, from the top-level directory, run:
 ```
 ./gradlew run
 ```
-This builds and runs the backend service. The service exposes endpoints on `localhost:4567/ulcrs`. For instance, to get tutor information for all tutors, hit the `localhost:4567/ulcrs/tutor/` endpoint with a get request to get all tutors, or `localhost:4567/ulcrs/tutor/{id}` to get the tutor with the specified id.
- 
-### Running Together
-To run the Electron UI and Java server together, you must first run the Java server. Then, run the Electron UI server. This allows for communication between the two. 
+This builds and runs the backend server. 
 
-To exit, simply kill the Java server and close the Electron UI window(s).
+The backend server exposes the `localhost:4567/ulcrs` resource. For instance, to get tutor information for all tutors, hit the `localhost:4567/ulcrs/tutor/` endpoint with a get request to get all tutors, or `localhost:4567/ulcrs/tutor/{id}` to get the tutor with the specified id.
 
 
 ## References
-### References to Spark and other dependencies used in the backend (for use by ULCRS team members):
-Spark GitHub: https://github.com/perwendel/spark
-Spark documentation: http://sparkjava.com/documentation
-Spark review and overview: https://zeroturnaround.com/rebellabs/sparkjava-is-an-amazing-java-web-framework-do-you-really-need-it/
-Spark and Gradle: https://www.twilio.com/blog/2015/09/getting-started-with-gradle-and-the-spark-framework-3.html
+These are references to dependencies and resources used by ULCRS, for ULCRS team members. Feel free to look at them if you are not a team member, but they do not tell you how to use ULCRS. 
+### Spark - Backend:
+- Spark GitHub: https://github.com/perwendel/spark
+- Spark documentation: http://sparkjava.com/documentation
+- Spark review and overview: https://zeroturnaround.com/rebellabs/sparkjava-is-an-amazing-java-web-framework-do-you-really-need-it/
+- Spark and Gradle: https://www.twilio.com/blog/2015/09/getting-started-with-gradle-and-the-spark-framework-3.html

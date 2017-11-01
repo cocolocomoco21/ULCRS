@@ -30,6 +30,8 @@ public class Server {
             Spark.path("/shift", server.shiftController.routes());
             Spark.path("/session", server.sessionController.routes());
         });
+
+        log.info("Server is running...");
     }
 
     /**
