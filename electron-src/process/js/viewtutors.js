@@ -28,6 +28,7 @@ class MainInterface extends React.Component {
     this.prepareView = this.prepareView.bind(this);
       ipc.on("get_data",  (event, text) => {
           let p = new Parser(mock);
+          console.log(text);
           this.setState({
               data: text,
               parser: p,

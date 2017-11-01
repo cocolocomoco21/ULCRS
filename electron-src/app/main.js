@@ -13,7 +13,8 @@ app.on('ready', function() {
     show: false
   }); //appWindow
 
-  appWindow.loadURL('file://' + __dirname + '/index.html');
+  //appWindow.loadURL('file://' + __dirname + '/viewschedules.html');
+    appWindow.loadURL('file://' + __dirname + '/index.html');
 
 
     //appWindow.loadURL('http://www.wisc.edu');
@@ -46,7 +47,7 @@ app.on('ready', function() {
       frame: true
   });
 
-  viewSchedulesWindow.loadURL('file://' + __dirname + '/viewschedules.html');
+  viewSchedulesWindow.loadURL('file://' + __dirname + '/viewschedules.html')
 
     ipc.on("ShowViewSchedules", function (event, args) {
         event.returnValue = '';
