@@ -40,10 +40,12 @@ public class Server {
      */
     private static Server startServer() {
         Server server = new Server();
+
+        // Must be done before route mapping
         Spark.staticFiles.location("/");
 
-        server.initializeControllers();
         Spark.init();
+        server.initializeControllers();
 
         return server;
     }

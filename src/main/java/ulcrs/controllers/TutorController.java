@@ -29,12 +29,10 @@ public class TutorController extends BaseController {
         // TODO implement
         // Fetch from either memory or call to ULC server
 
-        InputStream is = getClass().getClassLoader().getResourceAsStream("mockTutorData.json");
-
+        InputStream is = getClass().getClassLoader().getResourceAsStream("mockTutors.json");
         JsonReader reader = new JsonReader(new InputStreamReader(is));
-        List<Tutor> tutors = gson.fromJson(reader, new TypeToken<List<Tutor>>() {
-        }.getType());
 
+        List<Tutor> tutors = gson.fromJson(reader, new TypeToken<List<Tutor>>() {}.getType());
         return tutors;
     }
 
@@ -44,9 +42,15 @@ public class TutorController extends BaseController {
         // TODO implement
         // Fetch from either memory or call to ULC server
 
-        int id = Integer.valueOf(request.params(":id"));
-        List<Tutor> tutors = getTutorList(request, response);
+        InputStream is = getClass().getClassLoader().getResourceAsStream("mockTutorsFull.json");
+        JsonReader reader = new JsonReader(new InputStreamReader(is));
 
-        return tutors.stream().findFirst().filter(tutor -> tutor.getId() == id).orElse(null);
+        List<Tutor> tutors = gson.fromJson(reader, new TypeToken<List<Tutor>>() {}.getType());
+
+        int id = Integer.valueOf(request.params(":id"));
+        return tutors.stream()
+                .filter(tutor -> tutor.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 }
