@@ -34,11 +34,11 @@ public class TutorTest {
     public void setup() {
 
         // Create shifts
-        Shift shift0 = new Shift(0, DayOfWeek.MONDAY, OffsetTime.of(LocalTime.of(16, 45), ZoneOffset.UTC), OffsetTime.of(LocalTime.of(19, 45), ZoneOffset.UTC));
-        Shift shift1 = new Shift(1, DayOfWeek.TUESDAY, OffsetTime.of(LocalTime.of(18, 0), ZoneOffset.UTC), OffsetTime.of(LocalTime.of(21, 0), ZoneOffset.UTC));
-        Shift shift2 = new Shift(2, DayOfWeek.WEDNESDAY, OffsetTime.of(LocalTime.of(19, 0), ZoneOffset.UTC), OffsetTime.of(LocalTime.of(21, 0), ZoneOffset.UTC));
-        Shift shift3 = new Shift(3, DayOfWeek.THURSDAY, OffsetTime.of(LocalTime.of(18, 30), ZoneOffset.UTC), OffsetTime.of(LocalTime.of(21, 30), ZoneOffset.UTC));
-        Shift shift4 = new Shift(4, DayOfWeek.FRIDAY, OffsetTime.of(LocalTime.of(17, 15), ZoneOffset.UTC), OffsetTime.of(LocalTime.of(20, 45), ZoneOffset.UTC));
+        Shift shift0 = new Shift(0, DayOfWeek.MONDAY, LocalTime.of(16, 45), LocalTime.of(19, 45));
+        Shift shift1 = new Shift(1, DayOfWeek.TUESDAY, LocalTime.of(18, 0), LocalTime.of(21, 0));
+        Shift shift2 = new Shift(2, DayOfWeek.WEDNESDAY, LocalTime.of(19, 0), LocalTime.of(21, 0));
+        Shift shift3 = new Shift(3, DayOfWeek.THURSDAY, LocalTime.of(18, 30), LocalTime.of(21, 30));
+        Shift shift4 = new Shift(4, DayOfWeek.FRIDAY, LocalTime.of(17, 15), LocalTime.of(20, 45));
         this.shifts.add(shift0);
         this.shifts.add(shift1);
         this.shifts.add(shift2);

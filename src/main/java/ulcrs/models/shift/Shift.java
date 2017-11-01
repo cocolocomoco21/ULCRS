@@ -1,17 +1,17 @@
 package ulcrs.models.shift;
 
 import java.time.DayOfWeek;
-import java.time.OffsetTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class Shift {
 
     private int id;
     private DayOfWeek day;
-    private OffsetTime startTime;
-    private OffsetTime endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
-    public Shift(int id, DayOfWeek day, OffsetTime startTime, OffsetTime endTime) {
+    public Shift(int id, DayOfWeek day, LocalTime startTime, LocalTime endTime) {
         this.id = id;
         this.day = day;
         this.startTime = startTime;
@@ -34,19 +34,19 @@ public class Shift {
         this.day = day;
     }
 
-    public OffsetTime getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(OffsetTime startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public OffsetTime getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(OffsetTime endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 

@@ -7,7 +7,7 @@ import spark.Spark;
 import ulcrs.models.shift.Shift;
 
 import java.time.DayOfWeek;
-import java.time.OffsetTime;
+import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.List;
@@ -27,8 +27,8 @@ public class ShiftController extends BaseController {
 
         // TODO implement
 
-        OffsetTime startTime = OffsetTime.of(6, 30, 0, 0, ZoneOffset.UTC);
-        OffsetTime endTime = OffsetTime.of(9, 0, 0, 0, ZoneOffset.UTC);
+        LocalTime startTime = LocalTime.of(6, 30);
+        LocalTime endTime = LocalTime.of(9, 0);
 
         return Arrays.asList(
                 new Shift(0, DayOfWeek.SUNDAY, startTime, endTime),
