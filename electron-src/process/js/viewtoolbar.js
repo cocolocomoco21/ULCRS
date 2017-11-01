@@ -35,12 +35,12 @@ class ViewToolbar extends React.Component {
                     Information
                 </h3>
 
-                <div id = "card1" type = "button" className = "card-body" onClick={this.clickTutorButton} style = {{backgroundColor: "#A9A9A9"}}>
+                <div id = "card1" className = "card-body" onClick={this.clickTutorButton} style = {this.decideColor("tutor")}>
                     <h5>
                         <i className="fa fa-user" aria-hidden="true"></i>  Tutor
                     </h5>
                 </div> {/*tool bar */}
-                <div id = "card2" type = "button" className = "card-body" onClick={this.clickCourseButton} style = {{backgroundColor: "#D3D3D3"}}>
+                <div id = "card2" className = "card-body" onClick={this.clickCourseButton} style = {this.decideColor("course")}>
                     <h5>
                         <i className="fa fa-book" aria-hidden="true"></i>  Course
                     </h5>
