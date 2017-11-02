@@ -5,13 +5,33 @@
     "main": "main.js",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "electron ."
+      "start": "gulp "
     },
     "repository": "https://github.com/cocolocomoco21/ULCRS",
     "author": "Matt Henricks",
     "license": "BSD-3-Clause",
     "devDependencies": {
-      "electron": "~1.7.9"
+      "electron": "~1.7.9",
+      "electron-packager": "~9.1.0",
+      "gulp": "~3.9.1",
+      "gulp-browserify": "~0.5.1",
+      "gulp-concat-css": "~2.3.0",
+      "gulp-react": "~3.1.0",
+      "gulp-run": "~1.7.1",
+      "react": "~16.0.0",
+      "react-dom": "~16.0.0",
+      "reactify": "~1.1.1"
+    },
+    "dependencies": {
+      "bootstrap": "~4.0.0-beta.2",
+      "font-awesome": "~4.7.0",
+      "popper.js":"^1.12.6",
+      "electron-reload": "~1.2.2",
+      "lodash": "~4.17.4",
+      "jquery": "~3.2.1",
+      "node-rest-client": "^3.1.0",
+      "electron-fetch": "^1.1.0"
     }
+
 }
   
