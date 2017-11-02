@@ -36,13 +36,13 @@ public class SessionController extends BaseController {
     }
 
     // TODO: What return type?
-    private Object updateSession(Request request, Response response) {
+    private boolean updateSession(Request request, Response response) {
         // TODO: update session matching name
         return false;
     }
 
     // TODO: What return type?
-    private Object deleteSession(Request request, Response response) {
+    private boolean deleteSession(Request request, Response response) {
         // TODO: delete session matching name
         return false;
     }

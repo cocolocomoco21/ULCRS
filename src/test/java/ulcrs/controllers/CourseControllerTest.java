@@ -2,7 +2,6 @@ package ulcrs.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import com.sun.xml.internal.rngom.parse.host.Base;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,17 +15,16 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 import spark.Request;
 import spark.Response;
-import ulcrs.models.tutor.Tutor;
+import ulcrs.models.course.Course;
 
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({TutorController.class, Gson.class})
-public class TutorControllerTest {
+@PrepareForTest({CourseController.class, Gson.class})
+public class CourseControllerTest {
 
-    private TutorController tutorControllerTest;
+    private CourseController courseControllerTest;
 
     @Mock
     private Request requestMock;
@@ -40,7 +38,7 @@ public class TutorControllerTest {
     public void init() {
         MockitoAnnotations.initMocks(this);
 
-        tutorControllerTest = new TutorController();
+        courseControllerTest = new CourseController();
 
         gsonMock = PowerMockito.mock(Gson.class);
         PowerMockito.mockStatic(BaseController.class);
@@ -48,26 +46,26 @@ public class TutorControllerTest {
     }
 
     @Test
-    public void successGetTutorList() throws Exception {
-        List<Tutor> tutorListTest = new ArrayList<>();
-        Mockito.when(gsonMock.fromJson(Mockito.any(JsonReader.class), Mockito.any())).thenReturn(tutorListTest);
+    public void successGetCourseList() throws Exception {
+        List<Course> courseListTest = new ArrayList<>();
+        Mockito.when(gsonMock.fromJson(Mockito.any(JsonReader.class), Mockito.any())).thenReturn(courseListTest);
 
-        List<Tutor> getTutorListResult = Whitebox.invokeMethod(tutorControllerTest, "getTutorList",
+        List<Course> getCourseListResult = Whitebox.invokeMethod(courseControllerTest, "getCourseList",
                 requestMock, responseMock);
-        Assert.assertEquals(tutorListTest, getTutorListResult);
+        Assert.assertEquals(courseListTest, getCourseListResult);
     }
 
     @Test
-    public void successGetTutor() throws Exception {
-        List<Tutor> tutorListTest = new ArrayList<>();
-        tutorListTest.add(new Tutor(1, "d", "s", null, null));
-        tutorListTest.add(new Tutor(2, "d", "s", null, null));
+    public void successGetCourse() throws Exception {
+        List<Course> courseListTest = new ArrayList<>();
+        courseListTest.add(new Course(1, "a", null));
+        courseListTest.add(new Course(2, "b", null));
 
-        Mockito.when(gsonMock.fromJson(Mockito.any(JsonReader.class), Mockito.any())).thenReturn(tutorListTest);
+        Mockito.when(gsonMock.fromJson(Mockito.any(JsonReader.class), Mockito.any())).thenReturn(courseListTest);
         Mockito.when(requestMock.params(Mockito.eq("id"))).thenReturn("1");
 
-        Tutor getTutorResult = Whitebox.invokeMethod(tutorControllerTest, "getTutor",
+        Course getCourseResult = Whitebox.invokeMethod(courseControllerTest, "getCourse",
                 requestMock, responseMock);
-        Assert.assertEquals(tutorListTest.get(0), getTutorResult);
+        Assert.assertEquals(courseListTest.get(0), getCourseResult);
     }
 }
