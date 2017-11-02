@@ -55,8 +55,9 @@ This builds and runs the backend server.
 The backend server exposes the `localhost:4567/ulcrs` resource. For instance, to get tutor information for all tutors, hit the `localhost:4567/ulcrs/tutor/` endpoint with a get request to get all tutors, or `localhost:4567/ulcrs/tutor/{id}` to get the tutor with the specified id.
 
 ### Electron UI
-To run the UI, from the electron-src/ under the top-level directory, run:
+To run the UI, from the top-level directory, run:
 ```
+cd electron-src
 npm start
 ```
 This will pull in dependencies and launch the Electron application.
