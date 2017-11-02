@@ -31,17 +31,18 @@ public class CourseController extends BaseController {
         InputStream is = getClass().getClassLoader().getResourceAsStream("mockCoursesNoTime.json");
         JsonReader reader = new JsonReader(new InputStreamReader(is));
 
-        List<Course> courses = gson.fromJson(reader, new TypeToken<List<Course>>() {
-        }.getType());
+        List<Course> courses = gson.fromJson(reader, new TypeToken<List<Course>>() {}.getType());
         return courses;
     }
 
     private Course getCourse(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
 
-        List<Course> courses = getCourseList(request, response);
-        int id = Integer.valueOf(request.params("id"));
+        InputStream is = getClass().getClassLoader().getResourceAsStream("mockCoursesFull.json");
+        JsonReader reader = new JsonReader(new InputStreamReader(is));
 
+        List<Course> courses = gson.fromJson(reader, new TypeToken<List<Course>>() {}.getType());
+        int id = Integer.valueOf(request.params("id"));
         return courses.stream()
                 .filter(course -> course.getId() == id)
                 .findFirst()
