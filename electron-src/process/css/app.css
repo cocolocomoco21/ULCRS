@@ -1,0 +1,38 @@
+@import url('../../node_modules/bootstrap/dist/css/bootstrap.css');
+@import url('../../node_modules/font-awesome/css/font-awesome.css');
+
+.padding-2{
+    padding-right:2px;
+    padding-left:2px;
+}
+
+.fill {
+    min-height: 70%;
+    height:100%;
+}
+
+#generate-button-pos{
+  position: absolute;
+  bottom: 50px;
+  right: 200px;
+}
+
+.btn-lg{
+  padding: 1rem 8rem;
+  font-size: 30px;
+}
+
+.top-buffer {
+    margin-top:15px;
+}
+
+
+/*.table-striped{*/
+
+  /*tbody:{*/
+    /*td{*/
+      /*height:500px;*/
+      /*background-color: "#ffffff";*/
+    /*}*/
+  /*}*/
+/*}*/

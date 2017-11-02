@@ -1,8 +1,6 @@
 .metadata
 build
 .gradle
-electron-src/app/
-out/
 
 # Idea
 .idea
@@ -11,6 +9,7 @@ out/
 # Logs
 logs
 *.log
+electron-src/app/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -80,6 +79,7 @@ typings/
 .mtj.tmp/
 
 # Package Files #
+*.jar
 *.war
 *.ear
 *.zip
