@@ -4,9 +4,10 @@ var BrowserWindow = electron.BrowserWindow;
 var app = electron.app;
 var ipc = electron.ipcMain;
 
+var serverProcess = null;
+var appWindow, viewTutorsWindow, viewSchedulesWindow = null;
 
 app.on('ready', function() {
-  var appWindow, viewTutorsWindow, viewSchedulesWindow;
   appWindow = new BrowserWindow({
       width: 400,
       height: 300,
@@ -33,6 +34,18 @@ app.on('ready', function() {
     appWindow.show();
   }); //ready-to-show
 
+  // Start Java backend server
+  serverProcess = require('child_process').exec;
+  var child = serverProcess('java -jar ../build/libs/ULCRS.jar',
+      function (error, stdout, stderr) {
+        console.log('Output -> ' + stdout);
+        console.log('Error -> ' + stderr);
+        if (error !== null){
+            console.log("Err -> " + error);
+        }
+      console.log("Started Java process");
+  });
+  module.exports = child;
 
   ipc.on("ShowViewTutor", function (event, args) {
       event.returnValue = '';
