@@ -35,17 +35,22 @@ app.on('ready', function() {
   }); //ready-to-show
 
   // Start Java backend server
+  // This currently (11/2) does not handle killing the server. `java.exe` must manually be 
+  // killed to function properly. You can also use the `jps` command to find the appropriate PID
   serverProcess = require('child_process').exec;
-  var child = serverProcess('java -jar ../build/libs/ULCRS.jar',
-      function (error, stdout, stderr) {
-        console.log('Output -> ' + stdout);
-        console.log('Error -> ' + stderr);
-        if (error !== null){
-            console.log("Err -> " + error);
-        }
-      console.log("Started Java process");
+  var child = serverProcess('java -jar ../build/libs/ULCRS.jar');
+
+  child.stdout.on('data', function (data) {
+    console.log('Server stdout: ' + data);
   });
-  module.exports = child;
+
+  child.stderr.on('data', function (data) {
+    console.log('Server stderr: ' + data);
+  });
+
+  child.on('close', function (code) {
+    console.log('Server closing code: ' + code);
+  });  
 
   ipc.on("ShowViewTutor", function (event, args) {
       event.returnValue = '';
