@@ -1,51 +1,101 @@
 [
-  {
-    "id": 0,
-    "name": "CS 302",
-    "courseRequirements": {
-      "requiredShifts": [
-        {
-          "id": 0,
-          "day": "MONDAY"
+    {
+        "id": 0,
+        "name": "CS 301",
+        "courseRequirements": {
+            "requiredShifts": [
+                {
+                    "id": 1,
+                    "day": "TUESDAY"
+                },
+                {
+                    "id": 4,
+                    "day": "FRIDAY"
+                }
+            ],
+            "requiredShiftAmount": 1,
+            "preferredShiftAmount": 3,
+            "intensity": "MEDIUM"
         }
-      ],
-      "requiredShiftAmount": 1,
-      "preferredShiftAmount": 3,
-      "intensity": "MEDIUM"
-    }
-  },
-  {
-    "id": 1,
-    "name": "CS 301",
-    "courseRequirements": {
-      "requiredShifts": [
-        {
-          "id": 0,
-          "day": "MONDAY"
+    },
+    {
+        "id": 1,
+        "name": "CS 302",
+        "courseRequirements": {
+            "requiredShifts": [
+                {
+                    "id": 1,
+                    "day": "TUESDAY"
+                },
+                {
+                    "id": 3,
+                    "day": "THURSDAY"
+                },
+                {
+                    "id": 2,
+                    "day": "WEDNESDAY"
+                }
+            ],
+            "requiredShiftAmount": 2,
+            "preferredShiftAmount": 2,
+            "intensity": "HIGH"
         }
-      ],
-      "requiredShiftAmount": 1,
-      "preferredShiftAmount": 2,
-      "intensity": "LOW"
-    }
-  },
-  {
-    "id": 2,
-    "name": "CS 577",
-    "courseRequirements": {
-      "requiredShifts": [
-        {
-          "id": 1,
-          "day": "TUESDAY"
-        },
-        {
-          "id": 2,
-          "day": "WEDNESDAY"
+    },
+    {
+        "id": 2,
+        "name": "CS 577",
+        "courseRequirements": {
+            "requiredShifts": [
+                {
+                    "id": 0,
+                    "day": "MONDAY"
+                }
+            ],
+            "requiredShiftAmount": 1,
+            "preferredShiftAmount": 2,
+            "intensity": "LOW"
         }
-      ],
-      "requiredShiftAmount": 2,
-      "preferredShiftAmount": 4,
-      "intensity": "HIGH"
+    },
+    {
+        "id": 3,
+        "name": "EMA 201",
+        "courseRequirements": {
+            "requiredShifts": [
+                {
+                    "id": 0,
+                    "day": "MONDAY"
+                },
+                {
+                    "id": 3,
+                    "day": "THURSDAY"
+                },
+                {
+                    "id": 2,
+                    "day": "WEDNESDAY"
+                },
+                {
+                    "id": 4,
+                    "day": "FRIDAY"
+                }
+            ],
+            "requiredShiftAmount": 4,
+            "preferredShiftAmount": 4,
+            "intensity": "HIGH"
+        }
+    },
+    {
+        "id": 4,
+        "name": "ECE 210",
+        "courseRequirements": {
+            "requiredShifts": [
+                {
+                    "id": 0,
+                    "day": "MONDAY"
+                }
+            ],
+            "requiredShiftAmount": 1,
+            "preferredShiftAmount": 1,
+            "intensity": "LOW"
+        }
     }
-  }
 ]

@@ -34,8 +34,7 @@ public class TutorController extends BaseController {
         InputStream is = getClass().getClassLoader().getResourceAsStream("mockTutors.json");
         JsonReader reader = new JsonReader(new InputStreamReader(is));
 
-        List<Tutor> tutors = gson.fromJson(reader, new TypeToken<List<Tutor>>() {
-        }.getType());
+        List<Tutor> tutors = gson.fromJson(reader, new TypeToken<List<Tutor>>() {}.getType());
         return tutors;
     }
 
@@ -48,9 +47,7 @@ public class TutorController extends BaseController {
         InputStream is = getClass().getClassLoader().getResourceAsStream("mockTutorsFull.json");
         JsonReader reader = new JsonReader(new InputStreamReader(is));
 
-        List<Tutor> tutors = gson.fromJson(reader, new TypeToken<List<Tutor>>() {
-        }.getType());
-
+        List<Tutor> tutors = gson.fromJson(reader, new TypeToken<List<Tutor>>() {}.getType());
         int id = Integer.valueOf(request.params("id"));
         return tutors.stream()
                 .filter(tutor -> tutor.getId() == id)

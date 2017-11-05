@@ -9,7 +9,6 @@ import org.powermock.reflect.Whitebox;
 import spark.Request;
 import spark.Response;
 import ulcrs.models.shift.Shift;
-import ulcrs.models.tutor.Tutor;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
