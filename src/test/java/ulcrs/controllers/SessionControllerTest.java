@@ -1,6 +1,5 @@
 package ulcrs.controllers;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,9 +10,6 @@ import spark.Request;
 import spark.Response;
 import ulcrs.models.session.Session;
 
-import java.time.DayOfWeek;
-import java.time.LocalTime;
-import java.util.Arrays;
 import java.util.List;
 
 public class SessionControllerTest {

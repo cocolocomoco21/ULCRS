@@ -1,504 +1,1030 @@
 [
-  {
-    "id": 4,
-    "firstName": "Bilbo",
-    "lastName": "Baggins",
-    "tutorPreferences": {
-      "coursePreferences": {
-        "PREFER": [
-          {
-            "id": 0,
-            "name": "CS 302",
-            "courseRequirements": {
-              "requiredShifts": [
-                {
-                  "id": 0,
-                  "day": "MONDAY",
-                  "startTime": {
-                    "time": {
-                      "hour": 17,
-                      "minute": 7,
-                      "second": 53,
-                      "nano": 525000000
+    {
+        "id": 0,
+        "firstName": "Bilbo",
+        "lastName": "Baggins",
+        "tutorPreferences": {
+            "coursePreferences": {
+                "PREFER": [
+                    {
+                        "id": 0,
+                        "name": "CS 301",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 1,
+                                    "day": "TUESDAY",
+                                    "startTime": {
+                                        "hour": 18,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 4,
+                                    "day": "FRIDAY",
+                                    "startTime": {
+                                        "hour": 17,
+                                        "minute": 15,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 20,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 1,
+                            "preferredShiftAmount": 3,
+                            "intensity": "MEDIUM"
+                        }
                     },
-                    "offset": {
-                      "totalSeconds": -18000
+                    {
+                        "id": 1,
+                        "name": "CS 302",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 1,
+                                    "day": "TUESDAY",
+                                    "startTime": {
+                                        "hour": 18,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 3,
+                                    "day": "THURSDAY",
+                                    "startTime": {
+                                        "hour": 18,
+                                        "minute": 30,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 30,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 2,
+                                    "day": "WEDNESDAY",
+                                    "startTime": {
+                                        "hour": 19,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 2,
+                            "preferredShiftAmount": 2,
+                            "intensity": "HIGH"
+                        }
                     }
-                  },
-                  "endTime": {
-                    "time": {
-                      "hour": 20,
-                      "minute": 7,
-                      "second": 53,
-                      "nano": 536000000
-                    },
-                    "offset": {
-                      "totalSeconds": -18000
+                ],
+                "WILLING": [
+                    {
+                        "id": 2,
+                        "name": "CS 577",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 0,
+                                    "day": "MONDAY",
+                                    "startTime": {
+                                        "hour": 16,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 19,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 1,
+                            "preferredShiftAmount": 2,
+                            "intensity": "LOW"
+                        }
                     }
-                  }
-                }
-              ],
-              "requiredShiftAmount": 1,
-              "preferredShiftAmount": 3,
-              "intensity": "MEDIUM"
-            }
-          },
-          {
-            "id": 1,
-            "name": "CS 301",
-            "courseRequirements": {
-              "requiredShifts": [
-                {
-                  "id": 0,
-                  "day": "MONDAY",
-                  "startTime": {
-                    "time": {
-                      "hour": 17,
-                      "minute": 7,
-                      "second": 53,
-                      "nano": 525000000
-                    },
-                    "offset": {
-                      "totalSeconds": -18000
-                    }
-                  },
-                  "endTime": {
-                    "time": {
-                      "hour": 20,
-                      "minute": 7,
-                      "second": 53,
-                      "nano": 536000000
-                    },
-                    "offset": {
-                      "totalSeconds": -18000
-                    }
-                  }
-                }
-              ],
-              "requiredShiftAmount": 1,
-              "preferredShiftAmount": 2,
-              "intensity": "LOW"
-            }
-          }
-        ],
-        "WILLING": [
-          {
-            "id": 2,
-            "name": "CS 577",
-            "courseRequirements": {
-              "requiredShifts": [
-                {
-                  "id": 1,
-                  "day": "TUESDAY",
-                  "startTime": {
-                    "time": {
-                      "hour": 0,
-                      "minute": 0,
-                      "second": 0,
-                      "nano": 0
-                    },
-                    "offset": {
-                      "totalSeconds": 64800
-                    }
-                  },
-                  "endTime": {
-                    "time": {
-                      "hour": 20,
-                      "minute": 7,
-                      "second": 53,
-                      "nano": 536000000
-                    },
-                    "offset": {
-                      "totalSeconds": -18000
-                    }
-                  }
-                },
-                {
-                  "id": 2,
-                  "day": "WEDNESDAY",
-                  "startTime": {
-                    "time": {
-                      "hour": 0,
-                      "minute": 0,
-                      "second": 0,
-                      "nano": 0
-                    },
-                    "offset": {
-                      "totalSeconds": 64800
-                    }
-                  },
-                  "endTime": {
-                    "time": {
-                      "hour": 20,
-                      "minute": 7,
-                      "second": 53,
-                      "nano": 536000000
-                    },
-                    "offset": {
-                      "totalSeconds": -18000
-                    }
-                  }
-                }
-              ],
-              "requiredShiftAmount": 2,
-              "preferredShiftAmount": 4,
-              "intensity": "HIGH"
-            }
-          }
-        ]
-      },
-      "shiftPreferences": {
-        "PREFER": [
-          {
-            "id": 0,
-            "day": "MONDAY",
-            "startTime": {
-              "time": {
-                "hour": 17,
-                "minute": 7,
-                "second": 53,
-                "nano": 525000000
-              },
-              "offset": {
-                "totalSeconds": -18000
-              }
+                ]
             },
-            "endTime": {
-              "time": {
-                "hour": 20,
-                "minute": 7,
-                "second": 53,
-                "nano": 536000000
-              },
-              "offset": {
-                "totalSeconds": -18000
-              }
-            }
-          }
-        ],
-        "WILLING": [
-          {
-            "id": 1,
-            "day": "TUESDAY",
-            "startTime": {
-              "time": {
-                "hour": 0,
-                "minute": 0,
-                "second": 0,
-                "nano": 0
-              },
-              "offset": {
-                "totalSeconds": 64800
-              }
+            "shiftPreferences": {
+                "PREFER": [
+                    {
+                        "id": 0,
+                        "day": "MONDAY",
+                        "startTime": {
+                            "hour": 16,
+                            "minute": 45,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 19,
+                            "minute": 45,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "day": "WEDNESDAY",
+                        "startTime": {
+                            "hour": 19,
+                            "minute": 0,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 21,
+                            "minute": 0,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    }
+                ],
+                "WILLING": [
+                    {
+                        "id": 3,
+                        "day": "THURSDAY",
+                        "startTime": {
+                            "hour": 18,
+                            "minute": 30,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 21,
+                            "minute": 30,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    }
+                ]
             },
-            "endTime": {
-              "time": {
-                "hour": 20,
-                "minute": 7,
-                "second": 53,
-                "nano": 536000000
-              },
-              "offset": {
-                "totalSeconds": -18000
-              }
+            "shiftFrequencyPreferences": {
+                "PREFER": 2,
+                "WILLING": 4
             }
-          },
-          {
-            "id": 2,
-            "day": "WEDNESDAY",
-            "startTime": {
-              "time": {
-                "hour": 0,
-                "minute": 0,
-                "second": 0,
-                "nano": 0
-              },
-              "offset": {
-                "totalSeconds": 64800
-              }
-            },
-            "endTime": {
-              "time": {
-                "hour": 20,
-                "minute": 7,
-                "second": 53,
-                "nano": 536000000
-              },
-              "offset": {
-                "totalSeconds": -18000
-              }
-            }
-          }
-        ]
-      },
-      "shiftFrequencyPreferences": {
-        "PREFER": 4,
-        "WILLING": 6
-      }
+        },
+        "tutorStatus": "ACTIVE"
     },
-    "tutorStatus": "ACTIVE"
-  },
-  {
-    "id": 9,
-    "firstName": "Spicy",
-    "lastName": "Memelord",
-    "tutorPreferences": {
-      "coursePreferences": {
-        "PREFER": [
-          {
-            "id": 0,
-            "name": "CS 302",
-            "courseRequirements": {
-              "requiredShifts": [
-                {
-                  "id": 0,
-                  "day": "MONDAY",
-                  "startTime": {
-                    "time": {
-                      "hour": 17,
-                      "minute": 7,
-                      "second": 53,
-                      "nano": 525000000
+    {
+        "id": 1,
+        "firstName": "Spicy",
+        "lastName": "Memelord",
+        "tutorPreferences": {
+            "coursePreferences": {
+                "PREFER": [
+                    {
+                        "id": 0,
+                        "name": "CS 301",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 1,
+                                    "day": "TUESDAY",
+                                    "startTime": {
+                                        "hour": 18,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 4,
+                                    "day": "FRIDAY",
+                                    "startTime": {
+                                        "hour": 17,
+                                        "minute": 15,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 20,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 1,
+                            "preferredShiftAmount": 3,
+                            "intensity": "MEDIUM"
+                        }
                     },
-                    "offset": {
-                      "totalSeconds": -18000
+                    {
+                        "id": 3,
+                        "name": "EMA 201",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 0,
+                                    "day": "MONDAY",
+                                    "startTime": {
+                                        "hour": 16,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 19,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 3,
+                                    "day": "THURSDAY",
+                                    "startTime": {
+                                        "hour": 18,
+                                        "minute": 30,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 30,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 2,
+                                    "day": "WEDNESDAY",
+                                    "startTime": {
+                                        "hour": 19,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 4,
+                                    "day": "FRIDAY",
+                                    "startTime": {
+                                        "hour": 17,
+                                        "minute": 15,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 20,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 4,
+                            "preferredShiftAmount": 4,
+                            "intensity": "HIGH"
+                        }
                     }
-                  },
-                  "endTime": {
-                    "time": {
-                      "hour": 20,
-                      "minute": 7,
-                      "second": 53,
-                      "nano": 536000000
-                    },
-                    "offset": {
-                      "totalSeconds": -18000
+                ],
+                "WILLING": [
+                    {
+                        "id": 4,
+                        "name": "ECE 230",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 0,
+                                    "day": "MONDAY",
+                                    "startTime": {
+                                        "hour": 16,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 19,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 1,
+                            "preferredShiftAmount": 1,
+                            "intensity": "LOW"
+                        }
                     }
-                  }
-                }
-              ],
-              "requiredShiftAmount": 1,
-              "preferredShiftAmount": 3,
-              "intensity": "MEDIUM"
-            }
-          }
-        ],
-        "WILLING": [
-          {
-            "id": 1,
-            "name": "CS 301",
-            "courseRequirements": {
-              "requiredShifts": [
-                {
-                  "id": 0,
-                  "day": "MONDAY",
-                  "startTime": {
-                    "time": {
-                      "hour": 17,
-                      "minute": 7,
-                      "second": 53,
-                      "nano": 525000000
-                    },
-                    "offset": {
-                      "totalSeconds": -18000
-                    }
-                  },
-                  "endTime": {
-                    "time": {
-                      "hour": 20,
-                      "minute": 7,
-                      "second": 53,
-                      "nano": 536000000
-                    },
-                    "offset": {
-                      "totalSeconds": -18000
-                    }
-                  }
-                }
-              ],
-              "requiredShiftAmount": 1,
-              "preferredShiftAmount": 2,
-              "intensity": "LOW"
-            }
-          }
-        ]
-      },
-      "shiftPreferences": {
-        "PREFER": [
-          {
-            "id": 0,
-            "day": "MONDAY",
-            "startTime": {
-              "time": {
-                "hour": 17,
-                "minute": 7,
-                "second": 53,
-                "nano": 525000000
-              },
-              "offset": {
-                "totalSeconds": -18000
-              }
+                ]
             },
-            "endTime": {
-              "time": {
-                "hour": 20,
-                "minute": 7,
-                "second": 53,
-                "nano": 536000000
-              },
-              "offset": {
-                "totalSeconds": -18000
-              }
-            }
-          },
-          {
-            "id": 1,
-            "day": "TUESDAY",
-            "startTime": {
-              "time": {
-                "hour": 0,
-                "minute": 0,
-                "second": 0,
-                "nano": 0
-              },
-              "offset": {
-                "totalSeconds": 64800
-              }
+            "shiftPreferences": {
+                "PREFER": [
+                    {
+                        "id": 1,
+                        "day": "TUESDAY",
+                        "startTime": {
+                            "hour": 18,
+                            "minute": 0,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 21,
+                            "minute": 0,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "day": "THURSDAY",
+                        "startTime": {
+                            "hour": 18,
+                            "minute": 30,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 21,
+                            "minute": 30,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "day": "FRIDAY",
+                        "startTime": {
+                            "hour": 17,
+                            "minute": 15,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 20,
+                            "minute": 45,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    }
+                ],
+                "WILLING": [
+                    {
+                        "id": 0,
+                        "day": "MONDAY",
+                        "startTime": {
+                            "hour": 16,
+                            "minute": 45,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 19,
+                            "minute": 45,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    }
+                ]
             },
-            "endTime": {
-              "time": {
-                "hour": 20,
-                "minute": 7,
-                "second": 53,
-                "nano": 536000000
-              },
-              "offset": {
-                "totalSeconds": -18000
-              }
+            "shiftFrequencyPreferences": {
+                "PREFER": 4,
+                "WILLING": 5
             }
-          }
-        ],
-        "WILLING": [
-          {
-            "id": 2,
-            "day": "WEDNESDAY",
-            "startTime": {
-              "time": {
-                "hour": 0,
-                "minute": 0,
-                "second": 0,
-                "nano": 0
-              },
-              "offset": {
-                "totalSeconds": 64800
-              }
-            },
-            "endTime": {
-              "time": {
-                "hour": 20,
-                "minute": 7,
-                "second": 53,
-                "nano": 536000000
-              },
-              "offset": {
-                "totalSeconds": -18000
-              }
-            }
-          }
-        ]
-      },
-      "shiftFrequencyPreferences": {
-        "PREFER": 3,
-        "WILLING": 5
-      }
+        },
+        "tutorStatus": "ACTIVE"
     },
-    "tutorStatus": "GHOST"
-  },
-  {
-    "id": 14,
-    "firstName": "Steve",
-    "lastName": "Balmer",
-    "tutorPreferences": {
-      "coursePreferences": {
-        "PREFER": [
-          {
-            "id": 0,
-            "name": "CS 302",
-            "courseRequirements": {
-              "requiredShifts": [
-                {
-                  "id": 0,
-                  "day": "MONDAY",
-                  "startTime": {
-                    "time": {
-                      "hour": 17,
-                      "minute": 7,
-                      "second": 53,
-                      "nano": 525000000
+    {
+        "id": 2,
+        "firstName": "Steve",
+        "lastName": "Balmer",
+        "tutorPreferences": {
+            "coursePreferences": {
+                "PREFER": [
+                    {
+                        "id": 0,
+                        "name": "CS 301",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 1,
+                                    "day": "TUESDAY",
+                                    "startTime": {
+                                        "hour": 18,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 4,
+                                    "day": "FRIDAY",
+                                    "startTime": {
+                                        "hour": 17,
+                                        "minute": 15,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 20,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 1,
+                            "preferredShiftAmount": 3,
+                            "intensity": "MEDIUM"
+                        }
                     },
-                    "offset": {
-                      "totalSeconds": -18000
-                    }
-                  },
-                  "endTime": {
-                    "time": {
-                      "hour": 20,
-                      "minute": 7,
-                      "second": 53,
-                      "nano": 536000000
+                    {
+                        "id": 1,
+                        "name": "CS 302",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 1,
+                                    "day": "TUESDAY",
+                                    "startTime": {
+                                        "hour": 18,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 3,
+                                    "day": "THURSDAY",
+                                    "startTime": {
+                                        "hour": 18,
+                                        "minute": 30,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 30,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 2,
+                                    "day": "WEDNESDAY",
+                                    "startTime": {
+                                        "hour": 19,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 2,
+                            "preferredShiftAmount": 2,
+                            "intensity": "HIGH"
+                        }
                     },
-                    "offset": {
-                      "totalSeconds": -18000
+                    {
+                        "id": 2,
+                        "name": "CS 577",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 0,
+                                    "day": "MONDAY",
+                                    "startTime": {
+                                        "hour": 16,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 19,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 1,
+                            "preferredShiftAmount": 2,
+                            "intensity": "LOW"
+                        }
                     }
-                  }
-                }
-              ],
-              "requiredShiftAmount": 1,
-              "preferredShiftAmount": 3,
-              "intensity": "MEDIUM"
-            }
-          }
-        ],
-        "WILLING": [
-        ]
-      },
-      "shiftPreferences": {
-        "PREFER": [
-          {
-            "id": 0,
-            "day": "MONDAY",
-            "startTime": {
-              "time": {
-                "hour": 17,
-                "minute": 7,
-                "second": 53,
-                "nano": 525000000
-              },
-              "offset": {
-                "totalSeconds": -18000
-              }
+                ],
+                "WILLING": [
+                    {
+                        "id": 3,
+                        "name": "EMA 201",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 0,
+                                    "day": "MONDAY",
+                                    "startTime": {
+                                        "hour": 16,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 19,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 3,
+                                    "day": "THURSDAY",
+                                    "startTime": {
+                                        "hour": 18,
+                                        "minute": 30,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 30,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 2,
+                                    "day": "WEDNESDAY",
+                                    "startTime": {
+                                        "hour": 19,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 4,
+                                    "day": "FRIDAY",
+                                    "startTime": {
+                                        "hour": 17,
+                                        "minute": 15,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 20,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 4,
+                            "preferredShiftAmount": 4,
+                            "intensity": "HIGH"
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "name": "ECE 230",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 0,
+                                    "day": "MONDAY",
+                                    "startTime": {
+                                        "hour": 16,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 19,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 1,
+                            "preferredShiftAmount": 1,
+                            "intensity": "LOW"
+                        }
+                    }
+                ]
             },
-            "endTime": {
-              "time": {
-                "hour": 20,
-                "minute": 7,
-                "second": 53,
-                "nano": 536000000
-              },
-              "offset": {
-                "totalSeconds": -18000
-              }
+            "shiftPreferences": {
+                "PREFER": [
+                    {
+                        "id": 1,
+                        "day": "TUESDAY",
+                        "startTime": {
+                            "hour": 18,
+                            "minute": 0,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 21,
+                            "minute": 0,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "day": "THURSDAY",
+                        "startTime": {
+                            "hour": 18,
+                            "minute": 30,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 21,
+                            "minute": 30,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "day": "WEDNESDAY",
+                        "startTime": {
+                            "hour": 19,
+                            "minute": 0,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 21,
+                            "minute": 0,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    }
+                ],
+                "WILLING": [
+                    {
+                        "id": 0,
+                        "day": "MONDAY",
+                        "startTime": {
+                            "hour": 16,
+                            "minute": 45,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 19,
+                            "minute": 45,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "day": "FRIDAY",
+                        "startTime": {
+                            "hour": 17,
+                            "minute": 15,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 20,
+                            "minute": 45,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    }
+                ]
+            },
+            "shiftFrequencyPreferences": {
+                "PREFER": 3,
+                "WILLING": 6
             }
-          }
-        ],
-        "WILLING": [
-        ]
-      },
-      "shiftFrequencyPreferences": {
-        "PREFER": 1,
-        "WILLING": 2
-      }
+        },
+        "tutorStatus": "INACTIVE"
     },
-    "tutorStatus": "GHOST"
-  }
+    {
+        "id": 3,
+        "firstName": "Senator",
+        "lastName": "Palpatine",
+        "tutorPreferences": {
+            "coursePreferences": {
+                "PREFER": [
+                    {
+                        "id": 3,
+                        "name": "EMA 201",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 0,
+                                    "day": "MONDAY",
+                                    "startTime": {
+                                        "hour": 16,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 19,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 3,
+                                    "day": "THURSDAY",
+                                    "startTime": {
+                                        "hour": 18,
+                                        "minute": 30,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 30,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 2,
+                                    "day": "WEDNESDAY",
+                                    "startTime": {
+                                        "hour": 19,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 4,
+                                    "day": "FRIDAY",
+                                    "startTime": {
+                                        "hour": 17,
+                                        "minute": 15,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 20,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 4,
+                            "preferredShiftAmount": 4,
+                            "intensity": "HIGH"
+                        }
+                    }
+                ],
+                "WILLING": []
+            },
+            "shiftPreferences": {
+                "PREFER": [
+                    {
+                        "id": 0,
+                        "day": "MONDAY",
+                        "startTime": {
+                            "hour": 16,
+                            "minute": 45,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 19,
+                            "minute": 45,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    }
+                ],
+                "WILLING": [
+                    {
+                        "id": 1,
+                        "day": "TUESDAY",
+                        "startTime": {
+                            "hour": 18,
+                            "minute": 0,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 21,
+                            "minute": 0,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "day": "THURSDAY",
+                        "startTime": {
+                            "hour": 18,
+                            "minute": 30,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 21,
+                            "minute": 30,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    }
+                ]
+            },
+            "shiftFrequencyPreferences": {
+                "PREFER": 1,
+                "WILLING": 2
+            }
+        },
+        "tutorStatus": "ACTIVE"
+    },
+    {
+        "id": -1,
+        "firstName": "Constraint",
+        "lastName": "Filler",
+        "tutorPreferences": {
+            "coursePreferences": {
+                "PREFER": [
+                    {
+                        "id": 3,
+                        "name": "EMA 201",
+                        "courseRequirements": {
+                            "requiredShifts": [
+                                {
+                                    "id": 0,
+                                    "day": "MONDAY",
+                                    "startTime": {
+                                        "hour": 16,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 19,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 3,
+                                    "day": "THURSDAY",
+                                    "startTime": {
+                                        "hour": 18,
+                                        "minute": 30,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 30,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 2,
+                                    "day": "WEDNESDAY",
+                                    "startTime": {
+                                        "hour": 19,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 21,
+                                        "minute": 0,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                },
+                                {
+                                    "id": 4,
+                                    "day": "FRIDAY",
+                                    "startTime": {
+                                        "hour": 17,
+                                        "minute": 15,
+                                        "second": 0,
+                                        "nano": 0
+                                    },
+                                    "endTime": {
+                                        "hour": 20,
+                                        "minute": 45,
+                                        "second": 0,
+                                        "nano": 0
+                                    }
+                                }
+                            ],
+                            "requiredShiftAmount": 4,
+                            "preferredShiftAmount": 4,
+                            "intensity": "HIGH"
+                        }
+                    }
+                ],
+                "WILLING": []
+            },
+            "shiftPreferences": {
+                "PREFER": [
+                    {
+                        "id": 3,
+                        "day": "THURSDAY",
+                        "startTime": {
+                            "hour": 18,
+                            "minute": 30,
+                            "second": 0,
+                            "nano": 0
+                        },
+                        "endTime": {
+                            "hour": 21,
+                            "minute": 30,
+                            "second": 0,
+                            "nano": 0
+                        }
+                    }
+                ],
+                "WILLING": []
+            },
+            "shiftFrequencyPreferences": {
+                "PREFER": 1,
+                "WILLING": 1
+            }
+        },
+        "tutorStatus": "GHOST"
+    }
 ]
