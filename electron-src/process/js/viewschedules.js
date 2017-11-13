@@ -4,7 +4,7 @@ let React = require('react');
 let ScheduleToolbar = require('./scheduletoolbar');
 let ScheduleTable = require('./scheduletable');
 let fs = eRequire('fs');
-let loadSchedules = JSON.parse(fs.readFileSync(dataLocation));
+let loadSchedules = JSON.parse(fs.readFileSync(scheLocation));
 
 console.log(loadSchedules);
 class ViewSchedulePage  extends React.Component {
@@ -36,8 +36,10 @@ class ViewSchedulePage  extends React.Component {
         )
     }
 }
+//
+// ReactDOM.render(
+//     <ViewSchedulePage />,
+//     document.getElementById("ViewSchedule")
+// );
 
-ReactDOM.render(
-    <ViewSchedulePage />,
-    document.getElementById("ViewSchedule")
-);
+module.exports = ViewSchedulePage;

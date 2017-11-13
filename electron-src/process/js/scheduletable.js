@@ -14,7 +14,7 @@ class ShiftCard extends React.Component {
     render(){
         return (
             <td>
-                <div className="card">
+                <div className="card" >
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">{this.state.tutorCourse}</li>
                         <li className="list-group-item">{this.state.tutorName}</li>
@@ -65,7 +65,7 @@ class ScheduleTable extends React.Component {
             j++;
         }
         return (
-            <div className="card" style={{overflow: "auto", background: "#049cdb", border: "#333", color: "#ffffff"}}>
+            <div className="card"  style={{overflow: "auto", background: "#049cdb", border: "#333", color: "#ffffff"}}>
                 <div className="card-block">
                     <h3 className="card-header">
                         Schedule: Schedule 1

@@ -8,14 +8,14 @@ class ToolbarTab extends React.Component {
         super(props);
         this.state = {
             index : props.index
-        }
+        };
         this.tabClick = this.tabClick.bind(this);
         this.tabColor = this.tabColor.bind(this);
     }
 
     tabClick () {
         this.tabColor();
-        this.tabFunction();
+       // this.tabFunction();
     }
 
     tabColor() {
