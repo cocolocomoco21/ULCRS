@@ -37,14 +37,20 @@ public class DataStore {
         List<Tutor> tutors = new Gson().fromJson(reader, new TypeToken<List<Tutor>>() {}.getType());
 
         return tutors.stream()
-                .filter(t -> t.getId() == id)
+                .filter(tutor -> tutor.getId() == id)
                 .findFirst()
                 .orElse(null);
     }
 
     public static Course getCourse(int id) {
+        // TODO have this reference DataStore.courses
+        InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockCoursesFull.json");
+        JsonReader reader = new JsonReader(new InputStreamReader(is));
+
+        List<Course> courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
+
         return getInstance().courses.stream()
-                .filter(c -> c.getId() == id)
+                .filter(course -> course.getId() == id)
                 .findFirst()
                 .orElse(null);
     }
@@ -68,6 +74,20 @@ public class DataStore {
         }
 
         return getInstance().tutors;
+    }
+
+    public static List<Course> getCourses() {
+        if (checkNotNull(getInstance().courses)) {
+            // Fetch from ULC - TODO
+
+            // (For now, just set courses to be this mock data)
+            InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockCoursesNoTime.json");
+            JsonReader reader = new JsonReader(new InputStreamReader(is));
+
+            getInstance().courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
+        }
+
+        return getInstance().courses;
     }
 
     private static <T> boolean checkNotNull(T reference) {
