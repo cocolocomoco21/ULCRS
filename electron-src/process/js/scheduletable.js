@@ -13,14 +13,12 @@ class ShiftCard extends React.Component {
 
     render(){
         return (
-            <td>
-                <div className="card">
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item">{this.state.tutorCourse}</li>
-                        <li className="list-group-item">{this.state.tutorName}</li>
-                    </ul>
-                </div>
-            </td>
+            <div className="card">
+                <ul className="list-group list-group-flush">
+                    <li className="list-group-item">{this.state.tutorCourse}</li>
+                    <li className="list-group-item">{this.state.tutorName}</li>
+                </ul>
+            </div>
         )
     }
 }
@@ -35,34 +33,34 @@ class ScheduleTable extends React.Component {
     }
     // Put your code here.
     render() {
-        let a = [];
-        for (var i = 0; i < this.state.schedules.length; i++){
-            a.push(<th>{this.state.schedules[i].Slot}</th>)
-        };
+        let tableHeading = [];
+        for (let col = 0; col < this.state.schedules.length; col++){
+            tableHeading.push(<th>{this.state.schedules[col].Slot}</th>);
+        }
 
-        let b = [];
-        var j = 0;
+        let tableContent = [];
+        let row = 0;
         while (true){
-            var emptyRow = true;
-            let row = [];
-            for (var i = 0; i < this.state.schedules.length; i++){
-                console.log(i);
-                if (this.state.schedules[i].Data.length > j){
-                    emptyRow = false;
-                    row.push(<td><ShiftCard info={this.state.schedules[i].Data[j]} /></td>);
+            let isEmptyRow = true;
+            let rowContent = [];
+            for (let col = 0; col < this.state.schedules.length; col++){
+                console.log(col);
+                if (this.state.schedules[col].Data.length > row){
+                    isEmptyRow = false;
+                    rowContent.push(<td><ShiftCard info={this.state.schedules[col].Data[row]} /></td>);
                 }
                 else{
-                    row.push(<td></td>);
+                    rowContent.push(<td/>);
                 }
             }
-            console.log(emptyRow);
-            if (emptyRow==true){
+            console.log(isEmptyRow);
+            if (isEmptyRow==true){
                 break;
             }
             else{
-                b.push(<tr>{row}</tr>);
+                tableContent.push(<tr>{rowContent}</tr>);
             }
-            j++;
+            row++;
         }
         return (
             <div className="card" style={{overflow: "auto", background: "#00ffff", border: "#333"}}>
@@ -74,11 +72,11 @@ class ScheduleTable extends React.Component {
                     <table className="table">
                         <thead>
                             <tr>
-                                {a}
+                                {tableHeading}
                             </tr>
                         </thead>
                         <tbody>
-                            {b}
+                            {tableContent}
                         </tbody>
                     </table>
                     </div> {/*tool bar */}
