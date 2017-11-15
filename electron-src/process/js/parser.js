@@ -6,50 +6,77 @@ let electron = eRequire('electron');
 
 class Parser{
 
-    constructor(data){
-        this.data = data;
+    constructor(){
+
+        this.getTutors = this.getTutors.bind(this);
+        this.getTutorCoursePrefNames = this.getTutorCoursePrefNames.bind(this);
+        this.getTutorShiftPrefDay = this.getTutorShiftPrefDay.bind(this);
+        this.getTutorShiftFreqPref = this.getTutorShiftFreqPref.bind(this);
     }
 
-    getCourses(){
+    getTutors(tutorData){
+        let tutors = [];
+        for (let i in tutorData) {
+            let t = tutorData[i];
+            let tempTutor = {};
+            tempTutor.id = t.id;
+            tempTutor.firstName = t.firstName;
+            tempTutor.lastName = t.lastName;
+            tempTutor.tutorStatus = t.tutorStatus;
+            let pref = t.tutorPreferences;
+
+            let courses = pref.coursePreferences;
+            if (courses.PREFER.length !== 0) {
+                tempTutor.coursePreference = courses.PREFER[0].name;
+            }else{
+                tempTutor.coursePreference = "";
+            }
+
+            let days = pref.shiftPreferences;
+            if (days.PREFER.length !== 0) {
+                tempTutor.shiftPreference = days.PREFER[0].day;
+            }
+            let fre = pref.shiftFrequencyPreferences;
+            if (fre.PREFER.length !== 0){
+                tempTutor.shiftFrequency = fre.PREFER;
+            }
+            else{
+                tempTutor.shiftPreference = "";
+            }
+
+            tutors.push(tempTutor);
+        }
+        return tutors;
+
+    }
+
+    getCourses(courseData) {
         let courses = [];
-        for (let i in this.data){
-            let tutor = this.data[i] ;
-            if (!tutor.tutorPreferences.hasOwnProperty("coursePreferences")){
-                continue;
-            }
-            let coursePreference = tutor.tutorPreferences.coursePreferences;
-            let preferCourses = coursePreference.PREFER;
-            let willingCourses = coursePreference.WILLING;
-
-            for (let index in preferCourses){
-                let exists = false;
-                let pc = preferCourses[index];
-                for(let c in courses){
-                    if (c.id == pc.id){
-                        exists = true;
-                    }
-                }
-
-                if (!exists){
-                    courses.push(pc);
-                }
-            }
-
-            for (let index in willingCourses){
-                let exists = false;
-                let wc = willingCourses[index];
-                for(let c in courses){
-                    if (c.id == wc.id){
-                        exists = true;
-                    }
-                }
-
-                if (!exists){
-                    courses.push(wc);
-                }
-            }
+        for (let i in courseData) {
+            let course = courseData[i];
+            let tempCourse = {};
+            tempCourse.id = course.id;
+            tempCourse.name = course.name;
+            let courseReq = course.courseRequirements;
+            tempCourse.requiredShifts = courseReq.requiredShifts[0].day;
+            tempCourse.requiredShiftAmount = courseReq.requiredShiftAmount;
+            tempCourse.preferredShiftAmount = courseReq.preferredShiftAmount;
+            tempCourse.intensity = courseReq.intensity;
+            courses.push(tempCourse);
         }
         return courses;
+    }
+
+
+    getTutorShiftFreqPref(index){
+        let tutorPre = this.data[index.toString()].tutorPreferences;
+        if (!tutorPre.hasOwnProperty("shiftFrequencyPreferences")){
+            return {"PREFER":[], "WILLING": []};
+        }
+        let shiftFrePref = tutorPre.shiftFrequencyPreferences;
+        let num = shiftFrePref.PREFER;
+        return {"PREFER":num};
+
     }
 
     getTutorCoursePrefNames(index){
@@ -64,11 +91,11 @@ class Parser{
 
         let pcs = _.map(preferCourses, function (c) {
             return c.name;
-        })
+        });
 
         let wcs = _.map(willingCourses, function (c) {
             return c.name;
-        })
+        });
 
         return {"PREFER":pcs, "WILLING": wcs};
     }
@@ -83,6 +110,7 @@ class Parser{
         let preferShifts = shiftPreference.PREFER;
         let willingShifts = shiftPreference.WILLING;
 
+
         let pss = _.map(preferShifts, function (s) {
             return s.day;
         });
@@ -93,8 +121,6 @@ class Parser{
 
         return {"PREFER":pss, "WILLING": wss};
     }
-
-
 }
 
 

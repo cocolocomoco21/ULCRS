@@ -22,7 +22,7 @@ class ShiftCard extends React.Component {
         )
     }
 }
- 
+
 
 class ScheduleTable extends React.Component {
     constructor(props){
@@ -33,21 +33,36 @@ class ScheduleTable extends React.Component {
     }
     // Put your code here.
     render() {
+        let colors = [["#428BCA", "#5CC3E1"], ["#468847", "#46A546"],
+                        ["#F89406", "#FBB450"], ["#C3325F", "#EE5F5B"]];
         let tableHeading = [];
         for (let col = 0; col < this.state.schedules.length; col++){
-            tableHeading.push(<th>{this.state.schedules[col].Slot}</th>);
+            tableHeading.push(<th className="text-center">{this.state.schedules[col].Shift}</th>);
         }
 
         let tableContent = [];
-        let row = 0;
+        let row = 0, colorShift = 0;
         while (true){
             let isEmptyRow = true;
             let rowContent = [];
             for (let col = 0; col < this.state.schedules.length; col++){
                 console.log(col);
+                let colorIndex = (colorShift + col) % 4;
+                console.log(colorShift, col, colorIndex);
                 if (this.state.schedules[col].Data.length > row){
                     isEmptyRow = false;
-                    rowContent.push(<td><ShiftCard info={this.state.schedules[col].Data[row]} /></td>);
+                    rowContent.push(<td>
+                                        <div className="card">
+                                            <ul className="list-group list-group-flush">
+                                                <li className="list-group-item" style={{background: colors[colorIndex][0]}}>
+                                                    {this.state.schedules[col].Data[row].Course}
+                                                </li>
+                                                <li className="list-group-item" style={{background: colors[colorIndex][1]}}>
+                                                    {this.state.schedules[col].Data[row].Name}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>);
                 }
                 else{
                     rowContent.push(<td/>);
@@ -61,24 +76,28 @@ class ScheduleTable extends React.Component {
                 tableContent.push(<tr>{rowContent}</tr>);
             }
             row++;
+            colorShift++;
+            if (row % 2 == 1){
+                colorShift++;
+            }
         }
         return (
-            <div className="card" style={{overflow: "auto", background: "#00ffff", border: "#333"}}>
+            <div className="card" style={{overflow: "auto", border: "#333"}}>
                 <div className="card-block">
-                    <h3 className="card-header">
-                        Schedule: schedule 1
+                    <h3 className="card-header" style={{background: "#049cdb", color: "#ffffff"}}>
+                        Schedule: Schedule 1
                     </h3>
-                    <div className = "card-body">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                {tableHeading}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {tableContent}
-                        </tbody>
-                    </table>
+                    <div className = "card-body" style={{background: "#ffffff", color: "#000000"}}>
+                        <table className="table">
+                            <thead style={{background: "#F0F0F0"}}>
+                                <tr>
+                                    {tableHeading}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {tableContent}
+                            </tbody>
+                        </table>
                     </div> {/*tool bar */}
                 </div>
             </div>

@@ -1,24 +1,16 @@
 [
     {
-        "Slot": "Sunday1",
+        "Shift": "Sunday1",
         "Data":
         [
             {
                 "Name": "Davidson",
                 "Course": "CS 200"
-            },
-            {
-                "Name": "Lily",
-                "Course": "CS 300"
-            },
-            {
-                "Name": "Lisa",
-                "Course": "CS 367"
             }
         ]
     },
     {
-        "Slot": "Sunday2",
+        "Shift": "Sunday2",
         "Data":
         [
             {
@@ -36,7 +28,7 @@
         ]
     },
     {
-        "Slot": "Monday",
+        "Shift": "Monday",
         "Data":
         [
             {
@@ -50,11 +42,19 @@
             {
                 "Name": "Davidson",
                 "Course": "CS 210"
+            },
+            {
+                "Name": "Cat",
+                "Course": "Cat 210"
+            },
+            {
+                "Name": "Pangolin",
+                "Course": "Pangolin 999"
             }
         ]
     },
     {
-        "Slot": "Tuesday",
+        "Shift": "Tuesday",
         "Data":
         [
             {
@@ -68,6 +68,42 @@
             {
                 "Name": "Wil",
                 "Course": "CS 537"
+            }
+        ]
+    },
+    {
+        "Shift": "Wednesday",
+        "Data":
+        [
+            {
+                "Name": "Doon",
+                "Course": "CS 430"
+            },
+            {
+                "Name": "Caitlyn",
+                "Course": "CS 536"
+            }
+        ]
+    },
+    {
+        "Shift": "Thursday",
+        "Data":
+        [
+            {
+                "Name": "Mike",
+                "Course": "CS 320"
+            },
+            {
+                "Name": "Jason",
+                "Course": "CS 205"
+            },
+            {
+                "Name": "Wil",
+                "Course": "CS 537"
+            },
+            {
+                "Name": "Amy",
+                "Course": "CS 357"
             }
         ]
     }
