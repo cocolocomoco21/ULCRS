@@ -4,6 +4,12 @@ build
 electron-src/app/
 out/
 
+# Eclipse
+*.classpath
+*.project
+.settings/
+bin/
+
 # Idea
 .idea
 *.iml
