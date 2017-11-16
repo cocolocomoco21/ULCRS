@@ -8,11 +8,18 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import com.google.gson.annotations.Expose;
+
 public class TutorPreferences {
 
+	@Expose
     private Map<Rank, Set<Course>> coursePreferences;
-    private Map<Rank, Set<Shift>> shiftPreferences;
-    private Map<Rank, Integer> shiftFrequencyPreferences;
+    
+	@Expose
+	private Map<Rank, Set<Shift>> shiftPreferences;
+    
+	@Expose
+	private Map<Rank, Integer> shiftFrequencyPreferences;
 
     public TutorPreferences(Map<Rank, Set<Course>> coursePreferences, Map<Rank, Set<Shift>> shiftPreferences, Map<Rank, Integer> shiftFrequencyPreferences) {
         this.coursePreferences = coursePreferences;

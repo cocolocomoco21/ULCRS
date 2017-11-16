@@ -30,13 +30,11 @@ public class DataStore {
 
 
     public static Tutor getTutor(int id) {
-        // TODO have this reference DataStore.tutors
-        InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockTutorsFull.json");
-        JsonReader reader = new JsonReader(new InputStreamReader(is));
-
-        List<Tutor> tutors = new Gson().fromJson(reader, new TypeToken<List<Tutor>>() {}.getType());
-
-        return tutors.stream()
+    	if (requiresFetch(getInstance().tutors)) {
+    		fetch();
+    	}
+    	
+        return getInstance().tutors.stream()
                 .filter(tutor -> tutor.getId() == id)
                 .findFirst()
                 .orElse(null);
@@ -62,13 +60,7 @@ public class DataStore {
 
     public static List<Tutor> getTutors() {
         if (requiresFetch(getInstance().tutors)) {
-            // Fetch from ULC - TODO
-
-            // (For now, just set tutors to be this mock data)
-            InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockTutors.json");
-            JsonReader reader = new JsonReader(new InputStreamReader(is));
-
-            getInstance().tutors = new Gson().fromJson(reader, new TypeToken<List<Tutor>>() {}.getType());
+        	fetch();
         }
 
         return getInstance().tutors;
@@ -76,7 +68,6 @@ public class DataStore {
 
     public static List<Course> getCourses() {
         if (requiresFetch(getInstance().courses)) {
-            // Fetch from ULC - TODO
         	fetch();
         }
 
@@ -91,12 +82,15 @@ public class DataStore {
     	// Fetch from ULC - TODO
     	// For now, just get data from mock data    	
     	
-    	// Course
-        InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockCoursesFull.json");
+    	// Tutor
+        InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockTutorsFull.json");
         JsonReader reader = new JsonReader(new InputStreamReader(is));
-        List<Course> courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
-        getInstance().courses = courses;
-    }
-    
+        getInstance().tutors = new Gson().fromJson(reader, new TypeToken<List<Tutor>>() {}.getType());
+        
+    	// Course
+        is = DataStore.class.getClassLoader().getResourceAsStream("mockCoursesFull.json");
+        reader = new JsonReader(new InputStreamReader(is));
+        getInstance().courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
+    }  
     
 }
