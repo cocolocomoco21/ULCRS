@@ -43,12 +43,10 @@ public class DataStore {
     }
 
     public static Course getCourse(int id) {
-        // TODO have this reference DataStore.courses
-        InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockCoursesFull.json");
-        JsonReader reader = new JsonReader(new InputStreamReader(is));
-
-        List<Course> courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
-
+        if (requiresFetch(getInstance().courses)) {
+        	fetch();
+        }
+        
         return getInstance().courses.stream()
                 .filter(course -> course.getId() == id)
                 .findFirst()
@@ -79,12 +77,7 @@ public class DataStore {
     public static List<Course> getCourses() {
         if (requiresFetch(getInstance().courses)) {
             // Fetch from ULC - TODO
-
-            // (For now, just set courses to be this mock data)
-            InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockCoursesFull.json"); //mockCoursesNoTime.json");
-            JsonReader reader = new JsonReader(new InputStreamReader(is));
-            List<Course> courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
-            getInstance().courses = courses;
+        	fetch();
         }
 
         return getInstance().courses;
@@ -93,4 +86,17 @@ public class DataStore {
     private static <T> boolean requiresFetch(T reference) {
         return reference == null;
     }
+    
+    private static void fetch() {
+    	// Fetch from ULC - TODO
+    	// For now, just get data from mock data    	
+    	
+    	// Course
+        InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockCoursesFull.json");
+        JsonReader reader = new JsonReader(new InputStreamReader(is));
+        List<Course> courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
+        getInstance().courses = courses;
+    }
+    
+    
 }
