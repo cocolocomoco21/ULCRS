@@ -9,17 +9,17 @@ import com.google.gson.annotations.Expose;
 
 public class CourseRequirements {
 
-	@Expose
+    @Expose
     private Set<Shift> requiredShifts;
-    
-	@Expose
-	private int requiredShiftAmount;
-    
-	@Expose
-	private int preferredShiftAmount;
-    
-	@Expose
-	private CourseIntensity intensity;
+
+    @Expose
+    private int requiredShiftAmount;
+
+    @Expose
+    private int preferredShiftAmount;
+
+    @Expose
+    private CourseIntensity intensity;
 
     public CourseRequirements(Set<Shift> requiredShifts, int requiredShiftAmount, int preferredShiftAmount, CourseIntensity intensity) {
         this.requiredShifts = requiredShifts;

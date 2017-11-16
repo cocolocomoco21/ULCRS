@@ -8,11 +8,11 @@ import com.google.gson.annotations.Expose;
 
 public class Shift {
 
-	@Expose
+    @Expose
     private int id;
-    
-	@Expose
-	private DayOfWeek day;
+
+    @Expose
+    private DayOfWeek day;
     
     @Expose(serialize = false)
     private LocalTime startTime;

@@ -12,14 +12,14 @@ import com.google.gson.annotations.Expose;
 
 public class TutorPreferences {
 
-	@Expose
+    @Expose
     private Map<Rank, Set<Course>> coursePreferences;
-    
-	@Expose
-	private Map<Rank, Set<Shift>> shiftPreferences;
-    
-	@Expose
-	private Map<Rank, Integer> shiftFrequencyPreferences;
+
+    @Expose
+    private Map<Rank, Set<Shift>> shiftPreferences;
+
+    @Expose
+    private Map<Rank, Integer> shiftFrequencyPreferences;
 
     public TutorPreferences(Map<Rank, Set<Course>> coursePreferences, Map<Rank, Set<Shift>> shiftPreferences, Map<Rank, Integer> shiftFrequencyPreferences) {
         this.coursePreferences = coursePreferences;

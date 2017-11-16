@@ -24,25 +24,25 @@ public class TutorController extends BaseController {
         return () -> {
             before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
             get("/", this::getTutorList,  tutors -> {
-            	// Return only the required fields in JSON response
-            	Gson gson = new GsonBuilder()
-            			.addSerializationExclusionStrategy(new ExclusionStrategy() {
-            				@Override
-							public boolean shouldSkipField(FieldAttributes fieldAttributes) {
-								final Expose expose = fieldAttributes.getAnnotation(Expose.class);
-								return expose == null 
-										|| !expose.serialize()
-										|| (fieldAttributes.getDeclaringClass() == Course.class && fieldAttributes.getName().equals("courseRequirements"));
-							}
-							
-							@Override
-							public boolean shouldSkipClass(Class<?> clazz) {
-								return false;
-							}
-            			})
-            			.setPrettyPrinting()
-            			.create();
-            	return gson.toJson(tutors);	
+                // Return only the required fields in JSON response
+                Gson gson = new GsonBuilder()
+                        .addSerializationExclusionStrategy(new ExclusionStrategy() {
+                            @Override
+                            public boolean shouldSkipField(FieldAttributes fieldAttributes) {
+                                final Expose expose = fieldAttributes.getAnnotation(Expose.class);
+                                return expose == null
+                                        || !expose.serialize()
+                                        || (fieldAttributes.getDeclaringClass() == Course.class && fieldAttributes.getName().equals("courseRequirements"));
+                            }
+
+                            @Override
+                            public boolean shouldSkipClass(Class<?> clazz) {
+                                return false;
+                            }
+                        })
+                        .setPrettyPrinting()
+                        .create();
+            	return gson.toJson(tutors);
             });
             get("/:id", this::getTutor, gson::toJson);
         };
