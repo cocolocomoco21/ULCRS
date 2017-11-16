@@ -5,12 +5,21 @@ import ulcrs.models.shift.Shift;
 import java.util.Objects;
 import java.util.Set;
 
+import com.google.gson.annotations.Expose;
+
 public class CourseRequirements {
 
+	@Expose
     private Set<Shift> requiredShifts;
-    private int requiredShiftAmount;
-    private int preferredShiftAmount;
-    private CourseIntensity intensity;
+    
+	@Expose
+	private int requiredShiftAmount;
+    
+	@Expose
+	private int preferredShiftAmount;
+    
+	@Expose
+	private CourseIntensity intensity;
 
     public CourseRequirements(Set<Shift> requiredShifts, int requiredShiftAmount, int preferredShiftAmount, CourseIntensity intensity) {
         this.requiredShifts = requiredShifts;

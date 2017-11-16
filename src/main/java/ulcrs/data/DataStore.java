@@ -63,7 +63,7 @@ public class DataStore {
     }
 
     public static List<Tutor> getTutors() {
-        if (checkNotNull(getInstance().tutors)) {
+        if (requiresFetch(getInstance().tutors)) {
             // Fetch from ULC - TODO
 
             // (For now, just set tutors to be this mock data)
@@ -77,20 +77,20 @@ public class DataStore {
     }
 
     public static List<Course> getCourses() {
-        if (checkNotNull(getInstance().courses)) {
+        if (requiresFetch(getInstance().courses)) {
             // Fetch from ULC - TODO
 
             // (For now, just set courses to be this mock data)
-            InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockCoursesNoTime.json");
+            InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockCoursesFull.json"); //mockCoursesNoTime.json");
             JsonReader reader = new JsonReader(new InputStreamReader(is));
-
-            getInstance().courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
+            List<Course> courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
+            getInstance().courses = courses;
         }
 
         return getInstance().courses;
     }
 
-    private static <T> boolean checkNotNull(T reference) {
+    private static <T> boolean requiresFetch(T reference) {
         return reference == null;
     }
 }
