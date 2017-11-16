@@ -35,10 +35,7 @@ public class DataStore {
      * @return Tutor - the Tutor with the specified id, if it exists. Otherwise, null.
      */
     public static Tutor getTutor(int id) {
-    	if (requiresFetch(getInstance().tutors)) {
-    		fetch();
-    	}
-    	
+    	fetchIfRequired(getInstance().tutors);
         return getInstance().tutors.stream()
                 .filter(tutor -> tutor.getId() == id)
                 .findFirst()
@@ -51,10 +48,7 @@ public class DataStore {
      * @return Course - the Course with the specified id, if it exists. Otherwise, null.
      */
     public static Course getCourse(int id) {
-        if (requiresFetch(getInstance().courses)) {
-        	fetch();
-        }
-        
+    	fetchIfRequired(getInstance().courses);
         return getInstance().courses.stream()
                 .filter(course -> course.getId() == id)
                 .findFirst()
@@ -67,10 +61,7 @@ public class DataStore {
      * @return Shift - the shift with the specified id, if it exists. Otherwise, null.
      */
     public static Shift getShift(int id) {
-    	if (requiresFetch(getInstance().shifts)) {
-        	fetch();
-        }
-    	
+    	fetchIfRequired(getInstance().shifts);
     	return getInstance().shifts.stream()
                 .filter(s -> s.getId() == id)
                 .findFirst()
@@ -82,10 +73,7 @@ public class DataStore {
      * @return List<Tutor> - list of all tutors
      */
     public static List<Tutor> getTutors() {
-        if (requiresFetch(getInstance().tutors)) {
-        	fetch();
-        }
-
+    	fetchIfRequired(getInstance().tutors);
         return getInstance().tutors;
     }
 
@@ -94,24 +82,24 @@ public class DataStore {
      * @return List<Course> - list of all courses
      */
     public static List<Course> getCourses() {
-        if (requiresFetch(getInstance().courses)) {
-        	fetch();
-        }
-
+    	fetchIfRequired(getInstance().courses);
         return getInstance().courses;
     }
     
     public static List<Shift> getShifts() {
     	// TODO implement - requires getting shifts from course, tutor data
-    	if (requiresFetch(getInstance().courses)) {
-        	fetch();
-        }
-    	
+    	fetchIfRequired(getInstance().courses);
     	return getInstance().shifts;
     }
 
-    private static <T> boolean requiresFetch(T reference) {
-        return reference == null;
+    private static <T> void fetchIfRequired(T reference) {
+    	if (!isCached(reference)) {
+    		fetch();
+    	}
+    }
+    
+    private static <T> boolean isCached(T reference) {
+        return reference != null;
     }
     
     private static void fetch() {
