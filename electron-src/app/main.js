@@ -38,7 +38,8 @@ app.on('ready', function() {
   // This currently (11/2) does not handle killing the server. `java.exe` must manually be 
   // killed to function properly. You can also use the `jps` command to find the appropriate PID
   serverProcess = require('child_process').exec;
-  var child = serverProcess('java -jar ../build/libs/ULCRS.jar');
+
+  /*var child = serverProcess('java -jar ../build/libs/ULCRS.jar');
 
   child.stdout.on('data', function (data) {
     console.log('Server stdout: ' + data);
@@ -50,7 +51,7 @@ app.on('ready', function() {
 
   child.on('close', function (code) {
     console.log('Server closing code: ' + code);
-  });
+  });*/
 
   ipc.on("ShowViewTutor", function (event, args) {
       event.returnValue = '';
@@ -76,6 +77,11 @@ app.on('ready', function() {
         event.sender.send("receiveScheduleData", data)
     });
 
+    setInterval(()=>{
+        session.defaultSession.cookies.get({}, (error, cookies) => {
+            console.log(error, cookies)
+        })
+    }, 1000);
   // change the api for receive actual data
   ipc.on("request_tutor_data", (event, args) => {
       let fetch = require('electron-fetch');
