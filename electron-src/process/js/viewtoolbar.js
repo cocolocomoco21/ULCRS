@@ -43,9 +43,9 @@ class ViewToolbar extends React.Component {
         return (
             <div id="toolbar" className="card">
                 <h3 className="card-header" style={{backgroundColor: "#5bc0de"}}>
-                    <h4 style={{color:"#f7f7f7"}}>
+                    <div style={{color:"#f7f7f7"}}>
                         Information
-                    </h4>
+                    </div>
                 </h3>
 
                 <div id = "tutorCard" className = "card-body" onClick={this.clickTutorButton} style = {{backgroundColor: "#d9edf7"}}>

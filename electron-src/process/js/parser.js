@@ -7,7 +7,6 @@ let electron = eRequire('electron');
 class Parser{
 
     constructor(){
-
         this.getTutors = this.getTutors.bind(this);
         this.getTutorCoursePrefNames = this.getTutorCoursePrefNames.bind(this);
         this.getTutorShiftPrefDay = this.getTutorShiftPrefDay.bind(this);
