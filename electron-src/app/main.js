@@ -1,11 +1,11 @@
 var electron = require('electron');
-
+var session = electron.session;
 var BrowserWindow = electron.BrowserWindow;
 var app = electron.app;
 var ipc = electron.ipcMain;
 
 var serverProcess = null;
-var appWindow, viewTutorsWindow, viewSchedulesWindow = null;
+let appWindow, viewTutorsWindow, viewSchedulesWindow, authWindow= null;
 
 app.on('ready', function() {
   appWindow = new BrowserWindow({
@@ -53,10 +53,25 @@ app.on('ready', function() {
     console.log('Server closing code: ' + code);
   });*/
 
+    authWindow = new BrowserWindow({
+        width : 900,
+        height: 506,
+        transparent: false,
+        show: false,
+        frame: false
+    });
+
+
+
   ipc.on("ShowViewTutor", function (event, args) {
       event.returnValue = '';
-      viewTutorsWindow.show();
       appWindow.hide();
+      authWindow.loadURL("http://dropin-dev.engr.wisc.edu");
+      authWindow.once("ready-to-show", ()=>{
+         authWindow.show();
+      });
+      // viewTutorsWindow.show();
+      // appWindow.hide();
   });
 
   viewSchedulesWindow = new BrowserWindow({
@@ -67,7 +82,26 @@ app.on('ready', function() {
       frame: true
   });
 
-  // viewSchedulesWindow.loadURL('file://' + __dirname + '/viewschedules.html')
+  let redirect = function () {
+    authWindow.close();
+    viewTutorsWindow.show();
+  };
+
+  let interval =  setInterval(()=>{
+        session.defaultSession.cookies.get({domain: "dropin-dev.engr.wisc.edu"}, (error, cookies) => {
+            if (error !== null){
+                console.log("ERROR *====");
+                console.log(error);
+                clearInterval(interval);
+            }
+            if (cookies.length !== 0){
+                redirect();
+                clearInterval(interval);
+            }
+        })
+    }, 500);
+
+    // viewSchedulesWindow.loadURL('file://' + __dirname + '/viewschedules.html')
 
     ipc.on("showViewSchedules", function (event, args) {
         // event.returnValue = '';
@@ -77,11 +111,6 @@ app.on('ready', function() {
         event.sender.send("receiveScheduleData", data)
     });
 
-    setInterval(()=>{
-        session.defaultSession.cookies.get({}, (error, cookies) => {
-            console.log(error, cookies)
-        })
-    }, 1000);
   // change the api for receive actual data
   ipc.on("request_tutor_data", (event, args) => {
       let fetch = require('electron-fetch');
