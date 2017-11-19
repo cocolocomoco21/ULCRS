@@ -42,7 +42,10 @@ gulp.task('watch', ['serve'], function() {
 });
 
 gulp.task('serve', ['html', 'js', 'css'], function() {
-  run('electron app/main.js').exec();
+  // verbosity: 3 here allows output to print console.logs
+  // from Electron as soon as they come, rather than buffering
+  // https://stackoverflow.com/questions/44393814/the-console-logs-of-an-electron-app-runned-by-gulp-are-not-shown
+  run('electron app/main.js', {verbosity: 3}).exec();
 });
 
 gulp.task('default', ['watch', 'fonts', 'serve']);
