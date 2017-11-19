@@ -1,28 +1,6 @@
 let ReactDOM = require('react-dom');
 let React = require('react');
 
-class ShiftCard extends React.Component {
-    constructor(props){
-        super(props);
-        let info = this.props.info;
-        this.state = {
-            tutorName:info.Name,
-            tutorCourse: info.Course
-        }
-    }
-
-    render(){
-        return (
-            <div className="card">
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item">{this.state.tutorCourse}</li>
-                    <li className="list-group-item">{this.state.tutorName}</li>
-                </ul>
-            </div>
-        )
-    }
-}
-
 
 class ScheduleTable extends React.Component {
     constructor(props){
