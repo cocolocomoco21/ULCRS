@@ -57,6 +57,9 @@ class ViewInfo extends React.Component {
       });
     });
 
+    ipc.on("post_success", (event, text)=>{
+
+    });
 
   }
 
@@ -157,15 +160,23 @@ class MainInterface extends React.Component{
             });
         });
 
+        ipc.on("post_success", (event, data)=>{
+            this.setState({
+                    waiting: true
+                }
+            );
+        });
+
+
         this.showViewSchedules = this.showViewSchedules.bind(this);
     }
 
+    post_generate(){
+        ipc.send("post_generate");
+    }
+
     showViewSchedules(){
-        this.setState({
-                waiting: true
-            }
-        );
-        ipc.send("showViewSchedules")
+
     }
 
     componentWillUpdate(){

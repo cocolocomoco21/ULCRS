@@ -3,9 +3,11 @@ var electron = require('electron');
 var BrowserWindow = electron.BrowserWindow;
 var app = electron.app;
 var ipc = electron.ipcMain;
+let renderer = electron.ipcRenderer;
 
 var serverProcess = null;
 var appWindow, viewTutorsWindow, viewSchedulesWindow = null;
+let fetch = require('electron-fetch');
 
 app.on('ready', function() {
   appWindow = new BrowserWindow({
@@ -68,12 +70,13 @@ app.on('ready', function() {
   });
 
   // viewSchedulesWindow.loadURL('file://' + __dirname + '/viewschedules.html')
-
     ipc.on("showViewSchedules", function (event, args) {
         // event.returnValue = '';
         // viewSchedulesWindow.show();
         // viewTutorsWindow.hide();
         let data = "";
+
+        // Need error handling
         event.sender.send("receiveScheduleData", data)
     });
 
@@ -82,16 +85,41 @@ app.on('ready', function() {
             console.log(error, cookies)
         })
     }, 1000);
+
+  let send_schedule_data_not_null = (text, interval)=>{
+        if (text !== "null"){
+            clearInterval(interval);
+            renderer.send("receiveScheduleData", text)
+        }
+      };
+
+  let polling_schedules = ()=>{
+      // let interval = setInterval( ()=>{
+      //      fetch("http://localhost:4567/ulcrs/schedules/generate", {method: 'POST', body:""})
+      //          .then(res=> send_schedule_data_not_null(res.text(), interval));
+      // }, );
+      setTimeout(()=> renderer.send("receiveScheduleData", ""),3000);
+  };
+
+  ipc.on("post_generate", (event, args)=>{
+
+      // fetch("http://localhost:4567/ulcrs/schedules/generate", {method: 'POST', body:""})
+      //     .then(res=>res.text())
+      //     .then(res=>event.sender.send("post_success"));
+      event.sender.send("post_success");
+      polling_schedules();
+  });
+
   // change the api for receive actual data
   ipc.on("request_tutor_data", (event, args) => {
-      let fetch = require('electron-fetch');
+
       fetch('http://localhost:4567/ulcrs/tutor/')
           .then(res=> res.text())
           .then(body=> event.sender.send("get_tutor_data", body));
   });
 
   ipc.on("request_course_data", (event, args) =>{
-      let fetch = require('electron-fetch');
+
       fetch('http://localhost:4567/ulcrs/course/')
           .then(res=> res.text())
           .then(body=> event.sender.send("get_course_data", body));
