@@ -24,7 +24,7 @@ public class DataStore {
 
     private static DataStore dataStore;
 
-    public static DataStore getInstance() {
+    private static DataStore getInstance() {
         if (dataStore == null) {
             dataStore = new DataStore();
         }
