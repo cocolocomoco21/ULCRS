@@ -30,6 +30,7 @@ public class TutorController extends BaseController {
                             @Override
                             public boolean shouldSkipField(FieldAttributes fieldAttributes) {
                                 final Expose expose = fieldAttributes.getAnnotation(Expose.class);
+                                // Skip "courseRequirements" field in tutor list deserialization
                                 return expose == null
                                         || !expose.serialize()
                                         || (fieldAttributes.getDeclaringClass() == Course.class && fieldAttributes.getName().equals("courseRequirements"));

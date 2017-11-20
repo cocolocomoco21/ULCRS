@@ -88,23 +88,42 @@ public class DataStore {
         fetchIfRequired(getInstance().courses);
         return getInstance().courses;
     }
-    
+
+    /**
+     * Get all shifts, fetching from ULC if necessary.
+     * @return List<Shift> - list of all shifts
+     */
     public static List<Shift> getShifts() {
     	// TODO implement - requires getting shifts from course, tutor data
         fetchIfRequired(getInstance().courses);
     	return getInstance().shifts;
     }
 
+    /**
+     * Check if data is cached (i.e. has already been fetched. If not, fetch from the ULC server.
+     * @param reference - reference being checked if it has been fetched
+     * @param <T> - generic type for reference
+     */
     private static <T> void fetchIfRequired(T reference) {
     	if (!isCached(reference)) {
     		fetch();
     	}
     }
-    
+
+    /**
+     * Check if the reference is cached. If null, it has not been cached.
+     * @param reference - reference being checked for if it is cached
+     * @param <T> - generic type for reference
+     * @return boolean - return if reference has been cached or not. If no, it is null.
+     */
     private static <T> boolean isCached(T reference) {
         return reference != null;
     }
-    
+
+    /**
+     * Fetch data from the ULC server and update the data saved in the DataStore instance. This "caches" the
+     * data that is fetched.
+     */
     private static void fetch() {
     	// Fetch from ULC - TODO
     	// For now, just get data from mock data    	
