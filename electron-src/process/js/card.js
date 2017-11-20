@@ -1,12 +1,16 @@
-let react = require('react');
+let React = require('react');
 let DropTarget = require('react-dnd').DropTarget;
 let DragSource = require('react-dnd').DragSource;
-let findDOMNode = require('react-dom');
+let findDOMNode = require('react-dom').findDOMNode;
 let flow = require('lodash.flow');
 
 const style = {
-
-}
+    border: '1px dashed gray',
+    padding: '0.5rem 1rem',
+    margin: '.5rem',
+    backgroundColor: 'white',
+    cursor: 'move'
+};
 
 class Card extends React.Component {
 
@@ -15,8 +19,11 @@ class Card extends React.Component {
 		const opacity = isDragging ? 0 : 1;
 
 		return connectDragSource(connectDropTarget(
-			<div style={{ ...style, opacity }}>
-				{card}
+			<div style={{ style, opacity }}>
+				<ul className="list-group">
+					<li className="list-group-item">{card.Name}</li>
+					<li className="list-group-item">{card.Course}</li>
+				</ul>
 			</div>
 		));
 	}
@@ -93,13 +100,12 @@ const cardTarget = {
 	}
 };
 
-exports.default = flow(DropTarget("CARD", cardTarget, function (connect) {
-	return {
-		connectDropTarget: connect.dropTarget()
-	};
-}), DragSource("CARD", cardSource, function (connect, monitor) {
-	return {
-		connectDragSource: connect.dragSource(),
-		isDragging: monitor.isDragging()
-	};
-}))(Card);
+module.exports = flow(
+    DropTarget("CARD", cardTarget, connect => ({
+        connectDropTarget: connect.dropTarget()
+    })),
+    DragSource("CARD", cardSource, (connect, monitor) => ({
+        connectDragSource: connect.dragSource(),
+        isDragging: monitor.isDragging()
+    }))
+)(Card);

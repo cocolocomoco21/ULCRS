@@ -1,12 +1,14 @@
+let Card = require('./Card.js');
 let React = require('react');
-var update = require('react/lib/update');
-let Card = require('./Card');
+let update = require('react-addons-update');
+
 let DropTarget = require('react-dnd').DropTarget;
+
 
 class Container extends React.Component{
   constructor(props){
     super(props);
-    this.state = { cards: props.containerContent};
+    this.state = { cards: props.list};
   }
 
 	pushCard(card) {
@@ -51,7 +53,7 @@ class Container extends React.Component{
 
     const backgroundColor = isActive ? 'lightgreen' : '#FFF';
     return connectDropTarget(
-			<div style={{...style, backgroundColor}}>
+			<div style={{backgroundColor}}>
 				{cards.map((card, i) => {
 					return (
 						<Card
@@ -65,10 +67,9 @@ class Container extends React.Component{
 				})}
 			</div>
 		);
-
   }
-
 }
+
 const cardTarget = {
 	drop(props, monitor, component ) {
 		const { id } = props;
@@ -78,12 +79,10 @@ const cardTarget = {
 			listId: id
 		};
 	}
-}
+};
 
-exports.default = DropTarget("CARD", cardTarget, function (connect, monitor) {
-	return {
-		connectDropTarget: connect.dropTarget(),
-		isOver: monitor.isOver(),
-		canDrop: monitor.canDrop()
-	};
-})(Container);
+module.exports = DropTarget("CARD", cardTarget, (connect, monitor) => ({
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+    canDrop: monitor.canDrop()
+}))(Container);

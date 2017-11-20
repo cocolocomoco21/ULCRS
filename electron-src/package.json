@@ -30,7 +30,11 @@
       "lodash": "~4.17.4",
       "jquery": "~3.2.1",
       "node-rest-client": "^3.1.0",
-      "electron-fetch": "^1.1.0"
+      "electron-fetch": "^1.1.0",
+      "react-dnd": "~2.5.4",
+      "react-dnd-html5-backend": "~2.5.4",
+      "react-addons-update": "~15.6.2",
+      "lodash.flow": "~3.5.0"
     }
 
 }
