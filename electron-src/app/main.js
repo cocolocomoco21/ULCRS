@@ -56,6 +56,19 @@ app.on('ready', function() {
         viewTutorsWindow.hide();
     });
 
+    ipc.on("ShowExportSchedule", function (event, args) {
+        viewExportScheduleWindow = new BrowserWindow({
+            width : 1000,
+            height: 900,
+            transparent: false,
+            show: false,
+            frame: true
+        });
+        viewExportScheduleWindow.loadURL('file://' + __dirname + '/exportSchedule.html')
+        event.returnValue = '';
+        viewExportScheduleWindow.show();
+    });
+
   // change the api for receive actual data
   ipc.on("request_course_data", (event, args) => {
       let fetch = require('electron-fetch');
