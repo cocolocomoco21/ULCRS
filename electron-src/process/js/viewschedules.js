@@ -8,16 +8,33 @@ let ScheduleTable = require('./scheduletable');
 let fs = eRequire('fs');
 let loadSchedules = JSON.parse(fs.readFileSync(scheLocation));
 
+
+let ExportSchedulePage = require('./exportschedule');
+let reactstrap = require('reactstrap');
+let Modal = reactstrap.Modal;
+let ModalHeader = reactstrap.ModalHeader;
+let ModalBody = reactstrap.ModalBody;
+
+
 console.log(loadSchedules);
 class ViewSchedulePage  extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            schedules : loadSchedules
-        }
+            schedules : loadSchedules,
+            modal : false
+        };
+        this.toggleSaveModal = this.toggleSaveModal.bind(this);
     }
+
+    toggleSaveModal(){
+        this.setState({
+            modal : ! this.state.modal
+        })
+    }
+
     ShowExportSchedule() {
-        ipc.sendSync("ShowExportSchedule");
+        //ipc.sendSync("ShowExportSchedule");
     }
     render() {
 
@@ -36,14 +53,28 @@ class ViewSchedulePage  extends React.Component {
                         
                     </div>
 
-                    <button type="button" className="btn btn-lg btn-success" id="generate-button-pos" onClick={this.ShowExportSchedule} > Save </button>
                 </div>
+
+                <Modal isOpen={this.state.modal} toggle={this.toggleSaveModal}>
+
+                    <ModalHeader toggle={this.toggleSaveModal} >
+                        <div style={{"textAlign": "center", "fontSize": "40px"}}>
+                            Save/Export Schedule
+                        </div>
+                    </ModalHeader>
+
+                    <ModalBody>
+                        <ExportSchedulePage />
+                    </ModalBody>
+                </Modal>
+
+                <button type="button" className="btn btn-lg btn-success" id="generate-button-pos" onClick={this.toggleSaveModal} > Save </button>
             </div>
 
         )
     }
 }
-//
+
 // ReactDOM.render(
 //     <ViewSchedulePage />,
 //     document.getElementById("ViewSchedule")

@@ -1,7 +1,6 @@
 let ReactDOM = require('react-dom');
 let React = require('react');
 
-let ScheduleTable = require('./scheduletable');
 let fs = eRequire('fs');
 let loadSchedules = JSON.parse(fs.readFileSync(dataLocation));
 
@@ -29,16 +28,6 @@ class ExportSchedulePage extends React.Component {
     render() {
         return (
             <div className="container">
-                <div className="row justify-content-center">
-                    <div style={{fontSize:35}}>
-                        <strong>Save/Export Schedule</strong>
-                    </div>
-                </div>
-                <div className="row justify-content-center">
-                    <div style={{fontSize:20}}>
-                        Preview
-                    </div>
-                </div>
                 <div className="row justify-content-center mt-md-4">
                     {/*<ScheduleTable schedules={this.state.schedules}/>*/}
 
@@ -74,8 +63,11 @@ class ExportSchedulePage extends React.Component {
         )
     }
 }
+//
+//
+// ReactDOM.render(
+//     <ExportSchedulePage />,
+//     document.getElementById("ExportSchedule")
+// );
 
-ReactDOM.render(
-    <ExportSchedulePage />,
-    document.getElementById("ExportSchedule")
-);
+module.exports = ExportSchedulePage;

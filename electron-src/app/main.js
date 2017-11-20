@@ -17,13 +17,12 @@ app.on('ready', function() {
   //appWindow.loadURL('file://' + __dirname + '/viewschedules.html');
     appWindow.loadURL('file://' + __dirname + '/index.html');
 
-
     //appWindow.loadURL('http://www.wisc.edu');
 
   viewTutorsWindow = new BrowserWindow({
     width : 1600,
     height: 900,
-      transparent: false,
+    transparent: false,
     show: false,
     frame: true
   }); //infoWindow
@@ -67,9 +66,9 @@ app.on('ready', function() {
             show: false,
             frame: true
         });
-        viewExportScheduleWindow.loadURL('file://' + __dirname + '/exportSchedule.html')
+        //viewExportScheduleWindow.loadURL('file://' + __dirname + '/exportSchedule.html');
         event.returnValue = '';
-        viewExportScheduleWindow.show();
+        //viewExportScheduleWindow.show();
     });
 
     setInterval(()=>{
