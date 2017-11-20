@@ -9,7 +9,10 @@ import ulcrs.models.tutor.Tutor;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.List;
 
 public class DataStore {
@@ -115,9 +118,19 @@ public class DataStore {
         is = DataStore.class.getClassLoader().getResourceAsStream("mockCoursesFull.json");
         reader = new JsonReader(new InputStreamReader(is));
         getInstance().courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
-        
+
         // TODO using tutors and courses, get all shift information and save into getInstance().shifts
-        
+        // Shift
+        LocalTime startTime = LocalTime.of(6, 30);
+        LocalTime endTime = LocalTime.of(9, 0);
+
+        getInstance().shifts = Arrays.asList(
+                new Shift(0, DayOfWeek.SUNDAY, startTime, endTime),
+                new Shift(1, DayOfWeek.MONDAY, startTime, endTime),
+                new Shift(2, DayOfWeek.TUESDAY, startTime, endTime),
+                new Shift(3, DayOfWeek.WEDNESDAY, startTime, endTime),
+                new Shift(4, DayOfWeek.THURSDAY, startTime, endTime));
+
         getInstance().timeFetched = LocalDateTime.now();
     }  
     

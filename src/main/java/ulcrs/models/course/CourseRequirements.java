@@ -1,11 +1,10 @@
 package ulcrs.models.course;
 
+import com.google.gson.annotations.Expose;
 import ulcrs.models.shift.Shift;
 
 import java.util.Objects;
 import java.util.Set;
-
-import com.google.gson.annotations.Expose;
 
 public class CourseRequirements {
 
