@@ -95,7 +95,7 @@ public class DataStore {
      */
     public static List<Shift> getShifts() {
     	// TODO implement - requires getting shifts from course, tutor data
-        fetchIfRequired(getInstance().courses);
+        fetchIfRequired(getInstance().shifts);
     	return getInstance().shifts;
     }
 
