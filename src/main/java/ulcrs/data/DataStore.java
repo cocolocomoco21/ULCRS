@@ -129,12 +129,12 @@ public class DataStore {
     	// For now, just get data from mock data    	
     	
     	// Tutor
-        InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockTutorsFull.json");
+        InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockTutors_Full.json");
         JsonReader reader = new JsonReader(new InputStreamReader(is));
         getInstance().tutors = new Gson().fromJson(reader, new TypeToken<List<Tutor>>() {}.getType());
         
     	// Course
-        is = DataStore.class.getClassLoader().getResourceAsStream("mockCoursesFull.json");
+        is = DataStore.class.getClassLoader().getResourceAsStream("mockCourses_Full.json");
         reader = new JsonReader(new InputStreamReader(is));
         getInstance().courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
 
