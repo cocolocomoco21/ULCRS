@@ -17,6 +17,13 @@
   right: 200px;
 }
 
+#center{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
 .btn-lg{
   padding: 1rem 8rem;
   font-size: 30px;

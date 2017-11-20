@@ -105,7 +105,7 @@ class ViewInfo extends React.Component {
                     </div>
                     <div className="col-9">
                         {/* <TutorTable tutors = {this.state.tutors}/> */}{/* Still thinking about how to load in CourseTable */}
-                        {/*<CourseTable courses = {this.state.courses}/>*/}
+                        {/*<Cour  seTable courses = {this.state.courses}/>*/}
                         {this.prepareView()}
                     </div>
 

@@ -1,5 +1,7 @@
 let ReactDOM = require('react-dom');
 let React = require('react');
+let electron = eRequire('electron');
+let ipc = electron.ipcRenderer;
 
 let ScheduleToolbar = require('./scheduletoolbar');
 let ScheduleTable = require('./scheduletable');
@@ -13,6 +15,9 @@ class ViewSchedulePage  extends React.Component {
         this.state = {
             schedules : loadSchedules
         }
+    }
+    ShowExportSchedule() {
+        ipc.sendSync("ShowExportSchedule");
     }
     render() {
 
@@ -30,6 +35,8 @@ class ViewSchedulePage  extends React.Component {
                     <div className="col-2">
                         
                     </div>
+
+                    <button type="button" className="btn btn-lg btn-success" id="generate-button-pos" onClick={this.ShowExportSchedule} > Save </button>
                 </div>
             </div>
 
