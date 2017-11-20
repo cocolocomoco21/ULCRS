@@ -3,7 +3,7 @@ var electron = require('electron');
 var BrowserWindow = electron.BrowserWindow;
 var app = electron.app;
 var ipc = electron.ipcMain;
-
+let session = electron.session;
 var serverProcess = null;
 var appWindow, viewTutorsWindow, viewSchedulesWindow = null;
 
@@ -79,7 +79,6 @@ app.on('ready', function() {
 
     setInterval(()=>{
         session.defaultSession.cookies.get({}, (error, cookies) => {
-            console.log(error, cookies)
         })
     }, 1000);
   // change the api for receive actual data
