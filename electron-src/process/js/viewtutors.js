@@ -20,8 +20,7 @@ let ModalFooter = Reactstrap.ModalFooter;
 let Button = Reactstrap.Button;
 
 
-ipc.send("request_tutor_data");
-ipc.send("request_course_data");
+
 class ViewInfo extends React.Component {
   constructor(props){
     super(props);
@@ -56,7 +55,8 @@ class ViewInfo extends React.Component {
           courseData: d
       });
     });
-
+      ipc.send("request_tutor_data");
+      ipc.send("request_course_data");
 
   }
 
@@ -96,7 +96,6 @@ class ViewInfo extends React.Component {
     }
 
     render() {
-
         return (
             <div className="container-fluid ">
                 <div className="row">
@@ -177,14 +176,10 @@ class MainInterface extends React.Component{
         console.log("Rendering");
         console.log(this.state.pageName);
         if (this.state.pageName === "info"){
-
             component = <ViewInfo showSchedules = {this.showViewSchedules}/>
-
         }
         else if (this.state.pageName === "schedules"){
-
             component = <ViewSchedulePage/>
-
         }
 
         return(
