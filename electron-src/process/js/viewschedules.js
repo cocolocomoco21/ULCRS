@@ -1,6 +1,7 @@
 let ReactDOM = require('react-dom');
 let React = require('react');
-
+let electron = eRequire('electron');
+let ipc = electron.ipcRenderer;
 let ScheduleToolbar = require('./scheduletoolbar');
 let ScheduleTable = require('./scheduletable');
 let fs = eRequire('fs');
@@ -12,8 +13,15 @@ class ViewSchedulePage  extends React.Component {
         super(props);
         this.state = {
             schedules : loadSchedules
-        }
+        };
+
+        this.exit = this.exit.bind(this);
     }
+
+    exit(){
+        ipc.send("kill-app");
+    }
+
     render() {
 
         return (
@@ -28,7 +36,7 @@ class ViewSchedulePage  extends React.Component {
                     </div>
 
                     <div className="col-2">
-                        
+                        <div className="btn btn-danger" onClick={this.exit}> Exit </div>
                     </div>
                 </div>
             </div>
