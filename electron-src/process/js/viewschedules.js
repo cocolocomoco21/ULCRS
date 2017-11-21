@@ -10,12 +10,22 @@ let ScheduleTable = require('./scheduletable');
 
 console.log(loadSchedules);
 class ViewSchedulePage extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            schedules : loadSchedules
+            schedules: loadSchedules
         }
+        // this.data = {};
+        // this.getData = this.getData.bind(this);
+
+        // setData = {this.getData}/
     }
+
+    // getData(data){
+    //     this.data = data;
+    // }
+
+
     render() {
 
         return (
@@ -26,7 +36,7 @@ class ViewSchedulePage extends React.Component {
                     </div>
 
                     <div className="col-8">
-                        <ScheduleTable schedules={this.state.schedules}/>
+                        <ScheduleTable schedules={this.state.schedules} />
                     </div>
 
                     <div className="col-2">

@@ -46,14 +46,14 @@ class Container extends React.Component{
 		const { canDrop, isOver, connectDropTarget } = this.props;
 		const isActive = canDrop && isOver;
     const style = {
-			width: "200px",
-			height: "404px",
-			border: '1px dashed gray'
+			width: "100%",
+			height: "100%",
+			border: "1px dashed gray"
 		};
 
     const backgroundColor = isActive ? 'lightgreen' : '#FFF';
     return connectDropTarget(
-			<div style={{backgroundColor}}>
+			<div id="container" style={{backgroundColor}}>
 				{cards.map((card, i) => {
 					return (
 						<Card

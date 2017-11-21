@@ -26,6 +26,31 @@
     margin-top:15px;
 }
 
+.container-scroll {
+}
+
+.container-scroll > .row {
+    overflow-x: auto;
+    white-space: nowrap;
+    display: inline-block;
+    width: inherit;
+}
+
+.container-scroll > .row > .col-2 {
+    display: inline-block;
+    float: none;
+}
+
+#container {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    width: inherit;
+}
+
+.tc {
+    text-align: center;
+}
 
 /*.table-striped{*/
 

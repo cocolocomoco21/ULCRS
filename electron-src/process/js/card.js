@@ -21,8 +21,8 @@ class Card extends React.Component {
 		return connectDragSource(connectDropTarget(
 			<div style={{ style, opacity }}>
 				<ul className="list-group">
-					<li className="list-group-item">{card.Name}</li>
-					<li className="list-group-item">{card.Course}</li>
+					<li className="list-group-item">{card.tutorCourse}</li>
+					<li className="list-group-item">{card.tutorName}</li>
 				</ul>
 			</div>
 		));

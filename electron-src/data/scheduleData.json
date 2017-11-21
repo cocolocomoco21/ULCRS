@@ -1,109 +1,137 @@
 [
     {
-        "Shift": "Sunday1",
-        "Data":
+        "scheduleName": "Schedule 1",
+        "scheduleData":
         [
             {
-                "Name": "Davidson",
-                "Course": "CS 200"
-            }
-        ]
-    },
-    {
-        "Shift": "Sunday2",
-        "Data":
-        [
-            {
-                "Name": "Lily",
-                "Course": "CS 200"
+                "shiftName": "Sunday1",
+                "shiftData":
+                [
+                    {
+                        "tutorName": "Davidson",
+                        "tutorCourse": "CS 200"
+                    }
+                ]
             },
             {
-                "Name": "Sally",
-                "Course": "CS 540"
+                "shiftName": "Sunday2",
+                "shiftData":
+                [
+                    {
+                        "tutorName": "Lily",
+                        "tutorCourse": "CS 200"
+                    },
+                    {
+                        "tutorName": "Sally",
+                        "tutorCourse": "CS 540"
+                    },
+                    {
+                        "tutorName": "Wid",
+                        "tutorCourse": "CS 800"
+                    }
+                ]
             },
             {
-                "Name": "Wid",
-                "Course": "CS 800"
-            }
-        ]
-    },
-    {
-        "Shift": "Monday",
-        "Data":
-        [
-            {
-                "Name": "Doon",
-                "Course": "CS 430"
+                "shiftName": "Monday",
+                "shiftData":
+                [
+                    {
+                        "tutorName": "Doon",
+                        "tutorCourse": "CS 430"
+                    },
+                    {
+                        "tutorName": "Caitlyn",
+                        "tutorCourse": "CS 536"
+                    },
+                    {
+                        "tutorName": "Davidson",
+                        "tutorCourse": "CS 210"
+                    },
+                    {
+                        "tutorName": "Cat",
+                        "tutorCourse": "Cat 210"
+                    },
+                    {
+                        "tutorName": "Pangolin",
+                        "tutorCourse": "Pangolin 999"
+                    }
+                ]
             },
             {
-                "Name": "Caitlyn",
-                "Course": "CS 536"
+                "shiftName": "Tuesday",
+                "shiftData":
+                [
+                    {
+                        "tutorName": "Mike",
+                        "tutorCourse": "CS 320"
+                    },
+                    {
+                        "tutorName": "Jason",
+                        "tutorCourse": "CS 205"
+                    },
+                    {
+                        "tutorName": "Wil",
+                        "tutorCourse": "CS 537"
+                    }
+                ]
             },
             {
-                "Name": "Davidson",
-                "Course": "CS 210"
+                "shiftName": "Wednesday",
+                "shiftData":
+                [
+                    {
+                        "tutorName": "Doon",
+                        "tutorCourse": "CS 430"
+                    },
+                    {
+                        "tutorName": "Caitlyn",
+                        "tutorCourse": "CS 536"
+                    }
+                ]
             },
             {
-                "Name": "Cat",
-                "Course": "Cat 210"
+                "shiftName": "Thursday",
+                "shiftData":
+                [
+                    {
+                        "tutorName": "Mike",
+                        "tutorCourse": "CS 320"
+                    },
+                    {
+                        "tutorName": "Jason",
+                        "tutorCourse": "CS 205"
+                    },
+                    {
+                        "tutorName": "Wil",
+                        "tutorCourse": "CS 537"
+                    },
+                    {
+                        "tutorName": "Amy",
+                        "tutorCourse": "CS 357"
+                    }
+                ]
             },
             {
-                "Name": "Pangolin",
-                "Course": "Pangolin 999"
-            }
-        ]
-    },
-    {
-        "Shift": "Tuesday",
-        "Data":
-        [
-            {
-                "Name": "Mike",
-                "Course": "CS 320"
-            },
-            {
-                "Name": "Jason",
-                "Course": "CS 205"
-            },
-            {
-                "Name": "Wil",
-                "Course": "CS 537"
-            }
-        ]
-    },
-    {
-        "Shift": "Wednesday",
-        "Data":
-        [
-            {
-                "Name": "Doon",
-                "Course": "CS 430"
-            },
-            {
-                "Name": "Caitlyn",
-                "Course": "CS 536"
-            }
-        ]
-    },
-    {
-        "Shift": "Thursday",
-        "Data":
-        [
-            {
-                "Name": "Mike",
-                "Course": "CS 320"
-            },
-            {
-                "Name": "Jason",
-                "Course": "CS 205"
-            },
-            {
-                "Name": "Wil",
-                "Course": "CS 537"
-            },
-            {
-                "Name": "Amy",
-                "Course": "CS 357"
+                "shiftName": "Thursday2",
+                "shiftData":
+                [
+                    {
+                        "tutorName": "Mike",
+                        "tutorCourse": "CS 320"
+                    },
+                    {
+                        "tutorName": "Jason",
+                        "tutorCourse": "CS 205"
+                    },
+                    {
+                        "tutorName": "Wil",
+                        "tutorCourse": "CS 537"
+                    },
+                    {
+                        "tutorName": "Amy",
+                        "tutorCourse": "CS 357"
+                    }
+                ]
             }
         ]
     }
