@@ -4,11 +4,20 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Objects;
 
+import com.google.gson.annotations.Expose;
+
 public class Shift {
 
+    @Expose
     private int id;
+
+    @Expose
     private DayOfWeek day;
+    
+    @Expose(serialize = false)
     private LocalTime startTime;
+    
+    @Expose(serialize = false)
     private LocalTime endTime;
 
     public Shift(int id, DayOfWeek day, LocalTime startTime, LocalTime endTime) {

@@ -1,13 +1,21 @@
 package ulcrs.models.course;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.Objects;
 
 public class Course {
 
+    @Expose
     private int id;
+    
+    @Expose
     private String name;
+    
+    @Expose
     private CourseRequirements courseRequirements;
 
+    
     public Course(int id, String name, CourseRequirements courseRequirements) {
         this.id = id;
         this.name = name;

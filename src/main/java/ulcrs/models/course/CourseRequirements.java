@@ -1,5 +1,6 @@
 package ulcrs.models.course;
 
+import com.google.gson.annotations.Expose;
 import ulcrs.models.shift.Shift;
 
 import java.util.Objects;
@@ -7,9 +8,16 @@ import java.util.Set;
 
 public class CourseRequirements {
 
+    @Expose
     private Set<Shift> requiredShifts;
+
+    @Expose
     private int requiredShiftAmount;
+
+    @Expose
     private int preferredShiftAmount;
+
+    @Expose
     private CourseIntensity intensity;
 
     public CourseRequirements(Set<Shift> requiredShifts, int requiredShiftAmount, int preferredShiftAmount, CourseIntensity intensity) {

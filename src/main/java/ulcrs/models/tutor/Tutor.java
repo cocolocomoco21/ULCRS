@@ -1,11 +1,22 @@
 package ulcrs.models.tutor;
 
+import com.google.gson.annotations.Expose;
+
 public class Tutor {
 
+    @Expose
     private int id;
+
+    @Expose
     private String firstName;
+
+    @Expose
     private String lastName;
+
+    @Expose
     private TutorPreferences tutorPreferences;
+
+    @Expose
     private TutorStatus tutorStatus;
 
     public Tutor(int id, String firstName, String lastName, TutorPreferences tutorPreferences, TutorStatus tutorStatus) {
