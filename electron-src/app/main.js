@@ -111,16 +111,38 @@ app.on('ready', function () {
     // viewSchedulesWindow.loadURL('file://' + __dirname + '/viewschedules.html')
 
   // viewSchedulesWindow.loadURL('file://' + __dirname + '/viewschedules.html')
-    ipc.on("showViewSchedules", function (event, args) {
-        // event.returnValue = '';
-        // viewSchedulesWindow.show();
-        // viewTutorsWindow.hide();
-        let data = "";
+
+    // hold the interval
+    let polling_schedules = null;
+
+    ipc.on("post_generate", function (event, args) {
+
+        // fetch("http://localhost:4567/ulcrs/generate_schedules", {method: "POST"})
+        //     .then(res => {event.sender.send("post_success");});
 
         // Need error handling
         console.log('preparing schedule data');
-        event.sender.send("receiveScheduleData", data)
+        //event.sender.send("receiveScheduleData", data)
+        event.sender.send("post_success");
+
+        // // set up time interval
+        // polling_schedules = setInterval(()=>{
+        //     fetch('http://localhost:4567/ulcrs/schedules')
+        //         .then(res => res.txt)
+        //         .then(data => {
+        //             if (data !== "null") {
+        //                 console.log("received data");
+        //                 event.sender.send("receiveScheduleData", data);
+        //                 clearInterval(polling_schedules);
+        //             }
+        //         });
+        // }, 500);
+        let data = "";
+
+        setTimeout(()=> {event.sender.send("receiveScheduleData", data);}, 2000);
     });
+
+
 
     // change the api for receive actual data
     ipc.on("request_tutor_data", (event, args) => {

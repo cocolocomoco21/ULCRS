@@ -169,14 +169,12 @@ class MainInterface extends React.Component{
 
 
         this.showViewSchedules = this.showViewSchedules.bind(this);
-    }
 
-    post_generate(){
-        ipc.send("post_generate");
     }
 
     showViewSchedules(){
-
+        ipc.send("post_generate");
+        console.log("post generate")
     }
 
     componentWillUpdate(){
