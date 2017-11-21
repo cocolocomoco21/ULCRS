@@ -22,9 +22,13 @@ class ViewSchedulePage  extends React.Component {
         super(props);
         this.state = {
             schedules : loadSchedules,
-            modal : false
+            modal : false,
+            saveMessage: "",
+            saveMessageModal: false
         };
         this.toggleSaveModal = this.toggleSaveModal.bind(this);
+        this.toggleMessageModal = this.toggleMessageModal.bind(this);
+        this.exportSchedule = this.exportSchedule.bind(this);
     }
 
     toggleSaveModal(){
@@ -33,9 +37,27 @@ class ViewSchedulePage  extends React.Component {
         })
     }
 
-    ShowExportSchedule() {
-        //ipc.sendSync("ShowExportSchedule");
+    toggleMessageModal(){
+        this.setState({
+            saveMessageModal: ! this.state.saveMessageModal
+        })
     }
+
+    exportSchedule(value){
+        if (value === 0) {
+            this.toggleSaveModal();
+        } else {
+            this.toggleSaveModal();
+            this.toggleMessageModal();
+            if (value === 1) {
+                this.state.saveMessage = "Session saved!";
+            } else if (value === 2) {
+                this.state.saveMessage = "Uploaded to server!";
+            }
+        }
+    }
+
+
     render() {
 
         return (
@@ -64,7 +86,18 @@ class ViewSchedulePage  extends React.Component {
                     </ModalHeader>
 
                     <ModalBody>
-                        <ExportSchedulePage />
+                        <ExportSchedulePage exportSchedule={this.exportSchedule}/>
+                    </ModalBody>
+                </Modal>
+
+                <Modal isOpen={this.state.saveMessageModal} toggle={this.toggleMessageModal}>
+                    <ModalHeader toggle={this.toggleMessageModal} >
+                        <div style={{"textAlign": "center", "fontSize": "20px"}}>
+                            Message
+                        </div>
+                    </ModalHeader>
+                    <ModalBody>
+                        <div id="message-content"> {this.state.saveMessage} </div>
                     </ModalBody>
                 </Modal>
 
