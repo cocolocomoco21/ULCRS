@@ -120,8 +120,9 @@ app.on('ready', function () {
 
     // change the api for receive actual data
     ipc.on("request_tutor_data", (event, args) => {
+
         let addCookieOption = {
-            headers: {"Set-Cookie": ["name="+ engrCookie.name, "value="+ engrCookie.value, "domain="+ engrCookie.domain]}
+            headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
         };
 
         fetch('http://localhost:4567/ulcrs/tutor/', addCookieOption)
@@ -131,7 +132,7 @@ app.on('ready', function () {
     });
     ipc.on("request_course_data", (event, args) => {
         let addCookieOption = {
-            headers: {"Set-Cookie": ["name="+ engrCookie.name, "value="+ engrCookie.value, "domain="+ engrCookie.domain]}
+            headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
         };
         fetch('http://localhost:4567/ulcrs/course/', addCookieOption)
             .then(res => res.text())
