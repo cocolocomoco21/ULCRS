@@ -1,12 +1,20 @@
 package ulcrs.scheduler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ulcrs.data.DataStore;
+import ulcrs.models.course.Course;
 import ulcrs.models.schedule.Schedule;
+import ulcrs.models.shift.Shift;
+import ulcrs.models.tutor.Tutor;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Scheduler {
+    private static Logger log = LoggerFactory.getLogger(Scheduler.class);
+
     private static List<Schedule> generatedSchedules;
     private static boolean isScheduling = false;
     private static LocalDateTime schedulingStart;
@@ -17,14 +25,29 @@ public class Scheduler {
         // specified tutors, courses, and shifts from DataStore, and return the list of schedules generated from
         // those constraints
 
-        // TODO we want to spin off a thread here to do our scheduling likely.
-        // The scheduling should not be done on the same thread as the thread handling the HTTP request, as we need
-        // to return data for the request to avoid a timeout
+        List<Tutor> tutors = DataStore.getTutors();
+        List<Course> courses = DataStore.getCourses();
+        List<Shift> shifts = DataStore.getShifts();
 
+        // Start new thread to handle scheduling so thread handling the HTTP request can return
+        Thread scheduleThread = new Thread(() -> {
+            schedule(tutors, courses, shifts);
+        });
+        scheduleThread.start();
+
+        return true;
+    }
+
+
+    private static boolean schedule(List<Tutor> tutors, List<Course> courses, List<Shift> shifts) {
         isScheduling = true;
         schedulingStart = LocalDateTime.now();
 
         // Start scheduling algorithm
+
+        // Run scheduling algorithm
+
+        // Finish scheduling algorithm
 
         isScheduling = false;
         generatedSchedules = new ArrayList<>();
