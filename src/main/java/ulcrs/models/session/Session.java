@@ -1,31 +1,45 @@
 package ulcrs.models.session;
 
+import ulcrs.GsonFactory;
 import ulcrs.models.schedule.Schedule;
 
-import java.time.LocalDateTime;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
 
 public class Session {
 
+    private static final String WORKSPACE_PATH = "workspace/";
+
     private String name;
     private Schedule existingSchedule;
-    private LocalDateTime generatedTimestamp;
-    private LocalDateTime lastEditedTimestamp;
+    private Date createdTimestamp;
+    private Date lastEditedTimestamp;
 
-    public void save() {
-        // TODO: implement
+    public Session() throws IOException {
+        lastEditedTimestamp = createdTimestamp = new Date();
+        name = "session_" + createdTimestamp.getTime() + ".json";
+        save();
     }
 
-    public boolean saveAs(String filename) {
-        // TODO: implement
-        return false;
+    public void save() throws IOException {
+        saveAs(name);
+    }
+
+    public void saveAs(String filename) throws IOException {
+        PrintWriter printWriter = null;
+        try {
+            printWriter = new PrintWriter(WORKSPACE_PATH + filename);
+            printWriter.println(GsonFactory.getGson().toJson(this));
+        } finally {
+            if (printWriter != null) {
+                printWriter.close();
+            }
+        }
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Schedule getExistingSchedule() {
@@ -34,21 +48,14 @@ public class Session {
 
     public void setExistingSchedule(Schedule existingSchedule) {
         this.existingSchedule = existingSchedule;
+        lastEditedTimestamp = new Date();
     }
 
-    public LocalDateTime getGeneratedTimestamp() {
-        return generatedTimestamp;
+    public Date getCreatedTimestamp() {
+        return createdTimestamp;
     }
 
-    public void setGeneratedTimestamp(LocalDateTime generatedTimestamp) {
-        this.generatedTimestamp = generatedTimestamp;
-    }
-
-    public LocalDateTime getLastEditedTimestamp() {
+    public Date getLastEditedTimestamp() {
         return lastEditedTimestamp;
-    }
-
-    public void setLastEditedTimestamp(LocalDateTime lastEditedTimestamp) {
-        this.lastEditedTimestamp = lastEditedTimestamp;
     }
 }
