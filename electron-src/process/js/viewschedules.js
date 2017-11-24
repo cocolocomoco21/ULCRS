@@ -13,7 +13,8 @@ let reactstrap = require('reactstrap');
 let Modal = reactstrap.Modal;
 let ModalHeader = reactstrap.ModalHeader;
 let ModalBody = reactstrap.ModalBody;
-
+let ModalFooter = reactstrap.ModalFooter;
+let Button = reactstrap.Button;
 
 console.log(loadSchedules);
 class ViewSchedulePage  extends React.Component {
@@ -23,13 +24,24 @@ class ViewSchedulePage  extends React.Component {
             schedules : loadSchedules,
             modal : false,
             saveMessage: "",
-            saveMessageModal: false
+            saveMessageModal: false,
+            exiting: false
         };
         this.toggleSaveModal = this.toggleSaveModal.bind(this);
         this.toggleMessageModal = this.toggleMessageModal.bind(this);
         this.exportSchedule = this.exportSchedule.bind(this);
         this.exit = this.exit.bind(this);
+        this.toggleExiting = this.toggleExiting.bind(this);
     }
+
+    toggleExiting(){
+        this.setState({
+            exiting: !this.state.exiting
+        })
+
+    }
+
+
 
     toggleSaveModal(){
         this.setState({
@@ -75,7 +87,7 @@ class ViewSchedulePage  extends React.Component {
                     </div>
 
                     <div className="col-2">
-                        <button className="btn btn-danger btn-block" onClick={this.exit} style={{"textAlign": "center"}} > Exit </button>
+                        <button className="btn btn-danger btn-block" onClick={this.toggleExiting} style={{"textAlign": "center"}} > Exit </button>
                         <button type="button" className="btn btn-success btn-block" onClick={this.toggleSaveModal} style={{"textAlign": "center"}} > Save </button>
                     </div>
 
@@ -103,6 +115,19 @@ class ViewSchedulePage  extends React.Component {
                     <ModalBody>
                         <div id="message-content"> {this.state.saveMessage} </div>
                     </ModalBody>
+                </Modal>
+
+                <Modal isOpen={this.state.exiting} toggle={this.toggleExiting} >
+                    <ModalHeader toggle={this.toggleExiting}>
+                        Warning
+                    </ModalHeader>
+                    <ModalBody>
+                        <div> Are you sure about exiting the app? </div>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="danger" onClick={this.exit}>Exit</Button>{' '}
+                        <Button color="secondary" onClick={this.toggleExiting}>Cancel</Button>
+                    </ModalFooter>
                 </Modal>
             </div>
 

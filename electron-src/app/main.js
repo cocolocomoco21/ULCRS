@@ -28,7 +28,7 @@ app.on('ready', function () {
         height: 900,
         transparent: false,
         show: false,
-        frame: true
+        frame: false
     }); //infoWindow
 
     appWindow.once('ready-to-show', function () {
@@ -70,6 +70,10 @@ app.on('ready', function () {
         frame: false
     });
 
+    app.on("will-quit", ()=>{
+        console.log("In will quit");
+        child.kill()
+    });
 
     ipc.on("ShowViewTutor", function (event, args) {
         event.returnValue = '';
