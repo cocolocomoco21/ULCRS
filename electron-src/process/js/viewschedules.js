@@ -2,7 +2,6 @@ let ReactDOM = require('react-dom');
 let React = require('react');
 let electron = eRequire('electron');
 let ipc = electron.ipcRenderer;
-
 let ScheduleToolbar = require('./scheduletoolbar');
 let ScheduleTable = require('./scheduletable');
 let fs = eRequire('fs');
@@ -29,6 +28,7 @@ class ViewSchedulePage  extends React.Component {
         this.toggleSaveModal = this.toggleSaveModal.bind(this);
         this.toggleMessageModal = this.toggleMessageModal.bind(this);
         this.exportSchedule = this.exportSchedule.bind(this);
+        this.exit = this.exit.bind(this);
     }
 
     toggleSaveModal(){
@@ -57,8 +57,11 @@ class ViewSchedulePage  extends React.Component {
         }
     }
 
+    exit(){
+        ipc.send("kill-app");
+    }
 
-    render() {
+    render(){
 
         return (
             <div className="container-fluid">
@@ -72,7 +75,7 @@ class ViewSchedulePage  extends React.Component {
                     </div>
 
                     <div className="col-2">
-                        
+                        <div className="btn btn-danger" onClick={this.exit}> Exit </div>
                     </div>
 
                 </div>
@@ -107,7 +110,7 @@ class ViewSchedulePage  extends React.Component {
         )
     }
 }
-
+//
 // ReactDOM.render(
 //     <ViewSchedulePage />,
 //     document.getElementById("ViewSchedule")

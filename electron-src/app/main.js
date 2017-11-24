@@ -1,12 +1,11 @@
 var electron = require('electron');
-
+var session = electron.session;
 var BrowserWindow = electron.BrowserWindow;
 var app = electron.app;
 var ipc = electron.ipcMain;
-let session = electron.session;
 let net = electron.net;
 var serverProcess = null;
-let appWindow, viewTutorsWindow, viewSchedulesWindow, authWindow = null;
+let appWindow, viewTutorsWindow, authWindow = null;
 let engrCookie = null;
 let fetch = require("node-fetch");
 
@@ -41,19 +40,27 @@ app.on('ready', function () {
     // killed to function properly. You can also use the `jps` command to find the appropriate PID
     serverProcess = require('child_process').exec;
 
-    /*var child = serverProcess('java -jar ../build/libs/ULCRS.jar');
-
-    child.stdout.on('data', function (data) {
-      console.log('Server stdout: ' + data);
-    });
-
-    child.stderr.on('data', function (data) {
-      console.log('Server stderr: ' + data);
-    });
-
-    child.on('close', function (code) {
-      console.log('Server closing code: ' + code);
-    });*/
+    // let child = serverProcess('java -jar ../build/libs/ULCRS.jar');
+    //
+    // child.stdout.on('data', function (data) {
+    //   console.log('Server stdout: ' + data);
+    // });
+    //
+    // child.stderr.on('data', function (data) {
+    //   console.log('Server stderr: ' + data);
+    // });
+    //
+    // child.on('close', function (code) {
+    //   child.stdin.pause();
+    //   console.log('Server closing code: ' + code);
+    //   console.log('Killed.............');
+    // });
+    //
+    // child.on('exit', function(code){
+    //
+    //     console.log("ending");
+    //     app.quit();
+    // });
 
     authWindow = new BrowserWindow({
         width: 900,
@@ -73,14 +80,6 @@ app.on('ready', function () {
         });
         // viewTutorsWindow.show();
         // appWindow.hide();
-    });
-
-    viewSchedulesWindow = new BrowserWindow({
-        width: 1600,
-        height: 900,
-        transparent: false,
-        show: false,
-        frame: true
     });
 
     let redirect = function () {
@@ -108,8 +107,6 @@ app.on('ready', function () {
         })
     }, 500);
 
-    // viewSchedulesWindow.loadURL('file://' + __dirname + '/viewschedules.html')
-
     ipc.on("showViewSchedules", function (event, args) {
         // event.returnValue = '';
         // viewSchedulesWindow.show();
@@ -119,9 +116,17 @@ app.on('ready', function () {
         event.sender.send("receiveScheduleData", data)
     });
 
+    //child.kill();
+    ipc.on("kill-app", (event,  args) =>{
+
+        // child.kill();
+        viewTutorsWindow.close();
+        app.quit();
+    });
+
+
     // change the api for receive actual data
     ipc.on("request_tutor_data", (event, args) => {
-
         let addCookieOption = {
             headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
         };
@@ -138,5 +143,7 @@ app.on('ready', function () {
         fetch('http://localhost:4567/ulcrs/course/', addCookieOption)
             .then(res => res.text())
             .then(body => event.sender.send("get_course_data", body));
+
+        // request.end();
     })
 }); //app is ready
