@@ -3,6 +3,7 @@ var session = electron.session;
 var BrowserWindow = electron.BrowserWindow;
 var app = electron.app;
 var ipc = electron.ipcMain;
+let renderer = electron.ipcRenderer;
 let net = electron.net;
 var serverProcess = null;
 let appWindow, viewTutorsWindow, authWindow = null;
@@ -16,7 +17,6 @@ app.on('ready', function () {
         show: false
     });
 
-    //appWindow
     //appWindow.loadURL('file://' + __dirname + '/viewschedules.html');
     appWindow.loadURL('file://' + __dirname + '/index.html');
 
@@ -86,6 +86,7 @@ app.on('ready', function () {
         // appWindow.hide();
     });
 
+
     let redirect = function () {
         authWindow.close();
         viewTutorsWindow.loadURL('file://' + __dirname + '/viewtutors.html');
@@ -111,14 +112,37 @@ app.on('ready', function () {
         })
     }, 500);
 
-    ipc.on("showViewSchedules", function (event, args) {
-        // event.returnValue = '';
-        // viewSchedulesWindow.show();
-        // viewTutorsWindow.hide();
-        let data = "";
+    // hold the interval
+    let polling_schedules = null;
+
+    ipc.on("post_generate", function (event, args) {
+
+        // fetch("http://localhost:4567/ulcrs/generate_schedules", {method: "POST"})
+        //     .then(res => {event.sender.send("post_success");});
+
+        // Need error handling
         console.log('preparing schedule data');
-        event.sender.send("receiveScheduleData", data)
+        //event.sender.send("receiveScheduleData", data)
+        event.sender.send("post_success");
+
+        // // set up time interval
+        // polling_schedules = setInterval(()=>{
+        //     fetch('http://localhost:4567/ulcrs/schedules')
+        //         .then(res => res.txt)
+        //         .then(data => {
+        //             if (data !== "null") {
+        //                 console.log("received data");
+        //                 event.sender.send("receiveScheduleData", data);
+        //                 clearInterval(polling_schedules);
+        //             }
+        //         });
+        // }, 500);
+        let data = "";
+
+        setTimeout(()=> {event.sender.send("receiveScheduleData", data);}, 2000);
     });
+
+
 
     //child.kill();
     ipc.on("kill-app", (event,  args) =>{

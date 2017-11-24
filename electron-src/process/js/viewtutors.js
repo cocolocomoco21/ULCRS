@@ -58,6 +58,10 @@ class ViewInfo extends React.Component {
       ipc.send("request_tutor_data");
       ipc.send("request_course_data");
 
+    ipc.on("post_success", (event, text)=>{
+
+    });
+
   }
 
   clickViewButton(v){
@@ -156,15 +160,21 @@ class MainInterface extends React.Component{
             });
         });
 
+        ipc.on("post_success", (event, data)=>{
+            this.setState({
+                    waiting: true
+                }
+            );
+        });
+
+
         this.showViewSchedules = this.showViewSchedules.bind(this);
+
     }
 
     showViewSchedules(){
-        this.setState({
-                waiting: true
-            }
-        );
-        ipc.send("showViewSchedules")
+        ipc.send("post_generate");
+        console.log("post generate")
     }
 
     componentWillUpdate(){
