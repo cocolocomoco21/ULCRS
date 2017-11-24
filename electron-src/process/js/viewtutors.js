@@ -20,7 +20,6 @@ let ModalFooter = Reactstrap.ModalFooter;
 let Button = Reactstrap.Button;
 
 
-
 class ViewInfo extends React.Component {
   constructor(props){
     super(props);

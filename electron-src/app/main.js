@@ -147,7 +147,7 @@ app.on('ready', function () {
         // }, 500);
         let data = "";
 
-        setTimeout(()=> {event.sender.send("receiveScheduleData", data);}, 2000);
+        setTimeout(()=> {event.sender.send("receive-schedule-data", data);}, 2000);
     });
 
 
