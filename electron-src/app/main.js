@@ -5,63 +5,58 @@ var app = electron.app;
 var ipc = electron.ipcMain;
 let net = electron.net;
 var serverProcess = null;
-let appWindow, viewTutorsWindow, authWindow = null;
+let startWindow, viewTutorsWindow, authWindow = null;
 let engrCookie = null;
 let fetch = require("node-fetch");
 
-app.on('ready', function () {
-    appWindow = new BrowserWindow({
+let initialStartWindow = ()=>{
+    startWindow = new BrowserWindow({
         width: 400,
         height: 300,
         show: false
     });
-
-    //appWindow
-    //appWindow.loadURL('file://' + __dirname + '/viewschedules.html');
-    appWindow.loadURL('file://' + __dirname + '/index.html');
-
-
-    //appWindow.loadURL('http://www.wisc.edu');
-
-    viewTutorsWindow = new BrowserWindow({
-        width: 1600,
-        height: 900,
-        transparent: false,
-        show: false,
-        frame: false
-    }); //infoWindow
-
-    appWindow.once('ready-to-show', function () {
-        appWindow.show();
+    startWindow.loadURL('file://' + __dirname + '/index.html');
+    startWindow.once('ready-to-show', function () {
+        startWindow.show();
     }); //ready-to-show
+};
 
+let startJavaBackendServer = ()=>{
     // Start Java backend server
-    // This currently (11/2) does not handle killing the server. `java.exe` must manually be
-    // killed to function properly. You can also use the `jps` command to find the appropriate PID
     serverProcess = require('child_process').exec;
 
     let child = serverProcess('java -jar ../build/libs/ULCRS.jar');
 
     child.stdout.on('data', function (data) {
-      console.log('Server stdout: ' + data);
+        console.log('Server stdout: ' + data);
     });
 
     child.stderr.on('data', function (data) {
-      console.log('Server stderr: ' + data);
+        console.log('Server stderr: ' + data);
     });
 
     child.on('close', function (code) {
-      child.stdin.pause();
-      console.log('Server closing code: ' + code);
-      console.log('Killed.............');
+        child.stdin.pause();
+        console.log('Server closing code: ' + code);
+        console.log('Killed.............');
     });
 
     child.on('exit', function(code){
 
         console.log("ending");
+        // This code is a little bit weird
         app.quit();
     });
+};
 
+let handleAppExit = () => {
+    app.on("will-quit", ()=>{
+        console.log("In will quit");
+        child.kill()
+    });
+};
+
+let setupAuthenticWindow = () => {
     authWindow = new BrowserWindow({
         width: 900,
         height: 506,
@@ -70,22 +65,17 @@ app.on('ready', function () {
         frame: false
     });
 
-    app.on("will-quit", ()=>{
-        console.log("In will quit");
-        child.kill()
-    });
-
     ipc.on("ShowViewTutor", function (event, args) {
         event.returnValue = '';
-        appWindow.hide();
+        startWindow.hide();
         authWindow.loadURL("http://dropin-dev.engr.wisc.edu");
         authWindow.once("ready-to-show", () => {
             authWindow.show();
         });
-        // viewTutorsWindow.show();
-        // appWindow.hide();
     });
+};
 
+let keepPollingUntilCookieReceivedThenRedirect = () => {
     let redirect = function () {
         authWindow.close();
         viewTutorsWindow.loadURL('file://' + __dirname + '/viewtutors.html');
@@ -93,7 +83,6 @@ app.on('ready', function () {
             viewTutorsWindow.show();
         });
     };
-
 
     let interval = setInterval(() => {
         session.defaultSession.cookies.get({domain: "dropin-dev.engr.wisc.edu"}, (error, cookies) => {
@@ -110,44 +99,62 @@ app.on('ready', function () {
             }
         })
     }, 500);
+};
 
-    ipc.on("showViewSchedules", function (event, args) {
+let setupViewTutorWindow = (width, height)=>{
+    viewTutorsWindow = new BrowserWindow({
+        width: width,
+        height: height,
+        transparent: false,
+        show: false,
+        frame: false
+    });
+}
+
+app.on('ready', function () {
+
+    initialStartWindow();
+    startJavaBackendServer();
+    setupViewTutorWindow(1600, 900);
+    handleAppExit();
+    setupAuthenticWindow();
+    keepPollingUntilCookieReceivedThenRedirect();
+
+
+    // Handler for receiving different message
+    ipc.on("show-view-schedules", function (event, args) {
         // event.returnValue = '';
         // viewSchedulesWindow.show();
         // viewTutorsWindow.hide();
         let data = "";
         console.log('preparing schedule data');
-        event.sender.send("receiveScheduleData", data)
+        event.sender.send("receive-schedule-data", data)
     });
 
-    //child.kill();
     ipc.on("kill-app", (event,  args) =>{
 
-        // child.kill();
         viewTutorsWindow.close();
         app.quit();
     });
 
 
     // change the api for receive actual data
-    ipc.on("request_tutor_data", (event, args) => {
+    ipc.on("request-tutor-data", (event, args) => {
         let addCookieOption = {
             headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
         };
 
         fetch('http://localhost:4567/ulcrs/tutor/', addCookieOption)
             .then(res => res.text())
-            .then(body => event.sender.send("get_tutor_data", body));
+            .then(body => event.sender.send("get-tutor-data", body));
         // });
     });
-    ipc.on("request_course_data", (event, args) => {
+    ipc.on("request-course-data", (event, args) => {
         let addCookieOption = {
             headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
         };
         fetch('http://localhost:4567/ulcrs/course/', addCookieOption)
             .then(res => res.text())
-            .then(body => event.sender.send("get_course_data", body));
-
-        // request.end();
+            .then(body => event.sender.send("get-course-data", body));
     })
 }); //app is ready

@@ -38,7 +38,7 @@ class ViewInfo extends React.Component {
     this.prepareView = this.prepareView.bind(this);
     this.proceedToGenerate = this.proceedToGenerate.bind(this);
     this.toggleProceeding = this.toggleProceeding.bind(this);
-    ipc.on("get_tutor_data",  (event, text) => {
+    ipc.on("get-tutor-data",  (event, text) => {
       let d = JSON.parse(text);
       let p = new Parser();
       this.setState({
@@ -47,7 +47,7 @@ class ViewInfo extends React.Component {
       });
     });
 
-    ipc.on("get_course_data",  (event, text) => {
+    ipc.on("get-course-data",  (event, text) => {
       let d = JSON.parse(text);
       let p = new Parser();
       this.setState({
@@ -55,8 +55,8 @@ class ViewInfo extends React.Component {
           courseData: d
       });
     });
-      ipc.send("request_tutor_data");
-      ipc.send("request_course_data");
+      ipc.send("request-tutor-data");
+      ipc.send("request-course-data");
 
   }
 
@@ -149,7 +149,7 @@ class MainInterface extends React.Component{
             waiting: false
         };
 
-        ipc.on("receiveScheduleData", (event, data) => {
+        ipc.on("receive-schedule-data", (event, data) => {
             this.setState ({
                 pageName : "schedules",
                 waiting: false
@@ -164,7 +164,7 @@ class MainInterface extends React.Component{
                 waiting: true
             }
         );
-        ipc.send("showViewSchedules")
+        ipc.send("show-view-schedules")
     }
 
     componentWillUpdate(){
