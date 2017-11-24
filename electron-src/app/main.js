@@ -40,27 +40,27 @@ app.on('ready', function () {
     // killed to function properly. You can also use the `jps` command to find the appropriate PID
     serverProcess = require('child_process').exec;
 
-    // let child = serverProcess('java -jar ../build/libs/ULCRS.jar');
-    //
-    // child.stdout.on('data', function (data) {
-    //   console.log('Server stdout: ' + data);
-    // });
-    //
-    // child.stderr.on('data', function (data) {
-    //   console.log('Server stderr: ' + data);
-    // });
-    //
-    // child.on('close', function (code) {
-    //   child.stdin.pause();
-    //   console.log('Server closing code: ' + code);
-    //   console.log('Killed.............');
-    // });
-    //
-    // child.on('exit', function(code){
-    //
-    //     console.log("ending");
-    //     app.quit();
-    // });
+    let child = serverProcess('java -jar ../build/libs/ULCRS.jar');
+
+    child.stdout.on('data', function (data) {
+      console.log('Server stdout: ' + data);
+    });
+
+    child.stderr.on('data', function (data) {
+      console.log('Server stderr: ' + data);
+    });
+
+    child.on('close', function (code) {
+      child.stdin.pause();
+      console.log('Server closing code: ' + code);
+      console.log('Killed.............');
+    });
+
+    child.on('exit', function(code){
+
+        console.log("ending");
+        app.quit();
+    });
 
     authWindow = new BrowserWindow({
         width: 900,
