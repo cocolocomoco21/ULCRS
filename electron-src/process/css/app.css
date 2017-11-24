@@ -11,10 +11,16 @@
     height:100%;
 }
 
+#exit-button-pos{
+    position: absolute;
+    bottom: 50px;
+    right: 100px;
+}
+
 #generate-button-pos{
   position: absolute;
-  bottom: 50px;
-  right: 200px;
+  bottom: 100px;
+  right: 100px;
 }
 
 #center{

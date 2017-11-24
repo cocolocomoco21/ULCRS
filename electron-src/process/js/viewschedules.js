@@ -75,7 +75,8 @@ class ViewSchedulePage  extends React.Component {
                     </div>
 
                     <div className="col-2">
-                        <div className="btn btn-danger" onClick={this.exit}> Exit </div>
+                        <button className="btn btn-danger btn-block" onClick={this.exit} style={{"textAlign": "center"}} > Exit </button>
+                        <button type="button" className="btn btn-success btn-block" onClick={this.toggleSaveModal} style={{"textAlign": "center"}} > Save </button>
                     </div>
 
                 </div>
@@ -103,8 +104,6 @@ class ViewSchedulePage  extends React.Component {
                         <div id="message-content"> {this.state.saveMessage} </div>
                     </ModalBody>
                 </Modal>
-
-                <button type="button" className="btn btn-lg btn-success" id="generate-button-pos" onClick={this.toggleSaveModal} > Save </button>
             </div>
 
         )

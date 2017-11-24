@@ -35,11 +35,11 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest(app + '/fonts'));
 });
 
-gulp.task('watch', ['serve'], function() {
-  gulp.watch( src + '/js/**/*', ['js']);
-  gulp.watch( src + '/css/**/*.css', ['css']);
-  gulp.watch([ app + '/**/*.html'], ['html']);
-});
+// gulp.task('watch', ['serve'], function() {
+//   gulp.watch( src + '/js/**/*', ['js']);
+//   gulp.watch( src + '/css/**/*.css', ['css']);
+//   gulp.watch([ app + '/**/*.html'], ['html']);
+// });
 
 gulp.task('serve', ['html', 'js', 'css'], function() {
   // verbosity: 3 here allows output to print console.logs
@@ -49,4 +49,4 @@ gulp.task('serve', ['html', 'js', 'css'], function() {
 
 });
 
-gulp.task('default', ['watch', 'fonts', 'serve']);
+gulp.task('default', ['fonts', 'serve']);
