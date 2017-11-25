@@ -26,17 +26,13 @@
     margin-top:15px;
 }
 
-.container-scroll {
-}
-
-.container-scroll > .row {
-    overflow-x: auto;
+.container-scroll > .col > .row {
+    overflow: auto;
     white-space: nowrap;
     display: inline-block;
-    width: inherit;
 }
 
-.container-scroll > .row > .col-2 {
+.container-scroll > .col > .row > .col-2 {
     display: inline-block;
     float: none;
 }
@@ -45,11 +41,7 @@
     display: inline-block;
     vertical-align: top;
     text-align: center;
-    width: inherit;
-}
-
-.tc {
-    text-align: center;
+    width: 100%;
 }
 
 /*.table-striped{*/

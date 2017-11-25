@@ -1,138 +1,290 @@
 [
-    {
-        "scheduleName": "Schedule 1",
-        "scheduleData":
-        [
-            {
-                "shiftName": "Sunday1",
-                "shiftData":
-                [
-                    {
-                        "tutorName": "Davidson",
-                        "tutorCourse": "CS 200"
-                    }
-                ]
-            },
-            {
-                "shiftName": "Sunday2",
-                "shiftData":
-                [
-                    {
-                        "tutorName": "Lily",
-                        "tutorCourse": "CS 200"
-                    },
-                    {
-                        "tutorName": "Sally",
-                        "tutorCourse": "CS 540"
-                    },
-                    {
-                        "tutorName": "Wid",
-                        "tutorCourse": "CS 800"
-                    }
-                ]
-            },
-            {
-                "shiftName": "Monday",
-                "shiftData":
-                [
-                    {
-                        "tutorName": "Doon",
-                        "tutorCourse": "CS 430"
-                    },
-                    {
-                        "tutorName": "Caitlyn",
-                        "tutorCourse": "CS 536"
-                    },
-                    {
-                        "tutorName": "Davidson",
-                        "tutorCourse": "CS 210"
-                    },
-                    {
-                        "tutorName": "Cat",
-                        "tutorCourse": "Cat 210"
-                    },
-                    {
-                        "tutorName": "Pangolin",
-                        "tutorCourse": "Pangolin 999"
-                    }
-                ]
-            },
-            {
-                "shiftName": "Tuesday",
-                "shiftData":
-                [
-                    {
-                        "tutorName": "Mike",
-                        "tutorCourse": "CS 320"
-                    },
-                    {
-                        "tutorName": "Jason",
-                        "tutorCourse": "CS 205"
-                    },
-                    {
-                        "tutorName": "Wil",
-                        "tutorCourse": "CS 537"
-                    }
-                ]
-            },
-            {
-                "shiftName": "Wednesday",
-                "shiftData":
-                [
-                    {
-                        "tutorName": "Doon",
-                        "tutorCourse": "CS 430"
-                    },
-                    {
-                        "tutorName": "Caitlyn",
-                        "tutorCourse": "CS 536"
-                    }
-                ]
-            },
-            {
-                "shiftName": "Thursday",
-                "shiftData":
-                [
-                    {
-                        "tutorName": "Mike",
-                        "tutorCourse": "CS 320"
-                    },
-                    {
-                        "tutorName": "Jason",
-                        "tutorCourse": "CS 205"
-                    },
-                    {
-                        "tutorName": "Wil",
-                        "tutorCourse": "CS 537"
-                    },
-                    {
-                        "tutorName": "Amy",
-                        "tutorCourse": "CS 357"
-                    }
-                ]
-            },
-            {
-                "shiftName": "Thursday2",
-                "shiftData":
-                [
-                    {
-                        "tutorName": "Mike",
-                        "tutorCourse": "CS 320"
-                    },
-                    {
-                        "tutorName": "Jason",
-                        "tutorCourse": "CS 205"
-                    },
-                    {
-                        "tutorName": "Wil",
-                        "tutorCourse": "CS 537"
-                    },
-                    {
-                        "tutorName": "Amy",
-                        "tutorCourse": "CS 357"
-                    }
-                ]
-            }
-        ]
-    }
+	{
+		"rating": 5,
+		"scheduleShifts":
+		[
+			{
+				"shift": { "id": 1, "day": "Sunday 1" },
+				"assignments":
+				[
+					{
+						"tutor": { "id": 1, "firstName": "Jason", "lastName": "Terry"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 367"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 2, "firstName": "Mike", "lastName": "Altman"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 250"
+							}
+						]
+					}
+				]
+			},
+			{
+				"shift": { "id": 2, "day": "Sunday 2" },
+				"assignments":
+				[
+					{
+						"tutor": { "id": 1, "firstName": "Jason", "lastName": "Terry"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 550"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 2, "firstName": "Mike", "lastName": "Altman"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 250"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 3, "firstName": "Ian", "lastName": "Lee"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 200"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 4, "firstName": "JJ", "lastName": "Lin"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 340"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 5, "firstName": "Amy", "lastName": "Sherman"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 900"
+							}
+						]
+					}
+				]
+			},
+			{
+				"shift": { "id": 3, "day": "Monday" },
+				"assignments":
+				[
+					{
+						"tutor": { "id": 1, "firstName": "Jason", "lastName": "Terry"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 870"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 2, "firstName": "Mike", "lastName": "Altman"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 360"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 5, "firstName": "Amy", "lastName": "Sherman"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 750"
+							}
+						]
+					}
+				]
+			},
+			{
+				"shift": { "id": 4, "day": "Tuesday 1" },
+				"assignments":
+				[
+					{
+						"tutor": { "id": 6, "firstName": "Udon", "lastName": "Jap"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 100"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 3, "firstName": "Ian", "lastName": "Lee"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 200"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 4, "firstName": "JJ", "lastName": "Lin"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 340"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 5, "firstName": "Amy", "lastName": "Sherman"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 900"
+							}
+						]
+					}
+				]
+			},
+			{
+				"shift": { "id": 5, "day": "Tuesday 2" },
+				"assignments":
+				[
+					{
+						"tutor": { "id": 3, "firstName": "Ian", "lastName": "Lee"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 200"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 4, "firstName": "JJ", "lastName": "Lin"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 340"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 5, "firstName": "Amy", "lastName": "Sherman"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 900"
+							}
+						]
+					}
+				]
+			},
+			{
+				"shift": { "id": 6, "day": "Wednesday" },
+				"assignments":
+				[
+					{
+						"tutor": { "id": 7, "firstName": "Ben", "lastName": "Simmons"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 400"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 8, "firstName": "JR", "lastName": "Smith"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 250"
+							}
+						]
+					}
+				]
+			},
+			{
+				"shift": { "id": 7, "day": "Thursday" },
+				"assignments":
+				[
+					{
+						"tutor": { "id": 1, "firstName": "Jason", "lastName": "Terry"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 550"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 2, "firstName": "Mike", "lastName": "Altman"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 250"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 3, "firstName": "Ian", "lastName": "Lee"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 200"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 4, "firstName": "JJ", "lastName": "Lin"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 340"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 5, "firstName": "Amy", "lastName": "Sherman"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 900"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
 ]

@@ -27,19 +27,21 @@ class ScheduleTable extends React.Component {
 
         console.log(this.state.schedules);
         let containerList = [];
-        let scheduleData = this.state.schedules[0].scheduleData;
-        console.log(scheduleData);
+        let scheduleShifts = this.state.schedules[0].scheduleShifts;
+        console.log(scheduleShifts);
         let index = 1;
-        for (let col = 0; col < scheduleData.length; col++){
+        for (let col = 0; col < scheduleShifts.length; col++){
             console.log(col);
             let containerDataList = [];
-            let shiftData = scheduleData[col].shiftData;
-            console.log(shiftData);
-            for (let row = 0; row < shiftData.length; row++){
+            let assignments = scheduleShifts[col].assignments;
+            console.log(assignments);
+            for (let row = 0; row < assignments.length; row++){
+                let tutor = assignments[row].tutor.firstName + " " + assignments[row].tutor.lastName;
                 containerDataList.push(
-                    {id: index,
-                        tutorName: shiftData[row].tutorName,
-                        tutorCourse: shiftData[row].tutorCourse
+                    {
+                        id: index,
+                        tutorName: tutor,
+                        tutorCourse: assignments[row].courses[0].name
                     });
                 index++;
             }
@@ -48,7 +50,7 @@ class ScheduleTable extends React.Component {
                                     <div className="row">
                                         <div className="col text-center"
                                              style={{background: "#5bc0de", color: "white", padding:12}}>
-                                            {scheduleData[col].shiftName}
+                                            {scheduleShifts[col].shift.day}
                                         </div>
                                     </div>
                                     <div className="row">
@@ -58,7 +60,6 @@ class ScheduleTable extends React.Component {
                                     </div>
                                 </div>);
         }
-        console.log(this.state.schedules[0].scheduleName);
 
         const listOne = [
             {id: 1, tutorName: "Lily", tutorCourse: "CS 200"},
@@ -79,14 +80,18 @@ class ScheduleTable extends React.Component {
         ];
 
         return (
-            <div className="card">
-                <h3 className="card-header" style={{background: "#5bc0de", color: "white"}}>
-                    Schedule: {this.state.schedules[0].scheduleName}
-                </h3>
-                <div>
-                    <div className="card-body container-scroll">
-                        <div className="row">
-                            {containerList}
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <div className="row" style={{background: "#5bc0de", color: "white", padding: 15}}>
+                            <h3>Schedule: Schedule 1</h3>
+                        </div>
+                        <div className="row container-scroll">
+                            <div className="col" style={{padding: 0}}>
+                                <div className="row" style={{margin: 0, width: "100%", height: "500px"}}>
+                                    {containerList}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
