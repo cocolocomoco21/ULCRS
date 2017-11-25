@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     browserify = require('gulp-browserify'),
     concatCss = require('gulp-concat-css'),
     run = require('gulp-run');
+let babel = require("gulp-babel");
 
 var src = './process',
     app = './app';
