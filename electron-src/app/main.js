@@ -47,9 +47,10 @@ let startJavaBackendServer = ()=>{
         // This code is a little bit weird
         app.quit();
     });
+    return child;
 };
 
-let handleAppExit = () => {
+let handleAppExit = (child) => {
     app.on("will-quit", ()=>{
         console.log("In will quit");
         child.kill()
@@ -114,9 +115,9 @@ let setupViewTutorWindow = (width, height)=>{
 app.on('ready', function () {
 
     initialStartWindow();
-    startJavaBackendServer();
+    let child = startJavaBackendServer();
     setupViewTutorWindow(1600, 900);
-    handleAppExit();
+    handleAppExit(child);
     setupAuthenticWindow();
     keepPollingUntilCookieReceivedThenRedirect();
 
