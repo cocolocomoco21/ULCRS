@@ -21,10 +21,6 @@
       "react": "~16.0.0",
       "react-dom": "~16.0.0",
       "reactify": "~1.1.1"
-      "chai": "~4.1.2",
-      "chai-as-promised": "~7.1.1",
-      "mocha": "~4.0.1",
-      "spectron": "~3.7.2"
     },
     "dependencies": {
       "bootstrap": "~4.0.0-beta.2",
