@@ -1,0 +1,32 @@
+Course
+0	CS 301		{"id": 0, "name": "CS 301"}
+1	CS 302		{"id": 1, "name": "CS 302"}
+2	CS 577		{"id": 2, "name": "CS 577"}
+3	EMA 201		{"id": 3, "name": "EMA 201"}
+4	ECE 210		{"id": 4, "name": "ECE 210"}
+
+Tutors
+0	Bilbo Baggins		{"id": 0, "firstName": "Bilbo", "lastName": "Baggins"}
+1	Spicy Memelord		{"id": 1, "firstName": "Spicy", "lastName": "Memelord"}
+2	Steve Balmer		{"id": 2, "firstName": "Steve", "lastName": "Balmer"}
+3	Senator Palpatine	{"id": 3, "firstName": "Senator", "lastName": "Palpatine"}
+
+C\Day	0		1		2		3		4
+0		0		12		02		12		1
+1		0		2		02		2		2
+2				2		2		2
+3		3		1				1		1
+4				2				2
+
+{
+	"tutor": ,
+	"courses": []
+}
+
+{ 
+	"shift": {
+		"id": 1,
+		"day": "MONDAY"
+	},
+	"assignments": []
+}
