@@ -1,5 +1,8 @@
 package ulcrs.scheduler;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ulcrs.data.DataStore;
@@ -8,8 +11,9 @@ import ulcrs.models.schedule.Schedule;
 import ulcrs.models.shift.Shift;
 import ulcrs.models.tutor.Tutor;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Scheduler {
@@ -46,11 +50,14 @@ public class Scheduler {
         // Start scheduling algorithm
 
         // Run scheduling algorithm
+        // For now, return mock data
+        InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockSchedule_FrontendExpects.json");
+        JsonReader reader = new JsonReader(new InputStreamReader(is));
 
         // Finish scheduling algorithm
-
+        generatedSchedules = new Gson().fromJson(reader, new TypeToken<List<Schedule>>() {}.getType());
         isScheduling = false;
-        generatedSchedules = new ArrayList<>();
+
         return true;
     }
 
