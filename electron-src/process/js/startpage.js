@@ -1,6 +1,9 @@
+let requireLocal = ( localModule ) =>{
+    return require(path.resolve( __dirname, './js/', localModule))
+};
 let ReactDOM = require('react-dom');
 let React = require('react');
-let ViewToolBar = require('./viewtoolbar');
+let ViewToolBar = requireLocal('viewtoolbar.js');
 let electron = eRequire('electron');
 let ipc = electron.ipcRenderer;
 
