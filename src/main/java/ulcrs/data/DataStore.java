@@ -65,7 +65,7 @@ public class DataStore {
      */
     public static Shift getShift(int id) {
         fetchIfRequired(getInstance().shifts);
-    	return getInstance().shifts.stream()
+        return getInstance().shifts.stream()
                 .filter(s -> s.getId() == id)
                 .findFirst()
                 .orElse(null);
@@ -94,9 +94,9 @@ public class DataStore {
      * @return List<Shift> - list of all shifts
      */
     public static List<Shift> getShifts() {
-    	// TODO implement - requires getting shifts from course, tutor data
+        // TODO implement - requires getting shifts from course, tutor data
         fetchIfRequired(getInstance().shifts);
-    	return getInstance().shifts;
+        return getInstance().shifts;
     }
 
     /**
@@ -105,9 +105,9 @@ public class DataStore {
      * @param <T> - generic type for reference
      */
     private static <T> void fetchIfRequired(T reference) {
-    	if (!isCached(reference)) {
-    		fetch();
-    	}
+        if (!isCached(reference)) {
+            fetch();
+        }
     }
 
     /**
@@ -125,15 +125,15 @@ public class DataStore {
      * data that is fetched.
      */
     private static void fetch() {
-    	// Fetch from ULC - TODO
-    	// For now, just get data from mock data    	
-    	
-    	// Tutor
+        // Fetch from ULC - TODO
+        // For now, just get data from mock data
+
+        // Tutor
         InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockTutors_Full.json");
         JsonReader reader = new JsonReader(new InputStreamReader(is));
         getInstance().tutors = new Gson().fromJson(reader, new TypeToken<List<Tutor>>() {}.getType());
-        
-    	// Course
+
+        // Course
         is = DataStore.class.getClassLoader().getResourceAsStream("mockCourses_Full.json");
         reader = new JsonReader(new InputStreamReader(is));
         getInstance().courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
@@ -151,6 +151,6 @@ public class DataStore {
                 new Shift(4, DayOfWeek.THURSDAY, startTime, endTime));
 
         getInstance().timeFetched = LocalDateTime.now();
-    }  
-    
+    }
+
 }
