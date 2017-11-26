@@ -1,7 +1,8 @@
-let fs = eRequire('fs');
+let fs = require('fs');
+let dataLocation = require('path').resolve(__dirname, '..', '..', 'data', 'mockdata.json');
 let loadData = JSON.parse(fs.readFileSync(dataLocation));
 let _ = require("lodash");
-let electron = eRequire('electron');
+let electron = require('electron');
 
 
 class Parser{

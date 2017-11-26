@@ -5,11 +5,13 @@ let requireLocal = ( localModule ) =>{
 
 let ReactDOM = require('react-dom');
 let React = require('react');
-let electron = eRequire('electron');
+let electron = require('electron');
 let ipc = electron.ipcRenderer;
 let ScheduleToolbar = requireLocal('./scheduletoolbar');
 let ScheduleTable = requireLocal('./scheduletable');
-let fs = eRequire('fs');
+let fs = require('fs');
+
+let scheLocation = require('path').resolve(__dirname, '..', '..','data', 'scheduleData.json');
 let loadSchedules = JSON.parse(fs.readFileSync(scheLocation));
 
 

@@ -13,7 +13,10 @@ let initialStartWindow = ()=>{
     startWindow = new BrowserWindow({
         width: 400,
         height: 300,
-        show: false
+        show: false,
+        webPreferences: {
+            preload: __dirname + '/preload.js'
+        }
     });
     startWindow.loadURL('file://' + __dirname + '/index.html');
     startWindow.once('ready-to-show', function () {
