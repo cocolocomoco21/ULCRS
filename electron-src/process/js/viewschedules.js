@@ -1,14 +1,19 @@
+let requireLocal = ( localModule ) =>{
+    let path = require("path");
+    return require(path.resolve( __dirname, localModule))
+};
+
 let ReactDOM = require('react-dom');
 let React = require('react');
 let electron = eRequire('electron');
 let ipc = electron.ipcRenderer;
-let ScheduleToolbar = require('./scheduletoolbar');
-let ScheduleTable = require('./scheduletable');
+let ScheduleToolbar = requireLocal('./scheduletoolbar');
+let ScheduleTable = requireLocal('./scheduletable');
 let fs = eRequire('fs');
 let loadSchedules = JSON.parse(fs.readFileSync(scheLocation));
 
 
-let ExportSchedulePage = require('./exportschedule');
+let ExportSchedulePage = requireLocal('./exportschedule');
 let reactstrap = require('reactstrap');
 let Modal = reactstrap.Modal;
 let ModalHeader = reactstrap.ModalHeader;

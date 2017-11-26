@@ -9,11 +9,7 @@ var src = './process',
 
 gulp.task('js', function() {
   return gulp.src( src + '/js/*.js' )
-    .pipe(browserify({
-      transform: 'reactify',
-      extensions: 'browserify-css',
-      debug: true
-    }))
+    .pipe(babel({presets: ["react", "env"]}))
     .on('error', function (err) {
       console.error('Error!', err.message);
     })

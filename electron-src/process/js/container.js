@@ -1,6 +1,3 @@
-let requireLocal = ( localModule ) =>{
-    return require(path.resolve( __dirname, './js/', localModule))
-};
 let Card = require('./Card.js');
 let React = require('react');
 let update = require('react-addons-update');

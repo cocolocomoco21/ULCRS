@@ -1,8 +1,8 @@
 let requireLocal = ( localModule ) =>{
-    return require(path.resolve( __dirname, './js/', localModule))
+    let path = require("path");
+    return require(path.resolve( __dirname, localModule))
 };
-
-let Container = requireLocal ('./container.js'); // droppable container
+let Container = requireLocal ('./container'); // droppable container
 let React = require('react');
 let DragDropContext = require('react-dnd').DragDropContext;
 let HTML5Backend = require('react-dnd-html5-backend');

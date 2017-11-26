@@ -1,11 +1,7 @@
 let ReactDOM = require('react-dom');
 let React = require('react');
-
-let requireLocal = ( localModule ) =>{
-    return require(path.resolve( __dirname, './js/', localModule))
-};
-
-let CourseEntry = requireLocal('courseentry.js');
+let path = require("path");
+let CourseEntry = require(path.resolve( __dirname,'./courseentry'));
 
 class CourseTable extends React.Component {
     constructor(props){
