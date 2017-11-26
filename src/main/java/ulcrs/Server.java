@@ -7,6 +7,7 @@ import ulcrs.controllers.ScheduleController;
 import ulcrs.controllers.SessionController;
 import ulcrs.controllers.ShiftController;
 import ulcrs.controllers.TutorController;
+import ulcrs.controllers.UlcController;
 
 import static spark.Spark.init;
 import static spark.Spark.path;
@@ -20,6 +21,7 @@ public class Server {
     private ScheduleController scheduleController;
     private ShiftController shiftController;
     private SessionController sessionController;
+    private UlcController ulcController;
 
     public static void main(String args[]) {
         Server server = startServer();
@@ -32,6 +34,7 @@ public class Server {
             path("/schedule", server.scheduleController.routes());
             path("/shift", server.shiftController.routes());
             path("/session", server.sessionController.routes());
+            path("/ulc", server.ulcController.routes());
         });
 
         log.info("Server is running...");
@@ -64,5 +67,6 @@ public class Server {
         this.scheduleController = new ScheduleController();
         this.shiftController = new ShiftController();
         this.sessionController = new SessionController();
+        this.ulcController = new UlcController();
     }
 }

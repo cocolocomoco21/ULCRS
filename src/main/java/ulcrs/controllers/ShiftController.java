@@ -1,8 +1,11 @@
 package ulcrs.controllers;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
+import ulcrs.data.DataStore;
 import ulcrs.models.shift.Shift;
 
 import java.time.DayOfWeek;
@@ -19,23 +22,16 @@ public class ShiftController extends BaseController {
     public RouteGroup routes() {
         return () -> {
             before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            get("/", this::getShiftList, gson::toJson);
+            get("/", this::getShiftList, shifts -> {
+                    // Return only the required fields in JSON response
+                    Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+                    return gson.toJson(shifts);
+            });
         };
     }
 
     private List<Shift> getShiftList(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-
-        // TODO implement
-
-        LocalTime startTime = LocalTime.of(6, 30);
-        LocalTime endTime = LocalTime.of(9, 0);
-
-        return Arrays.asList(
-                new Shift(0, DayOfWeek.SUNDAY, startTime, endTime),
-                new Shift(1, DayOfWeek.MONDAY, startTime, endTime),
-                new Shift(2, DayOfWeek.TUESDAY, startTime, endTime),
-                new Shift(3, DayOfWeek.WEDNESDAY, startTime, endTime),
-                new Shift(4, DayOfWeek.THURSDAY, startTime, endTime));
+        return DataStore.getShifts();
     }
 }
