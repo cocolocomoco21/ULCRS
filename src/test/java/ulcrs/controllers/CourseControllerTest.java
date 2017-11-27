@@ -1,7 +1,5 @@
 package ulcrs.controllers;
 
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,13 +13,16 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 import spark.Request;
 import spark.Response;
+import ulcrs.data.DataStore;
 import ulcrs.models.course.Course;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.powermock.api.mockito.PowerMockito.when;
+
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({CourseController.class, Gson.class})
+@PrepareForTest({CourseController.class, DataStore.class})
 public class CourseControllerTest {
 
     private CourseController courseControllerTest;
@@ -32,23 +33,19 @@ public class CourseControllerTest {
     @Mock
     private Response responseMock;
 
-    private Gson gsonMock;
-
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
 
         courseControllerTest = new CourseController();
 
-        gsonMock = PowerMockito.mock(Gson.class);
-        PowerMockito.mockStatic(BaseController.class);
-        Whitebox.setInternalState(BaseController.class, "gson", gsonMock);
+        PowerMockito.mockStatic(DataStore.class);
     }
 
     @Test
     public void successGetCourseList() throws Exception {
         List<Course> courseListTest = new ArrayList<>();
-        Mockito.when(gsonMock.fromJson(Mockito.any(JsonReader.class), Mockito.any())).thenReturn(courseListTest);
+        when(DataStore.getCourses()).thenReturn(courseListTest);
 
         List<Course> getCourseListResult = Whitebox.invokeMethod(courseControllerTest, "getCourseList",
                 requestMock, responseMock);
@@ -61,7 +58,7 @@ public class CourseControllerTest {
         courseListTest.add(new Course(1, "a", null));
         courseListTest.add(new Course(2, "b", null));
 
-        Mockito.when(gsonMock.fromJson(Mockito.any(JsonReader.class), Mockito.any())).thenReturn(courseListTest);
+        when(DataStore.getCourse(1)).thenReturn(courseListTest.get(0));
         Mockito.when(requestMock.params(Mockito.eq("id"))).thenReturn("1");
 
         Course getCourseResult = Whitebox.invokeMethod(courseControllerTest, "getCourse",
