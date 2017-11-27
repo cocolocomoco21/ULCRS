@@ -2,6 +2,12 @@
 build
 .gradle
 
+# Eclipse
+*.classpath
+*.project
+.settings/
+bin/
+
 # Idea
 .idea
 *.iml
