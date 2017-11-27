@@ -115,9 +115,9 @@ let setupViewTutorWindow = (width, height)=>{
 app.on('ready', function () {
 
     initialStartWindow();
-    let child = startJavaBackendServer();
+    let javaServerProcess = startJavaBackendServer();
     setupViewTutorWindow(1600, 900);
-    handleAppExit(child);
+    handleAppExit(javaServerProcess);
     setupAuthenticWindow();
     keepPollingUntilCookieReceivedThenRedirect();
 
