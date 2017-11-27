@@ -51,6 +51,14 @@ let startJavaBackendServer = ()=>{
 };
 
 let handleAppExit = (child) => {
+
+        app.on("window-all-closed",function () {
+            if (os.platform() === "win32") {
+                app.quit();
+            }
+        })
+
+
     app.on("will-quit", ()=>{
         console.log("In will quit");
         if (os.platform() === "win32"){
