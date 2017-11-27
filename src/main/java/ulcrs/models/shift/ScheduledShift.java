@@ -1,15 +1,16 @@
 package ulcrs.models.shift;
 
-import ulcrs.models.course.Course;
-import ulcrs.models.tutor.Tutor;
+import com.google.gson.annotations.Expose;
 
-import java.util.Map;
 import java.util.Set;
 
 public class ScheduledShift {
 
+    @Expose
     private Shift shift;
-    private Map<Tutor, Set<Course>> tutorsToSets;
+
+    @Expose
+    private Set<Assignment> assignments;
 
     public ScheduledShift(Shift shift) {
         this.shift = shift;
@@ -23,11 +24,15 @@ public class ScheduledShift {
         this.shift = shift;
     }
 
-    public Map<Tutor, Set<Course>> getTutorsToSets() {
-        return tutorsToSets;
+    public Set<Assignment> getAssignments() {
+        return this.assignments;
     }
 
-    public void setTutorsToSets(Map<Tutor, Set<Course>> tutorsToSets) {
-        this.tutorsToSets = tutorsToSets;
+    public void setAssignments(Set<Assignment> assignments) {
+        this.assignments = assignments;
+    }
+
+    public void addAssignment(Assignment assignment) {
+        this.assignments.add(assignment);
     }
 }

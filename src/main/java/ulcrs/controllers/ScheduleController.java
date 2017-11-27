@@ -18,15 +18,19 @@ public class ScheduleController extends BaseController {
     public RouteGroup routes() {
         return () -> {
             before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            get("/generate", this::generateSchedule, gson::toJson);
+            get("/", this::fetchGeneratedSchedules, gson::toJson);
+            post("/generate", this::generateSchedule, gson::toJson);
             post("/validate", this::validateSchedule, gson::toJson);
         };
     }
 
-    private List<Schedule> generateSchedule(Request request, Response response) {
+    private List<Schedule> fetchGeneratedSchedules(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
+        return Scheduler.fetchGeneratedSchedules();
+    }
 
-        // TODO implement
+    private boolean generateSchedule(Request request, Response response) {
+        response.type(CONTENT_TYPE_JSON);
         return Scheduler.generateSchedule();
     }
 
