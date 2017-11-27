@@ -161,7 +161,7 @@
                 "WILLING": 6
             }
         },
-        "tutorStatus": "INACTIVE"
+        "tutorStatus": "ACTIVE"
     },
     {
         "id": 3,
@@ -231,5 +231,35 @@
             }
         },
         "tutorStatus": "GHOST"
+    },
+    {
+        "id": 4,
+        "firstName": "Inactive",
+        "lastName": "Tutor",
+        "tutorPreferences": {
+            "coursePreferences": {
+                "PREFER": [
+                    {
+                        "id": 2,
+                        "name": "CS 577"
+                    }
+                ],
+                "WILLING": []
+            },
+            "shiftPreferences": {
+                "PREFER": [
+                    {
+                        "id": 2,
+                        "day": "WEDNESDAY"
+                    }
+                ],
+                "WILLING": []
+            },
+            "shiftFrequencyPreferences": {
+                "PREFER": 1,
+                "WILLING": 1
+            }
+        },
+        "tutorStatus": "INACTIVE"
     }
 ]
