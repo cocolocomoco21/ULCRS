@@ -41,12 +41,6 @@ public class DataStore {
 
     private static DataStore dataStore;
 
-    private DataStore() {
-        this.tutors = new ArrayList<>();
-        this.courses = new ArrayList<>();
-        this.shifts = new ArrayList<>();
-    }
-
     private static DataStore getInstance() {
         if (dataStore == null) {
             dataStore = new DataStore();
@@ -145,7 +139,7 @@ public class DataStore {
     }
 
 
-    public static boolean populateData(List<String> response) {
+    protected static boolean populateData(List<String> response) {
         // Expect response with only one line of JSON
         if (response.size() != 1) {
             return false;
@@ -160,7 +154,10 @@ public class DataStore {
         JsonArray shiftsJson = obj.get(SHIFTS_KEY).getAsJsonArray();
         JsonArray tutorsJson = obj.get(TUTORS_KEY).getAsJsonArray();
 
+        // TODO far better error catching
+
         // Transform json courses into Course objects
+        List<Course> courses = new ArrayList<>();
         coursesJson.forEach(element -> {
             JsonObject json = element.getAsJsonObject();
 
@@ -171,10 +168,11 @@ public class DataStore {
             // TODO courseRequirements
 
             Course course = new Course(id, name, null);
-            getInstance().courses.add(course);
+            courses.add(course);
         });
 
         // Transform json shifts into Shift objects
+        List<Shift> shifts = new ArrayList<>();
         shiftsJson.forEach(element -> {
             JsonObject json = element.getAsJsonObject();
 
@@ -195,10 +193,11 @@ public class DataStore {
             LocalTime endTime = LocalTime.parse(endTimeStr);
 
             Shift shift = new Shift(id, day, startTime, endTime);
-            getInstance().shifts.add(shift);
+            shifts.add(shift);
         });
 
         // Transform json tutors into Tutor objects
+        List<Tutor> tutors = new ArrayList<>();
         tutorsJson.forEach(element -> {
             JsonObject json = element.getAsJsonObject();
 
@@ -216,8 +215,12 @@ public class DataStore {
             // TODO tutorStatus
 
             Tutor tutor = new Tutor(id, firstName, lastName, null, null);
-            getInstance().tutors.add(tutor);
+            tutors.add(tutor);
         });
+
+        getInstance().courses = courses;
+        getInstance().shifts = shifts;
+        getInstance().tutors = tutors;
 
         return true;
     }
