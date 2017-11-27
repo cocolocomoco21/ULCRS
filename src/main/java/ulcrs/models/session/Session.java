@@ -1,41 +1,19 @@
 package ulcrs.models.session;
 
-import ulcrs.GsonFactory;
 import ulcrs.models.schedule.Schedule;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 
 public class Session {
-
-    private static final String WORKSPACE_PATH = "workspace/";
 
     private String name;
     private Schedule existingSchedule;
     private Date createdTimestamp;
     private Date lastEditedTimestamp;
 
-    public Session() throws IOException {
+    public Session() {
         lastEditedTimestamp = createdTimestamp = new Date();
         name = "session_" + createdTimestamp.getTime() + ".json";
-        save();
-    }
-
-    public void save() throws IOException {
-        saveAs(name);
-    }
-
-    public void saveAs(String filename) throws IOException {
-        PrintWriter printWriter = null;
-        try {
-            printWriter = new PrintWriter(WORKSPACE_PATH + filename);
-            printWriter.println(GsonFactory.getGson().toJson(this));
-        } finally {
-            if (printWriter != null) {
-                printWriter.close();
-            }
-        }
     }
 
     public String getName() {

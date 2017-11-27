@@ -1,6 +1,7 @@
 package ulcrs;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class GsonFactory {
 
@@ -8,7 +9,7 @@ public class GsonFactory {
 
     public static Gson getGson() {
         if (gson == null) {
-            gson = new Gson();
+            gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
         }
         return gson;
     }
