@@ -54,9 +54,10 @@ let handleAppExit = (child) => {
 
         app.on("window-all-closed",function () {
             if (os.platform() === "win32") {
-                app.quit();
+                let tk = require("tree-kill");
+                tk.kill(child.pid, 'SIGKILL', (err)=>{console.log(err)});
             }
-        })
+        });
 
 
     app.on("will-quit", ()=>{
