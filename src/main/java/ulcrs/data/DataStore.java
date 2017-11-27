@@ -1,6 +1,7 @@
 package ulcrs.data;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import ulcrs.models.course.Course;
@@ -37,8 +38,8 @@ public class DataStore {
      * @param id - id of the tutor
      * @return Tutor - the Tutor with the specified id, if it exists. Otherwise, null.
      */
-    public static Tutor getTutor(int id) {
-        fetchIfRequired(getInstance().tutors);
+    public static Tutor getTutor(int id, String cookie) {
+        fetchIfRequired(getInstance().tutors, cookie);
         return getInstance().tutors.stream()
                 .filter(tutor -> tutor.getId() == id)
                 .findFirst()
@@ -50,8 +51,8 @@ public class DataStore {
      * @param id - id of the course
      * @return Course - the Course with the specified id, if it exists. Otherwise, null.
      */
-    public static Course getCourse(int id) {
-        fetchIfRequired(getInstance().courses);
+    public static Course getCourse(int id, String cookie) {
+        fetchIfRequired(getInstance().courses, cookie);
         return getInstance().courses.stream()
                 .filter(course -> course.getId() == id)
                 .findFirst()
@@ -63,8 +64,8 @@ public class DataStore {
      * @param id - id of the shift
      * @return Shift - the shift with the specified id, if it exists. Otherwise, null.
      */
-    public static Shift getShift(int id) {
-        fetchIfRequired(getInstance().shifts);
+    public static Shift getShift(int id, String cookie) {
+        fetchIfRequired(getInstance().shifts, cookie);
         return getInstance().shifts.stream()
                 .filter(s -> s.getId() == id)
                 .findFirst()
@@ -75,8 +76,8 @@ public class DataStore {
      * Get all tutors, fetching from ULC if necessary.
      * @return List<Tutor> - list of all tutors
      */
-    public static List<Tutor> getTutors() {
-        fetchIfRequired(getInstance().tutors);
+    public static List<Tutor> getTutors(String cookie) {
+        fetchIfRequired(getInstance().tutors, cookie);
         return getInstance().tutors;
     }
 
@@ -84,8 +85,8 @@ public class DataStore {
      * Get all courses, fetching from ULC if necessary.
      * @return List<Course> - list of all courses
      */
-    public static List<Course> getCourses() {
-        fetchIfRequired(getInstance().courses);
+    public static List<Course> getCourses(String cookie) {
+        fetchIfRequired(getInstance().courses, cookie);
         return getInstance().courses;
     }
 
@@ -93,9 +94,9 @@ public class DataStore {
      * Get all shifts, fetching from ULC if necessary.
      * @return List<Shift> - list of all shifts
      */
-    public static List<Shift> getShifts() {
+    public static List<Shift> getShifts(String cookie) {
         // TODO implement - requires getting shifts from course, tutor data
-        fetchIfRequired(getInstance().shifts);
+        fetchIfRequired(getInstance().shifts, cookie);
         return getInstance().shifts;
     }
 
@@ -104,9 +105,10 @@ public class DataStore {
      * @param reference - reference being checked if it has been fetched
      * @param <T> - generic type for reference
      */
-    private static <T> void fetchIfRequired(T reference) {
+    private static <T> void fetchIfRequired(T reference, String cookie) {
         if (!isCached(reference)) {
-            fetch();
+            List<String> response = DataFetch.fetchFromULCServer(cookie);
+            populateData(response);
         }
     }
 
@@ -118,6 +120,21 @@ public class DataStore {
      */
     private static <T> boolean isCached(T reference) {
         return reference != null;
+    }
+
+
+    private static boolean populateData(List<String> response) {
+        // Expect response with only one line of JSON
+        if (response.size() != 1) {
+            return false;
+        }
+
+        //String jsonString = response.get(0);
+
+        //Gson gson = new Gson();
+        //JsonElement test = gson.toJsonTree(jsonString);
+
+        return false;
     }
 
     /**

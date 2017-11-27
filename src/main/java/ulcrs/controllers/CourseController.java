@@ -30,12 +30,14 @@ public class CourseController extends BaseController {
 
     private List<Course> getCourseList(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        return DataStore.getCourses();
+        String cookie = request.headers("Set-Cookie");
+        return DataStore.getCourses(cookie);
     }
 
     private Course getCourse(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
         int id = Integer.valueOf(request.params("id"));
-        return DataStore.getCourse(id);
+        String cookie = request.headers("Set-Cookie");
+        return DataStore.getCourse(id, cookie);
     }
 }

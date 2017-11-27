@@ -36,19 +36,18 @@ public class TutorControllerTest {
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
-
-        tutorControllerTest = new TutorController();
-
         PowerMockito.mockStatic(DataStore.class);
+        tutorControllerTest = new TutorController();
     }
 
     @Test
     public void successGetTutorList() throws Exception {
         List<Tutor> tutorListTest = new ArrayList<>();
-        when(DataStore.getTutors()).thenReturn(tutorListTest);
 
-        List<Tutor> getTutorListResult = Whitebox.invokeMethod(tutorControllerTest, "getTutorList",
-                requestMock, responseMock);
+        when(requestMock.headers("Set-Cookie")).thenReturn("cookie");
+        when(DataStore.getTutors("cookie")).thenReturn(tutorListTest);
+
+        List<Tutor> getTutorListResult = Whitebox.invokeMethod(tutorControllerTest, "getTutorList", requestMock, responseMock);
         Assert.assertEquals(tutorListTest, getTutorListResult);
     }
 
@@ -58,11 +57,11 @@ public class TutorControllerTest {
         tutorListTest.add(new Tutor(1, "d", "s", null, null));
         tutorListTest.add(new Tutor(2, "d", "s", null, null));
 
-        when(DataStore.getTutor(1)).thenReturn(tutorListTest.get(0));
+        when(requestMock.headers("Set-Cookie")).thenReturn("cookie");
+        when(DataStore.getTutor(1, "cookie")).thenReturn(tutorListTest.get(0));
         Mockito.when(requestMock.params(Mockito.eq("id"))).thenReturn("1");
 
-        Tutor getTutorResult = Whitebox.invokeMethod(tutorControllerTest, "getTutor",
-                requestMock, responseMock);
+        Tutor getTutorResult = Whitebox.invokeMethod(tutorControllerTest, "getTutor", requestMock, responseMock);
         Assert.assertEquals(tutorListTest.get(0), getTutorResult);
     }
 }
