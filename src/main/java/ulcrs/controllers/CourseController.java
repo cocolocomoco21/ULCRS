@@ -1,14 +1,13 @@
 package ulcrs.controllers;
 
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
+import ulcrs.data.DataStore;
 import ulcrs.models.course.Course;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 
 import static spark.Spark.before;
@@ -20,31 +19,23 @@ public class CourseController extends BaseController {
     public RouteGroup routes() {
         return () -> {
             before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            get("/", this::getCourseList, gson::toJson);
+            get("/", this::getCourseList, courses -> {
+            	// Return only the required fields in JSON response
+            	Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+            	return gson.toJson(courses);	
+            });
             get("/:id", this::getCourse, gson::toJson);
         };
     }
 
     private List<Course> getCourseList(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-
-        InputStream is = getClass().getClassLoader().getResourceAsStream("mockCoursesNoTime.json");
-        JsonReader reader = new JsonReader(new InputStreamReader(is));
-
-        List<Course> courses = gson.fromJson(reader, new TypeToken<List<Course>>() {
-        }.getType());
-        return courses;
+        return DataStore.getCourses();
     }
 
     private Course getCourse(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-
-        List<Course> courses = getCourseList(request, response);
         int id = Integer.valueOf(request.params("id"));
-
-        return courses.stream()
-                .filter(course -> course.getId() == id)
-                .findFirst()
-                .orElse(null);
+        return DataStore.getCourse(id);
     }
 }

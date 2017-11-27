@@ -2,7 +2,6 @@ package ulcrs.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import com.sun.xml.internal.rngom.parse.host.Base;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +17,6 @@ import spark.Request;
 import spark.Response;
 import ulcrs.models.tutor.Tutor;
 
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
