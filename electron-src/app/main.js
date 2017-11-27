@@ -8,7 +8,7 @@ var serverProcess = null;
 let startWindow, viewTutorsWindow, authWindow = null;
 let engrCookie = null;
 let fetch = require("node-fetch");
-
+let os = require("os");
 let initialStartWindow = ()=>{
     startWindow = new BrowserWindow({
         width: 400,
@@ -23,9 +23,9 @@ let initialStartWindow = ()=>{
 
 let startJavaBackendServer = ()=>{
     // Start Java backend server
-    serverProcess = require('child_process').exec;
+    let spawn = require('child_process').spawn;
 
-    let child = serverProcess('java -jar ../build/libs/ULCRS.jar');
+    let child = spawn('java', ['-jar', '../build/libs/ULCRS.jar']);
 
     child.stdout.on('data', function (data) {
         console.log('Server stdout: ' + data);
@@ -53,7 +53,12 @@ let startJavaBackendServer = ()=>{
 let handleAppExit = (child) => {
     app.on("will-quit", ()=>{
         console.log("In will quit");
-        child.kill()
+        if (os.platform() === "win32"){
+            let tk = require("tree-kill");
+            tk.kill(child.pid, 'SIGKILL', (err)=>{console.log(err)});
+        }else{
+            child.kill()
+        }
     });
 };
 

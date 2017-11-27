@@ -27,7 +27,8 @@
     "gulp-run": "~1.7.1",
     "react": "~16.0.0",
     "react-dom": "~16.0.0",
-    "reactify": "~1.1.1"
+    "reactify": "~1.1.1",
+    "tree-kill": "~1.2.0"
   },
   "dependencies": {
     "bootstrap": "~4.0.0-beta.2",
