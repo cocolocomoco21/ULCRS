@@ -56,6 +56,7 @@ let handleAppExit = (child) => {
             if (os.platform() === "win32") {
                 let tk = require("tree-kill");
                 tk.kill(child.pid, 'SIGKILL', (err)=>{console.log(err)});
+                app.quit();
             }
         });
 
