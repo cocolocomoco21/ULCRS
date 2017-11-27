@@ -63,7 +63,7 @@ let setupAuthenticWindow = () => {
         height: 506,
         transparent: false,
         show: false,
-        frame: false
+        frame: true
     });
 
     ipc.on("ShowViewTutor", function (event, args) {
@@ -108,7 +108,7 @@ let setupViewTutorWindow = (width, height)=>{
         height: height,
         transparent: false,
         show: false,
-        frame: false
+        frame: true
     });
 }
 
@@ -165,6 +165,8 @@ app.on('ready', function () {
         let addCookieOption = {
             headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
         };
+
+        let request = new fetch.Request('http://localhost:4567/ulcrs/tutor/', addCookieOption);
 
         fetch('http://localhost:4567/ulcrs/tutor/', addCookieOption)
             .then(res => res.text())
