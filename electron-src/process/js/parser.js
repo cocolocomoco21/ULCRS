@@ -26,7 +26,7 @@ class Parser{
 
             let courses = pref.coursePreferences;
             if (courses.PREFER.length !== 0) {
-                tempTutor.coursePreference = courses.PREFER[0].name;
+                tempTutor.coursePreference = courses.PREFER.map((c)=>c.name);
             }else{
                 tempTutor.coursePreference = "";
             }
