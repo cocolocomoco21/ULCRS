@@ -3,29 +3,33 @@ package ulcrs.models.session;
 import ulcrs.models.schedule.Schedule;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 public class Session {
 
     private String name;
     private Schedule existingSchedule;
-    private LocalDateTime generatedTimestamp;
+    private LocalDateTime createdTimestamp;
     private LocalDateTime lastEditedTimestamp;
 
-    public void save() {
-        // TODO: implement
+    public Session() {
+        this("session_" + LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) + ".json");
     }
 
-    public boolean saveAs(String filename) {
-        // TODO: implement
-        return false;
+    public Session(String name) {
+        if (!name.endsWith(".json")) {
+            if (!name.endsWith(".")) {
+                name = name.concat(".");
+            }
+            name = name.concat("json");
+        }
+        this.name = name;
+        createdTimestamp = LocalDateTime.now();
+        lastEditedTimestamp = createdTimestamp;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Schedule getExistingSchedule() {
@@ -34,21 +38,14 @@ public class Session {
 
     public void setExistingSchedule(Schedule existingSchedule) {
         this.existingSchedule = existingSchedule;
+        lastEditedTimestamp = LocalDateTime.now();
     }
 
-    public LocalDateTime getGeneratedTimestamp() {
-        return generatedTimestamp;
-    }
-
-    public void setGeneratedTimestamp(LocalDateTime generatedTimestamp) {
-        this.generatedTimestamp = generatedTimestamp;
+    public LocalDateTime getCreatedTimestamp() {
+        return createdTimestamp;
     }
 
     public LocalDateTime getLastEditedTimestamp() {
         return lastEditedTimestamp;
-    }
-
-    public void setLastEditedTimestamp(LocalDateTime lastEditedTimestamp) {
-        this.lastEditedTimestamp = lastEditedTimestamp;
     }
 }

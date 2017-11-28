@@ -1,10 +1,10 @@
 package ulcrs.controllers;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
@@ -23,7 +23,7 @@ public class TutorController extends BaseController {
     public RouteGroup routes() {
         return () -> {
             before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            get("/", this::getTutorList,  tutors -> {
+            get("/", this::getTutorList, tutors -> {
                 // Return only the required fields in JSON response
                 Gson gson = new GsonBuilder()
                         .addSerializationExclusionStrategy(new ExclusionStrategy() {
@@ -43,7 +43,7 @@ public class TutorController extends BaseController {
                         })
                         .setPrettyPrinting()
                         .create();
-            	return gson.toJson(tutors);
+                return gson.toJson(tutors);
             });
             get("/:id", this::getTutor, gson::toJson);
         };
@@ -56,7 +56,7 @@ public class TutorController extends BaseController {
 
     private Tutor getTutor(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        int id = Integer.valueOf(request.params("id"));
+        int id = Integer.valueOf(request.params(":id"));
         return DataStore.getTutor(id);
     }
 }
