@@ -91,7 +91,7 @@ public class SessionController extends BaseController {
         String filename = addJsonExtension(request.params(":name"));
 
         Session session;
-        if (filename == null) {
+        if (request.params(":name") == null) {
             session = new Session();
         } else {
             session = new Session(filename);
