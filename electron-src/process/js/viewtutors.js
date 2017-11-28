@@ -126,11 +126,11 @@ class ViewInfo extends React.Component {
 
                     <Modal isOpen={this.state.proceeding}>
                         <ModalHeader>
-                            Action
+                            Generate Schedules
                         </ModalHeader>
 
                         <ModalBody>
-                            Do you want to proceed the generation?
+                            Do you want to proceed with generating schedules?
                         </ModalBody>
 
                         <ModalFooter>

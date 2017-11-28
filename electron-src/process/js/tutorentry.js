@@ -35,7 +35,7 @@ class TutorEntry extends React.Component {
                 <td>{this.props.singleItem.firstName}</td>
                 <td>{this.props.singleItem.lastName}</td>
                 <td>{this.props.singleItem.tutorStatus}</td>
-                <td>{this.props.singleItem.coursePreference}</td>
+                <td>{this.props.singleItem.coursePreference.join(" ")}</td>
                 <td>{this.props.singleItem.shiftPreference}</td>
                 <td>{this.props.singleItem.shiftFrequency}</td>
             </tr>

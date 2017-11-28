@@ -129,7 +129,7 @@ class ViewSchedulePage  extends React.Component {
                         Warning
                     </ModalHeader>
                     <ModalBody>
-                        <div> Are you sure about exiting the app? </div>
+                        <div> Are you sure you want to exit ULCRS? </div>
                     </ModalBody>
                     <ModalFooter>
                         <Button color="danger" onClick={this.exit}>Exit</Button>{' '}
