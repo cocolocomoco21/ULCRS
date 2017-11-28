@@ -6,8 +6,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import ulcrs.models.course.Course;
+import ulcrs.models.course.CourseIntensity;
+import ulcrs.models.course.CourseRequirements;
+import ulcrs.models.rank.Rank;
 import ulcrs.models.shift.Shift;
 import ulcrs.models.tutor.Tutor;
+import ulcrs.models.tutor.TutorPreferences;
+import ulcrs.models.tutor.TutorStatus;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,7 +21,11 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DataStore {
 
@@ -172,7 +181,8 @@ public class DataStore {
 
             // TODO courseRequirements
 
-            Course course = new Course(id, name, null);
+            // TODO hack to make things work for Iteration 2. Make better
+            Course course = new Course(id, name, new CourseRequirements(Collections.emptySet(), 0, 0, CourseIntensity.MEDIUM));
             courses.add(course);
         });
 
@@ -219,7 +229,21 @@ public class DataStore {
             // TODO tutorPreferences
             // TODO tutorStatus
 
-            Tutor tutor = new Tutor(id, firstName, lastName, null, null);
+            // TODO hack to make things work for Iteration 2. Make better
+            HashMap<Rank, Set<Shift>> emptyShiftPref = new HashMap<>();
+
+            emptyShiftPref.put(Rank.PREFER, Collections.emptySet());
+            emptyShiftPref.put(Rank.WILLING, Collections.emptySet());
+
+            HashMap<Rank, Set<Course>> emptyCoursePref = new HashMap<>();
+            emptyCoursePref.put(Rank.PREFER, Collections.emptySet());
+            emptyCoursePref.put(Rank.WILLING, Collections.emptySet());
+
+            HashMap<Rank, Integer> emptyShiftAmount = new HashMap<>();
+            emptyShiftAmount.put(Rank.PREFER, 0);
+            emptyShiftAmount.put(Rank.WILLING, 0);
+
+            Tutor tutor = new Tutor(id, firstName, lastName, new TutorPreferences(emptyCoursePref, emptyShiftPref, emptyShiftAmount), TutorStatus.ACTIVE);
             tutors.add(tutor);
         });
 
