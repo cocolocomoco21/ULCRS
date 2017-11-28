@@ -1,0 +1,55 @@
+{
+  "name": "2.json",
+  "existingSchedule": {
+    "scheduledShifts": [
+      {
+        "shift": {
+          "id": 0,
+          "day": "MONDAY"
+        },
+        "assignments": [
+          {
+            "tutor": {
+              "id": 0,
+              "firstName": "Bilbo",
+              "lastName": "Baggins"
+            },
+            "courses": [
+              {
+                "id": 0,
+                "name": "CS 301"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "rating": 3.0
+  },
+  "createdTimestamp": {
+    "date": {
+      "year": 2017,
+      "month": 11,
+      "day": 27
+    },
+    "time": {
+      "hour": 23,
+      "minute": 6,
+      "second": 58,
+      "nano": 877000000
+    }
+  },
+  "lastEditedTimestamp": {
+    "date": {
+      "year": 2017,
+      "month": 11,
+      "day": 27
+    },
+    "time": {
+      "hour": 23,
+      "minute": 6,
+      "second": 58,
+      "nano": 877000000
+    }
+  }
+}

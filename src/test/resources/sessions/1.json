@@ -1,0 +1,256 @@
+{
+  "name": "1.json",
+  "existingSchedule": {
+    "scheduledShifts": [
+      {
+        "shift": {
+          "id": 0,
+          "day": "MONDAY"
+        },
+        "assignments": [
+          {
+            "tutor": {
+              "id": 0,
+              "firstName": "Bilbo",
+              "lastName": "Baggins"
+            },
+            "courses": [
+              {
+                "id": 0,
+                "name": "CS 301"
+              },
+              {
+                "id": 1,
+                "name": "CS 302"
+              }
+            ]
+          },
+          {
+            "tutor": {
+              "id": 3,
+              "firstName": "Senator",
+              "lastName": "Palpatine"
+            },
+            "courses": [
+              {
+                "id": 3,
+                "name": "EMA 201"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "shift": {
+          "id": 1,
+          "day": "TUESDAY"
+        },
+        "assignments": [
+          {
+            "tutor": {
+              "id": 1,
+              "firstName": "Spicy",
+              "lastName": "Memelord"
+            },
+            "courses": [
+              {
+                "id": 0,
+                "name": "CS 301"
+              },
+              {
+                "id": 3,
+                "name": "EMA 201"
+              }
+            ]
+          },
+          {
+            "tutor": {
+              "id": 2,
+              "firstName": "Steve",
+              "lastName": "Balmer"
+            },
+            "courses": [
+              {
+                "id": 0,
+                "name": "CS 301"
+              },
+              {
+                "id": 1,
+                "name": "CS 302"
+              },
+              {
+                "id": 2,
+                "name": "CS 577"
+              },
+              {
+                "id": 4,
+                "name": "ECE 210"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "shift": {
+          "id": 2,
+          "day": "WEDNESDAY"
+        },
+        "assignments": [
+          {
+            "tutor": {
+              "id": 0,
+              "firstName": "Bilbo",
+              "lastName": "Baggins"
+            },
+            "courses": [
+              {
+                "id": 0,
+                "name": "CS 301"
+              },
+              {
+                "id": 1,
+                "name": "CS 302"
+              }
+            ]
+          },
+          {
+            "tutor": {
+              "id": 2,
+              "firstName": "Steve",
+              "lastName": "Balmer"
+            },
+            "courses": [
+              {
+                "id": 0,
+                "name": "CS 301"
+              },
+              {
+                "id": 1,
+                "name": "CS 302"
+              },
+              {
+                "id": 2,
+                "name": "CS 577"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "shift": {
+          "id": 3,
+          "day": "THURSDAY"
+        },
+        "assignments": [
+          {
+            "tutor": {
+              "id": 1,
+              "firstName": "Spicy",
+              "lastName": "Memelord"
+            },
+            "courses": [
+              {
+                "id": 0,
+                "name": "CS 301"
+              },
+              {
+                "id": 3,
+                "name": "EMA 201"
+              }
+            ]
+          },
+          {
+            "tutor": {
+              "id": 2,
+              "firstName": "Steve",
+              "lastName": "Balmer"
+            },
+            "courses": [
+              {
+                "id": 0,
+                "name": "CS 301"
+              },
+              {
+                "id": 1,
+                "name": "CS 302"
+              },
+              {
+                "id": 2,
+                "name": "CS 577"
+              },
+              {
+                "id": 4,
+                "name": "ECE 210"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "shift": {
+          "id": 4,
+          "day": "FRIDAY"
+        },
+        "assignments": [
+          {
+            "tutor": {
+              "id": 1,
+              "firstName": "Spicy",
+              "lastName": "Memelord"
+            },
+            "courses": [
+              {
+                "id": 0,
+                "name": "CS 301"
+              },
+              {
+                "id": 3,
+                "name": "EMA 201"
+              }
+            ]
+          },
+          {
+            "tutor": {
+              "id": 2,
+              "firstName": "Steve",
+              "lastName": "Balmer"
+            },
+            "courses": [
+              {
+                "id": 1,
+                "name": "CS 302"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "rating": 3.0
+  },
+  "createdTimestamp": {
+    "date": {
+      "year": 2017,
+      "month": 11,
+      "day": 27
+    },
+    "time": {
+      "hour": 23,
+      "minute": 6,
+      "second": 55,
+      "nano": 561000000
+    }
+  },
+  "lastEditedTimestamp": {
+    "date": {
+      "year": 2017,
+      "month": 11,
+      "day": 27
+    },
+    "time": {
+      "hour": 23,
+      "minute": 6,
+      "second": 55,
+      "nano": 567000000
+    }
+  }
+}
