@@ -2,18 +2,24 @@ package ulcrs.models.session;
 
 import ulcrs.models.schedule.Schedule;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 public class Session {
 
     private String name;
     private Schedule existingSchedule;
-    private Date createdTimestamp;
-    private Date lastEditedTimestamp;
+    private LocalDateTime createdTimestamp;
+    private LocalDateTime lastEditedTimestamp;
 
     public Session() {
-        lastEditedTimestamp = createdTimestamp = new Date();
-        name = "session_" + createdTimestamp.getTime() + ".json";
+        this("session_" + LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) + ".json");
+    }
+
+    public Session(String name) {
+        this.name = name;
+        createdTimestamp = LocalDateTime.now();
+        lastEditedTimestamp = createdTimestamp;
     }
 
     public String getName() {
@@ -26,14 +32,14 @@ public class Session {
 
     public void setExistingSchedule(Schedule existingSchedule) {
         this.existingSchedule = existingSchedule;
-        lastEditedTimestamp = new Date();
+        lastEditedTimestamp = LocalDateTime.now();
     }
 
-    public Date getCreatedTimestamp() {
+    public LocalDateTime getCreatedTimestamp() {
         return createdTimestamp;
     }
 
-    public Date getLastEditedTimestamp() {
+    public LocalDateTime getLastEditedTimestamp() {
         return lastEditedTimestamp;
     }
 }

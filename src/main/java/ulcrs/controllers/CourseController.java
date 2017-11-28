@@ -17,7 +17,7 @@ public class CourseController extends BaseController {
     public RouteGroup routes() {
         return () -> {
             before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            get("/", this::getCourseList, gson::toJson);
+            get("/", this::getCourseList, exposeOnlyGson::toJson);
             get("/:id", this::getCourse, gson::toJson);
         };
     }

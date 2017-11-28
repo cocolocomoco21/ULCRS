@@ -19,7 +19,7 @@ public class ShiftController extends BaseController {
     public RouteGroup routes() {
         return () -> {
             before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            get("/", this::getShiftList, gson::toJson);
+            get("/", this::getShiftList, exposeOnlyGson::toJson);
         };
     }
 

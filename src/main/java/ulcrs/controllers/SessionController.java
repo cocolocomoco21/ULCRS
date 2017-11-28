@@ -1,7 +1,5 @@
 package ulcrs.controllers;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import spark.Request;
@@ -16,6 +14,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static spark.Spark.before;
@@ -31,10 +31,7 @@ public class SessionController extends BaseController {
     public RouteGroup routes() {
         return () -> {
             before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            get("/", this::getSessionList, sessions -> {
-                Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
-                return gson.toJson(sessions);
-            });
+            get("/", this::getSessionList, exposeOnlyGson::toJson);
             get("/:name", this::getSession, gson::toJson);
             post("/:name", this::saveSession, gson::toJson);
             delete("/:name", this::deleteSession, gson::toJson);
@@ -43,12 +40,13 @@ public class SessionController extends BaseController {
 
     private List<String> getSessionList(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        int limit = Integer.valueOf(request.params("limit"));
+        int limit = Integer.valueOf(request.queryParams("limit"));
 
         List<String> filenames = new ArrayList<>();
         File folder = new File(WORKSPACE_PATH);
         File[] listOfFiles = folder.listFiles();
         if (listOfFiles != null) {
+            Arrays.sort(listOfFiles, Collections.reverseOrder());
             for (int i = 0; i < limit && i < listOfFiles.length; i++) {
                 File file = listOfFiles[i];
                 if (file.isFile()) {
@@ -79,12 +77,20 @@ public class SessionController extends BaseController {
 
         String filename = request.params("name");
 
-        Session session = new Session();
-        session.setExistingSchedule(schedules.get(0));
+        Session session;
+        if (filename == null) {
+            session = new Session();
+        } else {
+            session = new Session(filename);
+        }
+
+        if (schedules.get(0) != null) {
+            session.setExistingSchedule(schedules.get(0));
+        }
 
         PrintWriter printWriter = null;
         try {
-            printWriter = new PrintWriter(WORKSPACE_PATH + (filename != null ? filename : session.getName()));
+            printWriter = new PrintWriter(session.getName());
             printWriter.println(gson.toJson(this));
         } catch (IOException e) {
             return false;

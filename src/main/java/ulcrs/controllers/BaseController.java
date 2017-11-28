@@ -11,6 +11,7 @@ abstract class BaseController {
     static final String CONTENT_TYPE_JSON = "application/json";
 
     static Gson gson = GsonFactory.getGson();
+    static Gson exposeOnlyGson = GsonFactory.getExposeOnlyGson();
     static Logger log = LoggerFactory.getLogger(BaseController.class);
 
     abstract RouteGroup routes();
