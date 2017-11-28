@@ -1,6 +1,8 @@
 .metadata
 build
 .gradle
+electron-src/app/
+out/
 
 # Eclipse
 *.classpath
