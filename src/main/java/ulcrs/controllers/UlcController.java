@@ -15,6 +15,8 @@ import static spark.Spark.get;
 
 public class UlcController extends BaseController {
 
+    private static final String TEST_ENDPOINT = "https://tbrtest.engr.wisc.edu/";
+
     @Override
     public RouteGroup routes() {
         return () -> {
@@ -33,7 +35,7 @@ public class UlcController extends BaseController {
         StringBuilder page = new StringBuilder();
 
         try {
-            url = new URL("https://tbrtest.engr.wisc.edu/");
+            url = new URL(TEST_ENDPOINT);
             urlConn = url.openConnection();
 
             // insert cookie here
