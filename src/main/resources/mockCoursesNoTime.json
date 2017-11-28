@@ -1,0 +1,51 @@
+[
+  {
+    "id": 0,
+    "name": "CS 302",
+    "courseRequirements": {
+      "requiredShifts": [
+        {
+          "id": 0,
+          "day": "MONDAY"
+        }
+      ],
+      "requiredShiftAmount": 1,
+      "preferredShiftAmount": 3,
+      "intensity": "MEDIUM"
+    }
+  },
+  {
+    "id": 1,
+    "name": "CS 301",
+    "courseRequirements": {
+      "requiredShifts": [
+        {
+          "id": 0,
+          "day": "MONDAY"
+        }
+      ],
+      "requiredShiftAmount": 1,
+      "preferredShiftAmount": 2,
+      "intensity": "LOW"
+    }
+  },
+  {
+    "id": 2,
+    "name": "CS 577",
+    "courseRequirements": {
+      "requiredShifts": [
+        {
+          "id": 1,
+          "day": "TUESDAY"
+        },
+        {
+          "id": 2,
+          "day": "WEDNESDAY"
+        }
+      ],
+      "requiredShiftAmount": 2,
+      "preferredShiftAmount": 4,
+      "intensity": "HIGH"
+    }
+  }
+]

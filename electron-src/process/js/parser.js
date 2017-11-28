@@ -1,13 +1,13 @@
-let fs = eRequire('fs');
+let fs = require('fs');
+let dataLocation = require('path').resolve(__dirname, '..', '..', 'data', 'mockdata.json');
 let loadData = JSON.parse(fs.readFileSync(dataLocation));
 let _ = require("lodash");
-let electron = eRequire('electron');
+let electron = require('electron');
 
 
 class Parser{
 
     constructor(){
-
         this.getTutors = this.getTutors.bind(this);
         this.getTutorCoursePrefNames = this.getTutorCoursePrefNames.bind(this);
         this.getTutorShiftPrefDay = this.getTutorShiftPrefDay.bind(this);
@@ -27,7 +27,7 @@ class Parser{
 
             let courses = pref.coursePreferences;
             if (courses.PREFER.length !== 0) {
-                tempTutor.coursePreference = courses.PREFER[0].name;
+                tempTutor.coursePreference = courses.PREFER.map((c)=>c.name);
             }else{
                 tempTutor.coursePreference = "";
             }

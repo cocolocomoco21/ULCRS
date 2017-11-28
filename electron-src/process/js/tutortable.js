@@ -1,6 +1,11 @@
+let requireLocal = ( localModule ) =>{
+    let path = require("path");
+    return require(path.resolve( __dirname, localModule))
+};
 let ReactDOM = require('react-dom');
 let React = require('react');
-let TutorEntry = require('./tutorentry');
+console.log(__dirname);
+let TutorEntry = requireLocal('./tutorentry');
 
 class TutorTable extends React.Component {
     constructor(props){
