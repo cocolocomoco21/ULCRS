@@ -34,7 +34,7 @@ public class DataStoreTest {
 
         // Verify fetch happened and saved data correctly
         assertThat(DataStore.getCourses("").size(), is(65));
-        assertThat(DataStore.getTutors("").size(), is(715));
+        assertThat(DataStore.getTutors("").size(), is(27));
         assertThat(DataStore.getShifts("").size(), is(7));
     }
 
@@ -71,8 +71,8 @@ public class DataStoreTest {
         // Verify correctly formed Tutor
         Tutor tutor = DataStore.getTutor(788586, "");
         assertThat(tutor.getId(), is(788586));
-        assertThat(tutor.getFirstName(), is("Kathy"));
-        assertThat(tutor.getLastName(), is("Prem"));
+        assertThat(tutor.getFirstName(), is("Darth"));
+        assertThat(tutor.getLastName(), is("Vader"));
         assertThat(tutor.getTutorPreferences(), is(nullValue()));
         assertThat(tutor.getTutorStatus(), is(nullValue()));
     }
