@@ -1,6 +1,7 @@
 let ReactDOM = require('react-dom');
 let React = require('react');
-let CourseEntry = require('./courseentry');
+let path = require("path");
+let CourseEntry = require(path.resolve( __dirname,'./courseentry'));
 
 class CourseTable extends React.Component {
     constructor(props){
@@ -37,8 +38,8 @@ class CourseTable extends React.Component {
                                 <th>id</th>
                                 <th>name</th>
                                 <th>Course Requirement</th>
-                                <th>Require Shift Amount</th>
-                                <th>Require Shift Amount</th>
+                                <th>Preferred Shift Amountt</th>
+                                <th>Willing Shift Amount</th>
                                 <th>Intensity</th>
                             </tr>
                             </thead>

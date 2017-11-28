@@ -16,7 +16,7 @@ bin/
 
 # Logs
 logs
-*.log
+electron-src/app/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -86,6 +86,7 @@ typings/
 .mtj.tmp/
 
 # Package Files #
+*.jar
 *.war
 *.ear
 *.zip
@@ -94,3 +95,4 @@ typings/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+!/electron-src/app/main.js
