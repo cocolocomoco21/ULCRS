@@ -59,7 +59,7 @@ public class SessionController extends BaseController {
 
     private Session getSession(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        String name = request.params("name");
+        String name = request.params(":name");
 
         InputStream is = SessionController.class.getClassLoader().getResourceAsStream(WORKSPACE_PATH + name);
         JsonReader reader = new JsonReader(new InputStreamReader(is));
@@ -75,7 +75,7 @@ public class SessionController extends BaseController {
         List<Schedule> schedules = gson.fromJson(reader, new TypeToken<List<Schedule>>() {
         }.getType());
 
-        String filename = request.params("name");
+        String filename = request.params(":name");
 
         Session session;
         if (filename == null) {
@@ -104,7 +104,7 @@ public class SessionController extends BaseController {
 
     private boolean deleteSession(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        String name = request.params("name");
+        String name = request.params(":name");
 
         File file = new File(WORKSPACE_PATH + name);
         return file.exists() && file.isFile() && file.delete();

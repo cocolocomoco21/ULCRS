@@ -29,7 +29,7 @@ public class CourseController extends BaseController {
 
     private Course getCourse(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        int id = Integer.valueOf(request.params("id"));
+        int id = Integer.valueOf(request.params(":id"));
         return DataStore.getCourse(id);
     }
 }

@@ -1,7 +1,5 @@
 package ulcrs.controllers;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;

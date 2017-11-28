@@ -56,7 +56,7 @@ public class TutorController extends BaseController {
 
     private Tutor getTutor(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        int id = Integer.valueOf(request.params("id"));
+        int id = Integer.valueOf(request.params(":id"));
         return DataStore.getTutor(id);
     }
 }
