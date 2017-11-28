@@ -59,7 +59,7 @@ public class TutorControllerTest {
 
         when(requestMock.headers("Set-Cookie")).thenReturn("cookie");
         when(DataStore.getTutor(1, "cookie")).thenReturn(tutorListTest.get(0));
-        Mockito.when(requestMock.params(Mockito.eq("id"))).thenReturn("1");
+        Mockito.when(requestMock.params(Mockito.eq(":id"))).thenReturn("1");
 
         Tutor getTutorResult = Whitebox.invokeMethod(tutorControllerTest, "getTutor", requestMock, responseMock);
         Assert.assertEquals(tutorListTest.get(0), getTutorResult);
