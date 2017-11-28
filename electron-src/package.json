@@ -4,7 +4,7 @@
   "description": "ULC Resource Scheduler",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "start": "gulp "
   },
   "repository": "https://github.com/cocolocomoco21/ULCRS",
@@ -25,10 +25,13 @@
     "gulp-concat-css": "~2.3.0",
     "gulp-react": "~3.1.0",
     "gulp-run": "~1.7.1",
+    "jest": "^21.2.1",
+    "nyc": "~11.3.0",
     "react": "~16.0.0",
     "react-dom": "~16.0.0",
     "reactify": "~1.1.1",
-    "tree-kill": "~1.2.0"
+    "regenerator-runtime": "^0.11.0",
+    "spectron":"~3.7.2"
   },
   "dependencies": {
     "bootstrap": "~4.0.0-beta.2",
