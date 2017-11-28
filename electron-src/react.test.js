@@ -5,6 +5,8 @@ let spectron = require('spectron');
 let assert = require('assert');
 let Application = require('spectron').Application;
 let main_path = path.resolve(__dirname,'app/main.js');
+let Parser = require(path.resolve(__dirname, 'process/js/parser.js'));
+let fs = require('fs');
 
 describe('application launch', function () {
     let app = undefined;
@@ -31,5 +33,27 @@ describe('application launch', function () {
             assert.equal(str, "")
         })
     });
+
+});
+
+describe('parser test', () => {
+    let dataPath = path.resolve(__dirname,'data/mockTutorData.json');
+    let mockTutorData = null;
+    let p = null;
+    beforeEach(() => {
+        p = new Parser();
+    });
+
+    it('parse tutor correctly', () =>{
+        let mockTutorData = JSON.parse(fs.readFileSync(dataPath));
+        let tutors = p.getTutors(mockTutorData);
+        assert.equal(tutors.length, 5)
+    });
+
+    it('parse course correctly', ()=>{
+        let mockCourseData = JSON.parse(fs.readFileSync(path.resolve(__dirname,'data/mockCourseData.json')));
+        let courses = p.getCourses(mockCourseData);
+        assert.equal(courses.length, 5)
+    })
 
 });
