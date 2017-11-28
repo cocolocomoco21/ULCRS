@@ -17,6 +17,12 @@ public class Session {
     }
 
     public Session(String name) {
+        if (!name.endsWith(".json")) {
+            if (!name.endsWith(".")) {
+                name = name.concat(".");
+            }
+            name = name.concat("json");
+        }
         this.name = name;
         createdTimestamp = LocalDateTime.now();
         lastEditedTimestamp = createdTimestamp;
