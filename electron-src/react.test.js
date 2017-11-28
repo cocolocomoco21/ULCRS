@@ -4,13 +4,14 @@ let path = require('path');
 let spectron = require('spectron');
 let assert = require('assert');
 let Application = require('spectron').Application;
+let main_path = path.resolve(__dirname,'app/main.js');
 
 describe('application launch', function () {
     let app = undefined;
     beforeEach(function () {
         app = new Application({
-            path: '/Users/xu/Desktop/ULCRS/ULCRS/electron-src/node_modules/.bin/electron',
-            args: ['/Users/xu/Desktop/ULCRS/ULCRS/electron-src/app/main.js']
+            path: path.resolve(__dirname,'node_modules/.bin/electron'),
+            args: [main_path]
         });
         return app.start()
     });
@@ -25,14 +26,10 @@ describe('application launch', function () {
         app.client.getWindowCount().then(function (count) {
             assert.equal(count, 1)
         });
-        app.client.getSelectedText('#header').then(function (str) {
-            assert.equal(str, "ULCRS")
+        // No selected text
+        app.client.getSelectedText().then(function (str) {
+            assert.equal(str, "")
         })
     });
 
-    it('click on a button', function () {
-        let but = app.client.element("#load");
-        but.click();
-        assert(1,1)
-    })
 });
