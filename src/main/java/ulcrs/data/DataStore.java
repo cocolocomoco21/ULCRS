@@ -123,9 +123,10 @@ public class DataStore {
      */
     private static <T> void fetchIfRequired(T reference, String cookie) {
         if (!isCached(reference)) {
-            List<String> response = DataFetch.fetchFromULCServer(cookie);
+            //List<String> response = DataFetch.fetchFromULCServer(cookie);
             // TODO error handling if populateData() fails
-            populateData(response);
+            //populateData(response);
+            fetch();
         }
     }
 
