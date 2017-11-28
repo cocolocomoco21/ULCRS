@@ -124,6 +124,7 @@ public class DataStore {
     private static <T> void fetchIfRequired(T reference, String cookie) {
         if (!isCached(reference)) {
             List<String> response = DataFetch.fetchFromULCServer(cookie);
+            // TODO error handling if populateData() fails
             populateData(response);
         }
     }
@@ -139,7 +140,7 @@ public class DataStore {
     }
 
 
-    protected static boolean populateData(List<String> response) {
+    static boolean populateData(List<String> response) {
         // Expect response with only one line of JSON
         if (response.size() != 1) {
             return false;
@@ -154,17 +155,20 @@ public class DataStore {
         JsonArray shiftsJson = obj.get(SHIFTS_KEY).getAsJsonArray();
         JsonArray tutorsJson = obj.get(TUTORS_KEY).getAsJsonArray();
 
-        // TODO far better error catching
+        // TODO far better error catching for malformed json
 
         // Transform json courses into Course objects
         List<Course> courses = new ArrayList<>();
         coursesJson.forEach(element -> {
             JsonObject json = element.getAsJsonObject();
 
+            // id
             String idStr = json.get(ID_KEY).getAsString();
             int id = Integer.valueOf(idStr);
 
+            // name
             String name = json.get(NAME_KEY).getAsString();
+
             // TODO courseRequirements
 
             Course course = new Course(id, name, null);
@@ -188,7 +192,7 @@ public class DataStore {
             String startTimeStr = json.get(START_TIME_KEY).getAsString();
             LocalTime startTime = LocalTime.parse(startTimeStr);
 
-            // endtime
+            // endTime
             String endTimeStr = json.get(END_TIME_KEY).getAsString();
             LocalTime endTime = LocalTime.parse(endTimeStr);
 
@@ -230,6 +234,7 @@ public class DataStore {
      * data that is fetched.
      */
     private static void fetch() {
+        // TODO delete - kept here as reference to provide easy way for frontend to use simple dataset they've originally developed with
         // Fetch from ULC - TODO
         // For now, just get data from mock data
 
@@ -257,5 +262,4 @@ public class DataStore {
 
         getInstance().timeFetched = LocalDateTime.now();
     }
-
 }
