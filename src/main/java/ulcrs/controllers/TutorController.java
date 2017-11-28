@@ -51,12 +51,14 @@ public class TutorController extends BaseController {
 
     private List<Tutor> getTutorList(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        return DataStore.getTutors();
+        String cookie = request.headers("Set-Cookie");
+        return DataStore.getTutors(cookie);
     }
 
     private Tutor getTutor(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
         int id = Integer.valueOf(request.params(":id"));
-        return DataStore.getTutor(id);
+        String cookie = request.headers("Set-Cookie");
+        return DataStore.getTutor(id, cookie);
     }
 }

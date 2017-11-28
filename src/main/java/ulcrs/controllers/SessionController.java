@@ -125,6 +125,11 @@ public class SessionController extends BaseController {
     }
 
     private String addJsonExtension(String name) {
+        // TODO make this make sense, added here for Iteration 2 deadline
+        if (name == null) {
+            return "";
+        }
+
         if (!name.endsWith(".json")) {
             if (!name.endsWith(".")) {
                 name = name.concat(".");

@@ -23,6 +23,7 @@ public class ShiftController extends BaseController {
 
     private List<Shift> getShiftList(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        return DataStore.getShifts();
+        String cookie = request.headers("Set-Cookie");
+        return DataStore.getShifts(cookie);
     }
 }
