@@ -9,7 +9,12 @@ var src = './process',
 
 gulp.task('js', function() {
   return gulp.src( src + '/js/*.js' )
-    .pipe(babel({presets: ["react", "env"]}))
+    .pipe(babel(
+        {
+            presets: ["react", "env"],
+          //  env: { test: {presets: ["react", "env"]}}
+        }
+        ))
     .on('error', function (err) {
       console.error('Error!', err.message);
     })

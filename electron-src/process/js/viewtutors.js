@@ -3,15 +3,22 @@ let requireLocal = ( localModule ) =>{
     return require(path.resolve( __dirname, './js',localModule))
 };
 
+// let requireLocal = ( localModule ) =>{
+//     let path = require("path");
+//     return require(path.resolve( __dirname,localModule))
+// };
+
+let dataLocation = require('path').resolve(__dirname, '..','..', 'data', 'data.json');
+let mockData = require('path').resolve(__dirname, '..', '..', 'data', 'mockdata.json');
 let ReactDOM = require('react-dom');
 let React = require('react');
 let ViewToolBar = requireLocal('./viewtoolbar');
 let TutorTable = requireLocal('./tutortable');
 let CourseTable = requireLocal('./coursetable');
-let fs = eRequire('fs');
-let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
-let mock = JSON.parse(fs.readFileSync(mockData));
-let electron = eRequire('electron');
+let fs = require('fs');
+//let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
+//let mock = JSON.parse(fs.readFileSync(mockData));
+let electron = require('electron');
 let ipc = electron.ipcRenderer;
 let Parser = requireLocal("./parser");
 let ViewSchedulePage = requireLocal("./viewschedules");

@@ -1,5 +1,5 @@
 let React = require("react");
-let electron = eRequire("electron");
+let electron = require("electron");
 let ipc = electron.ipcRenderer;
 
 class ViewToolbar extends React.Component {
