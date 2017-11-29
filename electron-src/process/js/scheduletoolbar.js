@@ -17,7 +17,7 @@ class ToolbarTab extends React.Component {
 
     tabClick () {
         this.props.setCurrentIndex(this.state.index);
-        this.props.changeIndex(this.state.index);
+        this.props.changeIndex(this.state.index - 1);
     }
 
     tabColor() {

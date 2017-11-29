@@ -38,6 +38,7 @@ class ViewSchedulePage  extends React.Component {
         this.exportSchedule = this.exportSchedule.bind(this);
         this.exit = this.exit.bind(this);
         this.toggleExiting = this.toggleExiting.bind(this);
+        this.changeIndex = this.changeIndex.bind(this);
     }
 
     toggleExiting(){
@@ -61,8 +62,10 @@ class ViewSchedulePage  extends React.Component {
         })
     }
 
-    changeIndex() {
-
+    changeIndex(v) {
+        this.setState({
+            index : v
+        })
     }
 
     exportSchedule(value){
@@ -93,7 +96,7 @@ class ViewSchedulePage  extends React.Component {
                     </div>
 
                     <div className="col-8">
-                        <ScheduleTable schedules={this.state.schedules}/>
+                        <ScheduleTable schedules={this.state.schedules} index={this.state.index}/>
                     </div>
 
                     <div className="col-2">
