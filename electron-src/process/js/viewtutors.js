@@ -17,7 +17,7 @@ let TutorTable = requireLocal('./tutortable');
 let CourseTable = requireLocal('./coursetable');
 let fs = require('fs');
 //let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
-let mock = JSON.parse(fs.readFileSync(mockData));
+//let mock = JSON.parse(fs.readFileSync(mockData));
 let electron = require('electron');
 let ipc = electron.ipcRenderer;
 let Parser = requireLocal("./parser");
@@ -112,7 +112,7 @@ class ViewInfo extends React.Component {
     render() {
         return (
             <div className="container-fluid ">
-                <div className="row">
+                <div className="row"  overflow = "auto" >
                     <div className="col-3">
                         <ViewToolBar clickViewButton={this.clickViewButton}/>
                     </div>
