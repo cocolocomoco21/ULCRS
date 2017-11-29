@@ -9,7 +9,7 @@ let requireLocal = ( localModule ) =>{
 // };
 
 let dataLocation = require('path').resolve(__dirname, '..','..', 'data', 'data.json');
-let mockData = require('path').resolve(__dirname, '..', '..', 'data', 'mockdata.json');
+let mockData = require('path').resolve(__dirname, '..', 'data', 'mockTutorData2.json');
 let ReactDOM = require('react-dom');
 let React = require('react');
 let ViewToolBar = requireLocal('./viewtoolbar');
@@ -17,7 +17,7 @@ let TutorTable = requireLocal('./tutortable');
 let CourseTable = requireLocal('./coursetable');
 let fs = require('fs');
 //let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
-//let mock = JSON.parse(fs.readFileSync(mockData));
+let mock = JSON.parse(fs.readFileSync(mockData));
 let electron = require('electron');
 let ipc = electron.ipcRenderer;
 let Parser = requireLocal("./parser");
