@@ -6,6 +6,7 @@ class TutorEntry extends React.Component {
     constructor(props){
         super(props);
         this.decideDropDown = this.decideDropDown.bind(this);
+        this.joinData = this.joinData.bind(this);
     }
 
     decideDropDown(coursePreferences){
@@ -27,6 +28,15 @@ class TutorEntry extends React.Component {
         }
     }
 
+    joinData(coursePreferences){
+        if (coursePreferences === ""){
+            return "";
+        }
+        else{
+            return coursePreferences.join(" ");
+        }
+    }
+
     render() {
 
         return (
@@ -35,7 +45,7 @@ class TutorEntry extends React.Component {
                 <td>{this.props.singleItem.firstName}</td>
                 <td>{this.props.singleItem.lastName}</td>
                 <td>{this.props.singleItem.tutorStatus}</td>
-                <td>{this.props.singleItem.coursePreference.join(" ")}</td>
+                <td>{this.joinData(this.props.singleItem.coursePreference)}</td>
                 <td>{this.props.singleItem.shiftPreference}</td>
                 <td>{this.props.singleItem.shiftFrequency}</td>
             </tr>

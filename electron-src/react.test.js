@@ -56,4 +56,9 @@ describe('parser test', () => {
         assert.equal(courses.length, 5)
     })
 
+    it('parse tutor with empty data correctly', ()=>{
+        let mockTutorData = JSON.parse(fs.readFileSync(path.resolve(__dirname,'data/mockTutorData2.json')));
+        let tutors = p.getTutors(mockTutorData);
+        assert.equal(tutors.length, 10)
+    })
 });
