@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -55,6 +54,12 @@ public class DataStore {
             dataStore = new DataStore();
         }
         return dataStore;
+    }
+
+    private DataStore() {
+        this.courses = new ArrayList<>();
+        this.shifts = new ArrayList<>();
+        this.tutors = new ArrayList<>();
     }
 
 
@@ -120,7 +125,6 @@ public class DataStore {
      * @return List<Shift> - list of all shifts
      */
     public static List<Shift> getShifts(String cookie) {
-        // TODO implement - requires getting shifts from course, tutor data
         fetchIfRequired(getInstance().shifts, cookie);
         return getInstance().shifts;
     }
@@ -130,26 +134,32 @@ public class DataStore {
      * @param reference - reference being checked if it has been fetched
      * @param <T> - generic type for reference
      */
-    private static <T> void fetchIfRequired(T reference, String cookie) {
+    private static <T> void fetchIfRequired(List<T> reference, String cookie) {
         if (!isCached(reference)) {
-            //List<String> response = DataFetch.fetchFromULCServer(cookie);
+            List<String> response = DataFetch.fetchFromULCServer(cookie);
+
             // TODO error handling if populateData() fails
-            //populateData(response);
-            fetch();
+            populateData(response);
         }
     }
 
     /**
-     * Check if the reference is cached. If null, it has not been cached.
+     * Check if the reference is cached. If null or an empty array, it has not been cached.
      * @param reference - reference being checked for if it is cached
      * @param <T> - generic type for reference
-     * @return boolean - return if reference has been cached or not. If no, it is null.
+     * @return boolean - return if reference has been cached or not. If no, reference is null or empty array.
      */
-    private static <T> boolean isCached(T reference) {
-        return reference != null;
+    private static <T> boolean isCached(List<T> reference) {
+        return reference != null && reference.size() > 0
+                && getInstance().timeFetched != null;
     }
 
-
+    /**
+     * Populates and "caches" the data fetched from the ULC server. This parses the response data, which is saved as
+     * JSON, and updates the data saved in the DataStore instance. As such, it "populates" the data.
+     * @param response List<String> - response from ULC server
+     * @return boolean - returns success of parsing and saving the data
+     */
     static boolean populateData(List<String> response) {
         // Expect response with only one line of JSON
         if (response.size() != 1) {
@@ -247,22 +257,22 @@ public class DataStore {
             tutors.add(tutor);
         });
 
+        // Update DataStore's fields
         getInstance().courses = courses;
         getInstance().shifts = shifts;
         getInstance().tutors = tutors;
+
+        getInstance().timeFetched = LocalDateTime.now();
 
         return true;
     }
 
     /**
-     * Fetch data from the ULC server and update the data saved in the DataStore instance. This "caches" the
-     * data that is fetched.
+     * Fetch local mock data and update the data saved in the DataStore instance. This "caches" the data that is fetched.
+     *
+     * TODO delete - kept here to provide easy way for frontend to use the simple dataset they've originally developed with
      */
-    private static void fetch() {
-        // TODO delete - kept here as reference to provide easy way for frontend to use simple dataset they've originally developed with
-        // Fetch from ULC - TODO
-        // For now, just get data from mock data
-
+    private static void fetchLocalMockData() {
         // Tutor
         InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockTutors_Full.json");
         JsonReader reader = new JsonReader(new InputStreamReader(is));

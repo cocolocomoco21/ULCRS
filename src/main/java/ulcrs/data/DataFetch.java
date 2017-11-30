@@ -22,15 +22,27 @@ class DataFetch {
     private final static String CONTENT_LENGTH = "Content-Length";
     private final static String CONTENT_LANGUAGE = "Content-Language";
 
-    /*
-    This hits the Drop-In endpoint to retrieve course, shift, tutor, and tutor preference data. However, Drop-In has a peculiar way of doing requests, so we issue a HTTP POST to the following:
-        • URL: https://dropin-dev.engr.wisc.edu/services/DIMainController.php
-        • Set Content-Type to application/x-www-form-urlencoded
-        • Set request data to: service=ScheduleService&function=exportSchedulerInformation
-        • You must include the shibboleth cookie/credentials (passed as String)
-        • You must have admin credentials on the dev website (I believe Matt and Jason have this).
-    */
+    /**
+     * Fetch data from the ULC server and return response in form of List<String>.
+     *
+     * Specifically, this hits the Drop-In endpoint to retrieve course, shift, tutor, and tutor preference data.
+     * However, Drop-In a peculiar way of doing requests, so we issue an HTTP POST as follows:
+     *      - URL: https://dropin-dev.engr.wisc.edu/services/DIMainController.php
+     *      - Set Content-Type to application/x-www-form-urlencoded
+     *      - Set request data to: service=ScheduleService&function=exportSchedulerInformation
+     *      - You must include the shibboleth cookie/credentials (passed as String)
+     *      - You must have admin credentials on the dev website (I believe Matt and Jason have this).
+     *
+     * @param cookie String - shibboleth cookie used for authenticating with the UW NetID Service, to validate the call.
+     * @return List<String> - the response from the ULC server call. Should contain one line of JSON. In case of
+     *          failure, returns empty List.
+     */
     static List<String> fetchFromULCServer(String cookie) {
+        if (cookie == null || cookie.equals("")) {
+            // No cookie is passed in, fail silently
+            return new ArrayList<>();
+        }
+
         HttpURLConnection connection = null;
 
         try

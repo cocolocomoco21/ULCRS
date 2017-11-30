@@ -53,7 +53,11 @@ class Parser{
             tempCourse.id = course.id;
             tempCourse.name = course.name;
             let courseReq = course.courseRequirements;
-            tempCourse.requiredShifts = courseReq.requiredShifts[0].day;
+            if (courseReq.requiredShifts.length !== 0) {
+                tempCourse.requiredShifts = courseReq.requiredShifts[0].day;
+            } else {
+                tempCourse.requiredShifts = "";
+            }
             tempCourse.requiredShiftAmount = courseReq.requiredShiftAmount;
             tempCourse.preferredShiftAmount = courseReq.preferredShiftAmount;
             tempCourse.intensity = courseReq.intensity;
