@@ -8,7 +8,8 @@ class ToolbarTab extends React.Component {
         this.state = {
             index : props.index,
             curIndex: props.curIndex,
-            changeIndex : this.props.changeIndex
+            changeIndex : this.props.changeIndex,
+            rate: this.props.rate
         };
         this.tabClick = this.tabClick.bind(this);
         this.tabColor = this.tabColor.bind(this);
@@ -64,6 +65,7 @@ class ToolbarTab extends React.Component {
                 <div id = {cardName} className = "card-body" style={{backgroundColor: "#d9edf7"}} onClick={this.tabClick}>
                     <h5 id = {textName} style={{color: "#0055cc"}}>
                         Schedule {this.state.index}
+                        <p style={{fontWeight : "normal", color: "#0055cc", float: "right", display: "inline"}}> {this.props.rate} </p>
                     </h5>
                 </div>
             )
@@ -73,6 +75,7 @@ class ToolbarTab extends React.Component {
                 <div id={cardName} className="card-body" style={{backgroundColor: "#5bc0de"}} onClick={this.tabClick}>
                     <h5 id={textName} style={{color: "#f7f7f7"}}>
                         Schedule {this.state.index}
+                        <p style={{fontWeight : "normal", color: "#f7f7f7", float: "right", display: "inline"}}> {this.props.rate} </p>
                     </h5>
                 </div>
             )
@@ -85,7 +88,7 @@ class ScheduleToolbar extends React.Component {
         super(props);
         this.state = {
             selectedScheduleIndex: 1,
-            size: this.props.size
+            schedules: this.props.schedules,
         };
         this.setCurrentIndex = this.setCurrentIndex.bind(this);
 
@@ -101,9 +104,9 @@ class ScheduleToolbar extends React.Component {
 
     render(){
         let tabs = [];
-        for(let i = 0; i < this.state.size; i++) {
+        for(let i = 0; i < this.state.schedules.length; i++) {
             tabs.push(<ToolbarTab index={i+1} setCurrentIndex={this.setCurrentIndex} curIndex ={this.state.selectedScheduleIndex}
-                                  changeIndex = {this.props.changeIndex} key={i}/>);
+                                  changeIndex = {this.props.changeIndex} rate = {this.props.schedules[i].rating} key={i}/>);
         }
         return (
             <div id="schedule-tool-bar" className="card" style={{backgroundColor:"#5bc0de"}}>
