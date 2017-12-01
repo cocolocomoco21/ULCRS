@@ -3,15 +3,22 @@ let requireLocal = ( localModule ) =>{
     return require(path.resolve( __dirname, './js',localModule))
 };
 
+// let requireLocal = ( localModule ) =>{
+//     let path = require("path");
+//     return require(path.resolve( __dirname,localModule))
+// };
+
+let dataLocation = require('path').resolve(__dirname, '..','..', 'data', 'data.json');
+let mockData = require('path').resolve(__dirname, '..', 'data', 'mockTutorData2.json');
 let ReactDOM = require('react-dom');
 let React = require('react');
 let ViewToolBar = requireLocal('./viewtoolbar');
 let TutorTable = requireLocal('./tutortable');
 let CourseTable = requireLocal('./coursetable');
-let fs = eRequire('fs');
-let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
+let fs = require('fs');
+//let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
 let mock = JSON.parse(fs.readFileSync(mockData));
-let electron = eRequire('electron');
+let electron = require('electron');
 let ipc = electron.ipcRenderer;
 let Parser = requireLocal("./parser");
 let ViewSchedulePage = requireLocal("./viewschedules");
@@ -119,11 +126,11 @@ class ViewInfo extends React.Component {
 
                     <Modal isOpen={this.state.proceeding}>
                         <ModalHeader>
-                            Action
+                            Generate Schedules
                         </ModalHeader>
 
                         <ModalBody>
-                            Do you want to proceed the generation?
+                            Do you want to proceed with generating schedules?
                         </ModalBody>
 
                         <ModalFooter>

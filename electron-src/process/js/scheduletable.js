@@ -71,7 +71,8 @@ class ScheduleTable extends React.Component {
                                     </div>
                                     <div className="row">
                                         <div className="col">
-                                            <Container id={col + 1} list={containerDataList} />
+                                            <Container key={this.state.index * 100 + col + 1}
+                                                       id={col + 1} list={containerDataList} />
                                         </div>
                                     </div>
                                 </div>);

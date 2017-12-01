@@ -16,6 +16,7 @@ ULCRS  mimics a webapp, but localized on a desktop. ULCRS has frontend and backe
 
 To grab dependencies and build the UI, from the top-level directory, run:
 ``` 
+./gradlew shadowjar
 cd electron-src
 npm install
 ```
@@ -61,5 +62,13 @@ cd electron-src
 npm start
 ```
 This will pull in dependencies and launch the Electron application.
+
+### Frontend test
+To run the existing frontend test, from the top-level directory, run:
+```
+cd electron-src
+npm test
+```
+The test information and code coverage will be displayed on the terminal;
 
 
