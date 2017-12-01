@@ -65,7 +65,7 @@ class ToolbarTab extends React.Component {
                 <div id = {cardName} className = "card-body" style={{backgroundColor: "#d9edf7"}} onClick={this.tabClick}>
                     <h5 id = {textName} style={{color: "#0055cc"}}>
                         Schedule {this.state.index}
-                        <h5 style={{color: "#0055cc", float: "right", display: "inline"}}> {this.props.rate} </h5>
+                        <p style={{fontWeight : "normal", color: "#0055cc", float: "right", display: "inline"}}> {this.props.rate} </p>
                     </h5>
                 </div>
             )
@@ -75,7 +75,7 @@ class ToolbarTab extends React.Component {
                 <div id={cardName} className="card-body" style={{backgroundColor: "#5bc0de"}} onClick={this.tabClick}>
                     <h5 id={textName} style={{color: "#f7f7f7"}}>
                         Schedule {this.state.index}
-                        <h5 style={{color: "#f7f7f7", float: "right", display: "inline"}}> {this.props.rate}</h5>
+                        <p style={{fontWeight : "normal", color: "#f7f7f7", float: "right", display: "inline"}}> {this.props.rate} </p>
                     </h5>
                 </div>
             )
