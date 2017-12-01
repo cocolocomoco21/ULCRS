@@ -100,7 +100,10 @@ class ScheduleTable extends React.Component {
                 <div className="row">
                     <div className="col">
                         <div className="row" style={{background: "#5bc0de", color: "white", padding: 15}}>
-                            <h3>{this.scheduleName()}</h3>
+                            <div className="card-body" style={{padding: 0, display: "block", width: "100%"}}>
+                            <h3>{this.scheduleName()} <h3 style={{textAlign: "right", display: "inline"}}> Rating: {this.state.schedules[this.state.index].rating} </h3>
+                            </h3>
+                            </div>
                         </div>
                         <div className="row container-scroll">
                             <div className="col" style={{padding: 0}}>
