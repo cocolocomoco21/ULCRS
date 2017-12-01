@@ -14,17 +14,20 @@ const style = {
 
 class Card extends React.Component {
 
+
+
 	render() {
 		const { card, isDragging, connectDragSource, connectDropTarget } = this.props;
 		const opacity = isDragging ? 0 : 1;
 
 		return connectDragSource(connectDropTarget(
 			<div style={{ style, opacity }}>
-				<ul className="list-group">
+				<ul className="list-group"  >
 					<li className="list-group-item">{card.tutorCourse}</li>
 					<li className="list-group-item">{card.tutorName}</li>
 				</ul>
 			</div>
+
 		));
 	}
 }

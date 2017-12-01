@@ -26,7 +26,7 @@ class CourseTable extends React.Component {
             )
         }.bind(this));
         return (
-            <div className="card card-inverse" style={{background: "#049cdb", border: "#ffffff", color: "#ffffff"}}>
+            <div className="card card-inverse" style={{background: "#c41e3a", border: "#ffffff", color: "#ffffff"}}>
                 <div className="card-block">
                     <h3 className="card-header">
                         Review your courses

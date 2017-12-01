@@ -31,14 +31,14 @@ class TutorTable extends React.Component {
             )
         }.bind(this));
         return (
-            <div className="card card-inverse" style={{background: "#049cdb", border: "#ffffff", color: "#ffffff"}}>
+            <div className="card card-inverse" style={{background: "#c41e3a", border: "#ffffff", color: "#ffffff"}}>
                 <div className="card-block">
                     <h3 className="card-header">
                         Review your tutors
                     </h3>
                     <div className = "card-body">
                         <div className="container table-scroll">
-                        <table className="table table-striped" style={{background: "#049cdb", border: "#ffffff", color: "#ffffff"}}>
+                        <table className="table table-striped" style={{background: "#c41e3a", border: "#ffffff", color: "#ffffff"}}>
                             <thead className="thead" style={{backgroundColor: "#0479a8",
                                 color: "white"}}>
                             <tr>

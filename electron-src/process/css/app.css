@@ -24,6 +24,7 @@
   height: 100px;
   width:75px;
   text-align: left;
+
 }
 
 #center{
@@ -36,6 +37,12 @@
 .btn-lg{
   padding: 1rem 8rem;
   font-size: 30px;
+  background-color: #0479a8;
+}
+.btn-lg:hover {
+  color: #fff;
+  background-color: #0492cc;
+  border-color: #0492cc;
 }
 
 .top-buffer {
