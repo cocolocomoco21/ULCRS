@@ -113,16 +113,24 @@ class ViewInfo extends React.Component {
         return (
             <div className="container-fluid ">
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-lg-3">
                         <ViewToolBar clickViewButton={this.clickViewButton}/>
                     </div>
                     <div className="col-9">
                         {/* <TutorTable tutors = {this.state.tutors}/> */}{/* Still thinking about how to load in CourseTable */}
                         {/*<Cour  seTable courses = {this.state.courses}/>*/}
-                        {this.prepareView()}
+                        <div className="row" style={{margin: 0, width: "100%", height:"600px"}}>
+                            {this.prepareView()}
+                        </div>
                     </div>
 
-                    <button type="button" className="btn btn-lg btn-success" id="generate-button-pos" onClick={this.toggleProceeding} > Generate Schedules! </button>
+                    <button type="button" className="btn btn-lg btn-success" id="generate-button-pos" onClick={this.toggleProceeding} >
+                        <div style={{textAlign:"left"}}>
+                            Generate Schedules!
+                        </div>
+
+
+                    </button>
 
                     <Modal isOpen={this.state.proceeding}>
                         <ModalHeader>

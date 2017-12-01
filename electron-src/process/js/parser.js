@@ -21,23 +21,20 @@ class Parser{
             let pref = t.tutorPreferences;
 
             let courses = pref.coursePreferences;
-            if (courses.PREFER.length !== 0) {
-                tempTutor.coursePreference = courses.PREFER.map((c)=>c.name);
-            }else{
-                tempTutor.coursePreference = "";
-            }
+
+            tempTutor.coursePreference = courses.PREFER.map((c)=>c.name);
+            tempTutor.courseWilling = _.map(courses.WILLING, (c)=>c.name);
 
             let days = pref.shiftPreferences;
-            if (days.PREFER.length !== 0) {
-                tempTutor.shiftPreference = days.PREFER[0].day;
-            }
+
+
+            tempTutor.shiftPreference = _.map(days.PREFER, (d)=>d.day);
+            tempTutor.shiftWilling = _.map(days.WILLING, (d)=>d.day);
+
             let fre = pref.shiftFrequencyPreferences;
-            if (fre.PREFER.length !== 0){
-                tempTutor.shiftFrequency = fre.PREFER;
-            }
-            else{
-                tempTutor.shiftPreference = "";
-            }
+
+            tempTutor.shiftAmountPreferred = fre.PREFER;
+            tempTutor.shiftAmountWilling = fre.WILLING;
 
             tutors.push(tempTutor);
         }
@@ -53,7 +50,8 @@ class Parser{
             tempCourse.id = course.id;
             tempCourse.name = course.name;
             let courseReq = course.courseRequirements;
-            tempCourse.requiredShifts = courseReq.requiredShifts[0].day;
+
+            tempCourse.requiredShifts = _.map(courseReq.requiredShifts, (s)=>s.day);
             tempCourse.requiredShiftAmount = courseReq.requiredShiftAmount;
             tempCourse.preferredShiftAmount = courseReq.preferredShiftAmount;
             tempCourse.intensity = courseReq.intensity;

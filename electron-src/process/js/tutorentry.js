@@ -42,20 +42,24 @@ class TutorEntry extends React.Component {
         return (
             <tr>
                 <th scope="row">{this.props.singleItem.id}</th>
+
+                <td style={{textAlign:"center"}}>
+                    <div className="form-check" >
+                    <input type="checkbox" className="form-check-input"/>
+                    </div>
+                </td>
                 <td>{this.props.singleItem.firstName}</td>
                 <td>{this.props.singleItem.lastName}</td>
                 <td>{this.props.singleItem.tutorStatus}</td>
                 <td>{this.joinData(this.props.singleItem.coursePreference)}</td>
-                <td>{this.props.singleItem.shiftPreference}</td>
-                <td>{this.props.singleItem.shiftFrequency}</td>
+                <td>{this.joinData(this.props.singleItem.courseWilling)}</td>
+                <td>{this.joinData(this.props.singleItem.shiftPreference)}</td>
+                <td>{this.joinData(this.props.singleItem.shiftWilling)}</td>
+                <td>{this.props.singleItem.shiftAmountPreferred}</td>
+                <td>{this.props.singleItem.shiftAmountWilling}</td>
             </tr>
         )
     }
 }
-
-/*
-<h3 className="card-header">
-    Tutor
-</h3>*/
 
 module.exports = TutorEntry;

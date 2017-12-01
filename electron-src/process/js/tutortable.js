@@ -37,15 +37,21 @@ class TutorTable extends React.Component {
                         Review your tutors
                     </h3>
                     <div className = "card-body">
-                        <table className="table table-striped">
-                            <thead>
+                        <div className="container table-scroll">
+                        <table className="table table-striped" style={{background: "#049cdb", border: "#ffffff", color: "#ffffff"}}>
+                            <thead className="thead" style={{backgroundColor: "#0479a8",
+                                color: "white"}}>
                             <tr>
                                 <th>id</th>
+                                <th>Not Include</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Status</th>
-                                <th>Course Preferences</th>
-                                <th>Shift Preferences</th>
+                                <th>Course Preferred</th>
+                                <th>Course Willing</th>
+                                <th>Shift Preferred</th>
+                                <th>Shift Willing</th>
+                                <th>Shift Preferred</th>
                                 <th>Shift Frequency</th>
                             </tr>
                             </thead>
@@ -53,6 +59,7 @@ class TutorTable extends React.Component {
                             {tutors}
                             </tbody>
                         </table>
+                        </div>
                     </div> {/*tool bar */}
                 </div>
             </div>

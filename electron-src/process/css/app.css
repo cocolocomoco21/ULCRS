@@ -19,8 +19,11 @@
 
 #generate-button-pos{
   position: absolute;
-  bottom: 100px;
-  right: 100px;
+  bottom: 70px;
+  left: 10px;
+  height: 100px;
+  width:75px;
+  text-align: left;
 }
 
 #center{
@@ -55,4 +58,10 @@
     vertical-align: top;
     text-align: center;
     width: 100%;
+}
+
+.table-scroll {
+    height: 600px;
+    overflow-y: scroll;
+    overflow-x: scroll;
 }
