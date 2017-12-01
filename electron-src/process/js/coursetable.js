@@ -38,8 +38,8 @@ class CourseTable extends React.Component {
                                 <th>id</th>
                                 <th>name</th>
                                 <th>Course Requirement</th>
-                                <th>Require Shift Amount</th>
-                                <th>Require Shift Amount</th>
+                                <th>Preferred Shift Amountt</th>
+                                <th>Willing Shift Amount</th>
                                 <th>Intensity</th>
                             </tr>
                             </thead>

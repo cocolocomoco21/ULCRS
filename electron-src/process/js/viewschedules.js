@@ -40,6 +40,7 @@ class ViewSchedulePage  extends React.Component {
         this.exportSchedule = this.exportSchedule.bind(this);
         this.exit = this.exit.bind(this);
         this.toggleExiting = this.toggleExiting.bind(this);
+        this.changeIndex = this.changeIndex.bind(this);
     }
 
     toggleExiting(){
@@ -63,8 +64,10 @@ class ViewSchedulePage  extends React.Component {
         })
     }
 
-    changeIndex() {
-
+    changeIndex(v) {
+        this.setState({
+            index : v
+        })
     }
 
     exportSchedule(value){
@@ -95,7 +98,7 @@ class ViewSchedulePage  extends React.Component {
                     </div>
 
                     <div className="col-8">
-                        <ScheduleTable schedules={this.state.schedules}/>
+                        <ScheduleTable schedules={this.state.schedules} index={this.state.index}/>
                     </div>
 
                     <div className="col-2">
@@ -134,7 +137,7 @@ class ViewSchedulePage  extends React.Component {
                         Warning
                     </ModalHeader>
                     <ModalBody>
-                        <div> Are you sure about exiting the app? </div>
+                        <div> Are you sure you want to exit ULCRS? </div>
                     </ModalBody>
                     <ModalFooter>
                         <Button color="danger" onClick={this.exit}>Exit</Button>{' '}

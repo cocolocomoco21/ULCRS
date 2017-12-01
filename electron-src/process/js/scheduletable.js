@@ -11,8 +11,20 @@ class ScheduleTable extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            schedules : this.props.schedules
-        }
+            schedules : this.props.schedules,
+            index : this.props.index
+        };
+        this.scheduleName = this.scheduleName.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            index : nextProps.index
+        });
+    }
+
+    scheduleName() {
+        return "Schedule " + (this.state.index+1);
     }
     // Put your code here.
     render() {
@@ -31,7 +43,7 @@ class ScheduleTable extends React.Component {
 
         console.log(this.state.schedules);
         let containerList = [];
-        let scheduleShifts = this.state.schedules[0].scheduleShifts;
+        let scheduleShifts = this.state.schedules[this.state.index].scheduleShifts;
         console.log(scheduleShifts);
         let index = 1;
         for (let col = 0; col < scheduleShifts.length; col++){
@@ -59,7 +71,8 @@ class ScheduleTable extends React.Component {
                                     </div>
                                     <div className="row">
                                         <div className="col">
-                                            <Container id={col + 1} list={containerDataList} />
+                                            <Container key={this.state.index * 100 + col + 1}
+                                                       id={col + 1} list={containerDataList} />
                                         </div>
                                     </div>
                                 </div>);
@@ -88,7 +101,7 @@ class ScheduleTable extends React.Component {
                 <div className="row">
                     <div className="col">
                         <div className="row" style={{background: "#5bc0de", color: "white", padding: 15}}>
-                            <h3>Schedule: Schedule 1</h3>
+                            <h3>{this.scheduleName()}</h3>
                         </div>
                         <div className="row container-scroll">
                             <div className="col" style={{padding: 0}}>
