@@ -1,6 +1,5 @@
 let React = require("react");
-let temp = ["Schedule1", "Schedule2", "Schedule3", "Schedule4"];
-var tabs= [];
+//let temp = ["Schedule1", "Schedule2", "Schedule3", "Schedule4"];
 var index = -1;
 
 class ToolbarTab extends React.Component {
@@ -8,17 +7,17 @@ class ToolbarTab extends React.Component {
         super(props);
         this.state = {
             index : props.index,
-            curIndex: props.curIndex
+            curIndex: props.curIndex,
+            changeIndex : this.props.changeIndex
         };
         this.tabClick = this.tabClick.bind(this);
         this.tabColor = this.tabColor.bind(this);
+        this.changeIndex = this.props.changeIndex.bind(this);
     }
 
     tabClick () {
-        //this.tabColor();
-       // this.tabFunction();
-        console.log("click");
         this.props.setCurrentIndex(this.state.index);
+        this.props.changeIndex(this.state.index - 1);
     }
 
     tabColor() {
@@ -85,7 +84,8 @@ class ScheduleToolbar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedScheduleIndex: 1
+            selectedScheduleIndex: 1,
+            size: this.props.size
         };
         this.setCurrentIndex = this.setCurrentIndex.bind(this);
 
@@ -101,9 +101,9 @@ class ScheduleToolbar extends React.Component {
 
     render(){
         let tabs = [];
-        for(let i = 0; i < temp.length; i++) {
+        for(let i = 0; i < this.state.size; i++) {
             tabs.push(<ToolbarTab index={i+1} setCurrentIndex={this.setCurrentIndex} curIndex ={this.state.selectedScheduleIndex}
-                                       key={i}/>);
+                                  changeIndex = {this.props.changeIndex} key={i}/>);
         }
         return (
             <div id="schedule-tool-bar" className="card" style={{backgroundColor:"#5bc0de"}}>

@@ -286,5 +286,37 @@
 				]
 			}
 		]
+	},
+	{
+		"rating": 5,
+		"scheduleShifts":
+		[
+			{
+				"shift": { "id": 1, "day": "Sunday 1" },
+				"assignments":
+				[
+					{
+						"tutor": { "id": 1, "firstName": "Jason", "lastName": "Terry"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 367"
+							}
+						]
+					},
+					{
+						"tutor": { "id": 2, "firstName": "Mike", "lastName": "Altman"},
+						"courses":
+						[
+							{
+								"id": 1,
+								"name": "CS 250"
+							}
+						]
+					}
+				]
+			}
+		]
 	}
 ]

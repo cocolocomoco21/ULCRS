@@ -32,13 +32,15 @@ class ViewSchedulePage  extends React.Component {
             modal : false,
             saveMessage: "",
             saveMessageModal: false,
-            exiting: false
+            exiting: false,
+            index : 0
         };
         this.toggleSaveModal = this.toggleSaveModal.bind(this);
         this.toggleMessageModal = this.toggleMessageModal.bind(this);
         this.exportSchedule = this.exportSchedule.bind(this);
         this.exit = this.exit.bind(this);
         this.toggleExiting = this.toggleExiting.bind(this);
+        this.changeIndex = this.changeIndex.bind(this);
     }
 
     toggleExiting(){
@@ -59,6 +61,12 @@ class ViewSchedulePage  extends React.Component {
     toggleMessageModal(){
         this.setState({
             saveMessageModal: ! this.state.saveMessageModal
+        })
+    }
+
+    changeIndex(v) {
+        this.setState({
+            index : v
         })
     }
 
@@ -86,11 +94,11 @@ class ViewSchedulePage  extends React.Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-2">
-                        <ScheduleToolbar />
+                        <ScheduleToolbar size={this.state.schedules.length} changeIndex={this.changeIndex}/>
                     </div>
 
                     <div className="col-8">
-                        <ScheduleTable schedules={this.state.schedules}/>
+                        <ScheduleTable schedules={this.state.schedules} index={this.state.index}/>
                     </div>
 
                     <div className="col-2">
