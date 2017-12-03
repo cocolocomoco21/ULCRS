@@ -7,6 +7,18 @@ class TutorEntry extends React.Component {
         super(props);
         this.decideDropDown = this.decideDropDown.bind(this);
         this.joinData = this.joinData.bind(this);
+        this.excludedId = [];
+        this.checkHandler = this.checkHandler.bind(this);
+        this.state = {
+            checked:this.props.singleItem.notInclude
+        };
+        this.decideCheckbox = this.decideCheckbox.bind(this);
+    };
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            checked: nextProps.singleItem.notInclude
+        })
     }
 
     decideDropDown(coursePreferences){
@@ -37,7 +49,40 @@ class TutorEntry extends React.Component {
         }
     }
 
+    checkHandler(event){
+        this.setState({
+            checked:! this.state.checked
+        });
+        if (this.state.checked === true) {
+            this.props.notIncludeHandler(this.props.singleItem.id, "remove")
+        }
+        else{
+            this.props.notIncludeHandler(this.props.singleItem.id, "add")
+        }
+
+    }
+
+    decideCheckbox(){
+
+        if (this.state.checked){
+            return (<input type="checkbox" className="form-check-input"
+                           checked={true}
+                           onChange={this.checkHandler}
+                    />
+            )
+        }
+        else {
+            return (<input type="checkbox" className="form-check-input"
+                           checked={false}
+                           onChange={this.checkHandler}
+                />
+            )
+        }
+    }
+
     render() {
+
+
 
         return (
             <tr>
@@ -45,7 +90,7 @@ class TutorEntry extends React.Component {
 
                 <td style={{textAlign:"center"}}>
                     <div className="form-check" >
-                    <input type="checkbox" className="form-check-input"/>
+                        {this.decideCheckbox()}
                     </div>
                 </td>
                 <td>{this.props.singleItem.firstName}</td>

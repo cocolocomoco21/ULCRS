@@ -55,7 +55,7 @@ let startJavaBackendServer = ()=>{
 
 let handleAppExit = (child) => {
 
-        app.on("window-all-closed",function () {
+    app.on("window-all-closed",function () {
             if (os.platform() === "win32") {
                 let tk = require("tree-kill");
                 tk.kill(child.pid, 'SIGKILL', (err)=>{console.log(err)});
@@ -142,7 +142,7 @@ app.on('ready', function () {
 
     let polling_schedules = null;
 
-    ipc.on("post_generate", function (event, args) {
+    ipc.on("post_generate", function (event, excludedIds) {
 
         // fetch("http://localhost:4567/ulcrs/generate_schedules", {method: "POST"})
         //     .then(res => {event.sender.send("post_success");});
@@ -155,7 +155,7 @@ app.on('ready', function () {
         // // set up time interval
         // polling_schedules = setInterval(()=>{
         //     fetch('http://localhost:4567/ulcrs/schedules')
-        //         .then(res => res.txt)
+        //         .then(res => res.txt)z
         //         .then(data => {
         //             if (data !== "null") {
         //                 console.log("received data");

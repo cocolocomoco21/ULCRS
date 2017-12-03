@@ -57,6 +57,7 @@ class ViewInfo extends React.Component {
       });
     });
 
+    this.excludedIds = new Set();
     ipc.on("get-course-data",  (event, text) => {
       let d = JSON.parse(text);
       let p = new Parser();
@@ -65,6 +66,7 @@ class ViewInfo extends React.Component {
           courseData: d
       });
     });
+
       ipc.send("request-tutor-data");
       ipc.send("request-course-data");
 
@@ -87,7 +89,7 @@ class ViewInfo extends React.Component {
 
   prepareView(){
       if (this.state.view === "tutor"){
-          return  <TutorTable tutors = {this.state.tutors} />
+          return  <TutorTable tutors = {this.state.tutors} excludedIds = {this.excludedIds}/>
       }
       return  <CourseTable courses = {this.state.courses} />
 
@@ -102,21 +104,22 @@ class ViewInfo extends React.Component {
     toggleProceeding(){
         this.setState({
             proceeding: ! this.state.proceeding
-        })
+        });
     }
 
     proceedToGenerate(){
-        this.props.showSchedules();
+        this.props.showSchedules(this.excludedIds);
+        console.log(this.excludedIds)
     }
 
     render() {
         return (
             <div className="container-fluid ">
                 <div className="row">
-                    <div className="col-lg-3">
+                    <div className="col-2 pr-0 pl-0">
                         <ViewToolBar clickViewButton={this.clickViewButton}/>
                     </div>
-                    <div className="col-9">
+                    <div className="col-10 pl-0 ">
                         {/* <TutorTable tutors = {this.state.tutors}/> */}{/* Still thinking about how to load in CourseTable */}
                         {/*<Cour  seTable courses = {this.state.courses}/>*/}
                         <div className="row" style={{margin: 0, width: "100%", height:"600px"}}>
@@ -128,7 +131,6 @@ class ViewInfo extends React.Component {
                         <div style={{textAlign:"left"}}>
                             Generate Schedules!
                         </div>
-
 
                     </button>
 
@@ -163,21 +165,22 @@ class ViewInfo extends React.Component {
 
 class MainInterface extends React.Component{
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
-            pageName : "info",
-            waiting: false
+            pageName: "info",
+            waiting: false,
+            tutorData: null
         };
 
         ipc.on("receive-schedule-data", (event, data) => {
-            this.setState ({
-                pageName : "schedules",
+            this.setState({
+                pageName: "schedules",
                 waiting: false
             });
         });
-        ipc.on("post_success", (event, data)=>{
+        ipc.on("post_success", (event, data) => {
             this.setState({
                     waiting: true
                 }
@@ -186,8 +189,8 @@ class MainInterface extends React.Component{
         this.showViewSchedules = this.showViewSchedules.bind(this);
     }
 
-    showViewSchedules(){
-        ipc.send("post_generate");
+    showViewSchedules(excludedIds){
+        ipc.send("post_generate", excludedIds);
         console.log("post generate")
     }
 

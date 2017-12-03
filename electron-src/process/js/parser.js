@@ -36,6 +36,7 @@ class Parser{
             tempTutor.shiftAmountPreferred = fre.PREFER;
             tempTutor.shiftAmountWilling = fre.WILLING;
 
+            tempTutor.notInclude = false;
             tutors.push(tempTutor);
         }
         return tutors;
