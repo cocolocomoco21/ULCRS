@@ -71,13 +71,14 @@ class ViewSchedulePage  extends React.Component {
     }
 
     exportSchedule(value){
+        var filename = document.getElementById("filename");
         if (value === 0) {
             this.toggleSaveModal();
         } else {
             this.toggleSaveModal();
             this.toggleMessageModal();
             if (value === 1) {
-                this.state.saveMessage = "Session saved!";
+                this.state.saveMessage = filename.value;
             } else if (value === 2) {
                 this.state.saveMessage = "Uploaded to server!";
             }
