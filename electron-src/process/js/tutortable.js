@@ -66,8 +66,8 @@ class TutorTable extends React.Component {
                             <thead className="thead" style={{backgroundColor: "#0479a8",
                                 color: "white"}}>
                             <tr>
-                                <th>id</th>
-                                <th className="no-wrap">Not Include</th>
+                                <th>ID</th>
+                                <th className="no-wrap">Exclude</th>
                                 <th className="no-wrap">First Name</th>
                                 <th className="no-wrap">Last Name</th>
                                 <th className="no-wrap">Status</th>

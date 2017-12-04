@@ -59,7 +59,6 @@ class TutorEntry extends React.Component {
         else{
             this.props.notIncludeHandler(this.props.singleItem.id, "add")
         }
-
     }
 
     decideCheckbox(){

@@ -36,8 +36,8 @@ class CourseTable extends React.Component {
                         <table className="table table-striped ">
                             <thead>
                             <tr>
-                                <th>id</th>
-                                <th>name</th>
+                                <th>ID</th>
+                                <th>Name</th>
                                 <th>Course Requirement</th>
                                 <th>Preferred Shift Amountt</th>
                                 <th>Willing Shift Amount</th>
