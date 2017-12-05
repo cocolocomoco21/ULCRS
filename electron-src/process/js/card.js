@@ -11,45 +11,44 @@ let ModalBody = reactstrap.ModalBody;
 let ModalFooter = reactstrap.ModalFooter;
 
 import { Creatable } from "react-select";
-import { createStore } from "redux";
+import { compose, createStore } from "redux";
 import { connect, Provider } from "react-redux";
+import { combineForms, Form, Control } from "react-redux-form";
+import MultiSelect from './multiselect';
+import PrefCourseList from './editlistmodule';
 
-// Track any change events to the store
-const store = createStore((state = { value: "" }, action) => {
-  switch (action.type) {
-    case "UPDATE":
-      // see new options come through correctly
-      console.log({ state });
-      console.log({ action });
-      return { state, value: action.value };
-    default:
-      return state;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const initialUser = {};
+const store = createStore(
+  combineForms({
+    user: initialUser
+  })
+);
+
+class WillCourseList extends React.Component {
+
+  handleSubmit(e){
+    console.log(e);
+  };
+
+  render() {
+
+    return (
+      <div>
+        <Form model="user" onSubmit={this.handleSubmit}>
+          <MultiSelect model="user.category" options={[
+            { value: 'one', label: 'CS200' },
+            { value: 'two', label: 'CS300' },
+            { value: '3', label: 'CS400' },
+            { value: '5', label: 'CS500' },
+            { value: '4', label: 'CS600' }
+          ]} />
+        </Form>
+      </div>
+    );
   }
-});
-
-// pass any new values in as props
-const mapState = ({ value }) => ({ value });
-
-// dispatch an update for any onChange
-const mapDispatch = dispatch => ({
-  update: event => dispatch({ type: "UPDATE", value: event })
-});
-
-// starting options array
-const defaultOptions = [
-  { value: 1, label: "One" },
-  { value: "hello", label: "hello" }
-];
-const Select = ({ value = "not an option", update }) =>
-  <Creatable
-    simpleValue
-    value={value}
-    onChange={update}
-    options={defaultOptions}
-  />;
-
-const App = connect(mapState, mapDispatch)(Select);
-
+}
+export default WillCourseList;
 
 const style = {
     border: '1px dashed gray',
@@ -64,21 +63,13 @@ class Card extends React.Component {
       super(props);
       this.state = {
           modal : false,
-          index : 0,
-          //test
-
-          multiValue: [],
-          filterOptions: [
-            { value: "foo", label: "Foo" },
-            { value: "bar", label: "Bar" },
-            { value: "bat", label: "Bat" }
-          ]
-
+          saveMessageModal: false
       };
-  this.toggleSaveModal = this.toggleSaveModal.bind(this);
   this.toggleMessageModal = this.toggleMessageModal.bind(this);
+  this.toggleGridModal = this.toggleGridModal.bind(this);
 }
-  toggleSaveModal(){
+
+  toggleGridModal(){
       this.setState({
           modal : ! this.state.modal
       })
@@ -90,59 +81,51 @@ class Card extends React.Component {
       })
   }
 
-  changeIndex(v) {
-      this.setState({
-          index : v
-      })
-  }
-
-  exportSchedule(value){
-      if (value === 0) {
-          this.toggleSaveModal();
-      } else {
-          this.toggleSaveModal();
-          this.toggleMessageModal();
-          if (value === 1) {
-              this.state.saveMessage = "Session saved!";
-          } else if (value === 2) {
-              this.state.saveMessage = "Uploaded to server!";
-          }
-      }
-  }
-//test
-
-
-
 	render() {
 		const { card, isDragging, connectDragSource, connectDropTarget } = this.props;
 		const opacity = isDragging ? 0 : 1;
 
-
 		return connectDragSource(connectDropTarget(
     <div className="container-fluid">
 			<div style={{ style, opacity }}>
-				<ul className="list-group" onClick={this.toggleSaveModal}style={{"textAlign": "center"}}>
+				<ul className="list-group" onClick={this.toggleGridModal}style={{"textAlign": "center"}}>
 					<li className="list-group-item">{card.tutorCourse}</li>
 					<li className="list-group-item">{card.tutorName}</li>
 				</ul>
 			</div>
 
-      <Modal isOpen={this.state.modal} toggle={this.toggleSaveModal}>
-          <ModalHeader toggle={this.toggleSaveModal} >
+      <Modal isOpen={this.state.modal} toggle={this.toggleGridModal}>
+          <ModalHeader toggle={this.toggleGridModal} >
               <div style={{"textAlign": "left", "fontSize": "40px"}}>
                   <p>{card.tutorName}</p>
               </div>
-              <marquee behavior="alternate" width="”150″" scrollamount="”26″" scrolldelay="”10″" height="”37″" bgcolor="#FFFFFF">{card.day}</marquee>
+              <div>{card.day}</div>
           </ModalHeader>
           <ModalBody>
           <Provider store={store}>
             <div>
-              <h3>React Select</h3>
-                <div>Standard</div>
-                  <App />
+              <h3>Add/Delete</h3>
+                <div>Willing Course List of {card.tutorName}</div>
+                  <WillCourseList />
+                <div>Prefer Course List of {card.tutorName}</div>
+                  <PrefCourseList />
             </div>
           </Provider>
           </ModalBody>
+          <ModalFooter>
+            <button type="button" className="btn btn-success btn-block" onClick={this.toggleMessageModal} style={{"textAlign": "center"}} > Save </button>
+          </ModalFooter>
+
+          <Modal isOpen={this.state.saveMessageModal} toggle={this.toggleMessageModal}>
+              <ModalHeader toggle={this.toggleMessageModal} >
+                  <div style={{"textAlign": "center", "fontSize": "20px"}}>
+                      {card.day} Shift Of {card.tutorName}
+                  </div>
+              </ModalHeader>
+              <ModalBody>
+                  <div id="message-content"> Succesfully Modified </div>
+              </ModalBody>
+          </Modal>
       </Modal>
     </div>
 		));
