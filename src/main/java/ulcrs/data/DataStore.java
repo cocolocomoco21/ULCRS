@@ -1,19 +1,14 @@
 package ulcrs.data;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ulcrs.models.course.Course;
-import ulcrs.models.course.CourseIntensity;
-import ulcrs.models.course.CourseRequirements;
-import ulcrs.models.rank.Rank;
 import ulcrs.models.shift.Shift;
 import ulcrs.models.tutor.Tutor;
-import ulcrs.models.tutor.TutorPreferences;
-import ulcrs.models.tutor.TutorStatus;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -22,33 +17,11 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class DataStore {
 
-    // Json keys for objects from ULC response
-    private final static String COURSES_KEY = "courses";
-    private final static String SHIFTS_KEY = "shifts";
-    private final static String TUTORS_KEY = "tutors";
-
-    // Json keys for specific objects (tutor, course, shift) and their attributes
-    private final static String ID_KEY = "id";
-    private final static String NAME_KEY = "name";
-    private final static String DAY_KEY = "day";
-    private final static String START_TIME_KEY = "startTime";
-    private final static String END_TIME_KEY = "endTime";
-    private final static String FIRST_NAME_KEY = "firstName";
-    private final static String LAST_NAME_KEY = "lastName";
-    private final static String PREF_COURSES_KEY = "prefCourses";
-    private final static String WILLING_COURSES_KEY = "willingCourses";
-    private final static String PREF_SHIFTS_KEY = "prefShift";
-    private final static String WILLING_SHIFTS_KEY = "willingShift";
-    private final static String PREF_SHIFT_AMOUNT_KEY = "prefShiftAmount";
-    private final static String WILLING_SHIFT_AMOUNT_KEY = "willingShiftAmount";
+    private static Logger log = LoggerFactory.getLogger(DataStore.class);
 
     private List<Tutor> tutors;
     private List<Course> courses;
@@ -147,7 +120,10 @@ public class DataStore {
             List<String> response = DataFetch.fetchFromULCServer(cookie);
 
             // TODO error handling if populateData() fails
-            populateData(response);
+            boolean result = populateData(response);
+            if (!result) {
+                log.info("Failed to populate (fetch and update) data");
+            }
         }
     }
 
@@ -171,6 +147,7 @@ public class DataStore {
     static boolean populateData(List<String> response) {
         // Expect response with only one line of JSON
         if (response.size() != 1) {
+            log.info("Request failed because of invalid response", response);
             return false;
         }
 
@@ -178,188 +155,13 @@ public class DataStore {
         String responseString = response.get(0);
         JsonObject obj = new Gson().fromJson(responseString, JsonObject.class);
 
-        // Get courses, shifts, and tutors JsonArrays from JsonObject
-        JsonArray coursesJson = obj.get(COURSES_KEY).getAsJsonArray();
-        JsonArray shiftsJson = obj.get(SHIFTS_KEY).getAsJsonArray();
-        JsonArray tutorsJson = obj.get(TUTORS_KEY).getAsJsonArray();
-
-        // TODO far better error catching for malformed json
-
-        // Transform json shifts into Shift objects
-        List<Shift> shifts = new ArrayList<>();
-        shiftsJson.forEach(element -> {
-            JsonObject json = element.getAsJsonObject();
-
-            // id
-            String idStr = json.get(ID_KEY).getAsString();
-            int id = Integer.valueOf(idStr);
-
-            // day
-            String dayStr = json.get(DAY_KEY).getAsString();
-            DayOfWeek day = DayOfWeek.valueOf(dayStr);
-
-            // startTime
-            String startTimeStr = json.get(START_TIME_KEY).getAsString();
-            LocalTime startTime = LocalTime.parse(startTimeStr);
-
-            // endTime
-            String endTimeStr = json.get(END_TIME_KEY).getAsString();
-            LocalTime endTime = LocalTime.parse(endTimeStr);
-
-            Shift shift = new Shift(id, day, startTime, endTime);
-            shifts.add(shift);
-        });
-
-        // Transform json courses into Course objects
-        List<Course> courses = new ArrayList<>();
-        coursesJson.forEach(element -> {
-            JsonObject json = element.getAsJsonObject();
-
-            // id
-            String idStr = json.get(ID_KEY).getAsString();
-            int id = Integer.valueOf(idStr);
-
-            // name
-            String name = json.get(NAME_KEY).getAsString();
-
-            // TODO courseRequirements
-
-            // TODO hack to make things work for Iteration 2. Make better
-            Course course = new Course(id, name, new CourseRequirements(Collections.emptySet(), 0, 0, CourseIntensity.MEDIUM));
-            courses.add(course);
-        });
-
-        // Transform json tutors into Tutor objects
-        List<Tutor> tutors = new ArrayList<>();
-        tutorsJson.forEach(element -> {
-            JsonObject json = element.getAsJsonObject();
-
-            // id
-            String idStr = json.get(ID_KEY).getAsString();
-            int id = Integer.valueOf(idStr);
-
-            // firstName
-            String firstName = json.get(FIRST_NAME_KEY).getAsString();
-
-            // lastName
-            String lastName = json.get(LAST_NAME_KEY).getAsString();
-
-            // Shift preference
-            HashMap<Rank, Set<Shift>> shiftPreferences = new HashMap<>();
-            JsonArray prefShiftJson = json.get(PREF_SHIFTS_KEY).getAsJsonArray();
-            JsonArray willingShiftJson = json.get(WILLING_SHIFTS_KEY).getAsJsonArray();
-            if (prefShiftJson.size() == 0 || willingShiftJson.size() == 0) {
-                // Bad data, filter it out
-                // TODO continue
-            }
-
-            HashSet<Shift> preferredShifts = new HashSet<>();
-            prefShiftJson.forEach(prefShift-> {
-                int shiftId = prefShift.getAsInt();
-                // TODO super inefficient, use HashMap on course id
-                Shift shift = shifts.stream()
-                        .filter(s -> s.getId() == shiftId)
-                        .findFirst()
-                        .orElse(null);
-                if (shift == null) {
-                    // TODO fail
-                }
-
-                preferredShifts.add(shift);
-            });
-
-            // Willing shift
-            HashSet<Shift> willingShifts = new HashSet<>();
-            willingShiftJson.forEach(willingShift -> {
-                int shiftId = willingShift.getAsInt();
-                // TODO super inefficient, use HashMap on course id
-                Shift shift = shifts.stream()
-                        .filter(s -> s.getId() == shiftId)
-                        .findFirst()
-                        .orElse(null);
-                if (shift == null) {
-                    // TODO fail
-                }
-
-                willingShifts.add(shift);
-            });
-
-            shiftPreferences.put(Rank.PREFER, preferredShifts);
-            shiftPreferences.put(Rank.WILLING, willingShifts);
-
-            // Course preference
-            HashMap<Rank, Set<Course>> coursePreferences = new HashMap<>();
-
-            // Preferred courses
-            JsonArray prefCourseJson = json.get(PREF_COURSES_KEY).getAsJsonArray();
-            JsonArray willingCourseJson = json.get(WILLING_COURSES_KEY).getAsJsonArray();
-            if (prefCourseJson.size() == 0 || willingCourseJson.size() == 0) {
-                // Bad data, filter it out
-                // TODO continue
-            }
-
-            HashSet<Course> preferredCourses = new HashSet<>();
-            prefCourseJson.forEach(prefCourse -> {
-                int courseId = prefCourse.getAsInt();
-                // TODO super inefficient, use HashMap on course id
-                Course course = courses.stream()
-                        .filter(c -> c.getId() == courseId)
-                        .findFirst()
-                        .orElse(null);
-                if (course == null) {
-                    // TODO fail
-                }
-
-                preferredCourses.add(course);
-            });
-
-            // Willing courses
-            HashSet<Course> willingCourses = new HashSet<>();
-            willingCourseJson.forEach(willingCourse -> {
-                int courseId = willingCourse.getAsInt();
-                // TODO super inefficient, use HashMap on course id
-                Course course = courses.stream()
-                        .filter(c -> c.getId() == courseId)
-                        .findFirst()
-                        .orElse(null);
-                if (course == null) {
-                    // TODO fail
-                }
-
-                willingCourses.add(course);
-            });
-
-            coursePreferences.put(Rank.PREFER, preferredCourses);
-            coursePreferences.put(Rank.WILLING, willingCourses);
-
-            // Shift frequency preference
-            HashMap<Rank, Integer> shiftFrequencyPreference = new HashMap<>();
-
-            JsonElement prefShiftAmountJson = json.get(PREF_SHIFT_AMOUNT_KEY);
-            JsonElement willingShiftAmountJson = json.get(WILLING_SHIFT_AMOUNT_KEY);
-            if (prefShiftAmountJson.isJsonNull() || willingShiftAmountJson.isJsonNull()) {
-                // Bad data
-                // TODO continue
-            }
-
-            Integer prefShiftAmount = prefShiftAmountJson.isJsonNull() ? null : prefShiftAmountJson.getAsInt();
-            Integer willingShiftAmount = willingShiftAmountJson.isJsonNull() ? null : willingShiftAmountJson.getAsInt();
-            shiftFrequencyPreference.put(Rank.PREFER, prefShiftAmount);
-            shiftFrequencyPreference.put(Rank.WILLING, willingShiftAmount);
-
-            // Tutor preference
-            TutorPreferences tutorPreferences = new TutorPreferences(coursePreferences, shiftPreferences, shiftFrequencyPreference);
-
-            // TODO TutorStatus
-
-            Tutor tutor = new Tutor(id, firstName, lastName, tutorPreferences, TutorStatus.ACTIVE);
-            tutors.add(tutor);
-        });
+        // Parse data
+        ParsedULCResponse parsedResponse = DataParse.parse(obj);
 
         // Update DataStore's fields
-        getInstance().courses = courses;
-        getInstance().shifts = shifts;
-        getInstance().tutors = tutors;
+        getInstance().courses = parsedResponse.getCourses();
+        getInstance().shifts = parsedResponse.getShifts();
+        getInstance().tutors = parsedResponse.getTutors();
 
         getInstance().timeFetched = LocalDateTime.now();
 

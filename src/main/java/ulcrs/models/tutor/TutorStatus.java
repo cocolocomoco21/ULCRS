@@ -15,4 +15,10 @@ public enum TutorStatus {
     public String getValue() {
         return this.value;
     }
+
+    public static TutorStatus fromULCRole(String value) {
+        // All tutors received from the ULC should be considered Active - filtering for tutors to exclude from
+        // scheduling is done separately
+        return TutorStatus.ACTIVE;
+    }
 }
