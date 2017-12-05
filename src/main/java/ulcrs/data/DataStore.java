@@ -2,6 +2,7 @@ package ulcrs.data;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -41,6 +43,12 @@ public class DataStore {
     private final static String END_TIME_KEY = "endTime";
     private final static String FIRST_NAME_KEY = "firstName";
     private final static String LAST_NAME_KEY = "lastName";
+    private final static String PREF_COURSES_KEY = "prefCourses";
+    private final static String WILLING_COURSES_KEY = "willingCourses";
+    private final static String PREF_SHIFTS_KEY = "prefShift";
+    private final static String WILLING_SHIFTS_KEY = "willingShift";
+    private final static String PREF_SHIFT_AMOUNT_KEY = "prefShiftAmount";
+    private final static String WILLING_SHIFT_AMOUNT_KEY = "willingShiftAmount";
 
     private List<Tutor> tutors;
     private List<Course> courses;
@@ -177,25 +185,6 @@ public class DataStore {
 
         // TODO far better error catching for malformed json
 
-        // Transform json courses into Course objects
-        List<Course> courses = new ArrayList<>();
-        coursesJson.forEach(element -> {
-            JsonObject json = element.getAsJsonObject();
-
-            // id
-            String idStr = json.get(ID_KEY).getAsString();
-            int id = Integer.valueOf(idStr);
-
-            // name
-            String name = json.get(NAME_KEY).getAsString();
-
-            // TODO courseRequirements
-
-            // TODO hack to make things work for Iteration 2. Make better
-            Course course = new Course(id, name, new CourseRequirements(Collections.emptySet(), 0, 0, CourseIntensity.MEDIUM));
-            courses.add(course);
-        });
-
         // Transform json shifts into Shift objects
         List<Shift> shifts = new ArrayList<>();
         shiftsJson.forEach(element -> {
@@ -221,6 +210,25 @@ public class DataStore {
             shifts.add(shift);
         });
 
+        // Transform json courses into Course objects
+        List<Course> courses = new ArrayList<>();
+        coursesJson.forEach(element -> {
+            JsonObject json = element.getAsJsonObject();
+
+            // id
+            String idStr = json.get(ID_KEY).getAsString();
+            int id = Integer.valueOf(idStr);
+
+            // name
+            String name = json.get(NAME_KEY).getAsString();
+
+            // TODO courseRequirements
+
+            // TODO hack to make things work for Iteration 2. Make better
+            Course course = new Course(id, name, new CourseRequirements(Collections.emptySet(), 0, 0, CourseIntensity.MEDIUM));
+            courses.add(course);
+        });
+
         // Transform json tutors into Tutor objects
         List<Tutor> tutors = new ArrayList<>();
         tutorsJson.forEach(element -> {
@@ -236,24 +244,115 @@ public class DataStore {
             // lastName
             String lastName = json.get(LAST_NAME_KEY).getAsString();
 
-            // TODO tutorPreferences
-            // TODO tutorStatus
+            // Shift preference
+            HashMap<Rank, Set<Shift>> shiftPreferences = new HashMap<>();
+            JsonArray prefShiftJson = json.get(PREF_SHIFTS_KEY).getAsJsonArray();
+            JsonArray willingShiftJson = json.get(WILLING_SHIFTS_KEY).getAsJsonArray();
+            if (prefShiftJson.size() == 0 || willingShiftJson.size() == 0) {
+                // Bad data, filter it out
+                // TODO continue
+            }
 
-            // TODO hack to make things work for Iteration 2. Make better
-            HashMap<Rank, Set<Shift>> emptyShiftPref = new HashMap<>();
+            HashSet<Shift> preferredShifts = new HashSet<>();
+            prefShiftJson.forEach(prefShift-> {
+                int shiftId = prefShift.getAsInt();
+                // TODO super inefficient, use HashMap on course id
+                Shift shift = shifts.stream()
+                        .filter(s -> s.getId() == shiftId)
+                        .findFirst()
+                        .orElse(null);
+                if (shift == null) {
+                    // TODO fail
+                }
 
-            emptyShiftPref.put(Rank.PREFER, Collections.emptySet());
-            emptyShiftPref.put(Rank.WILLING, Collections.emptySet());
+                preferredShifts.add(shift);
+            });
 
-            HashMap<Rank, Set<Course>> emptyCoursePref = new HashMap<>();
-            emptyCoursePref.put(Rank.PREFER, Collections.emptySet());
-            emptyCoursePref.put(Rank.WILLING, Collections.emptySet());
+            // Willing shift
+            HashSet<Shift> willingShifts = new HashSet<>();
+            willingShiftJson.forEach(willingShift -> {
+                int shiftId = willingShift.getAsInt();
+                // TODO super inefficient, use HashMap on course id
+                Shift shift = shifts.stream()
+                        .filter(s -> s.getId() == shiftId)
+                        .findFirst()
+                        .orElse(null);
+                if (shift == null) {
+                    // TODO fail
+                }
 
-            HashMap<Rank, Integer> emptyShiftAmount = new HashMap<>();
-            emptyShiftAmount.put(Rank.PREFER, 0);
-            emptyShiftAmount.put(Rank.WILLING, 0);
+                willingShifts.add(shift);
+            });
 
-            Tutor tutor = new Tutor(id, firstName, lastName, new TutorPreferences(emptyCoursePref, emptyShiftPref, emptyShiftAmount), TutorStatus.ACTIVE);
+            shiftPreferences.put(Rank.PREFER, preferredShifts);
+            shiftPreferences.put(Rank.WILLING, willingShifts);
+
+            // Course preference
+            HashMap<Rank, Set<Course>> coursePreferences = new HashMap<>();
+
+            // Preferred courses
+            JsonArray prefCourseJson = json.get(PREF_COURSES_KEY).getAsJsonArray();
+            JsonArray willingCourseJson = json.get(WILLING_COURSES_KEY).getAsJsonArray();
+            if (prefCourseJson.size() == 0 || willingCourseJson.size() == 0) {
+                // Bad data, filter it out
+                // TODO continue
+            }
+
+            HashSet<Course> preferredCourses = new HashSet<>();
+            prefCourseJson.forEach(prefCourse -> {
+                int courseId = prefCourse.getAsInt();
+                // TODO super inefficient, use HashMap on course id
+                Course course = courses.stream()
+                        .filter(c -> c.getId() == courseId)
+                        .findFirst()
+                        .orElse(null);
+                if (course == null) {
+                    // TODO fail
+                }
+
+                preferredCourses.add(course);
+            });
+
+            // Willing courses
+            HashSet<Course> willingCourses = new HashSet<>();
+            willingCourseJson.forEach(willingCourse -> {
+                int courseId = willingCourse.getAsInt();
+                // TODO super inefficient, use HashMap on course id
+                Course course = courses.stream()
+                        .filter(c -> c.getId() == courseId)
+                        .findFirst()
+                        .orElse(null);
+                if (course == null) {
+                    // TODO fail
+                }
+
+                willingCourses.add(course);
+            });
+
+            coursePreferences.put(Rank.PREFER, preferredCourses);
+            coursePreferences.put(Rank.WILLING, willingCourses);
+
+            // Shift frequency preference
+            HashMap<Rank, Integer> shiftFrequencyPreference = new HashMap<>();
+
+            JsonElement prefShiftAmountJson = json.get(PREF_SHIFT_AMOUNT_KEY);
+            JsonElement willingShiftAmountJson = json.get(WILLING_SHIFT_AMOUNT_KEY);
+            if (prefShiftAmountJson.isJsonNull() || willingShiftAmountJson.isJsonNull()) {
+                // Bad data
+                // TODO continue
+            }
+
+            Integer prefShiftAmount = prefShiftAmountJson.isJsonNull() ? null : prefShiftAmountJson.getAsInt();
+            Integer willingShiftAmount = willingShiftAmountJson.isJsonNull() ? null : willingShiftAmountJson.getAsInt();
+            shiftFrequencyPreference.put(Rank.PREFER, prefShiftAmount);
+            shiftFrequencyPreference.put(Rank.WILLING, willingShiftAmount);
+
+            // Tutor preference
+            TutorPreferences tutorPreferences = new TutorPreferences(coursePreferences, shiftPreferences, shiftFrequencyPreference);
+
+            // TODO TutorStatus
+
+            Tutor tutor = new Tutor(id, firstName, lastName, tutorPreferences, TutorStatus.ACTIVE);
             tutors.add(tutor);
         });
 

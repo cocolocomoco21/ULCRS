@@ -5,8 +5,10 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import ulcrs.models.course.Course;
+import ulcrs.models.rank.Rank;
 import ulcrs.models.shift.Shift;
 import ulcrs.models.tutor.Tutor;
+import ulcrs.models.tutor.TutorStatus;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -14,6 +16,7 @@ import java.io.InputStreamReader;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,7 +50,7 @@ public class DataStoreTest {
         Course course = DataStore.getCourse(2673, "");
         assertThat(course.getId(), is(2673));
         assertThat(course.getName(), is("CBE 310"));
-        assertThat(course.getCourseRequirements(), is(nullValue()));
+        assertThat(course.getCourseRequirements().getRequiredShifts().size(), is(0));
     }
 
     @Test
@@ -73,8 +76,8 @@ public class DataStoreTest {
         assertThat(tutor.getId(), is(788586));
         assertThat(tutor.getFirstName(), is("Darth"));
         assertThat(tutor.getLastName(), is("Vader"));
-        assertThat(tutor.getTutorPreferences(), is(nullValue()));
-        assertThat(tutor.getTutorStatus(), is(nullValue()));
+        assertThat(tutor.getTutorPreferences().getCoursePreferences().get(Rank.PREFER), is(Collections.emptySet()));
+        assertThat(tutor.getTutorStatus(), is(TutorStatus.ACTIVE));
     }
 
     @Test
