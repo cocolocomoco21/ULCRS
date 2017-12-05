@@ -34,7 +34,7 @@ class ViewSchedulePage  extends React.Component {
             saveMessage: "",
             saveMessageModal: false,
             exiting: false,
-            index : 0
+            index : 0,
         };
         this.toggleSaveModal = this.toggleSaveModal.bind(this);
         this.toggleMessageModal = this.toggleMessageModal.bind(this);
@@ -42,13 +42,13 @@ class ViewSchedulePage  extends React.Component {
         this.exit = this.exit.bind(this);
         this.toggleExiting = this.toggleExiting.bind(this);
         this.changeIndex = this.changeIndex.bind(this);
-        this.tutorData = null;
+        /*this.tutorData = null;
         ipc.on("get-tutor-data",  (event, text) => {
           let d = JSON.parse(text);
           let p = new Parser();
           this.tutorData = p.getTutors(d);
         });
-        ipc.send("request-tutor-data");
+        ipc.send("request-tutor-data");*/
     }
 
     toggleExiting(){
