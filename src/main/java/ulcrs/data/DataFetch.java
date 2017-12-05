@@ -12,7 +12,7 @@ import java.util.List;
 class DataFetch {
 
     // Constants for request
-    private final static String DROP_IN_REQUEST_URL = "https://dropin-dev.engr.wisc.edu/services/DIMainController.php";
+    private final static String DROP_IN_REQUEST_URL = "https://dropin.engr.wisc.edu/services/DIMainController.php";
     private final static String DROP_IN_REQUEST_DATA = "service=ScheduleService&function=exportSchedulerInformation";
     private final static String DROP_IN_REQUEST_REQUEST_TYPE = "POST";
     private final static String DROP_IN_REQUEST_CONTENT_TYPE = "application/x-www-form-urlencoded";
