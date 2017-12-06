@@ -88,8 +88,8 @@ class ViewSchedulePage  extends React.Component {
             } else if (value === 2) {
                 this.state.saveMessage = "Uploaded to server: " + filename.value;
             }
+            ipc.send("save-session", filename.value, this.state.schedules[0]);
         }
-        ipc.send("save-session", filename.value, this.state.schedules[0]);
     }
 
     exit(){
