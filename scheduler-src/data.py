@@ -2,14 +2,14 @@ import json
 
 
 def get_tutors():
-    with open('resources/mockTutors_Full.json', 'r') as f:
+    with open('resources/mockTutors_FrontendExpects.json', 'r') as f:
         raw_tutors = json.loads(f.read())
         tutors = [tutor for tutor in raw_tutors if tutor['tutorStatus'] == 'ACTIVE']
         return tutors
 
 
 def get_courses():
-    with open('resources/mockCourses_Full.json', 'r') as f:
+    with open('resources/mockCourses_FrontendExpects.json', 'r') as f:
         return json.loads(f.read())
 
 
@@ -66,3 +66,17 @@ def get_preferred_shift_amount(course):
 
 def get_intensity(course):
     return course['courseRequirements']['intensity']
+
+
+def get_required_tutor_amount(course, day):
+    for shift in course['courseRequirements']['requiredShifts']:
+        if shift['id'] == day:
+            return int(shift['requiredTutorAmount'])
+    return 0
+
+
+def get_preferred_tutor_amount(course, day):
+    for shift in course['courseRequirements']['requiredShifts']:
+        if shift['id'] == day:
+            return int(shift['preferredTutorAmount'])
+    return 0

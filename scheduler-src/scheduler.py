@@ -74,47 +74,51 @@ def main():
     course_shift_scores = []
     for k in range(num_courses):
         course = courses[k]
-        course_days = 0
+        course_days = []
         for j in range(num_days):
-            day = j
-            if sum([shifts[(i, j, k)] for i in range(num_tutors)]) > 0:
-                course_days += 1
-        solver.Add(course_days >= data.get_required_shift_amount(course))
-        course_shift_scores.append(max(data.get_preferred_shift_amount(course) - course_days, 0))
+            course_day = solver.BoolVar('course %d on day %d' % (k, j))
+            solver.Add(course_day == (sum([shifts[(i, j, k)] for i in range(num_tutors)]) > 0))
+            course_days.append(course_day)
+        solver.Add(sum(course_days) >= data.get_required_shift_amount(course))
+        course_shift_scores.append(abs(data.get_preferred_shift_amount(course) - sum(course_days)))
 
     # tutor has maximum course intensity limit
     tutor_intensity_scores = []
     for i in range(num_tutors):
-        tutor_intensity = 0
         for j in range(num_days):
+            course_intensities = []
             for k in range(num_courses):
                 course = courses[k]
-                if shifts[(i, j, k)]:
-                    course_intensity = 0
-                    intensity_str = data.get_intensity(course)
-                    if intensity_str == 'HIGH':
-                        course_intensity = 6
-                    elif intensity_str == 'MEDIUM':
-                        course_intensity = 3
-                    elif intensity_str == 'LOW':
-                        course_intensity = 1
-                    tutor_intensity += course_intensity
-        solver.Add(tutor_intensity <= 6)
-        tutor_intensity_scores.append(6 - tutor_intensity)
+                intensity_str = data.get_intensity(course)
+                intensity = 0
+                if intensity_str == 'HIGH':
+                    intensity = 6
+                elif intensity_str == 'MEDIUM':
+                    intensity = 3
+                elif intensity_str == 'LOW':
+                    intensity = 1
+                course_intensity = solver.IntVar(0, 7, 'tutor %d day %d course %d intensity' % (i, j, k))
+                solver.Add(course_intensity == intensity * shifts[(i, j, k)])
+                course_intensities.append(course_intensity)
+        solver.Add(sum(course_intensities) <= 6)
+        tutor_intensity_scores.append(6 - sum(course_intensities))
 
     # course has enough tutor on required days
+    course_tutor_requirement_scores = []
     for j in range(num_days):
         day = j
         for k in range(num_courses):
             course = courses[k]
             if day in data.get_required_shifts(course):
-                # TODO: Add required tutor amount for each required day for courses
-                solver.Add(sum([shifts[(i, j, k)] for i in range(num_tutors)]) >= 1)
+                tutor_num = sum([shifts[(i, j, k)] for i in range(num_tutors)])
+                solver.Add(tutor_num >= data.get_required_tutor_amount(course, day))
+                course_tutor_requirement_scores.append(abs(data.get_preferred_tutor_amount(course, day) - tutor_num))
 
     solver.Add(score == sum(tutor_course_scores)
                + sum(tutor_shift_scores)
                + sum(course_shift_scores)
-               + sum(tutor_intensity_scores))
+               + sum(tutor_intensity_scores)
+               + sum(course_tutor_requirement_scores))
     objective = solver.Minimize(score, 1)
 
     # Create the decision builder.

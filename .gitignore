@@ -9,6 +9,9 @@ out/
 .settings/
 bin/
 
+# Python
+*.pyc
+
 # Idea
 .idea
 *.iml
