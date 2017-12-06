@@ -147,7 +147,8 @@ app.on('ready', function () {
         fetch("http://localhost:4567/ulcrs/schedule/generate",
             {
                 method: "POST",
-                body:JSON.stringify("generate")
+                body:JSON.stringify({excludeIds:excludedIds}),
+                headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
             })
             .then(res => {
                 console.log(res);
@@ -160,7 +161,11 @@ app.on('ready', function () {
 
         // set up time interval
         polling_schedules = setInterval(()=>{
-            fetch('http://localhost:4567/ulcrs/schedule/')
+            fetch('http://localhost:4567/ulcrs/schedule/',
+                        {
+                            headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
+                        }
+                 )
                 .then(res => res.text())
                 .then(data => {
                     console.log(data);
