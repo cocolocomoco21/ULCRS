@@ -9,7 +9,7 @@ let requireLocal = ( localModule ) =>{
 // };
 
 let dataLocation = require('path').resolve(__dirname, '..','..', 'data', 'data.json');
-let mockData = require('path').resolve(__dirname, '..', 'data', 'mockTutorData2.json');
+let mockData = require('path').resolve(__dirname, '..', 'data', 'mockTutorData.json');
 let ReactDOM = require('react-dom');
 let React = require('react');
 let ViewToolBar = requireLocal('./viewtoolbar');
@@ -52,7 +52,7 @@ class ViewInfo extends React.Component {
       let d = JSON.parse(text);
       let p = new Parser();
       this.setState({
-          tutors: p.getTutors(d),
+          tutors: p.getTutors(mock),
           tutorData: d,
       });
     });

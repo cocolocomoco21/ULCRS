@@ -22,7 +22,7 @@ class Parser{
 
             let courses = pref.coursePreferences;
 
-            tempTutor.coursePreference = courses.PREFER.map((c)=>c.name);
+            tempTutor.coursePreference = _.map(courses.PREFER, (c)=>c.name);
             tempTutor.courseWilling = _.map(courses.WILLING, (c)=>c.name);
 
             let days = pref.shiftPreferences;
