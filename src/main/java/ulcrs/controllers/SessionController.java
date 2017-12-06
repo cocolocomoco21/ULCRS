@@ -27,12 +27,12 @@ import static spark.Spark.post;
 
 public class SessionController extends BaseController {
 
-    private static final String WORKSPACE_PATH = "sessions/";
+    private static final String WORKSPACE_PATH = "../sessions/";
 
     @Override
     public RouteGroup routes() {
         return () -> {
-            before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
+            before("/*", (request, response) -> log.info("endpoint: " + request.requestMethod() + " " + request.pathInfo()));
             get("/", this::getSessionList, exposeOnlyGson::toJson);
             get("/:name", this::getSession, gson::toJson);
             post("/", this::saveSession, gson::toJson);
@@ -117,6 +117,8 @@ public class SessionController extends BaseController {
                 printWriter.close();
             }
         }
+
+        log.info("Session \"" + filename + "\" successfully saved");
         return true;
     }
 
