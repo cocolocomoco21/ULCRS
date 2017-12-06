@@ -70,40 +70,6 @@ public class DataParse {
     }
 
     /**
-     * Parse courses.
-     *
-     * @param input - JsonObject response from ULC to parse into ULCRS data.
-     * @param shifts - HashMap of shifts for easy lookup for already-parsed shifts.
-     * @return HashMap - return HashMap of id:course for courses parsed from input.
-     */
-    private static HashMap<Integer, Course> parseCourses(JsonObject input, HashMap<Integer, Shift> shifts) {
-        // Get course JsonArray from JsonObject
-        JsonArray coursesJson = input.get(COURSES_KEY).getAsJsonArray();
-
-        // Transform json courses into Course objects
-        HashMap<Integer, Course> courses = new HashMap<>();
-        coursesJson.forEach(element -> {
-            JsonObject json = element.getAsJsonObject();
-
-            // id
-            String idStr = json.get(ID_KEY).getAsString();
-            int id = Integer.valueOf(idStr);
-
-            // name
-            String name = json.get(NAME_KEY).getAsString();
-
-            // TODO courseRequirements
-            // This will require the shifts list passed in to refer to existing shifts
-
-            // TODO hack to make things work for Iteration 2. Make better
-            Course course = new Course(id, name, new CourseRequirements(Collections.emptySet(), 0, 0, CourseIntensity.MEDIUM));
-            courses.put(id, course);
-        });
-
-        return courses;
-    }
-
-    /**
      * Parse shifts.
      *
      * @param input - JsonObject response from ULC to parse into ULCRS data.
@@ -142,7 +108,41 @@ public class DataParse {
     }
 
     /**
-     * Parse tutors.
+     * Parse courses. This depends on shifts.
+     *
+     * @param input - JsonObject response from ULC to parse into ULCRS data.
+     * @param shifts - HashMap of shifts for easy lookup for already-parsed shifts.
+     * @return HashMap - return HashMap of id:course for courses parsed from input.
+     */
+    private static HashMap<Integer, Course> parseCourses(JsonObject input, HashMap<Integer, Shift> shifts) {
+        // Get course JsonArray from JsonObject
+        JsonArray coursesJson = input.get(COURSES_KEY).getAsJsonArray();
+
+        // Transform json courses into Course objects
+        HashMap<Integer, Course> courses = new HashMap<>();
+        coursesJson.forEach(element -> {
+            JsonObject json = element.getAsJsonObject();
+
+            // id
+            String idStr = json.get(ID_KEY).getAsString();
+            int id = Integer.valueOf(idStr);
+
+            // name
+            String name = json.get(NAME_KEY).getAsString();
+
+            // TODO courseRequirements
+            // This will require the shifts list passed in to refer to existing shifts
+
+            // TODO hack to make things work for Iteration 2. Make better
+            Course course = new Course(id, name, new CourseRequirements(Collections.emptySet(), 0, 0, CourseIntensity.MEDIUM));
+            courses.put(id, course);
+        });
+
+        return courses;
+    }
+
+    /**
+     * Parse tutors. This depends on courses and shifts.
      *
      * @param input - JsonObject response from ULC to parse into ULCRS data.
      * @param courses - HashMap of courses for easy lookup for already-parsed courses.
@@ -181,20 +181,22 @@ public class DataParse {
             prefShiftJson.forEach(prefShift-> {
                 int shiftId = prefShift.getAsInt();
                 Shift shift = shifts.get(shiftId);
-                if (shift == null) {
-                    // TODO fail
+
+                // Skip over non-extistent shifts
+                if (shift != null) {
+                    preferredShifts.add(shift);
                 }
-                preferredShifts.add(shift);
             });
 
             HashSet<Shift> willingShifts = new HashSet<>();
             willingShiftJson.forEach(willingShift -> {
                 int shiftId = willingShift.getAsInt();
                 Shift shift = shifts.get(shiftId);
-                if (shift == null) {
-                    // TODO fail
+
+                // Skip over non-existent shifts
+                if (shift != null) {
+                    willingShifts.add(shift);
                 }
-                willingShifts.add(shift);
             });
 
             shiftPreferences.put(Rank.PREFER, preferredShifts);
@@ -213,20 +215,22 @@ public class DataParse {
             prefCourseJson.forEach(prefCourse -> {
                 int courseId = prefCourse.getAsInt();
                 Course course = courses.get(courseId);
-                if (course == null) {
-                    // TODO fail
+
+                // Skip over non-extistent courses
+                if (course != null) {
+                    preferredCourses.add(course);
                 }
-                preferredCourses.add(course);
             });
 
             HashSet<Course> willingCourses = new HashSet<>();
             willingCourseJson.forEach(willingCourse -> {
                 int courseId = willingCourse.getAsInt();
                 Course course = courses.get(courseId);
-                if (course == null) {
-                    // TODO fail
+
+                // Skip over non-extistent courses
+                if (course != null) {
+                    willingCourses.add(course);
                 }
-                willingCourses.add(course);
             });
 
             coursePreferences.put(Rank.PREFER, preferredCourses);
