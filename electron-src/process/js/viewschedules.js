@@ -102,7 +102,7 @@ class ViewSchedulePage  extends React.Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-2">
+                    <div className="col-2 padding-0">
                         <ScheduleToolbar schedules={this.state.schedules} changeIndex={this.changeIndex}/>
                     </div>
 
