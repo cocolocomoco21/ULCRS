@@ -33,10 +33,12 @@ class ViewSchedulePage  extends React.Component {
             saveMessage: "",
             saveMessageModal: false,
             exiting: false,
-            index : 0
+            index : 0,
+            schedule : null
         };
         this.toggleSaveModal = this.toggleSaveModal.bind(this);
         this.toggleMessageModal = this.toggleMessageModal.bind(this);
+        this.getSchedule = this.getSchedule.bind(this);
         this.exportSchedule = this.exportSchedule.bind(this);
         this.exit = this.exit.bind(this);
         this.toggleExiting = this.toggleExiting.bind(this);
@@ -70,19 +72,24 @@ class ViewSchedulePage  extends React.Component {
         })
     }
 
+    getSchedule(input) {
+        this.state.schedule = input;
+    }
+
     exportSchedule(value){
-        var filename = document.getElementById("filename");
+        let filename = document.getElementById("filename");
         if (value === 0) {
             this.toggleSaveModal();
         } else {
             this.toggleSaveModal();
             this.toggleMessageModal();
             if (value === 1) {
-                this.state.saveMessage = filename.value;
+                this.state.saveMessage = "Session saved: " + filename.value;
             } else if (value === 2) {
-                this.state.saveMessage = "Uploaded to server!";
+                this.state.saveMessage = "Uploaded to server: " + filename.value;
             }
         }
+        ipc.send("save-session", filename.value, this.state.schedules[0]);
     }
 
     exit(){
@@ -99,7 +106,7 @@ class ViewSchedulePage  extends React.Component {
                     </div>
 
                     <div className="col-8">
-                        <ScheduleTable schedules={this.state.schedules} index={this.state.index}/>
+                        <ScheduleTable schedules={this.state.schedules} index={this.state.index} getSchedule={this.getSchedule}/>
                     </div>
 
                     <div className="col-2">

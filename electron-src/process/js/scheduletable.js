@@ -15,12 +15,17 @@ class ScheduleTable extends React.Component {
             index : this.props.index
         };
         this.scheduleName = this.scheduleName.bind(this);
+        this.passSchedule = this.passSchedule.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
             index : nextProps.index
         });
+    }
+
+    passSchedule(schedule) {
+        this.props.getSchedule(schedule);
     }
 
     scheduleName() {
@@ -95,6 +100,8 @@ class ScheduleTable extends React.Component {
             {id: 8, tutorName: "dog", tutorCourse: "CS 243"},
             {id: 9, tutorName: "pangolin", tutorCourse: "CS 789"}
         ];
+
+        this.passSchedule(containerList);
 
         return (
             <div className="container">

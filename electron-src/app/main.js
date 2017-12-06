@@ -198,5 +198,17 @@ app.on('ready', function () {
         fetch('http://localhost:4567/ulcrs/course/', addCookieOption)
             .then(res => res.text())
             .then(body => event.sender.send("get-course-data", body));
+    });
+
+    ipc.on("save-session", (event, filename, schedule) => {
+        let addCookieOption = {
+            headers: {"Set-Cookie": [engrCookie.name + "=" + engrCookie.value]},
+            method: "POST",
+            body: JSON.stringify(schedule)
+        };
+        console.log("====================Save Session is being called=======================");
+        console.log(addCookieOption.body);
+        fetch('http://localhost:4567/ulcrs/session/' + filename, addCookieOption);
+        console.log("====================Fetch is being called=======================");
     })
 }); //app is ready
