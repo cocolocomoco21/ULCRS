@@ -103,6 +103,10 @@ public class SessionController extends BaseController {
 
         PrintWriter printWriter = null;
         try {
+            // Make "sessions" directory if it doesn't exist
+            File sessionsDir = new File(WORKSPACE_PATH);
+            sessionsDir.mkdir();
+
             printWriter = new PrintWriter(WORKSPACE_PATH + session.getName());
             printWriter.println(gson.toJson(session));
         } catch (IOException e) {
