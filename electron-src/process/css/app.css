@@ -446,12 +446,9 @@
 
 #generate-button-pos{
   position: absolute;
-  bottom: 70px;
-  left: 10px;
-  height: 100px;
-  width:75px;
-  text-align: left;
-
+  bottom: 30px;
+  right: 30px;
+  height: 70px;
 }
 
 #center{
@@ -460,6 +457,12 @@
 }
 
 
+.word-wrap {
+    word-break: break-all;
+}
+.no-wrap {
+    white-space: nowrap;
+}
 
 .btn-lg{
   padding: 1rem 8rem;
@@ -495,7 +498,7 @@
 }
 
 .table-scroll {
-    height: 600px;
+    height: 550px;
     overflow-y: scroll;
     overflow-x: scroll;
 }
