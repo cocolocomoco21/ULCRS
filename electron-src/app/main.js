@@ -206,9 +206,10 @@ app.on('ready', function () {
             method: "POST",
             body: JSON.stringify(schedule)
         };
-        console.log("====================Save Session is being called=======================");
+        console.log("====================Fetch call started=======================");
+        console.log("-------Option.body-------");
         console.log(addCookieOption.body);
         fetch('http://localhost:4567/ulcrs/session/' + filename, addCookieOption);
-        console.log("====================Fetch is being called=======================");
+        console.log("====================Fetch call ended=======================");
     })
 }); //app is ready
