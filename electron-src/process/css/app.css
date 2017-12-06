@@ -454,15 +454,29 @@
 
 }
 
-#load-server{
+#load-server-button{
   background-color: #c5050c;
   color: #f7f7f7;
+  border-color: #c5050c;
+}
+#load-server-button:hover{
+  background-color: #9b0000;
+  color: #f7f7f7;
+  border-color: #c5050c;
 }
 
-#load-from-json{
+#load-from-json-button{
   background-color: #c5050c;
   color: #f7f7f7;
+  border-color: #c5050c;
 }
+
+#load-from-json-button:hover{
+  background-color: #9b0000;
+  color: #f7f7f7;
+  border-color: #c5050c;
+}
+
 
 #center{
     margin-left: auto;
