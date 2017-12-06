@@ -85,12 +85,31 @@ class Card extends React.Component {
 		const { card, isDragging, connectDragSource, connectDropTarget } = this.props;
 		const opacity = isDragging ? 0 : 1;
 
+		let course = [];
+		if (card.tutorCourse.length == 1) {
+		    course.push(<li className="list-group-item" style={{backgroundColor: card.courseColor}}>{card.tutorCourse[0].name}</li>);
+        }
+        else if (card.tutorCourse.length == 2) {
+            course.push(<li className="list-group-item" style={{backgroundColor: card.courseColor}}>{card.tutorCourse[0].name + ", " + card.tutorCourse[1].name}</li>);
+        }
+        else {
+		    let tooltip = card.tutorCourse[0].name;
+		    for (let index=1; index<card.tutorCourse.length; index++) {
+                tooltip = tooltip + ", " + card.tutorCourse[index].name;
+            }
+		    course.push(<li className="list-group-item" style={{backgroundColor: card.courseColor}}>
+                <a href="#" data-toggle="tooltip" title={tooltip} style={{color: "white"}}>
+                    {card.tutorCourse[0].name + "...."}
+                </a>
+            </li>);
+        }
+
 		return connectDragSource(connectDropTarget(
     <div className="container-fluid">
 			<div style={{ style, opacity }}>
 				<ul className="list-group" onClick={this.toggleGridModal}style={{"textAlign": "center"}}>
-					<li className="list-group-item">{card.tutorCourse}</li>
-					<li className="list-group-item">{card.tutorName}</li>
+                    {course}
+					<li className="list-group-item" style={{backgroundColor: card.nameColor}}>{card.tutorName}</li>
 				</ul>
 			</div>
 
