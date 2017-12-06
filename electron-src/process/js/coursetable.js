@@ -39,9 +39,9 @@ class CourseTable extends React.Component {
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Requirement Shifts</th>
-                                <th>Shift Freq Preferred</th>
-                                <th>Shift Freq Willing</th>
+                                <th>Required Shifts</th>
+                                <th>Shift Freq. Required</th>
+                                <th>Shift Freq. Preferred</th>
                                 <th>Intensity</th>
                             </tr>
                             </thead>

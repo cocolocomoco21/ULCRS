@@ -76,8 +76,8 @@ class TutorTable extends React.Component {
                                 <th className="no-wrap">Courses Willing</th>
                                 <th className="no-wrap">Shifts Preferred</th>
                                 <th className="no-wrap">Shifts Willing</th>
-                                <th className="no-wrap">Shifts Freq Preferred</th>
-                                <th className="no-wrap">Shifts Freq Frequency</th>
+                                <th className="no-wrap">Shift Freq. Preferred</th>
+                                <th className="no-wrap">Shift Freq. Willing</th>
                             </tr>
                             </thead>
                             <tbody>
