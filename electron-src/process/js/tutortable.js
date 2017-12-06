@@ -72,12 +72,12 @@ class TutorTable extends React.Component {
                                 <th className="no-wrap">First Name</th>
                                 <th className="no-wrap">Last Name</th>
                                 <th className="no-wrap">Status</th>
-                                <th className="no-wrap">Course Preferred</th>
-                                <th className="no-wrap">Course Willing</th>
-                                <th className="no-wrap">Shift Preferred</th>
-                                <th className="no-wrap">Shift Willing</th>
-                                <th className="no-wrap">Shift Preferred</th>
-                                <th className="no-wrap">Shift Frequency</th>
+                                <th className="no-wrap">Courses Preferred</th>
+                                <th className="no-wrap">Courses Willing</th>
+                                <th className="no-wrap">Shifts Preferred</th>
+                                <th className="no-wrap">Shifts Willing</th>
+                                <th className="no-wrap">Shifts Freq Preferred</th>
+                                <th className="no-wrap">Shifts Freq Frequency</th>
                             </tr>
                             </thead>
                             <tbody>
