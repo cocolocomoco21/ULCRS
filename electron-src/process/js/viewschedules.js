@@ -14,6 +14,7 @@ let fs = require('fs');
 let scheLocation = require('path').resolve(__dirname, '..', '..','data', 'scheduleData.json');
 let loadSchedules = JSON.parse(fs.readFileSync(scheLocation));
 
+let Parser = requireLocal('parser');
 
 let ExportSchedulePage = requireLocal('./exportschedule');
 let reactstrap = require('reactstrap');
@@ -33,7 +34,7 @@ class ViewSchedulePage  extends React.Component {
             saveMessage: "",
             saveMessageModal: false,
             exiting: false,
-            index : 0
+            index : 0,
         };
         this.toggleSaveModal = this.toggleSaveModal.bind(this);
         this.toggleMessageModal = this.toggleMessageModal.bind(this);
@@ -41,6 +42,13 @@ class ViewSchedulePage  extends React.Component {
         this.exit = this.exit.bind(this);
         this.toggleExiting = this.toggleExiting.bind(this);
         this.changeIndex = this.changeIndex.bind(this);
+        /*this.tutorData = null;
+        ipc.on("get-tutor-data",  (event, text) => {
+          let d = JSON.parse(text);
+          let p = new Parser();
+          this.tutorData = p.getTutors(d);
+        });
+        ipc.send("request-tutor-data");*/
     }
 
     toggleExiting(){

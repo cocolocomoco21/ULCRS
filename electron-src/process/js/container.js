@@ -8,7 +8,10 @@ let DropTarget = require('react-dnd').DropTarget;
 class Container extends React.Component{
   constructor(props){
     super(props);
-    this.state = { cards: props.list};
+    this.state = {
+      cards: props.list,
+      tutorData: this.props.tutorData
+    };
   }
 
 	pushCard(card) {
@@ -57,6 +60,7 @@ class Container extends React.Component{
 				{cards.map((card, i) => {
 					return (
 						<Card
+              
 							key={card.id}
 							index={i}
 							listId={this.props.id}

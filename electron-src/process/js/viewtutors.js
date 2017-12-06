@@ -127,7 +127,7 @@ class ViewInfo extends React.Component {
                         </div>
                     </div>
 
-                    <button type="button" className="btn btn-lg btn-success" id="generate-button-pos" onClick={this.toggleProceeding} >
+                    <button color= "#0479a8" type="button" className="btn btn-lg" id="generate-button-pos" onClick={this.toggleProceeding} >
                         <div style={{textAlign:"left"}}>
                             Generate Schedules!
                         </div>
