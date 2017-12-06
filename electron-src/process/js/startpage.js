@@ -29,12 +29,12 @@ class StartPage extends React.Component{
 
 
                     <div className="row justify-content-center top-buffer" id="load">
-                            <button className="btn btn-info" onClick={this.ShowViewTutor} > Load data from server </button>
+                            <button className="btn btn-info" backgroundColor="#c5050c" onClick={this.ShowViewTutor} > Load data from server </button>
                     </div>
 
                     <div className="row justify-content-center top-buffer">
 
-                            <button className="btn btn-info">Resume a saved session</button>
+                            <button className="btn btn-info" backgroundColor="#c5050c">Resume a saved session</button>
 
                     </div>
                 </div>

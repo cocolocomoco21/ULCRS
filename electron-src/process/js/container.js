@@ -50,8 +50,7 @@ class Container extends React.Component{
 		const isActive = canDrop && isOver;
     const style = {
 			width: "100%",
-			height: "100%",
-			border: "1px dashed gray"
+			height: "100%"
 		};
 
     const backgroundColor = isActive ? 'lightgreen' : '#FFF';
@@ -60,7 +59,7 @@ class Container extends React.Component{
 				{cards.map((card, i) => {
 					return (
 						<Card
-              
+
 							key={card.id}
 							index={i}
 							listId={this.props.id}

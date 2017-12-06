@@ -51,10 +51,10 @@ class WillCourseList extends React.Component {
 export default WillCourseList;
 
 const style = {
-    border: '1px dashed gray',
-    padding: '0.5rem 1rem',
+    border: '3px dashed gray',
+    padding: 10,
     margin: '.5rem',
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     cursor: 'move'
 };
 
@@ -87,29 +87,41 @@ class Card extends React.Component {
 
 		let course = [];
 		if (card.tutorCourse.length == 1) {
-		    course.push(<li className="list-group-item" style={{backgroundColor: card.courseColor}}>{card.tutorCourse[0].name}</li>);
+		    course.push(<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
+        <a style={{color: "black"}}>
+          {card.tutorCourse[0].name}
+        </a>
+        </li>);
         }
         else if (card.tutorCourse.length == 2) {
-            course.push(<li className="list-group-item" style={{backgroundColor: card.courseColor}}>{card.tutorCourse[0].name + ", " + card.tutorCourse[1].name}</li>);
+            course.push(<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
+            <a style={{color: "black"}}>
+            {card.tutorCourse[0].name + ", " + card.tutorCourse[1].name}
+            </a>
+        </li>);
         }
         else {
 		    let tooltip = card.tutorCourse[0].name;
 		    for (let index=1; index<card.tutorCourse.length; index++) {
                 tooltip = tooltip + ", " + card.tutorCourse[index].name;
             }
-		    course.push(<li className="list-group-item" style={{backgroundColor: card.courseColor}}>
-                <a href="#" data-toggle="tooltip" title={tooltip} style={{color: "white"}}>
+		    course.push(<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
+                <a href="#" data-toggle="tooltip" title={tooltip} style={{color: "black"}}>
                     {card.tutorCourse[0].name + "...."}
                 </a>
             </li>);
         }
 
 		return connectDragSource(connectDropTarget(
-    <div className="container-fluid">
-			<div style={{ style, opacity }}>
+    <div style={{ style, opacity }}>
+			<div>
 				<ul className="list-group" onClick={this.toggleGridModal}style={{"textAlign": "center"}}>
-                    {course}
-					<li className="list-group-item" style={{backgroundColor: card.nameColor}}>{card.tutorName}</li>
+					<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
+          <a style={{color: "black"}}>
+          {card.tutorName}
+           </a>
+          </li>
+          {course}
 				</ul>
 			</div>
 

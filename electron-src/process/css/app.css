@@ -490,6 +490,10 @@
     float: none;
 }
 
+.padding-0{
+    padding-right:0;
+    padding-left:0;
+}
 #container {
     display: inline-block;
     vertical-align: top;

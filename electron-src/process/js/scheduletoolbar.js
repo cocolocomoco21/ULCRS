@@ -52,8 +52,8 @@ class ToolbarTab extends React.Component {
         var textName = "text" + index;
         var card = document.getElementById(cardName);
         var text = document.getElementById(textName);
-        card.style.backgroundColor = "#5bc0de";
-        text.style.color = "#f7f7f7";
+        card.style.backgroundColor = "#c5050c";
+        text.style.color = "#f9f9f9";
     }
 
     render() {
@@ -62,20 +62,20 @@ class ToolbarTab extends React.Component {
 
         if (this.state.index === this.state.curIndex){
             return (
-                <div id = {cardName} className = "card-body" style={{backgroundColor: "#d9edf7"}} onClick={this.tabClick}>
-                    <h5 id = {textName} style={{color: "#0055cc"}}>
+                <div id = {cardName} className = "card-body" style={{backgroundColor: "#9b0000"}} onClick={this.tabClick}>
+                    <h5 id = {textName} style={{color: "#f9f9f9"}}>
                         Schedule {this.state.index}
-                        <p style={{fontWeight : "normal", color: "#0055cc", float: "right", display: "inline"}}> {this.props.rate} </p>
+                        <p style={{fontWeight : "normal", color: "#f9f9f9", float: "right", display: "inline"}}> {this.props.rate} </p>
                     </h5>
                 </div>
             )
         }else {
 
             return (
-                <div id={cardName} className="card-body" style={{backgroundColor: "#5bc0de"}} onClick={this.tabClick}>
-                    <h5 id={textName} style={{color: "#f7f7f7"}}>
+                <div id={cardName} className="card-body" style={{backgroundColor: "#c5050c"}} onClick={this.tabClick}>
+                    <h5 id={textName} style={{color: "#f9f9f9"}}>
                         Schedule {this.state.index}
-                        <p style={{fontWeight : "normal", color: "#f7f7f7", float: "right", display: "inline"}}> {this.props.rate} </p>
+                        <p style={{fontWeight : "normal", color: "#f9f9f9", float: "right", display: "inline"}}> {this.props.rate} </p>
                     </h5>
                 </div>
             )
@@ -109,8 +109,8 @@ class ScheduleToolbar extends React.Component {
                                   changeIndex = {this.props.changeIndex} rate = {this.props.schedules[i].rating} key={i}/>);
         }
         return (
-            <div id="schedule-tool-bar" className="card" style={{backgroundColor:"#5bc0de"}}>
-                <h3 className="card-header" style={{color:"#f7f7f7"}}>
+            <div id="schedule-tool-bar" className="card" style={{backgroundColor:"#c5050c"}}>
+                <h3 className="card-header" style={{color:"#f9f9f9"}}>
                     Schedules
                 </h3>
                 {tabs}
