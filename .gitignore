@@ -1,6 +1,7 @@
 .metadata
 build
 .gradle
+out/
 
 # Eclipse
 *.classpath

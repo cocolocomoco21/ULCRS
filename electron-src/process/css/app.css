@@ -449,6 +449,19 @@
   bottom: 30px;
   right: 30px;
   height: 70px;
+  background-color: #0479a8;
+  color: #f7f7f7;
+
+}
+
+#load-server{
+  background-color: #c5050c;
+  color: #f7f7f7;
+}
+
+#load-from-json{
+  background-color: #c5050c;
+  color: #f7f7f7;
 }
 
 #center{

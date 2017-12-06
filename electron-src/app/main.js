@@ -144,29 +144,41 @@ app.on('ready', function () {
 
     ipc.on("post_generate", function (event, excludedIds) {
 
-        // fetch("http://localhost:4567/ulcrs/generate_schedules", {method: "POST"})
-        //     .then(res => {event.sender.send("post_success");});
+        fetch("http://localhost:4567/ulcrs/schedule/generate",
+            {
+                method: "POST",
+                body:JSON.stringify({excludeIds:excludedIds}),
+                headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
+            })
+            .then(res => {
+                console.log(res);
+                event.sender.send("post_success");});
 
         // Need error handling
         console.log('preparing schedule data');
         //event.sender.send("receiveScheduleData", data)
         event.sender.send("post_success");
 
-        // // set up time interval
-        // polling_schedules = setInterval(()=>{
-        //     fetch('http://localhost:4567/ulcrs/schedules')
-        //         .then(res => res.txt)z
-        //         .then(data => {
-        //             if (data !== "null") {
-        //                 console.log("received data");
-        //                 event.sender.send("receiveScheduleData", data);
-        //                 clearInterval(polling_schedules);
-        //             }
-        //         });
-        // }, 500);
+        // set up time interval
+        polling_schedules = setInterval(()=>{
+            fetch('http://localhost:4567/ulcrs/schedule/',
+                        {
+                            headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
+                        }
+                 )
+                .then(res => res.text())
+                .then(data => {
+                    console.log(data);
+                    if (data !== "null") {
+                        console.log("received data");
+                        event.sender.send("receive-schedule-data", data);
+                        clearInterval(polling_schedules);
+                    }
+                });
+        }, 500);
         let data = "";
 
-        setTimeout(()=> {event.sender.send("receive-schedule-data", data);}, 2000);
+        // setTimeout(()=> {event.sender.send("receive-schedule-data", data);}, 2000);
     });
 
 
