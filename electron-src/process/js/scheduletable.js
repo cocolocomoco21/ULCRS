@@ -66,7 +66,7 @@ class ScheduleTable extends React.Component {
             }
             for (let row = 0; row < assignments.length; row++){
                 let tutor = assignments[row].tutor.firstName + " " + assignments[row].tutor.lastName;
-                let color = colors[(indexIncr + row) % 4]
+                let color = colors[(indexIncr + row) % 4];
                 containerDataList.push(
                     {
                         id: index,
@@ -83,7 +83,7 @@ class ScheduleTable extends React.Component {
                                     <div className="row">
                                         <div className="col text-center"
                                              style={{background: "#c5050c", color: "#f9f9f9", padding:12}}>
-
+                                            {scheduleShifts[col].shift.day}
                                         </div>
                                     </div>
                                     <div className="row">
