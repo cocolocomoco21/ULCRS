@@ -96,7 +96,7 @@
                     }
                 }
             ],
-            "requiredShiftAmount": 2,
+            "requiredShiftAmount": 1,
             "preferredShiftAmount": 2,
             "intensity": "HIGH"
         }
@@ -107,17 +107,17 @@
         "courseRequirements": {
             "requiredShifts": [
                 {
-                    "id": 0,
-                    "day": "MONDAY",
+                    "id": 1,
+                    "day": "TUESDAY",
                     "startTime": {
-                        "hour": 16,
-                        "minute": 45,
+                        "hour": 18,
+                        "minute": 0,
                         "second": 0,
                         "nano": 0
                     },
                     "endTime": {
-                        "hour": 19,
-                        "minute": 45,
+                        "hour": 21,
+                        "minute": 0,
                         "second": 0,
                         "nano": 0
                     }
@@ -150,6 +150,22 @@
                     }
                 },
                 {
+                    "id": 1,
+                    "day": "TUESDAY",
+                    "startTime": {
+                        "hour": 18,
+                        "minute": 0,
+                        "second": 0,
+                        "nano": 0
+                    },
+                    "endTime": {
+                        "hour": 21,
+                        "minute": 0,
+                        "second": 0,
+                        "nano": 0
+                    }
+                },
+                {
                     "id": 3,
                     "day": "THURSDAY",
                     "startTime": {
@@ -161,22 +177,6 @@
                     "endTime": {
                         "hour": 21,
                         "minute": 30,
-                        "second": 0,
-                        "nano": 0
-                    }
-                },
-                {
-                    "id": 2,
-                    "day": "WEDNESDAY",
-                    "startTime": {
-                        "hour": 19,
-                        "minute": 0,
-                        "second": 0,
-                        "nano": 0
-                    },
-                    "endTime": {
-                        "hour": 21,
-                        "minute": 0,
                         "second": 0,
                         "nano": 0
                     }
@@ -198,8 +198,8 @@
                     }
                 }
             ],
-            "requiredShiftAmount": 4,
-            "preferredShiftAmount": 4,
+            "requiredShiftAmount": 1,
+            "preferredShiftAmount": 1,
             "intensity": "HIGH"
         }
     },
@@ -209,24 +209,24 @@
         "courseRequirements": {
             "requiredShifts": [
                 {
-                    "id": 0,
-                    "day": "MONDAY",
+                    "id": 1,
+                    "day": "TUESDAY",
                     "startTime": {
-                        "hour": 16,
-                        "minute": 45,
+                        "hour": 18,
+                        "minute": 0,
                         "second": 0,
                         "nano": 0
                     },
                     "endTime": {
-                        "hour": 19,
-                        "minute": 45,
+                        "hour": 21,
+                        "minute": 0,
                         "second": 0,
                         "nano": 0
                     }
                 }
             ],
             "requiredShiftAmount": 1,
-            "preferredShiftAmount": 1,
+            "preferredShiftAmount": 2,
             "intensity": "LOW"
         }
     }

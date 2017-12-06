@@ -112,7 +112,7 @@ class ViewInfo extends React.Component {
     render() {
         return (
             <div className="container-fluid ">
-                <div className="row">
+                <div className="row"  overflow = "auto" >
                     <div className="col-3">
                         <ViewToolBar clickViewButton={this.clickViewButton}/>
                     </div>

@@ -36,19 +36,18 @@ public class CourseControllerTest {
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
-
-        courseControllerTest = new CourseController();
-
         PowerMockito.mockStatic(DataStore.class);
+        courseControllerTest = new CourseController();
     }
 
     @Test
     public void successGetCourseList() throws Exception {
         List<Course> courseListTest = new ArrayList<>();
-        when(DataStore.getCourses()).thenReturn(courseListTest);
 
-        List<Course> getCourseListResult = Whitebox.invokeMethod(courseControllerTest, "getCourseList",
-                requestMock, responseMock);
+        when(requestMock.headers("Set-Cookie")).thenReturn("cookie");
+        when(DataStore.getCourses("cookie")).thenReturn(courseListTest);
+
+        List<Course> getCourseListResult = Whitebox.invokeMethod(courseControllerTest, "getCourseList", requestMock, responseMock);
         Assert.assertEquals(courseListTest, getCourseListResult);
     }
 
@@ -58,11 +57,11 @@ public class CourseControllerTest {
         courseListTest.add(new Course(1, "a", null));
         courseListTest.add(new Course(2, "b", null));
 
-        when(DataStore.getCourse(1)).thenReturn(courseListTest.get(0));
-        Mockito.when(requestMock.params(Mockito.eq("id"))).thenReturn("1");
+        when(requestMock.headers("Set-Cookie")).thenReturn("cookie");
+        when(DataStore.getCourse(1, "cookie")).thenReturn(courseListTest.get(0));
+        when(requestMock.params(Mockito.eq(":id"))).thenReturn("1");
 
-        Course getCourseResult = Whitebox.invokeMethod(courseControllerTest, "getCourse",
-                requestMock, responseMock);
+        Course getCourseResult = Whitebox.invokeMethod(courseControllerTest, "getCourse", requestMock, responseMock);
         Assert.assertEquals(courseListTest.get(0), getCourseResult);
     }
 }
