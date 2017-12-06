@@ -1,7 +1,5 @@
 package ulcrs.controllers;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
@@ -19,23 +17,21 @@ public class CourseController extends BaseController {
     public RouteGroup routes() {
         return () -> {
             before("/*", (request, response) -> log.info("endpoint: " + request.pathInfo()));
-            get("/", this::getCourseList, courses -> {
-            	// Return only the required fields in JSON response
-            	Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
-            	return gson.toJson(courses);	
-            });
+            get("/", this::getCourseList, exposeOnlyGson::toJson);
             get("/:id", this::getCourse, gson::toJson);
         };
     }
 
     private List<Course> getCourseList(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        return DataStore.getCourses();
+        String cookie = request.headers("Set-Cookie");
+        return DataStore.getCourses(cookie);
     }
 
     private Course getCourse(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        int id = Integer.valueOf(request.params("id"));
-        return DataStore.getCourse(id);
+        int id = Integer.valueOf(request.params(":id"));
+        String cookie = request.headers("Set-Cookie");
+        return DataStore.getCourse(id, cookie);
     }
 }

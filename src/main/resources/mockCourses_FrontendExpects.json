@@ -36,7 +36,7 @@
                     "day": "WEDNESDAY"
                 }
             ],
-            "requiredShiftAmount": 2,
+            "requiredShiftAmount": 1,
             "preferredShiftAmount": 2,
             "intensity": "HIGH"
         }
@@ -47,8 +47,8 @@
         "courseRequirements": {
             "requiredShifts": [
                 {
-                    "id": 0,
-                    "day": "MONDAY"
+                    "id": 1,
+                    "day": "TUESDAY"
                 }
             ],
             "requiredShiftAmount": 1,
@@ -66,20 +66,20 @@
                     "day": "MONDAY"
                 },
                 {
-                    "id": 3,
-                    "day": "THURSDAY"
+                    "id": 1,
+                    "day": "TUESDAY"
                 },
                 {
-                    "id": 2,
-                    "day": "WEDNESDAY"
+                    "id": 3,
+                    "day": "THURSDAY"
                 },
                 {
                     "id": 4,
                     "day": "FRIDAY"
                 }
             ],
-            "requiredShiftAmount": 4,
-            "preferredShiftAmount": 4,
+            "requiredShiftAmount": 1,
+            "preferredShiftAmount": 1,
             "intensity": "HIGH"
         }
     },
@@ -89,12 +89,12 @@
         "courseRequirements": {
             "requiredShifts": [
                 {
-                    "id": 0,
-                    "day": "MONDAY"
+                    "id": 1,
+                    "day": "TUESDAY"
                 }
             ],
             "requiredShiftAmount": 1,
-            "preferredShiftAmount": 1,
+            "preferredShiftAmount": 2,
             "intensity": "LOW"
         }
     }

@@ -1,0 +1,661 @@
+{
+  "courses": [
+    {
+      "id": "2673",
+      "name": "CBE 310"
+    },
+    {
+      "id": "2677",
+      "name": "CBE 311"
+    },
+    {
+      "id": "2678",
+      "name": "CBE 320"
+    },
+    {
+      "id": "2749",
+      "name": "Chem 103"
+    },
+    {
+      "id": "2750",
+      "name": "Chem 104"
+    },
+    {
+      "id": "2755",
+      "name": "Chem 109"
+    },
+    {
+      "id": "2761",
+      "name": "Chem 327"
+    },
+    {
+      "id": "2762",
+      "name": "Chem 329"
+    },
+    {
+      "id": "2767",
+      "name": "Chem 343"
+    },
+    {
+      "id": "2769",
+      "name": "Chem 345"
+    },
+    {
+      "id": "3306",
+      "name": "CEE 310"
+    },
+    {
+      "id": "3310",
+      "name": "CEE 320"
+    },
+    {
+      "id": "3319",
+      "name": "CEE 340"
+    },
+    {
+      "id": "4236",
+      "name": "CS 302"
+    },
+    {
+      "id": "4239",
+      "name": "CS 310"
+    },
+    {
+      "id": "4244",
+      "name": "ECE 354"
+    },
+    {
+      "id": "4246",
+      "name": "CS 367"
+    },
+    {
+      "id": "4313",
+      "name": "Math 319"
+    },
+    {
+      "id": "6287",
+      "name": "ECE 230"
+    },
+    {
+      "id": "6324",
+      "name": "ECE 330"
+    },
+    {
+      "id": "6330",
+      "name": "ECE 340"
+    },
+    {
+      "id": "6337",
+      "name": "ECE 352"
+    },
+    {
+      "id": "6339",
+      "name": "ECE 353"
+    },
+    {
+      "id": "6350",
+      "name": "ECE 376"
+    },
+    {
+      "id": "6573",
+      "name": "EMA 201"
+    },
+    {
+      "id": "6574",
+      "name": "EMA 202"
+    },
+    {
+      "id": "6582",
+      "name": "EMA 303"
+    },
+    {
+      "id": "8128",
+      "name": "ZOOLOGY 466"
+    },
+    {
+      "id": "11623",
+      "name": "Math 221"
+    },
+    {
+      "id": "11624",
+      "name": "Math 222"
+    },
+    {
+      "id": "11628",
+      "name": "Math 234"
+    },
+    {
+      "id": "11633",
+      "name": "Math 217"
+    },
+    {
+      "id": "11646",
+      "name": "Math 320"
+    },
+    {
+      "id": "11655",
+      "name": "Math 340"
+    },
+    {
+      "id": "11945",
+      "name": "ME 231"
+    },
+    {
+      "id": "11948",
+      "name": "ME 240"
+    },
+    {
+      "id": "11960",
+      "name": "ME 306"
+    },
+    {
+      "id": "11975",
+      "name": "ME 340"
+    },
+    {
+      "id": "11991",
+      "name": "ME 361"
+    },
+    {
+      "id": "11995",
+      "name": "ME 363"
+    },
+    {
+      "id": "11996",
+      "name": "ME 364"
+    },
+    {
+      "id": "12197",
+      "name": "ZOOLOGY 350"
+    },
+    {
+      "id": "12617",
+      "name": "MSE 331"
+    },
+    {
+      "id": "12619",
+      "name": "MSE 333"
+    },
+    {
+      "id": "12621",
+      "name": "MSE 350"
+    },
+    {
+      "id": "12623",
+      "name": "MSE 352"
+    },
+    {
+      "id": "15599",
+      "name": "Physics 201"
+    },
+    {
+      "id": "15600",
+      "name": "Physics 202"
+    },
+    {
+      "id": "15602",
+      "name": "Physics 205"
+    },
+    {
+      "id": "15606",
+      "name": "Physics 241"
+    },
+    {
+      "id": "18438",
+      "name": "Stats 224"
+    },
+    {
+      "id": "18439",
+      "name": "Stats 301"
+    },
+    {
+      "id": "18441",
+      "name": "Stats 309"
+    },
+    {
+      "id": "18443",
+      "name": "Stats 311"
+    },
+    {
+      "id": "18444",
+      "name": "Stats 312"
+    },
+    {
+      "id": "19269",
+      "name": "ZOOLOGY 260"
+    },
+    {
+      "id": "21159",
+      "name": "Stats 324"
+    },
+    {
+      "id": "22784",
+      "name": "ECE 252"
+    },
+    {
+      "id": "23279",
+      "name": "InterEGR 601"
+    },
+    {
+      "id": "23741",
+      "name": "ECE 203"
+    },
+    {
+      "id": "23743",
+      "name": "ECE 219"
+    },
+    {
+      "id": "23892",
+      "name": "Stats 302"
+    },
+    {
+      "id": "24209",
+      "name": "CS 301"
+    },
+    {
+      "id": "24214",
+      "name": "Special Topics 0"
+    },
+    {
+      "id": "24216",
+      "name": "Special Topics 0"
+    }
+  ],
+  "shifts": [
+    {
+      "id": "2",
+      "day": "SUNDAY",
+      "startTime": "00:00:00",
+      "endTime": "23:00:00"
+    },
+    {
+      "id": "4",
+      "day": "MONDAY",
+      "startTime": "00:00:00",
+      "endTime": "23:00:00"
+    },
+    {
+      "id": "5",
+      "day": "WEDNESDAY",
+      "startTime": "00:00:00",
+      "endTime": "23:00:00"
+    },
+    {
+      "id": "6",
+      "day": "THURSDAY",
+      "startTime": "00:00:00",
+      "endTime": "21:00:00"
+    },
+    {
+      "id": "12",
+      "day": "FRIDAY",
+      "startTime": "00:00:00",
+      "endTime": "21:30:00"
+    },
+    {
+      "id": "14",
+      "day": "TUESDAY",
+      "startTime": "01:00:00",
+      "endTime": "21:30:00"
+    },
+    {
+      "id": "15",
+      "day": "SATURDAY",
+      "startTime": "15:00:00",
+      "endTime": "21:30:00"
+    }
+  ],
+  "tutors": [
+    {
+      "id": "788586",
+      "firstName": "Darth",
+      "lastName": "Vader",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": "0",
+      "willingShiftAmount": "0"
+    },
+    {
+      "id": "1612562",
+      "firstName": "Luke",
+      "lastName": "Skywalker",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "3174713",
+      "firstName": "Obi-Wan",
+      "lastName": "Kenobi",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "3895880",
+      "firstName": "Leia",
+      "lastName": "Organa",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "3998093",
+      "firstName": "R2-D2",
+      "lastName": "",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4156929",
+      "firstName": "Jango",
+      "lastName": "Fett",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4241993",
+      "firstName": "Padme",
+      "lastName": "Amidala",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4257225",
+      "firstName": "Wedge",
+      "lastName": "Antilles",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4433110",
+      "firstName": "Sheev",
+      "lastName": "Palpatine",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4535485",
+      "firstName": "Poe",
+      "lastName": "Dameron",
+      "prefCourses": [
+        "15600"
+      ],
+      "willingCourses": [
+        "4313",
+        "12616",
+        "12622",
+        "12629",
+        "12650",
+        "12654",
+        "22787"
+      ],
+      "prefShift": [
+        "1"
+      ],
+      "willingShift": [
+        "3",
+        "4",
+        "5"
+      ],
+      "prefShiftAmount": "2",
+      "willingShiftAmount": "2"
+    },
+    {
+      "id": "4608935",
+      "firstName": "General",
+      "lastName": "Grevious",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4630575",
+      "firstName": "Qui-Gon",
+      "lastName": "Jinn",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4762904",
+      "firstName": "Admiral",
+      "lastName": "Ackbar",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4763014",
+      "firstName": "Mace",
+      "lastName": "Windu",
+      "prefCourses": [
+        "11991"
+      ],
+      "willingCourses": [
+        "4313",
+        "4239"
+      ],
+      "prefShift": [
+        "2"
+      ],
+      "willingShift": [
+        "3"
+      ],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4838588",
+      "firstName": "Anakin",
+      "lastName": "Skywalker",
+      "prefCourses": [
+        "6573"
+      ],
+      "willingCourses": [
+        "6582",
+        "11623",
+        "11624"
+      ],
+      "prefShift": [
+        "5"
+      ],
+      "willingShift": [],
+      "prefShiftAmount": "1",
+      "willingShiftAmount": "1"
+    },
+    {
+      "id": "4838657",
+      "firstName": "General Moff",
+      "lastName": "Tarkin",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4878968",
+      "firstName": "Han",
+      "lastName": "Solo",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4879471",
+      "firstName": "Jabba",
+      "lastName": "the Hut",
+      "prefCourses": [
+        "2769"
+      ],
+      "willingCourses": [
+        "2767",
+        "2675",
+        "23133"
+      ],
+      "prefShift": [
+        "3"
+      ],
+      "willingShift": [
+        "5"
+      ],
+      "prefShiftAmount": "2",
+      "willingShiftAmount": "2"
+    },
+    {
+      "id": "4880705",
+      "firstName": "Lando",
+      "lastName": "Calrissian",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4892470",
+      "firstName": "Darth",
+      "lastName": "Maul",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4908807",
+      "firstName": "Ki Adi",
+      "lastName": "Mundi",
+      "prefCourses": [
+        "2749"
+      ],
+      "willingCourses": [
+        "15599",
+        "15600",
+        "2750",
+        "2755"
+      ],
+      "prefShift": [
+        "1"
+      ],
+      "willingShift": [
+        "5"
+      ],
+      "prefShiftAmount": "2",
+      "willingShiftAmount": "2"
+    },
+    {
+      "id": "4908819",
+      "firstName": "Jar Jar",
+      "lastName": "Binks",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4912441",
+      "firstName": "Aayla",
+      "lastName": "Secura",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4912452",
+      "firstName": "Plo",
+      "lastName": "Koon",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4912662",
+      "firstName": "Commander",
+      "lastName": "Cody",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4913931",
+      "firstName": "Gonk",
+      "lastName": "Droid",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    },
+    {
+      "id": "4915819",
+      "firstName": "Medic",
+      "lastName": "Droid",
+      "prefCourses": [],
+      "willingCourses": [],
+      "prefShift": [],
+      "willingShift": [],
+      "prefShiftAmount": null,
+      "willingShiftAmount": null
+    }
+  ]
+}
