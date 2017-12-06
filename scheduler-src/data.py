@@ -62,3 +62,7 @@ def get_required_shift_amount(course):
 
 def get_preferred_shift_amount(course):
     return int(course['courseRequirements']['preferredShiftAmount'])
+
+
+def get_intensity(course):
+    return course['courseRequirements']['intensity']

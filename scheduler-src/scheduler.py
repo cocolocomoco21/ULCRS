@@ -1,4 +1,5 @@
 from ortools.constraint_solver import pywrapcp
+
 import data
 
 SOLUTION_WIDTH = 7
@@ -69,19 +70,51 @@ def main():
         solver.Add(sum(tutor_shifts) < willing_freq)
         tutor_shift_scores.append(abs(sum(tutor_shifts) - prefer_freq))
 
-    # course has enough tutor on required days
+    # course has enough amounts in week
     course_shift_scores = []
+    for k in range(num_courses):
+        course = courses[k]
+        course_days = 0
+        for j in range(num_days):
+            day = j
+            if sum([shifts[(i, j, k)] for i in range(num_tutors)]) > 0:
+                course_days += 1
+        solver.Add(course_days >= data.get_required_shift_amount(course))
+        course_shift_scores.append(max(data.get_preferred_shift_amount(course) - course_days, 0))
+
+    # tutor has maximum course intensity limit
+    tutor_intensity_scores = []
+    for i in range(num_tutors):
+        tutor_intensity = 0
+        for j in range(num_days):
+            for k in range(num_courses):
+                course = courses[k]
+                if shifts[(i, j, k)]:
+                    course_intensity = 0
+                    intensity_str = data.get_intensity(course)
+                    if intensity_str == 'HIGH':
+                        course_intensity = 6
+                    elif intensity_str == 'MEDIUM':
+                        course_intensity = 3
+                    elif intensity_str == 'LOW':
+                        course_intensity = 1
+                    tutor_intensity += course_intensity
+        solver.Add(tutor_intensity <= 6)
+        tutor_intensity_scores.append(6 - tutor_intensity)
+
+    # course has enough tutor on required days
     for j in range(num_days):
         day = j
         for k in range(num_courses):
             course = courses[k]
             if day in data.get_required_shifts(course):
-                solver.Add(sum([shifts[(i, j, k)] for i in range(num_tutors)])
-                           >= data.get_required_shift_amount(course))
-                course_shift_scores.append(abs(sum([shifts[(i, j, k)] for i in range(num_tutors)])
-                                               - data.get_preferred_shift_amount(course)))
+                # TODO: Add required tutor amount for each required day for courses
+                solver.Add(sum([shifts[(i, j, k)] for i in range(num_tutors)]) >= 1)
 
-    solver.Add(score == sum(tutor_course_scores) + sum(tutor_shift_scores) + sum(course_shift_scores))
+    solver.Add(score == sum(tutor_course_scores)
+               + sum(tutor_shift_scores)
+               + sum(course_shift_scores)
+               + sum(tutor_intensity_scores))
     objective = solver.Minimize(score, 1)
 
     # Create the decision builder.
