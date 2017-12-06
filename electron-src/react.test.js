@@ -7,6 +7,7 @@ let Application = require('spectron').Application;
 let main_path = path.resolve(__dirname,'app/main.js');
 let Parser = require(path.resolve(__dirname, 'process/js/parser.js'));
 let fs = require('fs');
+let _ = require('lodash');
 
 describe('application launch', function () {
     let app = undefined;
@@ -61,4 +62,5 @@ describe('parser test', () => {
         let tutors = p.getTutors(mockTutorData);
         assert.equal(tutors.length, 10)
     })
+
 });

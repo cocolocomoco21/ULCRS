@@ -7,45 +7,74 @@ let React = require('react');
 let DragDropContext = require('react-dnd').DragDropContext;
 let HTML5Backend = require('react-dnd-html5-backend');
 
+let ipc = electron.ipcRenderer;
+let Parser = requireLocal("./parser");
+
 class ScheduleTable extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            schedules : this.props.schedules
-        }
+            schedules : this.props.schedules,
+            index : this.props.index,
+            tutors: [],
+            tutorData: null
+        };
+        ipc.on("get-tutor-data",  (event, text) => {
+          let d = JSON.parse(text);
+          let p = new Parser();
+          this.setState({
+              tutors: p.getTutors(d),
+              tutorData: d,
+          });
+        });
+        this.scheduleName = this.scheduleName.bind(this);
     }
-    // Put your code here.
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            index : nextProps.index
+        });
+    }
+
+    scheduleName() {
+        return "Schedule " + (this.state.index+1);
+    }
+  
     render() {
-        // const style = {
-        //     display: "flex",
-        //     justifyContent: "space-around",
-        //     paddingTop: "20px"
-        // };
-        // let colors = [["#428BCA", "#5CC3E1"], ["#468847", "#46A546"],
-        //                 ["#F89406", "#FBB450"], ["#C3325F", "#EE5F5B"]];
-        // let tableHeading = [];
-        // //TODO: show the heading HTML
-        // for (let col = 0; col < this.state.schedules.length; col++){
-        //     tableHeading.push(<div className="col-2 text-center">{this.state.schedules[col].Shift}</div>);
-        // }
+
+        let colors = [["#428BCA", "#5CC3E1"], ["#468847", "#46A546"],
+                        ["#F89406", "#FBB450"], ["#C3325F", "#EE5F5B"]];
+
 
         console.log(this.state.schedules);
         let containerList = [];
-        let scheduleShifts = this.state.schedules[0].scheduleShifts;
+        let scheduleShifts = this.state.schedules[this.state.index].scheduleShifts;
         console.log(scheduleShifts);
         let index = 1;
+        let indexIncr = 0;
         for (let col = 0; col < scheduleShifts.length; col++){
             console.log(col);
             let containerDataList = [];
             let assignments = scheduleShifts[col].assignments;
             console.log(assignments);
+
+            if (col % 2 == 0) {
+                indexIncr += 1;
+            }
+            else {
+                indexIncr += 2;
+            }
             for (let row = 0; row < assignments.length; row++){
                 let tutor = assignments[row].tutor.firstName + " " + assignments[row].tutor.lastName;
+                let color = colors[(indexIncr + row) % 4]
                 containerDataList.push(
                     {
                         id: index,
+                        day: scheduleShifts[col].shift.day,
                         tutorName: tutor,
-                        tutorCourse: assignments[row].courses[0].name
+                        tutorCourse: assignments[row].courses,
+                        nameColor: color[1],
+                        courseColor: color[0]
                     });
                 index++;
             }
@@ -53,42 +82,29 @@ class ScheduleTable extends React.Component {
             containerList.push(<div className="col-2">
                                     <div className="row">
                                         <div className="col text-center"
-                                             style={{background: "#5bc0de", color: "white", padding:12}}>
-                                            {scheduleShifts[col].shift.day}
+                                             style={{background: "#c5050c", color: "#f9f9f9", padding:12}}>
+
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col">
-                                            <Container id={col + 1} list={containerDataList} />
+                                            <Container key={this.state.index * 100 + col + 1}
+                                                       id={col + 1} list={containerDataList}/>
                                         </div>
                                     </div>
                                 </div>);
         }
-
-        const listOne = [
-            {id: 1, tutorName: "Lily", tutorCourse: "CS 200"},
-            {id: 2, tutorName: "Sally", tutorCourse: "CS 540"},
-            {id: 3, tutorName: "Wid", tutorCourse: "CS 800"}
-        ];
-
-        const listTwo = [
-            {id: 4, tutorName: "fan", tutorCourse: "CS 1110"},
-            {id: 5, tutorName: "table", tutorCourse: "CS 524"},
-            {id: 6, tutorName: "chair", tutorCourse: "CS 10"}
-        ];
-
-        const listThree = [
-            {id: 7, tutorName: "cat", tutorCourse: "CS 885"},
-            {id: 8, tutorName: "dog", tutorCourse: "CS 243"},
-            {id: 9, tutorName: "pangolin", tutorCourse: "CS 789"}
-        ];
-
         return (
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <div className="row" style={{background: "#5bc0de", color: "white", padding: 15}}>
-                            <h3>Schedule: Schedule 1</h3>
+                        <div className="row" style={{background: "#c5050c", color: "#f9f9f9"}}>
+                            <div className="col-9">
+                                <h3> {this.scheduleName()} </h3>
+                            </div>
+                            <div className="col-3">
+                                <h5> Rating: {this.state.schedules[this.state.index].rating} </h5>
+                            </div>
                         </div>
                         <div className="row container-scroll">
                             <div className="col" style={{padding: 0}}>

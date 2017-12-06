@@ -21,24 +21,22 @@ class Parser{
             let pref = t.tutorPreferences;
 
             let courses = pref.coursePreferences;
-            if (courses.PREFER.length !== 0) {
-                tempTutor.coursePreference = courses.PREFER.map((c)=>c.name);
-            }else{
-                tempTutor.coursePreference = "";
-            }
+
+            tempTutor.coursePreference = _.map(courses.PREFER, (c)=>c.name);
+            tempTutor.courseWilling = _.map(courses.WILLING, (c)=>c.name);
 
             let days = pref.shiftPreferences;
-            if (days.PREFER.length !== 0) {
-                tempTutor.shiftPreference = days.PREFER[0].day;
-            }
-            let fre = pref.shiftFrequencyPreferences;
-            if (fre.PREFER.length !== 0){
-                tempTutor.shiftFrequency = fre.PREFER;
-            }
-            else{
-                tempTutor.shiftPreference = "";
-            }
 
+
+            tempTutor.shiftPreference = _.map(days.PREFER, (d)=>d.day);
+            tempTutor.shiftWilling = _.map(days.WILLING, (d)=>d.day);
+
+            let fre = pref.shiftFrequencyPreferences;
+
+            tempTutor.shiftAmountPreferred = fre.PREFER;
+            tempTutor.shiftAmountWilling = fre.WILLING;
+
+            tempTutor.notInclude = false;
             tutors.push(tempTutor);
         }
         return tutors;
@@ -53,11 +51,8 @@ class Parser{
             tempCourse.id = course.id;
             tempCourse.name = course.name;
             let courseReq = course.courseRequirements;
-            if (courseReq.requiredShifts.length !== 0) {
-                tempCourse.requiredShifts = courseReq.requiredShifts[0].day;
-            } else {
-                tempCourse.requiredShifts = "";
-            }
+
+            tempCourse.requiredShifts = _.map(courseReq.requiredShifts, (s)=>s.day);
             tempCourse.requiredShiftAmount = courseReq.requiredShiftAmount;
             tempCourse.preferredShiftAmount = courseReq.preferredShiftAmount;
             tempCourse.intensity = courseReq.intensity;

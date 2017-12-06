@@ -26,17 +26,19 @@ class CourseTable extends React.Component {
             )
         }.bind(this));
         return (
-            <div className="card card-inverse" style={{background: "#049cdb", border: "#ffffff", color: "#ffffff"}}>
+            <div className="card card-inverse" style={{background: "#c5050c", border: "#ffffff", color: "#ffffff"}}>
                 <div className="card-block">
                     <h3 className="card-header">
                         Review your courses
                     </h3>
-                    <div className = "card-body">
-                        <table className="table table-striped">
-                            <thead>
+                    <div className="card-body p-0">
+                        <div className="container table-scroll p-0">
+                        <table className="table table-striped" >
+                            <thead style={{backgroundColor: "#9b0000",
+                                color: "#f9f9f9"}}>
                             <tr>
-                                <th>id</th>
-                                <th>name</th>
+                                <th>ID</th>
+                                <th>Name</th>
                                 <th>Course Requirement</th>
                                 <th>Preferred Shift Amountt</th>
                                 <th>Willing Shift Amount</th>
@@ -47,6 +49,7 @@ class CourseTable extends React.Component {
                             {courses}
                             </tbody>
                         </table>
+                        </div>
                     </div> {/*tool bar */}
                 </div>
             </div>
