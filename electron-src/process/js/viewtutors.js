@@ -9,7 +9,7 @@ let requireLocal = ( localModule ) =>{
 // };
 
 let dataLocation = require('path').resolve(__dirname, '..','..', 'data', 'data.json');
-let mockData = require('path').resolve(__dirname, '..', '..', 'data', 'mockdata.json');
+let mockData = require('path').resolve(__dirname, '..', 'data', 'mockTutorData2.json');
 let ReactDOM = require('react-dom');
 let React = require('react');
 let ViewToolBar = requireLocal('./viewtoolbar');
@@ -112,7 +112,7 @@ class ViewInfo extends React.Component {
     render() {
         return (
             <div className="container-fluid ">
-                <div className="row">
+                <div className="row"  overflow = "auto" >
                     <div className="col-3">
                         <ViewToolBar clickViewButton={this.clickViewButton}/>
                     </div>
