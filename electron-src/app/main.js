@@ -87,7 +87,7 @@ let setupAuthenticWindow = () => {
     ipc.on("ShowViewTutor", function (event, args) {
         event.returnValue = '';
         startWindow.hide();
-        authWindow.loadURL("http://dropin-dev.engr.wisc.edu");
+        authWindow.loadURL("http://dropin.engr.wisc.edu");
         authWindow.once("ready-to-show", () => {
             authWindow.show();
         });
@@ -104,7 +104,7 @@ let keepPollingUntilCookieReceivedThenRedirect = () => {
     };
 
     let interval = setInterval(() => {
-        session.defaultSession.cookies.get({domain: "dropin-dev.engr.wisc.edu"}, (error, cookies) => {
+        session.defaultSession.cookies.get({domain: "dropin.engr.wisc.edu"}, (error, cookies) => {
             if (error !== null) {
                 console.log("ERROR *====");
                 console.log(error);
@@ -210,5 +210,18 @@ app.on('ready', function () {
         fetch('http://localhost:4567/ulcrs/course/', addCookieOption)
             .then(res => res.text())
             .then(body => event.sender.send("get-course-data", body));
+    });
+
+    ipc.on("save-session", (event, filename, schedule) => {
+        let addCookieOption = {
+            headers: {"Set-Cookie": [engrCookie.name + "=" + engrCookie.value]},
+            method: "POST",
+            body: JSON.stringify(schedule)
+        };
+        console.log("====================Fetch call started=======================");
+        console.log("-------Option.body-------");
+        console.log(addCookieOption.body);
+        fetch('http://localhost:4567/ulcrs/session/' + filename, addCookieOption);
+        console.log("====================Fetch call ended=======================");
     })
 }); //app is ready

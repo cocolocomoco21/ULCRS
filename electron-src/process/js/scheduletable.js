@@ -28,6 +28,7 @@ class ScheduleTable extends React.Component {
           });
         });
         this.scheduleName = this.scheduleName.bind(this);
+        this.passSchedule = this.passSchedule.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -36,10 +37,14 @@ class ScheduleTable extends React.Component {
         });
     }
 
+    passSchedule(schedule) {
+        this.props.getSchedule(schedule);
+    }
+
     scheduleName() {
         return "Schedule " + (this.state.index+1);
     }
-  
+
     render() {
 
         let colors = [["#428BCA", "#5CC3E1"], ["#468847", "#46A546"],

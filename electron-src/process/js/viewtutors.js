@@ -52,7 +52,7 @@ class ViewInfo extends React.Component {
       let d = JSON.parse(text);
       let p = new Parser();
       this.setState({
-          tutors: p.getTutors(mock),
+          tutors: p.getTutors(d),
           tutorData: d,
       });
     });
