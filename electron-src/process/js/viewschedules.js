@@ -106,7 +106,7 @@ class ViewSchedulePage  extends React.Component {
                         <ScheduleToolbar schedules={this.state.schedules} changeIndex={this.changeIndex}/>
                     </div>
 
-                    <div className="col-10">
+                    <div className="col-10 padding-0">
                         <ScheduleTable schedules={this.state.schedules} index={this.state.index}/>
                     </div>
                     <div className="w-100"></div>
