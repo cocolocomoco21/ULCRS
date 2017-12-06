@@ -2,17 +2,19 @@ var gulp = require('gulp'),
     browserify = require('gulp-browserify'),
     concatCss = require('gulp-concat-css'),
     run = require('gulp-run');
+let babel = require("gulp-babel");
 
 var src = './process',
     app = './app';
 
 gulp.task('js', function() {
   return gulp.src( src + '/js/*.js' )
-    .pipe(browserify({
-      transform: 'reactify',
-      extensions: 'browserify-css',
-      debug: true
-    }))
+    .pipe(babel(
+        {
+            presets: ["react", "env"],
+          //  env: { test: {presets: ["react", "env"]}}
+        }
+        ))
     .on('error', function (err) {
       console.error('Error!', err.message);
     })
@@ -35,14 +37,18 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest(app + '/fonts'));
 });
 
-gulp.task('watch', ['serve'], function() {
-  gulp.watch( src + '/js/**/*', ['js']);
-  gulp.watch( src + '/css/**/*.css', ['css']);
-  gulp.watch([ app + '/**/*.html'], ['html']);
-});
+// gulp.task('watch', ['serve'], function() {
+//   gulp.watch( src + '/js/**/*', ['js']);
+//   gulp.watch( src + '/css/**/*.css', ['css']);
+//   gulp.watch([ app + '/**/*.html'], ['html']);
+// });
 
 gulp.task('serve', ['html', 'js', 'css'], function() {
-  run('electron app/main.js').exec();
+  // verbosity: 3 here allows output to print console.logs
+  // from Electron as soon as they come, rather than buffering
+  // https://stackoverflow.com/questions/44393814/the-console-logs-of-an-electron-app-runned-by-gulp-are-not-shown
+  run('electron app/main.js', {verbosity: 3}).exec();
+
 });
 
-gulp.task('default', ['watch', 'fonts', 'serve']);
+gulp.task('default', ['fonts', 'serve']);

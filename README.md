@@ -16,6 +16,7 @@ ULCRS  mimics a webapp, but localized on a desktop. ULCRS has frontend and backe
 
 To grab dependencies and build the UI, from the top-level directory, run:
 ``` 
+./gradlew shadowjar
 cd electron-src
 npm install
 ```

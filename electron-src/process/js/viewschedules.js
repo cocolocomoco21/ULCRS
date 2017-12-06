@@ -1,20 +1,86 @@
+let requireLocal = ( localModule ) =>{
+    let path = require("path");
+    return require(path.resolve( __dirname, localModule))
+};
+
 let ReactDOM = require('react-dom');
 let React = require('react');
+let electron = require('electron');
+let ipc = electron.ipcRenderer;
+let ScheduleToolbar = requireLocal('./scheduletoolbar');
+let ScheduleTable = requireLocal('./scheduletable');
+let fs = require('fs');
 
-let ScheduleToolbar = require('./scheduletoolbar');
-let ScheduleTable = require('./scheduletable');
-let fs = eRequire('fs');
-let loadSchedules = JSON.parse(fs.readFileSync(dataLocation));
+let scheLocation = require('path').resolve(__dirname, '..', '..','data', 'scheduleData.json');
+let loadSchedules = JSON.parse(fs.readFileSync(scheLocation));
+
+
+let ExportSchedulePage = requireLocal('./exportschedule');
+let reactstrap = require('reactstrap');
+let Modal = reactstrap.Modal;
+let ModalHeader = reactstrap.ModalHeader;
+let ModalBody = reactstrap.ModalBody;
+let ModalFooter = reactstrap.ModalFooter;
+let Button = reactstrap.Button;
 
 console.log(loadSchedules);
 class ViewSchedulePage  extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            schedules : loadSchedules
+            schedules : loadSchedules,
+            modal : false,
+            saveMessage: "",
+            saveMessageModal: false,
+            exiting: false
+        };
+        this.toggleSaveModal = this.toggleSaveModal.bind(this);
+        this.toggleMessageModal = this.toggleMessageModal.bind(this);
+        this.exportSchedule = this.exportSchedule.bind(this);
+        this.exit = this.exit.bind(this);
+        this.toggleExiting = this.toggleExiting.bind(this);
+    }
+
+    toggleExiting(){
+        this.setState({
+            exiting: !this.state.exiting
+        })
+
+    }
+
+
+
+    toggleSaveModal(){
+        this.setState({
+            modal : ! this.state.modal
+        })
+    }
+
+    toggleMessageModal(){
+        this.setState({
+            saveMessageModal: ! this.state.saveMessageModal
+        })
+    }
+
+    exportSchedule(value){
+        if (value === 0) {
+            this.toggleSaveModal();
+        } else {
+            this.toggleSaveModal();
+            this.toggleMessageModal();
+            if (value === 1) {
+                this.state.saveMessage = "Session saved!";
+            } else if (value === 2) {
+                this.state.saveMessage = "Uploaded to server!";
+            }
         }
     }
-    render() {
+
+    exit(){
+        ipc.send("kill-app");
+    }
+
+    render(){
 
         return (
             <div className="container-fluid">
@@ -28,16 +94,57 @@ class ViewSchedulePage  extends React.Component {
                     </div>
 
                     <div className="col-2">
-                        
+                        <button className="btn btn-danger btn-block" onClick={this.toggleExiting} style={{"textAlign": "center"}} > Exit </button>
+                        <button type="button" className="btn btn-success btn-block" onClick={this.toggleSaveModal} style={{"textAlign": "center"}} > Save </button>
                     </div>
+
                 </div>
+
+                <Modal isOpen={this.state.modal} toggle={this.toggleSaveModal}>
+
+                    <ModalHeader toggle={this.toggleSaveModal} >
+                        <div style={{"textAlign": "center", "fontSize": "40px"}}>
+                            Save/Export Schedule
+                        </div>
+                    </ModalHeader>
+
+                    <ModalBody>
+                        <ExportSchedulePage exportSchedule={this.exportSchedule}/>
+                    </ModalBody>
+                </Modal>
+
+                <Modal isOpen={this.state.saveMessageModal} toggle={this.toggleMessageModal}>
+                    <ModalHeader toggle={this.toggleMessageModal} >
+                        <div style={{"textAlign": "center", "fontSize": "20px"}}>
+                            Message
+                        </div>
+                    </ModalHeader>
+                    <ModalBody>
+                        <div id="message-content"> {this.state.saveMessage} </div>
+                    </ModalBody>
+                </Modal>
+
+                <Modal isOpen={this.state.exiting} toggle={this.toggleExiting} >
+                    <ModalHeader toggle={this.toggleExiting}>
+                        Warning
+                    </ModalHeader>
+                    <ModalBody>
+                        <div> Are you sure you want to exit ULCRS? </div>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="danger" onClick={this.exit}>Exit</Button>{' '}
+                        <Button color="secondary" onClick={this.toggleExiting}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
             </div>
 
         )
     }
 }
+//
+// ReactDOM.render(
+//     <ViewSchedulePage />,
+//     document.getElementById("ViewSchedule")
+// );
 
-ReactDOM.render(
-    <ViewSchedulePage />,
-    document.getElementById("ViewSchedule")
-);
+module.exports = ViewSchedulePage;
