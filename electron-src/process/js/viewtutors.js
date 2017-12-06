@@ -3,15 +3,22 @@ let requireLocal = ( localModule ) =>{
     return require(path.resolve( __dirname, './js',localModule))
 };
 
+// let requireLocal = ( localModule ) =>{
+//     let path = require("path");
+//     return require(path.resolve( __dirname,localModule))
+// };
+
+let dataLocation = require('path').resolve(__dirname, '..','..', 'data', 'data.json');
+let mockData = require('path').resolve(__dirname, '..', 'data', 'mockTutorData2.json');
 let ReactDOM = require('react-dom');
 let React = require('react');
 let ViewToolBar = requireLocal('./viewtoolbar');
 let TutorTable = requireLocal('./tutortable');
 let CourseTable = requireLocal('./coursetable');
-let fs = eRequire('fs');
-let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
+let fs = require('fs');
+//let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
 let mock = JSON.parse(fs.readFileSync(mockData));
-let electron = eRequire('electron');
+let electron = require('electron');
 let ipc = electron.ipcRenderer;
 let Parser = requireLocal("./parser");
 let ViewSchedulePage = requireLocal("./viewschedules");
@@ -106,24 +113,32 @@ class ViewInfo extends React.Component {
         return (
             <div className="container-fluid ">
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-lg-3">
                         <ViewToolBar clickViewButton={this.clickViewButton}/>
                     </div>
                     <div className="col-9">
                         {/* <TutorTable tutors = {this.state.tutors}/> */}{/* Still thinking about how to load in CourseTable */}
                         {/*<Cour  seTable courses = {this.state.courses}/>*/}
-                        {this.prepareView()}
+                        <div className="row" style={{margin: 0, width: "100%", height:"600px"}}>
+                            {this.prepareView()}
+                        </div>
                     </div>
 
-                    <button type="button" className="btn btn-lg btn-success" id="generate-button-pos" onClick={this.toggleProceeding} > Generate Schedules! </button>
+                    <button color= "#0479a8" type="button" className="btn btn-lg" id="generate-button-pos" onClick={this.toggleProceeding} >
+                        <div style={{textAlign:"left"}}>
+                            Generate Schedules!
+                        </div>
+
+
+                    </button>
 
                     <Modal isOpen={this.state.proceeding}>
                         <ModalHeader>
-                            Action
+                            Generate Schedules
                         </ModalHeader>
 
                         <ModalBody>
-                            Do you want to proceed the generation?
+                            Do you want to proceed with generating schedules?
                         </ModalBody>
 
                         <ModalFooter>

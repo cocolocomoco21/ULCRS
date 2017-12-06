@@ -4,7 +4,7 @@
   "description": "ULC Resource Scheduler",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "start": "gulp "
   },
   "repository": "https://github.com/cocolocomoco21/ULCRS",
@@ -13,21 +13,27 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babelify": "^8.0.0",
     "electron": "~1.7.9",
     "electron-packager": "~9.1.0",
+    "electron-react-devtools": "^0.5.2",
     "gulp": "~3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-browserify": "~0.5.1",
     "gulp-concat-css": "~2.3.0",
     "gulp-react": "~3.1.0",
     "gulp-run": "~1.7.1",
+    "jest": "^21.2.1",
+    "nyc": "~11.3.0",
     "react": "~16.0.0",
     "react-dom": "~16.0.0",
-    "reactify": "~1.1.1"
+    "reactify": "~1.1.1",
+    "regenerator-runtime": "^0.11.0",
+    "spectron": "~3.7.2"
   },
   "dependencies": {
     "bootstrap": "~4.0.0-beta.2",
@@ -43,6 +49,10 @@
     "react-dnd": "~2.5.4",
     "react-dnd-html5-backend": "~2.5.4",
     "react-addons-update": "~15.6.2",
+    "react-select": "^1.1.0",
+    "react-redux": "^5.0.6",
+    "react-redux-form": "~1.16.1",
+    "redux": "^4.0.0-beta.1",
     "lodash.flow": "~3.5.0"
   }
 }

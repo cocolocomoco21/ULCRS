@@ -4,6 +4,52 @@ let DragSource = require('react-dnd').DragSource;
 let findDOMNode = require('react-dom').findDOMNode;
 let flow = require('lodash.flow');
 
+let reactstrap = require('reactstrap');
+let Modal = reactstrap.Modal;
+let ModalHeader = reactstrap.ModalHeader;
+let ModalBody = reactstrap.ModalBody;
+let ModalFooter = reactstrap.ModalFooter;
+
+import { Creatable } from "react-select";
+import { compose, createStore } from "redux";
+import { connect, Provider } from "react-redux";
+import { combineForms, Form, Control } from "react-redux-form";
+import MultiSelect from './multiselect';
+import PrefCourseList from './editlistmodule';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const initialUser = {};
+const store = createStore(
+  combineForms({
+    user: initialUser
+  })
+);
+
+class WillCourseList extends React.Component {
+
+  handleSubmit(e){
+    console.log(e);
+  };
+
+  render() {
+
+    return (
+      <div>
+        <Form model="user" onSubmit={this.handleSubmit}>
+          <MultiSelect model="user.category" options={[
+            { value: 'one', label: 'CS200' },
+            { value: 'two', label: 'CS300' },
+            { value: '3', label: 'CS400' },
+            { value: '5', label: 'CS500' },
+            { value: '4', label: 'CS600' }
+          ]} />
+        </Form>
+      </div>
+    );
+  }
+}
+export default WillCourseList;
+
 const style = {
     border: '1px dashed gray',
     padding: '0.5rem 1rem',
@@ -13,6 +59,27 @@ const style = {
 };
 
 class Card extends React.Component {
+  constructor(props){
+      super(props);
+      this.state = {
+          modal : false,
+          saveMessageModal: false
+      };
+  this.toggleMessageModal = this.toggleMessageModal.bind(this);
+  this.toggleGridModal = this.toggleGridModal.bind(this);
+}
+
+  toggleGridModal(){
+      this.setState({
+          modal : ! this.state.modal
+      })
+  }
+
+  toggleMessageModal(){
+      this.setState({
+          saveMessageModal: ! this.state.saveMessageModal
+      })
+  }
 
 	render() {
 		const { card, isDragging, connectDragSource, connectDropTarget } = this.props;
@@ -38,12 +105,48 @@ class Card extends React.Component {
         }
 
 		return connectDragSource(connectDropTarget(
+    <div className="container-fluid">
 			<div style={{ style, opacity }}>
-				<ul className="list-group">
+				<ul className="list-group" onClick={this.toggleGridModal}style={{"textAlign": "center"}}>
                     {course}
 					<li className="list-group-item" style={{backgroundColor: card.nameColor}}>{card.tutorName}</li>
 				</ul>
 			</div>
+
+      <Modal isOpen={this.state.modal} toggle={this.toggleGridModal}>
+          <ModalHeader toggle={this.toggleGridModal} >
+              <div style={{"textAlign": "left", "fontSize": "40px"}}>
+                  <p>{card.tutorName}</p>
+              </div>
+              <div>{card.day}</div>
+          </ModalHeader>
+          <ModalBody>
+          <Provider store={store}>
+            <div>
+              <h3>Add/Delete</h3>
+                <div>Willing Course List of {card.tutorName}</div>
+                  <WillCourseList />
+                <div>Prefer Course List of {card.tutorName}</div>
+                  <PrefCourseList />
+            </div>
+          </Provider>
+          </ModalBody>
+          <ModalFooter>
+            <button type="button" className="btn btn-success btn-block" onClick={this.toggleMessageModal} style={{"textAlign": "center"}} > Save </button>
+          </ModalFooter>
+
+          <Modal isOpen={this.state.saveMessageModal} toggle={this.toggleMessageModal}>
+              <ModalHeader toggle={this.toggleMessageModal} >
+                  <div style={{"textAlign": "center", "fontSize": "20px"}}>
+                      {card.day} Shift Of {card.tutorName}
+                  </div>
+              </ModalHeader>
+              <ModalBody>
+                  <div id="message-content"> Succesfully Modified </div>
+              </ModalBody>
+          </Modal>
+      </Modal>
+    </div>
 		));
 	}
 }

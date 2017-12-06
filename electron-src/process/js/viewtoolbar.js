@@ -1,5 +1,5 @@
 let React = require("react");
-let electron = eRequire("electron");
+let electron = require("electron");
 let ipc = electron.ipcRenderer;
 
 class ViewToolbar extends React.Component {
@@ -16,11 +16,11 @@ class ViewToolbar extends React.Component {
         let text1 = document.getElementById("tutorText");
         let text2 = document.getElementById("courseText");
 
-        tutorCard.style.backgroundColor = "#d9edf7";
-        courseCard.style.backgroundColor = "#5bc0de";
+        tutorCard.style.backgroundColor = "#F20056";
+        courseCard.style.backgroundColor = "#c41e3a";
 
-        text1.style.color = "#0055cc";
-        text2.style.color = "#f7f7f7";
+        text1.style.color = "#ffffff";
+        text2.style.color = "#ffffff";
 
         this.clickViewButton("tutor");
     }
@@ -29,31 +29,31 @@ class ViewToolbar extends React.Component {
     clickCourseButton() {
         let tutorCard = document.getElementById("tutorCard");
         let courseCard = document.getElementById("courseCard");
-        tutorCard.style.backgroundColor = "#5bc0de";
-        courseCard.style.backgroundColor = "#d9edf7";
+        tutorCard.style.backgroundColor = "#c41e3a";
+        courseCard.style.backgroundColor = "#F20056";
 
         let text1 = document.getElementById("tutorText");
         let text2 = document.getElementById("courseText");
-        text1.style.color = "#f7f7f7";
-        text2.style.color = "#0055cc";
+        text1.style.color = "#ffffff";
+        text2.style.color = "#ffffff";
 
         this.clickViewButton("course");
     }
     render(){
         return (
             <div id="toolbar" className="card">
-                <h3 className="card-header" style={{backgroundColor: "#5bc0de"}}>
+                <h3 className="card-header" style={{backgroundColor: "#c41e3a"}}>
                     <div style={{color:"#f7f7f7"}}>
                         Information
                     </div>
                 </h3>
 
-                <div id = "tutorCard" className = "card-body" onClick={this.clickTutorButton} style = {{backgroundColor: "#d9edf7"}}>
-                    <h5 id="tutorText" style={{color:"#0055cc"}}>
+                <div id = "tutorCard" className = "card-body" onClick={this.clickTutorButton} style = {{backgroundColor: "#F20056"}}>
+                    <h5 id="tutorText" style={{color:"#f7f7f7"}}>
                         <i className="fa fa-user" aria-hidden="true"></i>  Tutor
                     </h5>
                 </div> {/*tool bar */}
-                <div id = "courseCard" className = "card-body" onClick={this.clickCourseButton} style = {{backgroundColor: "#5bc0de"}}>
+                <div id = "courseCard" className = "card-body" onClick={this.clickCourseButton} style = {{backgroundColor: "#c41e3a"}}>
                     <h5 id="courseText" style={{color:"#f7f7f7"}}>
                         <i className="fa fa-book" aria-hidden="true"></i>  Course
                     </h5>

@@ -7,13 +7,26 @@ let React = require('react');
 let DragDropContext = require('react-dnd').DragDropContext;
 let HTML5Backend = require('react-dnd-html5-backend');
 
+let ipc = electron.ipcRenderer;
+let Parser = requireLocal("./parser");
+
 class ScheduleTable extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             schedules : this.props.schedules,
-            index : this.props.index
+            index : this.props.index,
+            tutors: [],
+            tutorData: null
         };
+        ipc.on("get-tutor-data",  (event, text) => {
+          let d = JSON.parse(text);
+          let p = new Parser();
+          this.setState({
+              tutors: p.getTutors(d),
+              tutorData: d,
+          });
+        });
         this.scheduleName = this.scheduleName.bind(this);
     }
 
@@ -65,6 +78,7 @@ class ScheduleTable extends React.Component {
                 containerDataList.push(
                     {
                         id: index,
+                        day: scheduleShifts[col].shift.day,
                         tutorName: tutor,
                         tutorCourse: assignments[row].courses,
                         nameColor: color[1],
@@ -77,7 +91,7 @@ class ScheduleTable extends React.Component {
                                     <div className="row">
                                         <div className="col text-center"
                                              style={{background: "#5bc0de", color: "white", padding:12}}>
-                                            {scheduleShifts[col].shift.day}
+
                                         </div>
                                     </div>
                                     <div className="row">
@@ -112,7 +126,12 @@ class ScheduleTable extends React.Component {
                 <div className="row">
                     <div className="col">
                         <div className="row" style={{background: "#5bc0de", color: "white", padding: 15}}>
-                            <h3>{this.scheduleName()}</h3>
+                            <div className="col-9">
+                                <h3> {this.scheduleName()} </h3>
+                            </div>
+                            <div className="col-3">
+                                <h5> Rating: {this.state.schedules[this.state.index].rating} </h5>
+                            </div>
                         </div>
                         <div className="row container-scroll">
                             <div className="col" style={{padding: 0}}>
