@@ -144,8 +144,14 @@ app.on('ready', function () {
 
     ipc.on("post_generate", function (event, excludedIds) {
 
-        fetch("http://localhost:4567/ulcrs/schedule/generate", {method: "POST"})
-            .then(res => {event.sender.send("post_success");});
+        fetch("http://localhost:4567/ulcrs/schedule/generate",
+            {
+                method: "POST",
+                body:JSON.stringify("generate")
+            })
+            .then(res => {
+                console.log(res);
+                event.sender.send("post_success");});
 
         // Need error handling
         console.log('preparing schedule data');
@@ -154,9 +160,10 @@ app.on('ready', function () {
 
         // set up time interval
         polling_schedules = setInterval(()=>{
-            fetch('http://localhost:4567/ulcrs/schedules')
+            fetch('http://localhost:4567/ulcrs/schedule/')
                 .then(res => res.text())
                 .then(data => {
+                    console.log(data);
                     if (data !== "null") {
                         console.log("received data");
                         event.sender.send("receive-schedule-data", data);
