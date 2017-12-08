@@ -80,12 +80,11 @@ class ScheduleTable extends React.Component {
                 let containerDataList = [];
                 let assignments = scheduleShifts[col].assignments;
 
-                for (let row = 0; row < assignments.length; row++){
-                    let tutor = assignments[row].tutor.firstName + " " + assignments[row].tutor.lastName;
+                for (let row = 0; row < assignments.length; row++) {
                     containerDataList.push(
                         {
                             id: index,
-                            tutorName: tutor,
+                            tutor: assignments[row].tutor,
                             tutorCourse: assignments[row].courses
                         });
                     index++;
