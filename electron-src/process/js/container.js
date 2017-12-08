@@ -6,23 +6,32 @@ let DropTarget = require('react-dnd').DropTarget;
 
 
 class Container extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      cards: props.list,
-      tutorData: this.props.tutorData
-    };
+	  constructor(props){
+		super(props);
+		this.state = {
+			cards: props.list,
+			tutorData: this.props.tutorData,
+			setContainerDataList: this.props.setContainerDataList.bind(this),
+            printc: this.props.printc.bind(this),
+		};
   }
 
 	pushCard(card) {
+        console.log("in pushCard");
 		this.setState(update(this.state, {
 			cards: {
 				$push: [ card ]
 			}
 		}));
+
+        this.props.printc();
+        this.props.setContainerDataList(this.props.id - 1, this.state.cards);
+        this.props.printc();
+        console.log("exiting pushCard");
 	}
 
 	removeCard(index) {
+        console.log("in removeCard");
 		this.setState(update(this.state, {
 			cards: {
 				$splice: [
@@ -30,8 +39,14 @@ class Container extends React.Component{
 				]
 			}
 		}));
+
+        this.props.printc();
+        this.props.setContainerDataList(this.props.id - 1, this.state.cards);
+        this.props.printc();
+        console.log("exiting removeCard");
 	}
   moveCard(dragIndex, hoverIndex) {
+      console.log("in moveCard");
  		const { cards } = this.state;
  		const dragCard = cards[dragIndex];
 
@@ -43,17 +58,23 @@ class Container extends React.Component{
  				]
  			}
  		}));
+
+        this.props.printc();
+        this.props.setContainerDataList(this.props.id - 1, this.state.cards);
+        this.props.printc();
+      console.log("exiting moveCard");
  	}
   render(){
     const { cards } = this.state;
-		const { canDrop, isOver, connectDropTarget } = this.props;
-		const isActive = canDrop && isOver;
+    const { canDrop, isOver, connectDropTarget } = this.props;
+    const isActive = canDrop && isOver;
     const style = {
 			width: "100%",
 			height: "100%"
 		};
 
     const backgroundColor = isActive ? 'lightgreen' : '#FFF';
+    // this.props.setContainerDataList(cards);
     return connectDropTarget(
 			<div id="container" style={{backgroundColor}}>
 				{cards.map((card, i) => {
