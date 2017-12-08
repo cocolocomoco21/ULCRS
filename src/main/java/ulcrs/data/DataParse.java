@@ -14,6 +14,7 @@ import ulcrs.models.ulc.ULCShift;
 import ulcrs.models.ulc.ULCTutor;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,15 +41,21 @@ public class DataParse {
 
         // Shifts
         HashMap<Integer, Shift> shifts = parseShifts(input);
-        parsed.setShifts(new ArrayList<>(shifts.values()));
+        ArrayList<Shift> shiftsList = new ArrayList<>(shifts.values());
+        shiftsList.sort(Comparator.comparingInt(Shift::getId));
+        parsed.setShifts(shiftsList);
 
         // Courses
         HashMap<Integer, Course> courses = parseCourses(input, shifts);
-        parsed.setCourses(new ArrayList<>(courses.values()));
+        ArrayList<Course> coursesList = new ArrayList<>(courses.values());
+        coursesList.sort(Comparator.comparingInt(Course::getId));
+        parsed.setCourses(coursesList);
 
         // Tutors
         HashMap<Integer, Tutor> tutors = parseTutors(input, shifts, courses);
-        parsed.setTutors(new ArrayList<>(tutors.values()));
+        ArrayList<Tutor> tutorsList = new ArrayList<>(tutors.values());
+        tutorsList.sort(Comparator.comparingInt(Tutor::getId));
+        parsed.setTutors(new ArrayList<>(tutorsList));
 
         return parsed;
     }

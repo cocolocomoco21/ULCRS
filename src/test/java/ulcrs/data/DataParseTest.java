@@ -1,5 +1,7 @@
 package ulcrs.data;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.internal.util.collections.Sets;
@@ -17,8 +19,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -28,26 +28,23 @@ import static org.junit.Assert.assertThat;
 @PrepareForTest({DataParse.class})
 public class DataParseTest {
     @Test
-    public void testPopulateData_formsCorrectSizes() {
-        List<String> mockResponse = getMockResponseFromJson();
+    public void testParse_formsCorrectSizes() {
+        JsonObject mockObject = formMockJson();
 
-        // Verify populateData succeeded
-        assertThat(DataStore.populateData(mockResponse), is(true));
-
-        // Verify fetch happened and saved data correctly
-        // TODO figure a better way to do this than comparing sheer size
-        //assertThat(DataStore.getCourses("").size(), is(69));
-        //assertThat(DataStore.getTutors("").size(), is(49));
-        //assertThat(DataStore.getShifts("").size(), is(5));
+        // Verify parse succeeded
+        ParsedULCResponse response = DataParse.parse(mockObject);
+        assertThat(response.getCourses().isEmpty(), is(false));
+        assertThat(response.getShifts().isEmpty(), is(false));
+        assertThat(response.getTutors().isEmpty(), is(false));
     }
 
     @Test
-    public void testPopulateData_courseCorrectlyFormed() {
-        List<String> mockResponse = getMockResponseFromJson();
-        DataStore.populateData(mockResponse);
+    public void testParse_courseCorrectlyFormed() {
+        JsonObject mockObject = formMockJson();
+        ParsedULCResponse response = DataParse.parse(mockObject);
 
         // Verify correctly formed Course
-        Course course = DataStore.getCourse(2122, "");
+        Course course = response.getCourses().get(0);
         assertThat(course.getId(), is(2122));
         assertThat(course.getName(), is("ISYE 313"));
         assertThat(course.getCourseRequirements().getRequiredShifts().size(), is(0));
@@ -59,12 +56,12 @@ public class DataParseTest {
     }
 
     @Test
-    public void testPopulateData_shiftCorrectlyFormed() {
-        List<String> mockResponse = getMockResponseFromJson();
-        DataStore.populateData(mockResponse);
+    public void testParse_shiftCorrectlyFormed() {
+        JsonObject mockObject = formMockJson();
+        ParsedULCResponse response = DataParse.parse(mockObject);
 
         // Verify correctly formed Shift
-        Shift shift = DataStore.getShift(1, "");
+        Shift shift = response.getShifts().get(0);
         assertThat(shift.getId(), is(1));
         assertThat(shift.getDay(), is(DayOfWeek.MONDAY));
         assertThat(shift.getStartTime(), is(LocalTime.of(18, 30)));
@@ -72,12 +69,12 @@ public class DataParseTest {
     }
 
     @Test
-    public void testPopulateData_tutorCorrectlyFormed() {
-        List<String> mockResponse = getMockResponseFromJson();
-        DataStore.populateData(mockResponse);
+    public void testParse_tutorCorrectlyFormed() {
+        JsonObject mockObject = formMockJson();
+        ParsedULCResponse response = DataParse.parse(mockObject);
 
         // Verify correctly formed Tutor
-        Tutor tutor = DataStore.getTutor(4850785, "");
+        Tutor tutor = response.getTutors().get(1);  // Get at index 1 since Tutor at index 0 has no meaningful attributes
         assertThat(tutor.getId(), is(4850785));
         assertThat(tutor.getFirstName(), is("Luke"));
         assertThat(tutor.getLastName(), is("Skywalker"));
@@ -98,18 +95,13 @@ public class DataParseTest {
         assertThat(tutor.getTutorStatus(), is(TutorStatus.ACTIVE));
     }
 
-    private static List<String> getMockResponseFromJson() {
-        InputStream inputStream = DataStore.class.getClassLoader().getResourceAsStream("mockULCResponse.json");
-
+    private static JsonObject formMockJson() {
         // Read mock data file
+        InputStream inputStream = DataStore.class.getClassLoader().getResourceAsStream("mockULCResponse.json");
         String response = new BufferedReader(new InputStreamReader(inputStream))
                 .lines().collect(Collectors.joining("\n"));
 
-        // Make response
-        List<String> mockResponse = new ArrayList<>();
-        mockResponse.add(response);
-
-        return mockResponse;
+        return new Gson().fromJson(response, JsonObject.class);
     }
 
 }
