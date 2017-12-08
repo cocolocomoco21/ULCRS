@@ -41,7 +41,7 @@ class ScheduleTable extends React.Component {
     }
 
     passSchedule(schedule) {
-        this.setState()
+        this.setState();
         this.props.getSchedule(schedule);
     }
 
@@ -66,11 +66,6 @@ class ScheduleTable extends React.Component {
     }
 
     render() {
-
-        let colors = [["#428BCA", "#5CC3E1"], ["#468847", "#46A546"],
-                        ["#F89406", "#FBB450"], ["#C3325F", "#EE5F5B"]];
-
-
         if (this.state.containerDataList == null) {
             this.state.containerDataList = [];
             console.log("this.state.schedule");
@@ -78,29 +73,18 @@ class ScheduleTable extends React.Component {
             let scheduleShifts = this.state.schedules[this.state.index].scheduleShifts;
             console.log(scheduleShifts);
             let index = 1;
-            let indexIncr = 0;
             for (let col = 0; col < scheduleShifts.length; col++){
                 console.log(col);
                 let containerDataList = [];
                 let assignments = scheduleShifts[col].assignments;
 
-                if (col % 2 == 0) {
-                    indexIncr += 1;
-                }
-                else {
-                    indexIncr += 2;
-                }
                 for (let row = 0; row < assignments.length; row++){
                     let tutor = assignments[row].tutor.firstName + " " + assignments[row].tutor.lastName;
-                    let color = colors[(indexIncr + row) % 4];
                     containerDataList.push(
                         {
                             id: index,
-                            day: scheduleShifts[col].shift.day,
                             tutorName: tutor,
-                            tutorCourse: assignments[row].courses,
-                            nameColor: color[1],
-                            courseColor: color[0]
+                            tutorCourse: assignments[row].courses
                         });
                     index++;
                 }
