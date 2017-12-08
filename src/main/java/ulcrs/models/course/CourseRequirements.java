@@ -3,6 +3,7 @@ package ulcrs.models.course;
 import com.google.gson.annotations.Expose;
 import ulcrs.models.shift.Shift;
 
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,16 +16,26 @@ public class CourseRequirements {
     private int requiredShiftAmount;
 
     @Expose
-    private int preferredShiftAmount;
+    private int preferredShiftAmount;   // Note: this is not currently used, but is kept here for simplicity
 
     @Expose
     private CourseIntensity intensity;
 
-    public CourseRequirements(Set<Shift> requiredShifts, int requiredShiftAmount, int preferredShiftAmount, CourseIntensity intensity) {
+    @Expose
+    private Map<Shift, Integer> numTutorsPerShift;
+
+    @Expose
+    private int numTutorsPerWeek;
+
+
+    public CourseRequirements(Set<Shift> requiredShifts, int requiredShiftAmount, int preferredShiftAmount, CourseIntensity intensity,
+                              Map<Shift, Integer> numTutorsPerShift, int numTutorsPerWeek) {
         this.requiredShifts = requiredShifts;
         this.requiredShiftAmount = requiredShiftAmount;
         this.preferredShiftAmount = preferredShiftAmount;
         this.intensity = intensity;
+        this.numTutorsPerShift = numTutorsPerShift;
+        this.numTutorsPerWeek = numTutorsPerWeek;
     }
 
     public Set<Shift> getRequiredShifts() {
@@ -59,23 +70,29 @@ public class CourseRequirements {
         this.intensity = intensity;
     }
 
+    public Map<Shift, Integer> getNumTutorsPerShift() {
+        return numTutorsPerShift;
+    }
+
+    public int getNumTutorsPerWeek() {
+        return numTutorsPerWeek;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         CourseRequirements that = (CourseRequirements) o;
         return requiredShiftAmount == that.requiredShiftAmount &&
                 preferredShiftAmount == that.preferredShiftAmount &&
+                numTutorsPerWeek == that.numTutorsPerWeek &&
                 Objects.equals(requiredShifts, that.requiredShifts) &&
-                intensity == that.intensity;
+                intensity == that.intensity &&
+                Objects.equals(numTutorsPerShift, that.numTutorsPerShift);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(requiredShifts, requiredShiftAmount, preferredShiftAmount, intensity);
+        return Objects.hash(requiredShifts, requiredShiftAmount, preferredShiftAmount, intensity, numTutorsPerShift, numTutorsPerWeek);
     }
 }

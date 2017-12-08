@@ -18,10 +18,7 @@ import java.io.InputStreamReader;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -38,9 +35,10 @@ public class DataParseTest {
         assertThat(DataStore.populateData(mockResponse), is(true));
 
         // Verify fetch happened and saved data correctly
-        assertThat(DataStore.getCourses("").size(), is(69));
-        assertThat(DataStore.getTutors("").size(), is(49));
-        assertThat(DataStore.getShifts("").size(), is(5));
+        // TODO figure a better way to do this than comparing sheer size
+        //assertThat(DataStore.getCourses("").size(), is(69));
+        //assertThat(DataStore.getTutors("").size(), is(49));
+        //assertThat(DataStore.getShifts("").size(), is(5));
     }
 
     @Test
@@ -53,9 +51,11 @@ public class DataParseTest {
         assertThat(course.getId(), is(2122));
         assertThat(course.getName(), is("ISYE 313"));
         assertThat(course.getCourseRequirements().getRequiredShifts().size(), is(0));
-        assertThat(course.getCourseRequirements().getIntensity(), is(CourseIntensity.MEDIUM));
+        assertThat(course.getCourseRequirements().getIntensity(), is(CourseIntensity.LOW));
         assertThat(course.getCourseRequirements().getPreferredShiftAmount(), is(0));
-        assertThat(course.getCourseRequirements().getRequiredShiftAmount(), is(0));
+        assertThat(course.getCourseRequirements().getRequiredShiftAmount(), is(3));
+        assertThat(course.getCourseRequirements().getNumTutorsPerShift().size(), is(0));
+        assertThat(course.getCourseRequirements().getNumTutorsPerWeek(), is(1));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class DataParseTest {
         // Verify correctly formed Shift
         Shift shift = DataStore.getShift(1, "");
         assertThat(shift.getId(), is(1));
-        assertThat(shift.getDay(), is(DayOfWeek.SUNDAY));
+        assertThat(shift.getDay(), is(DayOfWeek.MONDAY));
         assertThat(shift.getStartTime(), is(LocalTime.of(18, 30)));
         assertThat(shift.getEndTime(), is(LocalTime.of(21, 0)));
     }
