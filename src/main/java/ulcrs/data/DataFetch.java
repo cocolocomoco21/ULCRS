@@ -47,21 +47,35 @@ class DataFetch {
 
         try
         {
-            // Initialize HTTP request
-            URL url = new URL(DROP_IN_REQUEST_URL);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod(DROP_IN_REQUEST_REQUEST_TYPE);
-            connection.setRequestProperty(CONTENT_TYPE, DROP_IN_REQUEST_CONTENT_TYPE);
-            connection.setRequestProperty(COOKIE, cookie);
-            connection.setRequestProperty(CONTENT_LENGTH, Integer.toString(DROP_IN_REQUEST_DATA.getBytes().length));
-            connection.setRequestProperty(CONTENT_LANGUAGE, DROP_IN_REQUEST_CONTENT_LANGUAGE);
-            connection.setUseCaches(false);
-            connection.setDoOutput(true);
+            // Note:
+            // The below commented code is the code required to hit the ULC endpoint to get ULC data.
+            //
+            // For now, we are accessing a json file on the ULC server directly to get this ULC data since this file
+            // has the necessary course requirement information, while the endpoint does not yet.
 
-            // Send request
-            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
-            wr.writeBytes(DROP_IN_REQUEST_DATA);
-            wr.close();
+//            // Initialize HTTP request
+//            URL url = new URL(DROP_IN_REQUEST_URL);
+//            connection = (HttpURLConnection) url.openConnection();
+//            connection.setRequestMethod(DROP_IN_REQUEST_REQUEST_TYPE);
+//            connection.setRequestProperty(CONTENT_TYPE, DROP_IN_REQUEST_CONTENT_TYPE);
+//            connection.setRequestProperty(COOKIE, cookie);
+//            connection.setRequestProperty(CONTENT_LENGTH, Integer.toString(DROP_IN_REQUEST_DATA.getBytes().length));
+//            connection.setRequestProperty(CONTENT_LANGUAGE, DROP_IN_REQUEST_CONTENT_LANGUAGE);
+//            connection.setUseCaches(false);
+//            connection.setDoOutput(true);
+//
+//            // Send request
+//            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+//            wr.writeBytes(DROP_IN_REQUEST_DATA);
+//            wr.close();
+
+            // Initialize HTTP request
+            URL url = new URL("https://dropin.engr.wisc.edu/services/ulcrs-requirements.json");
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty(COOKIE, cookie);
+
+            int responseCode = connection.getResponseCode();
 
             // Get response
             InputStream is = connection.getInputStream();
@@ -69,12 +83,15 @@ class DataFetch {
 
             // Parse response
             List<String> response = new ArrayList<String>();
+            StringBuilder builder = new StringBuilder();
             String line;
             while ((line = rd.readLine()) != null)
             {
-                response.add(line);
+                //response.add(line);
+                builder.append(line.trim());
             }
             rd.close();
+            response.add(builder.toString());
 
             return response;
         }
