@@ -17,7 +17,8 @@ class ScheduleTable extends React.Component {
             schedules : this.props.schedules,
             index : this.props.index,
             tutors: [],
-            tutorData: null
+            tutorData: null,
+            containerDataList: null
         };
         ipc.on("get-tutor-data",  (event, text) => {
           let d = JSON.parse(text);
@@ -29,6 +30,8 @@ class ScheduleTable extends React.Component {
         });
         this.scheduleName = this.scheduleName.bind(this);
         this.passSchedule = this.passSchedule.bind(this);
+        this.setContainerDataList = this.setContainerDataList.bind(this);
+        this.printContainerDataList = this.printContainerDataList.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -38,11 +41,28 @@ class ScheduleTable extends React.Component {
     }
 
     passSchedule(schedule) {
+        this.setState()
         this.props.getSchedule(schedule);
     }
 
     scheduleName() {
         return "Schedule " + (this.state.index+1);
+    }
+
+    setContainerDataList(index, list) {
+        console.log("in setContainerDataList");
+        let dataList = this.state.containerDataList;
+        dataList[index] = list;
+        this.setState({
+            containerDataList : dataList
+        });
+        this.printContainerDataList();
+        console.log("exiting setContainerDataList");
+    }
+
+    printContainerDataList(){
+        console.log("in printContainerDataList: printing this.state.containerDataList");
+        console.log(this.state.containerDataList);
     }
 
     render() {
@@ -51,39 +71,48 @@ class ScheduleTable extends React.Component {
                         ["#F89406", "#FBB450"], ["#C3325F", "#EE5F5B"]];
 
 
-        console.log(this.state.schedules);
+        if (this.state.containerDataList == null) {
+            this.state.containerDataList = [];
+            console.log("this.state.schedule");
+            console.log(this.state.schedules);
+            let scheduleShifts = this.state.schedules[this.state.index].scheduleShifts;
+            console.log(scheduleShifts);
+            let index = 1;
+            let indexIncr = 0;
+            for (let col = 0; col < scheduleShifts.length; col++){
+                console.log(col);
+                let containerDataList = [];
+                let assignments = scheduleShifts[col].assignments;
+
+                if (col % 2 == 0) {
+                    indexIncr += 1;
+                }
+                else {
+                    indexIncr += 2;
+                }
+                for (let row = 0; row < assignments.length; row++){
+                    let tutor = assignments[row].tutor.firstName + " " + assignments[row].tutor.lastName;
+                    let color = colors[(indexIncr + row) % 4];
+                    containerDataList.push(
+                        {
+                            id: index,
+                            day: scheduleShifts[col].shift.day,
+                            tutorName: tutor,
+                            tutorCourse: assignments[row].courses,
+                            nameColor: color[1],
+                            courseColor: color[0]
+                        });
+                    index++;
+                }
+                this.state.containerDataList.push(containerDataList);
+            }
+            console.log("this.state.containerDataList");
+            console.log(this.state.containerDataList);
+        }
         let containerList = [];
         let scheduleShifts = this.state.schedules[this.state.index].scheduleShifts;
-        console.log(scheduleShifts);
-        let index = 1;
-        let indexIncr = 0;
-        for (let col = 0; col < scheduleShifts.length; col++){
+        for (let col = 0; col < this.state.containerDataList.length; col++){
             console.log(col);
-            let containerDataList = [];
-            let assignments = scheduleShifts[col].assignments;
-            console.log(assignments);
-
-            if (col % 2 == 0) {
-                indexIncr += 1;
-            }
-            else {
-                indexIncr += 2;
-            }
-            for (let row = 0; row < assignments.length; row++){
-                let tutor = assignments[row].tutor.firstName + " " + assignments[row].tutor.lastName;
-                let color = colors[(indexIncr + row) % 4];
-                containerDataList.push(
-                    {
-                        id: index,
-                        day: scheduleShifts[col].shift.day,
-                        tutorName: tutor,
-                        tutorCourse: assignments[row].courses,
-                        nameColor: color[1],
-                        courseColor: color[0]
-                    });
-                index++;
-            }
-            console.log(containerDataList);
             containerList.push(<div className="col-2">
                                     <div className="row">
                                         <div className="col text-center"
@@ -94,7 +123,9 @@ class ScheduleTable extends React.Component {
                                     <div className="row">
                                         <div className="col">
                                             <Container key={this.state.index * 100 + col + 1}
-                                                       id={col + 1} list={containerDataList}/>
+                                                       id={col + 1} list={this.state.containerDataList[col]}
+                                                        setContainerDataList={this.setContainerDataList}
+                                                       printc={this.printContainerDataList}/>
                                         </div>
                                     </div>
                                 </div>);
