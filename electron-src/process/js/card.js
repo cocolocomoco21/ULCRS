@@ -26,6 +26,13 @@ const store = createStore(
 );
 
 class WillCourseList extends React.Component {
+  constructor(props){
+      super(props);
+      this.state = {
+          preLoadOption: this.props.tutorCourse,
+          tutorId: this.props.tutorId
+      };
+  }
 
   handleSubmit(e){
     console.log(e);
@@ -36,13 +43,8 @@ class WillCourseList extends React.Component {
     return (
       <div>
         <Form model="user" onSubmit={this.handleSubmit}>
-          <MultiSelect model="user.category" options={[
-            { value: 'one', label: 'CS200' },
-            { value: 'two', label: 'CS300' },
-            { value: '3', label: 'CS400' },
-            { value: '5', label: 'CS500' },
-            { value: '4', label: 'CS600' }
-          ]} />
+          <MultiSelect model="user.category" options={this.state.preLoadOption}
+          tutorId={this.state.tutorId} isWilling={true}/>
         </Form>
       </div>
     );
@@ -63,11 +65,19 @@ class Card extends React.Component {
       super(props);
       this.state = {
           modal : false,
-          saveMessageModal: false
+          saveMessageModal: false,
+          card : this.props.card
       };
   this.toggleMessageModal = this.toggleMessageModal.bind(this);
   this.toggleGridModal = this.toggleGridModal.bind(this);
+  this.changeCourses = this.changeCourses.bind(this);
 }
+  //TODO: refer to max's implementation
+  changeCourses(c){
+    this.setState({
+      card.tutorCourse : c
+    })
+  }
 
   toggleGridModal(){
       this.setState({
@@ -82,7 +92,8 @@ class Card extends React.Component {
   }
 
 	render() {
-		const { card, isDragging, connectDragSource, connectDropTarget } = this.props;
+    const card = this.state.card;
+		const { isDragging, connectDragSource, connectDropTarget } = this.props;
 		const opacity = isDragging ? 0 : 1;
 
 		let course = [];
@@ -137,9 +148,9 @@ class Card extends React.Component {
             <div>
               <h3>Add/Delete</h3>
                 <div>Willing Course List of {card.tutorName}</div>
-                  <WillCourseList />
+                  <WillCourseList tutorCourse={card.tutorCourse} tutorId={card.tutorId}/>
                 <div>Prefer Course List of {card.tutorName}</div>
-                  <PrefCourseList />
+                  <PrefCourseList tutorCourse={card.tutorCourse} tutorId={card.tutorId}/>
             </div>
           </Provider>
           </ModalBody>

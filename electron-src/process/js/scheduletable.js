@@ -72,10 +72,12 @@ class ScheduleTable extends React.Component {
             for (let row = 0; row < assignments.length; row++){
                 let tutor = assignments[row].tutor.firstName + " " + assignments[row].tutor.lastName;
                 let color = colors[(indexIncr + row) % 4];
+
                 containerDataList.push(
                     {
                         id: index,
                         day: scheduleShifts[col].shift.day,
+                        tutorId: assignments[row].tutor.id,
                         tutorName: tutor,
                         tutorCourse: assignments[row].courses,
                         nameColor: color[1],
