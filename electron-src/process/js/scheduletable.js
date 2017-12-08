@@ -46,6 +46,26 @@ class ScheduleTable extends React.Component {
         this.props.getSchedule(schedule);
     }
 
+    parseContainerDataList() {
+        console.log("in parseContainerDataList");
+        let schedule = this.state.schedules[this.state.curIndex];
+        for (let col=0; col<this.state.containerDataList.length; col++) {
+            let containerData = this.state.containerDataList[col];
+            let assignments = [];
+            for (let row=0; row<containerData.length; row++) {
+                assignments.push({
+                    tutor: containerData[row].tutor,
+                    courses: containerData[row].tutorCourse
+                });
+            }
+            schedule.scheduleShifts[col].assignments = assignments;
+        }
+        console.log("schedule");
+        console.log(schedule);
+        console.log("exiting parseContainerDataList");
+        return schedule;
+    }
+
     scheduleName() {
         return "Schedule " + (this.state.index+1);
     }
