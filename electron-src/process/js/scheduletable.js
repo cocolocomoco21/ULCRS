@@ -16,6 +16,7 @@ class ScheduleTable extends React.Component {
         this.state = {
             schedules : this.props.schedules,
             index : this.props.index,
+            curIndex : null,
             tutors: [],
             tutorData: null,
             containerDataList: null
@@ -66,14 +67,15 @@ class ScheduleTable extends React.Component {
     }
 
     render() {
-        if (this.state.containerDataList == null) {
+        if (this.state.index != this.state.curIndex) {
             this.state.containerDataList = [];
             console.log("this.state.schedule");
             console.log(this.state.schedules);
             let scheduleShifts = this.state.schedules[this.state.index].scheduleShifts;
+            this.state.curIndex = this.state.index;
             console.log(scheduleShifts);
             let index = 1;
-            for (let col = 0; col < scheduleShifts.length; col++){
+            for (let col = 0; col < scheduleShifts.length; col++) {
                 console.log(col);
                 let containerDataList = [];
                 let assignments = scheduleShifts[col].assignments;
