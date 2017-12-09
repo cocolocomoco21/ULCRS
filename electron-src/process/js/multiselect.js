@@ -20,6 +20,7 @@ class MultiSelect extends React.Component {
             idToIndex: {}
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.props.setCoursesAssigned([]);
     }
 
     handleSelectChange(value){
