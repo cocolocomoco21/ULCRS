@@ -5,28 +5,28 @@ import MultiSelect from './multiselect';
 
 
 class PrefCourseList extends React.Component {
-  constructor(props){
-      super(props);
-      this.state = {
-          preLoadOption: this.props.tutorCourse,
-          tutorId: this.props.tutorId
-      };
-  }
-  handleSubmit(e){
-    console.log(e);
-  };
+    constructor(props){
+        super(props);
+        this.state = {
+            tutorCourse: this.props.tutorCourse,
+            tutorId: this.props.tutorId
+        };
+    }
 
-  render() {
+    handleSubmit(e){
+        console.log(e);
+    };
 
-    return (
-      <div>
-        <Form model="user" onSubmit={this.handleSubmit}>
-          <MultiSelect model="user.category" options={this.state.preLoadOption} 
-          tutorId={this.state.tutorId} isWilling={false}
-           setCoursesAssigned={this.props.setPreferCoursesAssigned}/>
-        </Form>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <Form model="user" onSubmit={this.handleSubmit}>
+                <MultiSelect model="user.category" tutorCourse={this.state.tutorCourse}
+                             tutorId={this.state.tutorId} isWilling={false}
+                             setCoursesAssigned={this.props.setPreferCoursesAssigned}/>
+                </Form>
+            </div>
+        );
+    }
 }
 export default PrefCourseList;

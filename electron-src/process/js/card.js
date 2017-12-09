@@ -29,7 +29,7 @@ class WillCourseList extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            preLoadOption: this.props.tutorCourse,
+            tutorCourse: this.props.tutorCourse,
             tutorId: this.props.tutorId
         };
     }
@@ -42,9 +42,9 @@ class WillCourseList extends React.Component {
         return (
             <div>
                 <Form model="user" onSubmit={this.handleSubmit}>
-                    <MultiSelect model="user.category" options={this.state.preLoadOption}
+                    <MultiSelect model="user.category" tutorCourse={this.state.tutorCourse}
                                  tutorId={this.state.tutorId} isWilling={true}
-                                 setCoursesAssigned={this.props.setWillCoursesAssigned.bind(this)}/>
+                                 setCoursesAssigned={this.props.setWillCoursesAssigned}/>
                 </Form>
             </div>
         );

@@ -93,6 +93,20 @@ class MultiSelect extends React.Component {
                 console.log(this.state.idToIndex);
             }
         }
+        console.log("this.state.tutorCourse");
+        console.log(this.props.tutorCourse);
+
+        if (this.state.categoryValue == null && this.props.tutorCourse.length > 0) {
+            let valueList = [];
+            console.log("id");
+            for (let i=0; i<this.props.tutorCourse.length; i++) {
+                console.log(this.props.tutorCourse[i].id);
+                valueList.push(this.props.tutorCourse[i].id.toString());
+            }
+            console.log("valueList");
+            console.log(valueList);
+            this.state.categoryValue = valueList.join();
+        }
 
         let reactSelect = props => (
           <Select

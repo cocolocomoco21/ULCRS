@@ -8,30 +8,30 @@
 				"assignments":
 				[
 					{
-						"tutor": { "id": 1, "firstName": "Jason", "lastName": "Terry"},
+						"tutor": { "id": 1, "firstName": "Spicy", "lastName": "Memelord"},
 						"courses":
 						[
 							{
-								"id": 1,
-								"name": "CS 367"
-							},
-							{
-								"id": 2,
-								"name": "CS 456"
+								"id": 0,
+								"name": "CS 301"
 							},
 							{
 								"id": 3,
-								"name": "ECE 455"
+								"name": "EMA 201"
+							},
+							{
+								"id": 4,
+								"name": "ECE 230"
 							}
 						]
 					},
 					{
-						"tutor": { "id": 2, "firstName": "Mike", "lastName": "Altman"},
+						"tutor": { "id": 2, "firstName": "Steve", "lastName": "Balmer"},
 						"courses":
 						[
 							{
 								"id": 1,
-								"name": "CS 250"
+								"name": "CS 302"
 							}
 						]
 					}
@@ -42,34 +42,26 @@
 				"assignments":
 				[
 					{
-						"tutor": { "id": 1, "firstName": "Jason", "lastName": "Terry"},
+						"tutor": { "id": 1, "firstName": "Spicy", "lastName": "Memelord"},
 						"courses":
 						[
 							{
-								"id": 1,
-								"name": "CS 550"
+								"id": 3,
+								"name": "EMA 201"
 							},
 							{
-								"id": 1,
-								"name": "CS 550"
-							},
-							{
-								"id": 1,
-								"name": "CS 550"
-							},
-							{
-								"id": 1,
-								"name": "CS 550"
+								"id": 4,
+								"name": "CS 230"
 							}
 						]
 					},
 					{
-						"tutor": { "id": 2, "firstName": "Mike", "lastName": "Altman"},
+						"tutor": { "id": 2, "firstName": "Steve", "lastName": "Balmer"},
 						"courses":
 						[
 							{
-								"id": 1,
-								"name": "CS 250"
+								"id": 3,
+								"name": "EMA 201"
 							}
 						]
 					},
@@ -78,7 +70,7 @@
 						"courses":
 						[
 							{
-								"id": 1,
+								"id": 3,
 								"name": "CS 200"
 							}
 						]
@@ -94,11 +86,11 @@
 						]
 					},
 					{
-						"tutor": { "id": 5, "firstName": "Amy", "lastName": "Sherman"},
+						"tutor": { "id": -1, "firstName": "Amy", "lastName": "Sherman"},
 						"courses":
 						[
 							{
-								"id": 1,
+								"id": 3,
 								"name": "CS 900"
 							}
 						]
@@ -110,12 +102,12 @@
 				"assignments":
 				[
 					{
-						"tutor": { "id": 1, "firstName": "Jason", "lastName": "Terry"},
+						"tutor": { "id": 1, "firstName": "Spicy", "lastName": "Memelord"},
 						"courses":
 						[
 							{
-								"id": 1,
-								"name": "CS 870"
+								"id": 6,
+								"name": "MEME 404"
 							}
 						]
 					},
@@ -130,16 +122,16 @@
 						]
 					},
 					{
-						"tutor": { "id": 5, "firstName": "Amy", "lastName": "Sherman"},
+						"tutor": { "id": 0, "firstName": "Bilbo", "lastName": "Baggins"},
 						"courses":
 						[
 							{
 								"id": 1,
-								"name": "CS 750"
+								"name": "CS 302"
 							},
 							{
-								"id": 1,
-								"name": "CS 560"
+								"id": 2,
+								"name": "CS 577"
 							}
 						]
 					}
