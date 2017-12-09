@@ -25,7 +25,7 @@ import java.util.List;
 @PrepareForTest(SessionController.class)
 public class SessionControllerTest {
 
-    private static final String WORKSPACE_PATH = "sessions/";
+    private static final String WORKSPACE_PATH = "../sessions/";
     private static final String TEST_WORKSPACE_PATH = "src/test/resources/sessions/";
 
     private SessionController sessionControllerTest;

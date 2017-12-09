@@ -60,11 +60,11 @@ public class TutorTest {
         shiftSet3.add(shift4);
 
         // Create courses
-        Course course0 = new Course(0, "CS 301", new CourseRequirements(shiftSet1, 1, 3, CourseIntensity.MEDIUM));
-        Course course1 = new Course(1, "CS 302", new CourseRequirements(shiftSet2, 2, 2, CourseIntensity.HIGH));
-        Course course2 = new Course(2, "CS 577", new CourseRequirements(shiftSet0, 1, 2, CourseIntensity.LOW));
-        Course course3 = new Course(3, "EMA 201", new CourseRequirements(shiftSet3, 4, 4, CourseIntensity.HIGH));
-        Course course4 = new Course(4, "ECE 210", new CourseRequirements(shiftSet0, 1, 1, CourseIntensity.LOW));
+        Course course0 = new Course(0, "CS 301", new CourseRequirements(shiftSet1, 1, 3, CourseIntensity.MEDIUM, null, 0));
+        Course course1 = new Course(1, "CS 302", new CourseRequirements(shiftSet2, 2, 2, CourseIntensity.HIGH, null, 0));
+        Course course2 = new Course(2, "CS 577", new CourseRequirements(shiftSet0, 1, 2, CourseIntensity.LOW, null, 0));
+        Course course3 = new Course(3, "EMA 201", new CourseRequirements(shiftSet3, 4, 4, CourseIntensity.HIGH, null, 0));
+        Course course4 = new Course(4, "ECE 210", new CourseRequirements(shiftSet0, 1, 1, CourseIntensity.LOW, null, 0));
         this.courses.add(course0);
         this.courses.add(course1);
         this.courses.add(course2);
