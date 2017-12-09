@@ -66,10 +66,15 @@ class Card extends React.Component {
           modal : false,
           saveMessageModal: false,
           card : this.props.card,
-          day : this.props.day
+          day : this.props.day,
+          willCoursesAssigned : [1,2],
+          preferCoursesAssigned : [],
       };
   this.toggleMessageModal = this.toggleMessageModal.bind(this);
   this.toggleGridModal = this.toggleGridModal.bind(this);
+  this.setPreferCoursesAssigned = this.setPreferCoursesAssigned.bind(this);
+  this.setWillCoursesAssigned = this.setWillCoursesAssigned.bind(this);
+  this.savePopUp = this.savePopUp.bind(this);
   //this.changeCourses = this.changeCourses.bind(this);
 }
 
@@ -78,6 +83,25 @@ class Card extends React.Component {
   //     card.tutorCourse : c
   //   })
   // }
+
+    setWillCoursesAssigned(courses) {
+        this.setState({
+            willCoursesAssigned: courses
+        });
+    }
+
+    setPreferCoursesAssigned(courses) {
+        this.setState({
+            preferCoursesAssigned: courses
+        });
+    }
+
+    savePopUp() {
+        console.log("in save pop up");
+        this.toggleMessageModal();
+        console.log(this.state.preferCoursesAssigned);
+        console.log(this.state.willCoursesAssigned);
+    }
 
   toggleGridModal(){
       this.setState({
@@ -148,14 +172,16 @@ class Card extends React.Component {
             <div>
               <h4>Add/Delete</h4>
                 <div>Prefer Course List of {tutorName}</div>
-                    <PrefCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}/>
+                    <PrefCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}
+                    setPreferCoursesAssigned={this.setPreferCoursesAssigned}/>
                 <div>Willing Course List of {tutorName}</div>
-                  <WillCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}/>
+                  <WillCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}
+                  setWillCoursesAssigned={this.setWillCoursesAssigned}/>
             </div>
           </Provider>
           </ModalBody>
           <ModalFooter>
-            <button type="button" className="btn btn-success btn-block" onClick={this.toggleMessageModal} style={{"textAlign": "center"}} > Save </button>
+            <button type="button" className="btn btn-success btn-block" onClick={this.savePopUp} style={{"textAlign": "center"}} > Save </button>
           </ModalFooter>
 
           <Modal isOpen={this.state.saveMessageModal} toggle={this.toggleMessageModal}>

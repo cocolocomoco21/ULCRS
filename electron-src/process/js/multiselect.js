@@ -8,7 +8,7 @@ import Select from 'react-select';
 let fs = require('fs');
 
 let tutorLocation = require('path').resolve(__dirname, '..', '..','data', 'mockTutorData.json');
-let loadTutorCourse = JSON.parse(fs.readFileSync(tutorLocation));
+let loadTutorData = JSON.parse(fs.readFileSync(tutorLocation));
 
 class MultiSelect extends React.Component {
   constructor(props) {
@@ -22,15 +22,15 @@ class MultiSelect extends React.Component {
   };
 
   render() {
-    let targetid = this.props.tutorId;
-    console.log("targetid");
-    console.log(targetid);
+    let targetId = this.props.tutorId;
+    console.log("targetId");
+    console.log(targetId);
     console.log("loadTurorCourse");
-    console.log(loadTutorCourse);
+    console.log(loadTutorData);
     let result = null;
-    for (let i=0; i<loadTutorCourse.length; i++){
-      if (loadTutorCourse[i].id == targetid) {
-        result=loadTutorCourse[i];
+    for (let i=0; i<loadTutorData.length; i++){
+      if (loadTutorData[i].id == targetId) {
+        result=loadTutorData[i];
       }
     }
     console.log("result");
@@ -44,6 +44,10 @@ class MultiSelect extends React.Component {
           label: willing[i].name
         });
       }
+      if (this.state.categoryValue.length == 0) {
+          this.state.categoryValue = "0";
+      }
+      console.log("in willing");
     }
     else {
       let prefer = result.tutorPreferences.coursePreferences.PREFER;
@@ -53,14 +57,20 @@ class MultiSelect extends React.Component {
           label: prefer[i].name
         });
       }
+        if (this.state.categoryValue.length == 0) {
+            this.state.categoryValue = "0,1";
+        }
+        console.log("in prefer");
     }
-    console.log(result);
     
     let reactSelect = props => (
       <Select
         {...props}
       />
     );
+      console.log("this.state.categoryValue");
+    console.log(this.state.categoryValue);
+    console.log(this.state.categoryValue.length);
 
     return (
       <div className="form__row">
