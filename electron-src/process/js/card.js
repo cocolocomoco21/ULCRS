@@ -79,11 +79,17 @@ class Card extends React.Component {
 
     setTutorCourse() {
         console.log("in setTutorCourse");
-        let card = this.state.card;
-        card.tutorCourse = this.state.preferCoursesAssigned.concat(this.state.willCoursesAssigned);
-        console.log("card");
-        console.log(card);
-        this.props.setCard(this.props.index, card);
+        let tutorCourse = this.state.preferCoursesAssigned.concat(this.state.willCoursesAssigned);
+        console.log("tutorCourse");
+        console.log(tutorCourse);
+        if (tutorCourse.length > 0) {
+            let card = this.state.card;
+            card.tutorCourse = tutorCourse;
+            console.log("card");
+            console.log(card);
+            this.props.setCard(this.props.index, card);
+            this.toggleMessageModal();
+        }
     }
 
     setWillCoursesAssigned(courses) {
@@ -114,7 +120,6 @@ class Card extends React.Component {
 
     savePopUp() {
         console.log("in save pop up");
-        this.toggleMessageModal();
         console.log(this.state.preferCoursesAssigned);
         console.log(this.state.willCoursesAssigned);
         this.setTutorCourse();
