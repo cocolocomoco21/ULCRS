@@ -84,6 +84,11 @@ class Card extends React.Component {
   //     card.tutorCourse : c
   //   })
   // }
+    setTutorCourse() {
+        let card = this.state.card;
+        card.tutorCourse = this.state.preferCoursesAssigned.concat(this.state.willCoursesAssigned);
+        this.props.setCard(this.props.index, card);
+    }
 
     setWillCoursesAssigned(courses) {
         this.setState({
