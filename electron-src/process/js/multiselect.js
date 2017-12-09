@@ -5,6 +5,11 @@ import React, { Component } from 'react';
 import { Control } from 'react-redux-form';
 import Select from 'react-select';
 
+let fs = require('fs');
+
+let tutorLocation = require('path').resolve(__dirname, '..', '..','data', 'mockTutorData.json');
+let loadTutorCourse = JSON.parse(fs.readFileSync(tutorLocation));
+
 class MultiSelect extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +22,35 @@ class MultiSelect extends React.Component {
   };
 
   render() {
+    let targetid = this.props.tutorId;
+    console.log(targetid);
+    let result = null;
+    for (let i=0; i<loadTutorCourse.length; i++){
+      if (loadTutorCourse[i].id == targetid) {
+        result=loadTutorCourse[i];
+      }
+    }
+    let courses = [];
+    if (this.props.isWilling == true) {
+      let willing = result.tutorPreferences.coursePreferences.WILLING;
+      for (let i=0; i<willing.length; i++) {
+        courses.push({
+          value: i,
+          label: willing[i].name
+        });
+      }
+    }
+    else {
+      let prefer = result.tutorPreferences.coursePreferences.PREFER;
+      for (let i=0; i<prefer.length; i++) {
+        courses.push({
+          value: i,
+          label: prefer[i].name
+        });
+      }
+    }
+    console.log(result);
+    
     let reactSelect = props => (
       <Select
         {...props}
@@ -47,7 +81,7 @@ class MultiSelect extends React.Component {
           simpleValue
           multi
           value={this.state.categoryValue}
-          options={this.props.options}
+          options={courses}
           onChange={this.handleSelectChange}
           joinValues
           name={this.props.model}
