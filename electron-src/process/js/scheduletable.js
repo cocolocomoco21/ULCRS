@@ -100,16 +100,16 @@ class ScheduleTable extends React.Component {
                                 </div>);
         }
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="card">
+            <div className="container-fluid px-0 " style={{width:"100%",height:"100%"}}>
+                <div className="row p-0" style={{height:"100%"}}>
+                    <div className="card" style={{width:"100%"}}>
                         <div className="card-header" style={{background: "#c5050c", color: "#f9f9f9"}}>
                                 <h3> {this.scheduleName()} </h3>
                                 <h5> Rating: {this.state.schedules[this.state.index].rating} </h5>
                         </div>
-                        <div className="row container-scroll">
+                        <div className="row container-scroll" style={{height:"100%"}}>
                             <div className="col">
-                                <div className="row" style={{margin: 0, width: "100%", height: "500px"}}>
+                                <div className="row" style={{margin: 0, width: "100%"}}>
                                     {containerList}
                                 </div>
                             </div>

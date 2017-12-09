@@ -101,22 +101,32 @@ class ViewSchedulePage  extends React.Component {
 
         return (
             <div className="container-fluid">
-                <div className="row">
-                    <div className="col-2 padding-0">
+                <div className="row" style={{height:"80%"}}>
+                    <div className="col-2 p-0">
                         <ScheduleToolbar schedules={this.state.schedules} changeIndex={this.changeIndex}/>
                     </div>
 
-                    <div className="col-10 padding-0">
+                    <div className="col-10 pl-3 pr-1" style={{height:"100%"}}>
                         <ScheduleTable schedules={this.state.schedules} index={this.state.index}/>
-                    </div>
-                    <div className="w-100"></div>
-                    <div className="col-2 p-0">
-                        <button type="button" className="btn btn-success btn-block" onClick={this.toggleSaveModal} style={{"textAlign": "center"}} > Save </button>
-                        <button className="btn btn-danger btn-block" onClick={this.toggleExiting} style={{"textAlign": "center"}} > Exit </button>
                     </div>
 
                 </div>
-
+                <div className="row" style={{height:"20%"}}>
+                    <div className="col-8">
+                    </div>
+                    <div className="col-2" style={{height:"100%"}}>
+                        <div className="d-flex align-items-center justify-content-center">
+                            <button type="button" className="btn btn-success btn-block" onClick={this.toggleSaveModal}
+                                    style={{"textAlign": "center", width:"200px", height:"100px"}} > Save </button>
+                        </div>
+                    </div>
+                    <div className="col-2">
+                        <div className="d-flex align-items-center justify-content-center">
+                            <button className="btn btn-danger btn-block" onClick={this.toggleExiting}
+                                    style={{"textAlign": "center", width:"200px", height:"100px"}} > Exit </button>
+                        </div>
+                    </div>
+                </div>
                 <Modal isOpen={this.state.modal} toggle={this.toggleSaveModal}>
 
                     <ModalHeader toggle={this.toggleSaveModal} >

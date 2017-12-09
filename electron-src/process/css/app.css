@@ -536,7 +536,17 @@
 }
 
 .table-scroll {
-    height: 550px;
-    overflow-y: scroll;
-    overflow-x: scroll;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+html, body {
+  height: 100%;
+}
+
+.Flipped, .Flipped .Content
+{
+  transform:rotateX(180deg);
+  -ms-transform:rotateX(180deg); /* IE 9 */
+  -webkit-transform:rotateX(180deg); /* Safari and Chrome */
 }

@@ -115,14 +115,14 @@ class ViewInfo extends React.Component {
     render() {
         return (
             <div className="container-fluid ">
-                <div className="row">
+                <div className="row" style={{height:"80%"}}>
                     <div className="col-2 pr-0 pl-0">
                         <ViewToolBar clickViewButton={this.clickViewButton}/>
                     </div>
-                    <div className="col-10 pl-0 ">
+                    <div className="col-10 pl-0 " style={{height:"100%"}}>
                         {/* <TutorTable tutors = {this.state.tutors}/> */}{/* Still thinking about how to load in CourseTable */}
                         {/*<Cour  seTable courses = {this.state.courses}/>*/}
-                        <div className="row" style={{margin: 0, width: "100%", height:"600px"}}>
+                        <div className="row" style={{margin: 0,height:"100%", width: "100%"}}>
                             {this.prepareView()}
                         </div>
                     </div>
@@ -208,9 +208,10 @@ class MainInterface extends React.Component{
         }
 
         return(
-            <div>
-                {component}
-
+            <div className="container-fluid fill" >
+                <div className="row " style={{height:"100%"}}>
+                    {component}
+                </div>
                 <Modal isOpen={this.state.waiting}>
                     <ModalHeader >
 
