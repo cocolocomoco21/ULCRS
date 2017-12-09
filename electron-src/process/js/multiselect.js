@@ -13,7 +13,11 @@ let loadTutorData = JSON.parse(fs.readFileSync(tutorLocation));
 class MultiSelect extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { categoryValue: [] };
+    this.state = {
+      categoryValue: null,
+        courses: null,
+        options: []
+    };
     this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
@@ -22,45 +26,40 @@ class MultiSelect extends React.Component {
   };
 
   render() {
-    let targetId = this.props.tutorId;
-    console.log("targetId");
-    console.log(targetId);
-    console.log("loadTurorCourse");
-    console.log(loadTutorData);
-    let result = null;
-    for (let i=0; i<loadTutorData.length; i++){
-      if (loadTutorData[i].id == targetId) {
-        result=loadTutorData[i];
-      }
-    }
-    console.log("result");
-      console.log(result);
-    let courses = [];
-    if (this.props.isWilling == true) {
-      let willing = result.tutorPreferences.coursePreferences.WILLING;
-      for (let i=0; i<willing.length; i++) {
-        courses.push({
-          value: i,
-          label: willing[i].name
-        });
-      }
-      if (this.state.categoryValue.length == 0) {
-          this.state.categoryValue = "0";
-      }
-      console.log("in willing");
-    }
-    else {
-      let prefer = result.tutorPreferences.coursePreferences.PREFER;
-      for (let i=0; i<prefer.length; i++) {
-        courses.push({
-          value: i,
-          label: prefer[i].name
-        });
-      }
-        if (this.state.categoryValue.length == 0) {
-            this.state.categoryValue = "0,1";
+    if (this.state.courses == null) {
+        let targetId = this.props.tutorId;
+        console.log("targetId");
+        console.log(targetId);
+        console.log("loadTurorData");
+        console.log(loadTutorData);
+        let result = null;
+        for (let i=0; i<loadTutorData.length; i++){
+            if (loadTutorData[i].id == targetId) {
+                result=loadTutorData[i];
+            }
         }
-        console.log("in prefer");
+        console.log("result");
+        console.log(result);
+        if (this.props.isWilling == true) {
+          console.log("in willing");
+          this.state.courses = result.tutorPreferences.coursePreferences.WILLING;
+            for (let i=0; i<this.state.courses.length; i++) {
+                this.state.options.push({
+                    value: this.state.courses[i].id,
+                    label: this.state.courses[i].name
+                });
+            }
+        }
+        else {
+          console.log("in prefer");
+            this.state.courses = result.tutorPreferences.coursePreferences.PREFER;
+            for (let i=0; i<this.state.courses.length; i++) {
+                this.state.options.push({
+                    value: this.state.courses[i].id,
+                    label: this.state.courses[i].name
+                });
+            }
+        }
     }
     
     let reactSelect = props => (
@@ -70,7 +69,7 @@ class MultiSelect extends React.Component {
     );
       console.log("this.state.categoryValue");
     console.log(this.state.categoryValue);
-    console.log(this.state.categoryValue.length);
+    // console.log(this.state.categoryValue.length);
 
     return (
       <div className="form__row">
@@ -96,7 +95,7 @@ class MultiSelect extends React.Component {
           simpleValue
           multi
           value={this.state.categoryValue}
-          options={courses}
+          options={this.state.options}
           onChange={this.handleSelectChange}
           joinValues
           name={this.props.model}

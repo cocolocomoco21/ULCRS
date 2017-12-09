@@ -22,7 +22,8 @@ class PrefCourseList extends React.Component {
       <div>
         <Form model="user" onSubmit={this.handleSubmit}>
           <MultiSelect model="user.category" options={this.state.preLoadOption} 
-          tutorId={this.state.tutorId} isWilling={false}/>
+          tutorId={this.state.tutorId} isWilling={false}
+           setPreferCoursesAssigned={this.props.setPreferCoursesAssigned}/>
         </Form>
       </div>
     );

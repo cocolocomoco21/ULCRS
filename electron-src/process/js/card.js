@@ -44,7 +44,8 @@ class WillCourseList extends React.Component {
       <div>
         <Form model="user" onSubmit={this.handleSubmit}>
           <MultiSelect model="user.category" options={this.state.preLoadOption}
-          tutorId={this.state.tutorId} isWilling={true}/>
+          tutorId={this.state.tutorId} isWilling={true}
+           setWillCoursesAssigned={this.props.setWillCoursesAssigned.bind(this)}/>
         </Form>
       </div>
     );
