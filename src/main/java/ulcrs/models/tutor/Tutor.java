@@ -1,6 +1,10 @@
 package ulcrs.models.tutor;
 
 import com.google.gson.annotations.Expose;
+import ulcrs.models.course.Course;
+import ulcrs.models.shift.Shift;
+
+import java.util.Set;
 
 public class Tutor {
 
@@ -65,5 +69,26 @@ public class Tutor {
 
     public void setTutorStatus(TutorStatus tutorStatus) {
         this.tutorStatus = tutorStatus;
+    }
+
+    /**
+     * Return all courses that are possible for the tutor, i.e. all Rank=Preferred or Willing.
+     */
+    public Set<Course> findPossibleCourses() {
+        return this.tutorPreferences.findPossibleCourses();
+    }
+
+    /**
+     * Return all shifts that are possible for the tutor, i.e. all shifts with Rank=Preferred or Willing.
+     */
+    public Set<Shift> findPossibleShifts() {
+        return this.tutorPreferences.findPossibleShifts();
+    }
+
+    /**
+     * Return the possible shift frequency for the tutor, i.e. the sum of shift frequency preferences with Rank=Preferred or Willing
+     */
+    public int findPossibleShiftFrequency() {
+        return this.tutorPreferences.findPossibleShiftFrequency();
     }
 }
