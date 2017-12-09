@@ -26,6 +26,13 @@ const store = createStore(
 );
 
 class WillCourseList extends React.Component {
+  constructor(props){
+      super(props);
+      this.state = {
+          preLoadOption: this.props.tutorCourse,
+          tutorId: this.props.tutorId
+      };
+  }
 
   handleSubmit(e){
     console.log(e);
@@ -36,19 +43,13 @@ class WillCourseList extends React.Component {
     return (
       <div>
         <Form model="user" onSubmit={this.handleSubmit}>
-          <MultiSelect model="user.category" options={[
-            { value: 'one', label: 'CS200' },
-            { value: 'two', label: 'CS300' },
-            { value: '3', label: 'CS400' },
-            { value: '5', label: 'CS500' },
-            { value: '4', label: 'CS600' }
-          ]} />
+          <MultiSelect model="user.category" options={this.state.preLoadOption}
+          tutorId={this.state.tutorId} isWilling={true}/>
         </Form>
       </div>
     );
   }
 }
-export default WillCourseList;
 
 const style = {
     border: '3px dashed gray',
@@ -63,11 +64,20 @@ class Card extends React.Component {
       super(props);
       this.state = {
           modal : false,
-          saveMessageModal: false
+          saveMessageModal: false,
+          card : this.props.card,
+          day : this.props.day
       };
   this.toggleMessageModal = this.toggleMessageModal.bind(this);
   this.toggleGridModal = this.toggleGridModal.bind(this);
+  //this.changeCourses = this.changeCourses.bind(this);
 }
+
+  // changeCourses(c){
+  //   this.setState({
+  //     card.tutorCourse : c
+  //   })
+  // }
 
   toggleGridModal(){
       this.setState({
@@ -82,10 +92,12 @@ class Card extends React.Component {
   }
 
 	render() {
-		const { card, isDragging, connectDragSource, connectDropTarget } = this.props;
+    const card = this.state.card;
+		const { isDragging, connectDragSource, connectDropTarget } = this.props;
 		const opacity = isDragging ? 0 : 1;
 
 		let course = [];
+		let tutorName = card.tutor.firstName + " " + card.tutor.lastName;
 		if (card.tutorCourse.length == 1) {
 		    course.push(<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
         <a style={{color: "black"}}>
@@ -118,7 +130,7 @@ class Card extends React.Component {
 				<ul className="list-group" onClick={this.toggleGridModal}style={{"textAlign": "center"}}>
 					<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
           <a style={{color: "black"}}>
-          {card.tutorName}
+          {tutorName}
            </a>
           </li>
           {course}
@@ -128,18 +140,17 @@ class Card extends React.Component {
       <Modal isOpen={this.state.modal} toggle={this.toggleGridModal}>
           <ModalHeader toggle={this.toggleGridModal} >
               <div style={{"textAlign": "left", "fontSize": "40px"}}>
-                  <p>{card.tutorName}</p>
+                  <h3>Shift {this.state.day} of {tutorName}</h3>
               </div>
-              <div>{card.day}</div>
           </ModalHeader>
           <ModalBody>
           <Provider store={store}>
             <div>
-              <h3>Add/Delete</h3>
-                <div>Willing Course List of {card.tutorName}</div>
-                  <WillCourseList />
-                <div>Prefer Course List of {card.tutorName}</div>
-                  <PrefCourseList />
+              <h4>Add/Delete</h4>
+                <div>Prefer Course List of {tutorName}</div>
+                    <PrefCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}/>
+                <div>Willing Course List of {tutorName}</div>
+                  <WillCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}/>
             </div>
           </Provider>
           </ModalBody>
@@ -150,7 +161,7 @@ class Card extends React.Component {
           <Modal isOpen={this.state.saveMessageModal} toggle={this.toggleMessageModal}>
               <ModalHeader toggle={this.toggleMessageModal} >
                   <div style={{"textAlign": "center", "fontSize": "20px"}}>
-                      {card.day} Shift Of {card.tutorName}
+                      Shift {this.state.day} of {tutorName}
                   </div>
               </ModalHeader>
               <ModalBody>
