@@ -97,6 +97,7 @@ class Card extends React.Component {
 		const opacity = isDragging ? 0 : 1;
 
 		let course = [];
+		let tutorName = card.tutor.firstName + " " + card.tutor.lastName;
 		if (card.tutorCourse.length == 1) {
 		    course.push(<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
         <a style={{color: "black"}}>
@@ -129,7 +130,7 @@ class Card extends React.Component {
 				<ul className="list-group" onClick={this.toggleGridModal}style={{"textAlign": "center"}}>
 					<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
           <a style={{color: "black"}}>
-          {card.tutorName}
+          {tutorName}
            </a>
           </li>
           {course}
@@ -139,7 +140,7 @@ class Card extends React.Component {
       <Modal isOpen={this.state.modal} toggle={this.toggleGridModal}>
           <ModalHeader toggle={this.toggleGridModal} >
               <div style={{"textAlign": "left", "fontSize": "40px"}}>
-                  <p>{card.tutorName}</p>
+                  <p>{tutorName}</p>
               </div>
               <div>{card.day}</div>
           </ModalHeader>
@@ -147,9 +148,9 @@ class Card extends React.Component {
           <Provider store={store}>
             <div>
               <h3>Add/Delete</h3>
-                <div>Willing Course List of {card.tutorName}</div>
+                <div>Willing Course List of {tutorName}</div>
                   <WillCourseList tutorCourse={card.tutorCourse} tutorId={card.tutorId}/>
-                <div>Prefer Course List of {card.tutorName}</div>
+                <div>Prefer Course List of {tutorName}</div>
                   <PrefCourseList tutorCourse={card.tutorCourse} tutorId={card.tutorId}/>
             </div>
           </Provider>
@@ -161,7 +162,7 @@ class Card extends React.Component {
           <Modal isOpen={this.state.saveMessageModal} toggle={this.toggleMessageModal}>
               <ModalHeader toggle={this.toggleMessageModal} >
                   <div style={{"textAlign": "center", "fontSize": "20px"}}>
-                      {card.day} Shift Of {card.tutorName}
+                      {card.day} Shift Of {tutorName}
                   </div>
               </ModalHeader>
               <ModalBody>
