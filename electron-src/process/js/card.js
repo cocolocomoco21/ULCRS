@@ -78,8 +78,11 @@ class Card extends React.Component {
 }
 
     setTutorCourse() {
+        console.log("in setTutorCourse");
         let card = this.state.card;
         card.tutorCourse = this.state.preferCoursesAssigned.concat(this.state.willCoursesAssigned);
+        console.log("card");
+        console.log(card);
         this.props.setCard(this.props.index, card);
     }
 
@@ -114,6 +117,7 @@ class Card extends React.Component {
         this.toggleMessageModal();
         console.log(this.state.preferCoursesAssigned);
         console.log(this.state.willCoursesAssigned);
+        this.setTutorCourse();
     }
 
     toggleGridModal() {

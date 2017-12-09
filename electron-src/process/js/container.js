@@ -19,8 +19,11 @@ class Container extends React.Component{
   	}
 
   	setCard(index, card) {
+        console.log("in setCard");
         let cards = this.state.cards;
         cards[index] = card;
+        console.log("cards");
+        console.log(cards);
         this.props.setContainerDataList(this.props.id - 1, cards);
     }
 
