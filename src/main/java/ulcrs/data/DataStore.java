@@ -1,8 +1,11 @@
 package ulcrs.data;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ulcrs.models.course.Course;
 import ulcrs.models.shift.Shift;
 import ulcrs.models.tutor.Tutor;
@@ -12,10 +15,13 @@ import java.io.InputStreamReader;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class DataStore {
+
+    private static Logger log = LoggerFactory.getLogger(DataStore.class);
 
     private List<Tutor> tutors;
     private List<Course> courses;
@@ -31,14 +37,20 @@ public class DataStore {
         return dataStore;
     }
 
+    private DataStore() {
+        this.courses = new ArrayList<>();
+        this.shifts = new ArrayList<>();
+        this.tutors = new ArrayList<>();
+    }
+
 
     /**
      * Get the tutor of the specified id
      * @param id - id of the tutor
      * @return Tutor - the Tutor with the specified id, if it exists. Otherwise, null.
      */
-    public static Tutor getTutor(int id) {
-        fetchIfRequired(getInstance().tutors);
+    public static Tutor getTutor(int id, String cookie) {
+        fetchIfRequired(getInstance().tutors, cookie);
         return getInstance().tutors.stream()
                 .filter(tutor -> tutor.getId() == id)
                 .findFirst()
@@ -50,8 +62,8 @@ public class DataStore {
      * @param id - id of the course
      * @return Course - the Course with the specified id, if it exists. Otherwise, null.
      */
-    public static Course getCourse(int id) {
-        fetchIfRequired(getInstance().courses);
+    public static Course getCourse(int id, String cookie) {
+        fetchIfRequired(getInstance().courses, cookie);
         return getInstance().courses.stream()
                 .filter(course -> course.getId() == id)
                 .findFirst()
@@ -63,8 +75,8 @@ public class DataStore {
      * @param id - id of the shift
      * @return Shift - the shift with the specified id, if it exists. Otherwise, null.
      */
-    public static Shift getShift(int id) {
-        fetchIfRequired(getInstance().shifts);
+    public static Shift getShift(int id, String cookie) {
+        fetchIfRequired(getInstance().shifts, cookie);
         return getInstance().shifts.stream()
                 .filter(s -> s.getId() == id)
                 .findFirst()
@@ -75,8 +87,8 @@ public class DataStore {
      * Get all tutors, fetching from ULC if necessary.
      * @return List<Tutor> - list of all tutors
      */
-    public static List<Tutor> getTutors() {
-        fetchIfRequired(getInstance().tutors);
+    public static List<Tutor> getTutors(String cookie) {
+        fetchIfRequired(getInstance().tutors, cookie);
         return getInstance().tutors;
     }
 
@@ -84,8 +96,8 @@ public class DataStore {
      * Get all courses, fetching from ULC if necessary.
      * @return List<Course> - list of all courses
      */
-    public static List<Course> getCourses() {
-        fetchIfRequired(getInstance().courses);
+    public static List<Course> getCourses(String cookie) {
+        fetchIfRequired(getInstance().courses, cookie);
         return getInstance().courses;
     }
 
@@ -93,9 +105,8 @@ public class DataStore {
      * Get all shifts, fetching from ULC if necessary.
      * @return List<Shift> - list of all shifts
      */
-    public static List<Shift> getShifts() {
-        // TODO implement - requires getting shifts from course, tutor data
-        fetchIfRequired(getInstance().shifts);
+    public static List<Shift> getShifts(String cookie) {
+        fetchIfRequired(getInstance().shifts, cookie);
         return getInstance().shifts;
     }
 
@@ -104,30 +115,65 @@ public class DataStore {
      * @param reference - reference being checked if it has been fetched
      * @param <T> - generic type for reference
      */
-    private static <T> void fetchIfRequired(T reference) {
+    private static <T> void fetchIfRequired(List<T> reference, String cookie) {
         if (!isCached(reference)) {
-            fetch();
+            List<String> response = DataFetch.fetchFromULCServer(cookie);
+
+            // TODO error handling if populateData() fails
+            boolean result = populateData(response);
+            if (!result) {
+                log.info("Failed to populate (fetch and update) data");
+            }
         }
     }
 
     /**
-     * Check if the reference is cached. If null, it has not been cached.
+     * Check if the reference is cached. If null or an empty array, it has not been cached.
      * @param reference - reference being checked for if it is cached
      * @param <T> - generic type for reference
-     * @return boolean - return if reference has been cached or not. If no, it is null.
+     * @return boolean - return if reference has been cached or not. If no, reference is null or empty array.
      */
-    private static <T> boolean isCached(T reference) {
-        return reference != null;
+    private static <T> boolean isCached(List<T> reference) {
+        return reference != null && reference.size() > 0
+                && getInstance().timeFetched != null;
     }
 
     /**
-     * Fetch data from the ULC server and update the data saved in the DataStore instance. This "caches" the
-     * data that is fetched.
+     * Populates and "caches" the data fetched from the ULC server. This parses the response data, which is saved as
+     * JSON, and updates the data saved in the DataStore instance. As such, it "populates" the data.
+     * @param response List<String> - response from ULC server
+     * @return boolean - returns success of parsing and saving the data
      */
-    private static void fetch() {
-        // Fetch from ULC - TODO
-        // For now, just get data from mock data
+    static boolean populateData(List<String> response) {
+        // Expect response with only one line of JSON
+        if (response.size() != 1) {
+            log.info("Request failed because of invalid response", response);
+            return false;
+        }
 
+        // Get response string into JsonObject
+        String responseString = response.get(0);
+        JsonObject obj = new Gson().fromJson(responseString, JsonObject.class);
+
+        // Parse data
+        ParsedULCResponse parsedResponse = DataParse.parse(obj);
+
+        // Update DataStore's fields
+        getInstance().courses = parsedResponse.getCourses();
+        getInstance().shifts = parsedResponse.getShifts();
+        getInstance().tutors = parsedResponse.getTutors();
+
+        getInstance().timeFetched = LocalDateTime.now();
+
+        return true;
+    }
+
+    /**
+     * Fetch local mock data and update the data saved in the DataStore instance. This "caches" the data that is fetched.
+     *
+     * TODO delete - kept here to provide easy way for frontend to use the simple dataset they've originally developed with
+     */
+    private static void fetchLocalMockData() {
         // Tutor
         InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockTutors_Full.json");
         JsonReader reader = new JsonReader(new InputStreamReader(is));
@@ -152,5 +198,4 @@ public class DataStore {
 
         getInstance().timeFetched = LocalDateTime.now();
     }
-
 }

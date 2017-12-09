@@ -1,6 +1,7 @@
 let ReactDOM = require('react-dom');
 let React = require('react');
-let ViewToolBar = require('./viewtoolbar');
+let path = require('path');
+let ViewToolBar = require(path.resolve( __dirname, './js/viewtoolbar'));
 let electron = eRequire('electron');
 let ipc = electron.ipcRenderer;
 
@@ -15,7 +16,7 @@ class StartPage extends React.Component{
 
             <div className="row justify-content-center ">
                 <div className="col">
-                    <div className="row justify-content-center">
+                    <div className="row justify-content-center" id="header">
                         <div style={{fontSize:42}}>
                             <strong>ULCRS</strong>
                         </div>
@@ -27,14 +28,12 @@ class StartPage extends React.Component{
                     </div>
 
 
-                    <div className="row justify-content-center top-buffer">
-                            <button className="btn btn-info" onClick={this.ShowViewTutor} > Load data from server </button>
+                    <div className="row justify-content-center top-buffer" >
+                            <button className="btn btn-info" id="load-from-json-button" onClick={this.ShowViewTutor} > Load data from server </button>
                     </div>
 
-                    <div className="row justify-content-center top-buffer">
-
-                            <button className="btn btn-info">Resume a saved session</button>
-
+                    <div className="row justify-content-center top-buffer" >
+                            <button className="btn btn-info" id="load-server-button">Resume a saved session</button>
                     </div>
                 </div>
 
