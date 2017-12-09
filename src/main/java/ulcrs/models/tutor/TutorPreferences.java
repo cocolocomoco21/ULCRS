@@ -4,9 +4,11 @@ import ulcrs.models.course.Course;
 import ulcrs.models.rank.Rank;
 import ulcrs.models.shift.Shift;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.google.gson.annotations.Expose;
 
@@ -49,6 +51,36 @@ public class TutorPreferences {
 
     public void setShiftFrequencyPreferences(Map<Rank, Integer> shiftFrequencyPreferences) {
         this.shiftFrequencyPreferences = shiftFrequencyPreferences;
+    }
+
+    /**
+     * Return all courses that are possible for the tutor, i.e. all Rank=Prefered or Willing.
+     */
+    public Set<Course> findPossibleCourses() {
+        return this.coursePreferences.entrySet()
+                .stream()
+                .filter(entry -> Arrays.asList(Rank.PREFER, Rank.WILLING).contains(entry.getKey()))
+                .flatMap(entry -> entry.getValue().stream())
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Return all shifts that are possible for the tutor, i.e. all shifts with Rank=Prefered or Willing.
+     */
+    public Set<Shift> findPossibleShifts() {
+        return this.shiftPreferences.entrySet()
+                .stream()
+                .filter(entry -> Arrays.asList(Rank.PREFER, Rank.WILLING).contains(entry.getKey()))
+                .flatMap(entry -> entry.getValue().stream())
+                .collect(Collectors.toSet());
+    }
+
+    public int findPossibleShiftFrequency() {
+        return this.shiftFrequencyPreferences.entrySet()
+                .stream()
+                .filter(entry -> Arrays.asList(Rank.PREFER, Rank.WILLING).contains(entry.getKey()))
+                .collect(Collectors.toSet())
+                .size();
     }
 
     @Override
