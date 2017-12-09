@@ -116,6 +116,7 @@ class ScheduleTable extends React.Component {
         }
         let containerList = [];
         let scheduleShifts = this.state.schedules[this.state.index].scheduleShifts;
+        this.parseContainerDataList();
         for (let col = 0; col < this.state.containerDataList.length; col++){
             console.log(col);
             containerList.push(<div className="col-2">
@@ -130,7 +131,8 @@ class ScheduleTable extends React.Component {
                                             <Container key={this.state.index * 100 + col + 1}
                                                        id={col + 1} list={this.state.containerDataList[col]}
                                                         setContainerDataList={this.setContainerDataList}
-                                                       printc={this.printContainerDataList}/>
+                                                       printc={this.printContainerDataList}
+                                                        day={scheduleShifts[col].shift.day}/>
                                         </div>
                                     </div>
                                 </div>);

@@ -13,6 +13,7 @@ class Container extends React.Component{
 			tutorData: this.props.tutorData,
 			setContainerDataList: this.props.setContainerDataList.bind(this),
             printc: this.props.printc.bind(this),
+			day: this.props.day
 		};
   }
 
@@ -80,11 +81,11 @@ class Container extends React.Component{
 				{cards.map((card, i) => {
 					return (
 						<Card
-
 							key={card.id}
 							index={i}
 							listId={this.props.id}
 							card={card}
+							day={this.state.day}
 							removeCard={this.removeCard.bind(this)}
 							moveCard={this.moveCard.bind(this)} />
 					);

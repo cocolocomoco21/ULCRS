@@ -50,7 +50,6 @@ class WillCourseList extends React.Component {
     );
   }
 }
-export default WillCourseList;
 
 const style = {
     border: '3px dashed gray',
@@ -66,18 +65,19 @@ class Card extends React.Component {
       this.state = {
           modal : false,
           saveMessageModal: false,
-          card : this.props.card
+          card : this.props.card,
+          day : this.props.day
       };
   this.toggleMessageModal = this.toggleMessageModal.bind(this);
   this.toggleGridModal = this.toggleGridModal.bind(this);
-  this.changeCourses = this.changeCourses.bind(this);
+  //this.changeCourses = this.changeCourses.bind(this);
 }
-  //TODO: refer to max's implementation
-  changeCourses(c){
-    this.setState({
-      card.tutorCourse : c
-    })
-  }
+
+  // changeCourses(c){
+  //   this.setState({
+  //     card.tutorCourse : c
+  //   })
+  // }
 
   toggleGridModal(){
       this.setState({
@@ -140,18 +140,17 @@ class Card extends React.Component {
       <Modal isOpen={this.state.modal} toggle={this.toggleGridModal}>
           <ModalHeader toggle={this.toggleGridModal} >
               <div style={{"textAlign": "left", "fontSize": "40px"}}>
-                  <p>{tutorName}</p>
+                  <h3>Shift {this.state.day} of {tutorName}</h3>
               </div>
-              <div>{card.day}</div>
           </ModalHeader>
           <ModalBody>
           <Provider store={store}>
             <div>
-              <h3>Add/Delete</h3>
-                <div>Willing Course List of {tutorName}</div>
-                  <WillCourseList tutorCourse={card.tutorCourse} tutorId={card.tutorId}/>
+              <h4>Add/Delete</h4>
                 <div>Prefer Course List of {tutorName}</div>
-                  <PrefCourseList tutorCourse={card.tutorCourse} tutorId={card.tutorId}/>
+                    <PrefCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}/>
+                <div>Willing Course List of {tutorName}</div>
+                  <WillCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}/>
             </div>
           </Provider>
           </ModalBody>
@@ -162,7 +161,7 @@ class Card extends React.Component {
           <Modal isOpen={this.state.saveMessageModal} toggle={this.toggleMessageModal}>
               <ModalHeader toggle={this.toggleMessageModal} >
                   <div style={{"textAlign": "center", "fontSize": "20px"}}>
-                      {card.day} Shift Of {tutorName}
+                      Shift {this.state.day} of {tutorName}
                   </div>
               </ModalHeader>
               <ModalBody>

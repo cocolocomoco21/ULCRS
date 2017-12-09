@@ -23,13 +23,18 @@ class MultiSelect extends React.Component {
 
   render() {
     let targetid = this.props.tutorId;
+    console.log("targetid");
     console.log(targetid);
+    console.log("loadTurorCourse");
+    console.log(loadTutorCourse);
     let result = null;
     for (let i=0; i<loadTutorCourse.length; i++){
       if (loadTutorCourse[i].id == targetid) {
         result=loadTutorCourse[i];
       }
     }
+    console.log("result");
+      console.log(result);
     let courses = [];
     if (this.props.isWilling == true) {
       let willing = result.tutorPreferences.coursePreferences.WILLING;
