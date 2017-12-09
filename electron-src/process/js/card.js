@@ -67,8 +67,8 @@ class Card extends React.Component {
             saveMessageModal: false,
             card : this.props.card,
             day : this.props.day,
-            willCoursesAssigned : null,
-            preferCoursesAssigned : null,
+            willCoursesAssigned : [],
+            preferCoursesAssigned : [],
         };
     this.toggleMessageModal = this.toggleMessageModal.bind(this);
     this.toggleGridModal = this.toggleGridModal.bind(this);

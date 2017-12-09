@@ -23,12 +23,25 @@ class MultiSelect extends React.Component {
     }
 
     handleSelectChange(value){
+        console.log("in handleSelecChange");
         this.setState({ categoryValue: value });
+        console.log("value");
+        console.log(value);
+        let categoryValueList = value.split(",");
         let courses = [];
+        let idStr = null;
         let id = 0;
         let index = 0;
-        for (let i=0; i<this.state.options.length; i++) {
-            id = this.state.options[i].value;
+        for (let i=0; i<categoryValueList.length; i++) {
+            idStr = categoryValueList[i];
+            console.log("idStr");
+            console.log(idStr);
+            if (idStr == "") {
+                continue;
+            }
+            id = parseInt(idStr);
+            console.log("id");
+            console.log(id);
             index = this.state.idToIndex[id];
             courses.push(this.state.courses[index]);
         }
