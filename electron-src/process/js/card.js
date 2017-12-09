@@ -44,7 +44,7 @@ class WillCourseList extends React.Component {
                 <Form model="user" onSubmit={this.handleSubmit}>
                     <MultiSelect model="user.category" options={this.state.preLoadOption}
                                  tutorId={this.state.tutorId} isWilling={true}
-                                 setWillCoursesAssigned={this.props.setWillCoursesAssigned.bind(this)}/>
+                                 setCoursesAssigned={this.props.setWillCoursesAssigned.bind(this)}/>
                 </Form>
             </div>
         );
@@ -84,15 +84,29 @@ class Card extends React.Component {
     }
 
     setWillCoursesAssigned(courses) {
+        console.log("in setWillCoursesAssigned");
+        console.log("this.state.willCoursesAssigned before");
+        console.log(this.state.willCoursesAssigned);
+        console.log("courses");
+        console.log(courses);
         this.setState({
             willCoursesAssigned: courses
         });
+        console.log("this.state.willCoursesAssigned after");
+        console.log(this.state.willCoursesAssigned);
     }
 
     setPreferCoursesAssigned(courses) {
+        console.log("in setPreferCoursesAssigned");
+        console.log("this.state.preferCoursesAssigned before");
+        console.log(this.state.preferCoursesAssigned);
+        console.log("courses");
+        console.log(courses);
         this.setState({
             preferCoursesAssigned: courses
         });
+        console.log("this.state.preferCoursesAssigned after");
+        console.log(this.state.preferCoursesAssigned);
     }
 
     savePopUp() {

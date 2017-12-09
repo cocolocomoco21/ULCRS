@@ -24,6 +24,17 @@ class MultiSelect extends React.Component {
 
     handleSelectChange(value){
         this.setState({ categoryValue: value });
+        let courses = [];
+        let id = 0;
+        let index = 0;
+        for (let i=0; i<this.state.options.length; i++) {
+            id = this.state.options[i].value;
+            index = this.state.idToIndex[id];
+            courses.push(this.state.courses[index]);
+        }
+        console.log("courses");
+        console.log(courses);
+        this.props.setCoursesAssigned(courses);
     };
 
     render() {
@@ -69,10 +80,6 @@ class MultiSelect extends React.Component {
             }
         }
 
-        if (this.props.isWilling == true) {
-
-        }
-
         let reactSelect = props => (
           <Select
             {...props}
@@ -97,9 +104,9 @@ class MultiSelect extends React.Component {
                 <Control.custom
                     model={this.props.model}
                     mapProps={
-                    {
-                    onChange: (props) => props.onChange
-                    }
+                        {
+                            onChange: (props) => props.onChange
+                        }
                     }
                     id={this.props.model}
                     component={reactSelect}
