@@ -180,7 +180,7 @@ class Card extends React.Component {
 		return connectDragSource(connectDropTarget(
             <div style={{ style, opacity }}>
                 <div>
-                    <ul className="list-group" onClick={this.toggleGridModal}style={{"textAlign": "center"}}>
+                    <ul className="list-group" onClick={this.toggleGridModal} style={{"textAlign": "center"}}>
                         <li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
                             <a style={{color: "black"}}>
                                 {tutorName}

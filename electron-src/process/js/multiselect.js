@@ -20,12 +20,82 @@ class MultiSelect extends React.Component {
             idToIndex: {}
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
-        this.props.setCoursesAssigned([]);
+        this.setUp();
+        this.preload();
+    }
+
+    setUp() {
+        let targetId = this.props.tutorId;
+        console.log("targetId");
+        console.log(targetId);
+        console.log("loadTurorData");
+        console.log(loadTutorData);
+        let result = null;
+        for (let i=0; i<loadTutorData.length; i++){
+            if (loadTutorData[i].id == targetId) {
+                result=loadTutorData[i];
+            }
+        }
+        console.log("result");
+        console.log(result);
+        if (this.props.isWilling == true) {
+            console.log("in willing");
+            this.state.courses = result.tutorPreferences.coursePreferences.WILLING;
+            for (let i=0; i<this.state.courses.length; i++) {
+                this.state.options.push({
+                    value: this.state.courses[i].id,
+                    label: this.state.courses[i].name
+                });
+                this.state.idToIndex[this.state.courses[i].id] = i;
+            }
+            console.log("this.state.idToIndex");
+            console.log(this.state.idToIndex);
+        }
+        else {
+            console.log("in prefer");
+            this.state.courses = result.tutorPreferences.coursePreferences.PREFER;
+            for (let i=0; i<this.state.courses.length; i++) {
+                this.state.options.push({
+                    value: this.state.courses[i].id,
+                    label: this.state.courses[i].name
+                });
+                this.state.idToIndex[this.state.courses[i].id] = i;
+            }
+            console.log("this.state.idToIndex");
+            console.log(this.state.idToIndex);
+        }
+    }
+
+    preload() {
+        console.log("this.props.tutorCourse");
+        console.log(this.props.tutorCourse);
+
+        if (this.state.categoryValue == null && this.props.tutorCourse.length > 0) {
+            let valueList = [];
+            console.log("id");
+            for (let i=0; i<this.props.tutorCourse.length; i++) {
+                console.log(this.props.tutorCourse[i].id);
+                if (this.state.idToIndex[this.props.tutorCourse[i].id] != null) {
+                    valueList.push(this.props.tutorCourse[i].id.toString());
+                }
+            }
+            console.log("valueList");
+            console.log(valueList);
+            this.state.categoryValue = valueList.join();
+            console.log("this.state.categoryValue");
+            console.log(this.state.categoryValue);
+            this.setCoursesAssigned(this.state.categoryValue);
+        }
     }
 
     handleSelectChange(value){
         console.log("in handleSelecChange");
         this.setState({ categoryValue: value });
+        this.setCoursesAssigned(value);
+    };
+
+    setCoursesAssigned(value) {
+        console.log("in multiselect.setCoursesAssigned");
         console.log("value");
         console.log(value);
         let categoryValueList = value.split(",");
@@ -49,65 +119,9 @@ class MultiSelect extends React.Component {
         console.log("courses");
         console.log(courses);
         this.props.setCoursesAssigned(courses);
-    };
+    }
 
     render() {
-        if (this.state.courses == null) {
-            let targetId = this.props.tutorId;
-            console.log("targetId");
-            console.log(targetId);
-            console.log("loadTurorData");
-            console.log(loadTutorData);
-            let result = null;
-            for (let i=0; i<loadTutorData.length; i++){
-                if (loadTutorData[i].id == targetId) {
-                    result=loadTutorData[i];
-                }
-            }
-            console.log("result");
-            console.log(result);
-            if (this.props.isWilling == true) {
-                console.log("in willing");
-                this.state.courses = result.tutorPreferences.coursePreferences.WILLING;
-                for (let i=0; i<this.state.courses.length; i++) {
-                    this.state.options.push({
-                        value: this.state.courses[i].id,
-                        label: this.state.courses[i].name
-                    });
-                    this.state.idToIndex[this.state.courses[i].id] = i;
-                }
-                console.log("this.state.idToIndex");
-                console.log(this.state.idToIndex);
-            }
-            else {
-                console.log("in prefer");
-                this.state.courses = result.tutorPreferences.coursePreferences.PREFER;
-                for (let i=0; i<this.state.courses.length; i++) {
-                    this.state.options.push({
-                        value: this.state.courses[i].id,
-                        label: this.state.courses[i].name
-                    });
-                    this.state.idToIndex[this.state.courses[i].id] = i;
-                }
-                console.log("this.state.idToIndex");
-                console.log(this.state.idToIndex);
-            }
-        }
-        console.log("this.state.tutorCourse");
-        console.log(this.props.tutorCourse);
-
-        if (this.state.categoryValue == null && this.props.tutorCourse.length > 0) {
-            let valueList = [];
-            console.log("id");
-            for (let i=0; i<this.props.tutorCourse.length; i++) {
-                console.log(this.props.tutorCourse[i].id);
-                valueList.push(this.props.tutorCourse[i].id.toString());
-            }
-            console.log("valueList");
-            console.log(valueList);
-            this.state.categoryValue = valueList.join();
-        }
-
         let reactSelect = props => (
           <Select
             {...props}
