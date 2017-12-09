@@ -13,6 +13,7 @@ import ulcrs.models.course.Course;
 import ulcrs.models.tutor.Tutor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static spark.Spark.before;
 import static spark.Spark.get;
@@ -51,14 +52,29 @@ public class TutorController extends BaseController {
 
     private List<Tutor> getTutorList(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
+
         String cookie = request.headers("Set-Cookie");
-        return DataStore.getTutors(cookie);
+        String limitParam = request.queryParamOrDefault("limit", null);
+
+        List<Tutor> tutors = DataStore.getTutors(cookie);
+
+        // Apply limit if it exists
+        if (limitParam != null && tutors.isEmpty()) {
+            int limit = Integer.parseUnsignedInt(limitParam);
+            tutors = tutors.stream()
+                    .limit(limit)
+                    .collect(Collectors.toList());
+        }
+
+         return tutors;
     }
 
     private Tutor getTutor(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
+
         int id = Integer.valueOf(request.params(":id"));
         String cookie = request.headers("Set-Cookie");
+
         return DataStore.getTutor(id, cookie);
     }
 }
