@@ -70,7 +70,7 @@ class MultiSelect extends React.Component {
         }
 
         if (this.props.isWilling == true) {
-            
+
         }
 
         let reactSelect = props => (
