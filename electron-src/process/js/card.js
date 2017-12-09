@@ -89,6 +89,7 @@ class Card extends React.Component {
             console.log(card);
             this.props.setCard(this.props.index, card);
             this.toggleMessageModal();
+            this.toggleGridModal();
         }
     }
 
@@ -212,17 +213,17 @@ class Card extends React.Component {
                         <button type="button" className="btn btn-success btn-block" onClick={this.savePopUp}
                                 style={{"textAlign": "center"}} > Save </button>
                     </ModalFooter>
+                </Modal>
 
-                    <Modal isOpen={this.state.saveMessageModal} toggle={this.toggleMessageModal}>
-                        <ModalHeader toggle={this.toggleMessageModal} >
-                            <div style={{"textAlign": "center", "fontSize": "20px"}}>
-                                Shift {this.state.day} of {tutorName}
-                                </div>
-                        </ModalHeader>
-                        <ModalBody>
-                            <div id="message-content"> Succesfully Modified </div>
-                        </ModalBody>
-                    </Modal>
+                <Modal isOpen={this.state.saveMessageModal} toggle={this.toggleMessageModal}>
+                    <ModalHeader toggle={this.toggleMessageModal} >
+                        <div style={{"textAlign": "center", "fontSize": "20px"}}>
+                            Shift {this.state.day} of {tutorName}
+                        </div>
+                    </ModalHeader>
+                    <ModalBody>
+                        <div id="message-content"> Succesfully Modified </div>
+                    </ModalBody>
                 </Modal>
             </div>
 		));
