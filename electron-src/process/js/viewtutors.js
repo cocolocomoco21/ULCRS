@@ -49,7 +49,8 @@ class ViewInfo extends React.Component {
       view: "tutor", // view will only be tutor or course
       proceeding: false,
           showNotAuthorized: false,
-          loading: true
+          // TODO: turn it to true when I push
+          loading: false
     };
 
     this.clickViewButton = this.clickViewButton.bind(this);
@@ -69,10 +70,11 @@ class ViewInfo extends React.Component {
                 loading:false
             });
         }catch (e) {
-            this.setState({
-                showNotAuthorized:true,
-                loading:false
-            })
+            //TODO: decomment it when push
+            // this.setState({
+            //     showNotAuthorized:true,
+            //     loading:false
+            // })
         }
     });
 

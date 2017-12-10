@@ -550,3 +550,7 @@ html, body {
   -ms-transform:rotateX(180deg); /* IE 9 */
   -webkit-transform:rotateX(180deg); /* Safari and Chrome */
 }
+
+.list-group-item-action {
+  background-color: #f9f9f9;
+}

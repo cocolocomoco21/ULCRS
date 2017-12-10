@@ -87,42 +87,45 @@ class Card extends React.Component {
 
 		let course = [];
 		if (card.tutorCourse.length == 1) {
-		    course.push(<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
-        <a style={{color: "black"}}>
-          {card.tutorCourse[0].name}
-        </a>
-        </li>);
+		    course.push(<a href="#" className="list-group-item list-group-item-action" >
+                <a style={{color: "black"}}>
+                    {card.tutorCourse[0].name}
+                </a>
+            </a>);
         }
         else if (card.tutorCourse.length == 2) {
-            course.push(<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
-            <a style={{color: "black"}}>
-            {card.tutorCourse[0].name + ", " + card.tutorCourse[1].name}
-            </a>
-        </li>);
+            course.push(
+                <a href="#" className="list-group-item list-group-item-action">
+                    <a style={{color: "black"}}>
+                        {card.tutorCourse[0].name + ", " + card.tutorCourse[1].name}
+                    </a>
+                </a>);
         }
         else {
 		    let tooltip = card.tutorCourse[0].name;
 		    for (let index=1; index<card.tutorCourse.length; index++) {
                 tooltip = tooltip + ", " + card.tutorCourse[index].name;
             }
-		    course.push(<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
+		    course.push(<a className="list-group-item list-group-item-action" >
                 <a href="#" data-toggle="tooltip" title={tooltip} style={{color: "black"}}>
                     {card.tutorCourse[0].name + "...."}
                 </a>
-            </li>);
+            </a>);
         }
 
 		return connectDragSource(connectDropTarget(
     <div style={{ style, opacity }}>
 			<div>
-				<ul className="list-group" onClick={this.toggleGridModal}style={{"textAlign": "center"}}>
-					<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
-          <a style={{color: "black"}}>
-          {card.tutorName}
-           </a>
-          </li>
-          {course}
-				</ul>
+				<ul className="list-group" onClick={this.toggleGridModal} style={{"textAlign": "center"}}>
+					<div>
+                    <a href="#" className="list-group-item list-group-item-action" >
+                     <a style={{color: "black"}}>
+                         {card.tutorName}
+                     </a>
+                    </a>
+                     {course}
+                    </div>
+                </ul>
 			</div>
 
       <Modal isOpen={this.state.modal} toggle={this.toggleGridModal}>
