@@ -15,4 +15,13 @@ public enum CourseIntensity {
     public String getValue() {
         return this.value;
     }
+
+    public static CourseIntensity fromString(String value) {
+        for (CourseIntensity intensity : CourseIntensity.values()) {
+            if (intensity.getValue().toLowerCase().equals(value.toLowerCase())) {
+                return intensity;
+            }
+        }
+        return null;
+    }
 }

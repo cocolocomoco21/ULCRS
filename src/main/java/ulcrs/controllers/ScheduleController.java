@@ -4,7 +4,7 @@ import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
 import ulcrs.models.schedule.Schedule;
-import ulcrs.scheduler.Scheduler;
+import ulcrs.scheduler.SchedulerHelper;
 
 import java.util.List;
 
@@ -26,12 +26,12 @@ public class ScheduleController extends BaseController {
 
     private List<Schedule> fetchGeneratedSchedules(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        return Scheduler.fetchGeneratedSchedules();
+        return SchedulerHelper.fetchGeneratedSchedules();
     }
 
     private boolean generateSchedule(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        return Scheduler.generateSchedule();
+        return SchedulerHelper.generateSchedule();
     }
 
     private boolean validateSchedule(Request request, Response response) {
@@ -39,6 +39,6 @@ public class ScheduleController extends BaseController {
 
         // TODO implement
         Schedule schedule = gson.fromJson(request.body(), Schedule.class);
-        return Scheduler.verifySchedule(schedule);
+        return SchedulerHelper.verifySchedule(schedule);
     }
 }

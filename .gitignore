@@ -13,6 +13,9 @@ out/
 .settings/
 bin/
 
+# Python
+*.pyc
+
 # Idea
 .idea
 *.iml
@@ -23,6 +26,9 @@ electron-src/app/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Python Scheduler resource
+scheduler-src/resources/*
 
 # Runtime data
 pids

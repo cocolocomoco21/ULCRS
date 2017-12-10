@@ -1,296 +1,312 @@
 {
     "courses": [
         {
-            "id": 2122,
+            "id": "2122",
             "name": "ISYE 313"
         },
         {
-            "id": 2673,
+            "id": "2673",
             "name": "CBE 310"
         },
         {
-            "id": 2675,
+            "id": "2675",
             "name": "CBE 250"
         },
         {
-            "id": 2677,
+            "id": "2677",
             "name": "CBE 311"
         },
         {
-            "id": 2678,
+            "id": "2678",
             "name": "CBE 320"
         },
         {
-            "id": 2749,
+            "id": "2749",
             "name": "CHEM 103"
         },
         {
-            "id": 2750,
+            "id": "2750",
             "name": "CHEM 104"
         },
         {
-            "id": 2755,
+            "id": "2755",
             "name": "CHEM 109"
         },
         {
-            "id": 2761,
+            "id": "2761",
             "name": "CHEM 327"
         },
         {
-            "id": 2762,
+            "id": "2762",
             "name": "CHEM 329"
         },
         {
-            "id": 2765,
+            "id": "2765",
             "name": "CHEM 341"
         },
         {
-            "id": 2767,
+            "id": "2767",
             "name": "CHEM 343"
         },
         {
-            "id": 2769,
+            "id": "2769",
             "name": "CHEM 345"
         },
         {
-            "id": 3306,
+            "id": "3306",
             "name": "CIVENGR 310"
         },
         {
-            "id": 3307,
+            "id": "3307",
             "name": "CIVENGR 311"
         },
         {
-            "id": 3310,
+            "id": "3310",
             "name": "CIVENGR 320"
         },
         {
-            "id": 3319,
+            "id": "3319",
             "name": "CIVENGR 340"
         },
         {
-            "id": 4244,
+            "id": "4244",
             "name": "ECE 354"
         },
         {
-            "id": 4246,
+            "id": "4246",
             "name": "COMPSCI 367"
         },
         {
-            "id": 6287,
+            "id": "6287",
             "name": "ECE 230"
         },
         {
-            "id": 6324,
+            "id": "6324",
             "name": "ECE 330"
         },
         {
-            "id": 6330,
+            "id": "6330",
             "name": "ECE 340"
         },
         {
-            "id": 6332,
+            "id": "6332",
             "name": "ECE 342"
         },
         {
-            "id": 6337,
+            "id": "6337",
             "name": "ECE 352"
         },
         {
-            "id": 6339,
+            "id": "6339",
             "name": "ECE 353"
         },
         {
-            "id": 6350,
+            "id": "6350",
             "name": "ECE 376"
         },
         {
-            "id": 6573,
+            "id": "6573",
             "name": "EMA 201"
         },
         {
-            "id": 6574,
+            "id": "6574",
             "name": "EMA 202"
         },
         {
-            "id": 6582,
+            "id": "6582",
             "name": "EMA 303"
         },
         {
-            "id": 10227,
+            "id": "10227",
             "name": "ISYE 315"
         },
         {
-            "id": 10235,
+            "id": "10235",
             "name": "ISYE 323"
         },
         {
-            "id": 11616,
+            "id": "11616",
             "name": "MATH 171"
         },
         {
-            "id": 11623,
+            "id": "11623",
             "name": "MATH 221"
         },
         {
-            "id": 11624,
+            "id": "11624",
             "name": "MATH 222"
         },
         {
-            "id": 11628,
+            "id": "11628",
             "name": "MATH 234"
         },
         {
-            "id": 11645,
+            "id": "11645",
             "name": "MATH 319"
         },
         {
-            "id": 11646,
+            "id": "11646",
             "name": "MATH 320"
         },
         {
-            "id": 11655,
+            "id": "11655",
             "name": "MATH 340"
         },
         {
-            "id": 11945,
+            "id": "11945",
             "name": "ME 231"
         },
         {
-            "id": 11948,
+            "id": "11948",
             "name": "ME 240"
         },
         {
-            "id": 11960,
+            "id": "11960",
             "name": "ME 306"
         },
         {
-            "id": 11975,
+            "id": "11975",
             "name": "ME 340"
         },
         {
-            "id": 11991,
+            "id": "11991",
             "name": "ME 361"
         },
         {
-            "id": 11995,
+            "id": "11995",
             "name": "ME 363"
         },
         {
-            "id": 11996,
+            "id": "11996",
             "name": "ME 364"
         },
         {
-            "id": 12616,
+            "id": "12616",
             "name": "MSE 330"
         },
         {
-            "id": 12621,
+            "id": "12621",
             "name": "MSE 350"
         },
         {
-            "id": 12622,
+            "id": "12622",
             "name": "MSE 351"
         },
         {
-            "id": 13796,
+            "id": "13796",
             "name": "NE 305"
         },
         {
-            "id": 15599,
+            "id": "15599",
             "name": "PHYSICS 201"
         },
         {
-            "id": 15600,
+            "id": "15600",
             "name": "PHYSICS 202"
         },
         {
-            "id": 15602,
+            "id": "15602",
             "name": "PHYSICS 205"
         },
         {
-            "id": 15606,
+            "id": "15606",
             "name": "PHYSICS 241"
         },
         {
-            "id": 18438,
+            "id": "18438",
             "name": "STAT 224"
         },
         {
-            "id": 18443,
+            "id": "18443",
             "name": "STAT 311"
         },
         {
-            "id": 18444,
+            "id": "18444",
             "name": "STAT 312"
         },
         {
-            "id": 21159,
+            "id": "21159",
             "name": "STAT 324"
         },
         {
-            "id": 21682,
+            "id": "21682",
             "name": "ECE 551"
         },
         {
-            "id": 22784,
+            "id": "22784",
             "name": "ECE 252"
         },
         {
-            "id": 23133,
+            "id": "23133",
             "name": "CBE 255"
         },
         {
-            "id": 23741,
+            "id": "23741",
             "name": "ECE 203"
         },
         {
-            "id": 23743,
+            "id": "23743",
             "name": "ECE 219"
         },
         {
-            "id": 24209,
+            "id": "24209",
             "name": "COMPSCI 301"
         },
         {
-            "id": 24794,
+            "id": "24221",
+            "name": "Special Topics 0"
+        },
+        {
+            "id": "24222",
+            "name": "Special Topics 0"
+        },
+        {
+            "id": "24223",
+            "name": "Special Topics 0"
+        },
+        {
+            "id": "24480",
+            "name": "Special Topics 0"
+        },
+        {
+            "id": "24794",
             "name": "COMPSCI 200"
         },
         {
-            "id": 24795,
+            "id": "24795",
             "name": "COMPSCI 300"
         }
     ],
     "shifts": [
         {
-            "id": 1,
-            "day": 0,
-            "startTime": "2017-12-07T18:30:00",
-            "endTime": "2017-12-07T21:00:00"
+            "id": "1",
+            "day": "SUNDAY",
+            "startTime": "18:30:00",
+            "endTime": "21:00:00"
         },
         {
-            "id": 2,
-            "day": 1,
-            "startTime": "2017-12-07T18:30:00",
-            "endTime": "2017-12-07T21:00:00"
+            "id": "2",
+            "day": "MONDAY",
+            "startTime": "18:30:00",
+            "endTime": "21:00:00"
         },
         {
-            "id": 3,
-            "day": 2,
-            "startTime": "2017-12-07T18:30:00",
-            "endTime": "2017-12-07T21:00:00"
+            "id": "3",
+            "day": "TUESDAY",
+            "startTime": "18:30:00",
+            "endTime": "21:00:00"
         },
         {
-            "id": 4,
-            "day": 3,
-            "startTime": "2017-12-07T18:30:00",
-            "endTime": "2017-12-07T21:00:00"
+            "id": "4",
+            "day": "WEDNESDAY",
+            "startTime": "18:30:00",
+            "endTime": "21:00:00"
         },
         {
-            "id": 5,
-            "day": 4,
-            "startTime": "2017-12-07T18:30:00",
-            "endTime": "2017-12-07T21:00:00"
+            "id": "5",
+            "day": "THURSDAY",
+            "startTime": "18:30:00",
+            "endTime": "21:00:00"
         }
     ],
     "tutors": [
@@ -1720,775 +1736,6 @@
             ],
             "prefShiftAmount": "1",
             "willingShiftAmount": "1"
-        }
-    ],
-    "requirements": [
-        {
-            "courseID": 2122,
-            "intensity": "Low",
-            "timesPerWeek": 3,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 2673,
-            "intensity": "Low",
-            "timesPerWeek": 3,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 2675,
-            "intensity": "Low",
-            "timesPerWeek": 3,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 2677,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 2678,
-            "intensity": "Low",
-            "timesPerWeek": 3,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 2749,
-            "intensity": "Low",
-            "timesPerWeek": 5,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 2750,
-            "intensity": "Low",
-            "timesPerWeek": 5,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 2755,
-            "intensity": "Low",
-            "timesPerWeek": 5,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 2761,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 2762,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 2765,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 2767,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 2769,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 3306,
-            "intensity": "Low",
-            "timesPerWeek": 2,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 3307,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 3310,
-            "intensity": "Low",
-            "timesPerWeek": 2,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 3319,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 4244,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 4246,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 6287,
-            "intensity": "Low",
-            "timesPerWeek": 3,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 6324,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 6330,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 6332,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 6337,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 6339,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 6350,
-            "intensity": "Low",
-            "timesPerWeek": 3,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 6573,
-            "intensity": "High",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": [
-                {
-                    "shiftID": 1,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 2,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 3
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 4
-                },
-                {
-                    "shiftID": 1,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 2,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 3
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 4
-                }
-            ]
-        },
-        {
-            "courseID": 6574,
-            "intensity": "Medium",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": [
-                {
-                    "shiftID": 1,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 2,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 1,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 1,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 2,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 1,
-                    "numTutors": 2
-                }
-            ]
-        },
-        {
-            "courseID": 6582,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": [
-                {
-                    "shiftID": 2,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 2,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 1
-                }
-            ]
-        },
-        {
-            "courseID": 10227,
-            "intensity": "Low",
-            "timesPerWeek": 3,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 10235,
-            "intensity": "Low",
-            "timesPerWeek": 3,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 11616,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 11623,
-            "intensity": "Low",
-            "timesPerWeek": 5,
-            "numTutors": 2,
-            "specifics": []
-        },
-        {
-            "courseID": 11624,
-            "intensity": "Low",
-            "timesPerWeek": 5,
-            "numTutors": 2,
-            "specifics": []
-        },
-        {
-            "courseID": 11628,
-            "intensity": "Low",
-            "timesPerWeek": 5,
-            "numTutors": 2,
-            "specifics": []
-        },
-        {
-            "courseID": 11645,
-            "intensity": "Low",
-            "timesPerWeek": 1,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 11646,
-            "intensity": "Low",
-            "timesPerWeek": 1,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 11655,
-            "intensity": "Low",
-            "timesPerWeek": 1,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 11945,
-            "intensity": "Low",
-            "timesPerWeek": 1,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 11948,
-            "intensity": "Medium",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": [
-                {
-                    "shiftID": 1,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 2,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 1,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 2,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 1
-                }
-            ]
-        },
-        {
-            "courseID": 11960,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": [
-                {
-                    "shiftID": 1,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 2,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 1,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 2,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 1
-                }
-            ]
-        },
-        {
-            "courseID": 11975,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 11991,
-            "intensity": "High",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": [
-                {
-                    "shiftID": 1,
-                    "numTutors": 3
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 1,
-                    "numTutors": 3
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 2
-                }
-            ]
-        },
-        {
-            "courseID": 11995,
-            "intensity": "Medium",
-            "timesPerWeek": 3,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 11996,
-            "intensity": "Medium",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 12616,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 12621,
-            "intensity": "Low",
-            "timesPerWeek": 3,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 12622,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 13796,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 15599,
-            "intensity": "Medium",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": [
-                {
-                    "shiftID": 1,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 2,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 1,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 2,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 1
-                }
-            ]
-        },
-        {
-            "courseID": 15600,
-            "intensity": "Medium",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": [
-                {
-                    "shiftID": 1,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 2,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 1,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 2,
-                    "numTutors": 2
-                },
-                {
-                    "shiftID": 3,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 4,
-                    "numTutors": 1
-                },
-                {
-                    "shiftID": 5,
-                    "numTutors": 1
-                }
-            ]
-        },
-        {
-            "courseID": 15602,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 15606,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 18438,
-            "intensity": "Low",
-            "timesPerWeek": 5,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 18443,
-            "intensity": "Low",
-            "timesPerWeek": 5,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 18444,
-            "intensity": "Low",
-            "timesPerWeek": 5,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 21159,
-            "intensity": "Low",
-            "timesPerWeek": 5,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 21682,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 22784,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 23133,
-            "intensity": "Low",
-            "timesPerWeek": 3,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 23741,
-            "intensity": "Low",
-            "timesPerWeek": 2,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 23743,
-            "intensity": "Low",
-            "timesPerWeek": 0,
-            "numTutors": 0,
-            "specifics": []
-        },
-        {
-            "courseID": 24209,
-            "intensity": "Low",
-            "timesPerWeek": 5,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 24794,
-            "intensity": "Low",
-            "timesPerWeek": 5,
-            "numTutors": 1,
-            "specifics": []
-        },
-        {
-            "courseID": 24795,
-            "intensity": "Low",
-            "timesPerWeek": 5,
-            "numTutors": 1,
-            "specifics": []
         }
     ]
 }
