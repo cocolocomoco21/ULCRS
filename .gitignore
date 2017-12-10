@@ -1,3 +1,9 @@
+/electron-src/data/mockTutorData.json
+
+# Local sessions directory
+/sessions
+
+# Build stuff
 .metadata
 build
 .gradle
