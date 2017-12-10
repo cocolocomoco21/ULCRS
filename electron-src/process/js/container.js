@@ -7,6 +7,220 @@ let reactstrap = require('reactstrap');
 let Modal = reactstrap.Modal;
 let ModalHeader = reactstrap.ModalHeader;
 let ModalBody = reactstrap.ModalBody;
+let ModalFooter = reactstrap.ModalFooter;
+import { connect, Provider } from "react-redux";
+import { combineForms, Form, Control } from "react-redux-form";
+import { compose, createStore } from "redux";
+import Select from 'react-select';
+
+const initialUser = {};
+const store = createStore(
+    combineForms({
+        user: initialUser
+    })
+);
+
+class TutorDropDown extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            categoryValue: null,
+            options: [],
+        };
+        this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.setUp = this.setUp.bind(this);
+        this.setUp();
+    }
+
+    setUp() {
+        let shiftId = this.props.shiftId;
+        console.log("shiftId");
+        console.log(shiftId);
+        let tutorData = this.props.tutorData;
+        console.log(tutorData);
+        for (let i=0; i<tutorData.length; i++) {
+            let prefer = tutorData[i].tutorPreferences.shiftPreferences.PREFER;
+            console.log("prefer");
+            console.log(prefer);
+            for (let j=0; j<prefer.length; j++) {
+                if (prefer[j].id == shiftId) {
+                    let name = tutorData[i].firstName + " " + tutorData[i].lastName + ", Preferred"
+                    this.state.options.push({
+                        value: tutorData[i].id,
+                        label: name
+                    });
+                }
+            }
+            let willing = tutorData[i].tutorPreferences.shiftPreferences.WILLING;
+            console.log("willing");
+            console.log(willing);
+            for (let j=0; j<willing.length; j++) {
+                if (willing[j].id == shiftId) {
+                    let name = tutorData[i].firstName + " " + tutorData[i].lastName + ", Willing";
+                    this.state.options.push({
+                        value: tutorData[i].id,
+                        label: name
+                    });
+                }
+            }
+            console.log("this.state.options");
+            console.log(this.state.options);
+        }
+    }
+
+    handleSelectChange(value){
+        console.log("in handleSelectChange");
+        console.log("value");
+        console.log(value);
+        this.setState({ categoryValue: value });
+        this.props.setTutorId(parseInt(value));
+    };
+
+    render() {
+        let reactSelect = props => (
+            <Select
+                {...props}
+            />
+        );
+        console.log("this.state.categoryValue");
+        console.log(this.state.categoryValue);
+        // console.log(this.state.categoryValue.length);
+
+        return (
+            <div className="form__row">
+                <div className="form__label">
+                    <span className="form__title">
+                        {this.props.title}
+                        {this.props.isRequired ? (
+                            <span className="form__required">*</span>
+                        ) : (
+                            ''
+                        )}
+                    </span>
+                </div>
+                <Control.custom
+                    model={this.props.model}
+                    mapProps={
+                        {
+                            onChange: (props) => props.onChange
+                        }
+                    }
+                    id={this.props.model}
+                    component={reactSelect}
+                    simpleValue
+                    multi
+                    value={this.state.categoryValue}
+                    options={this.state.options}
+                    onChange={this.handleSelectChange}
+                    joinValues
+                    name={this.props.model}
+                    required
+                />
+            </div>
+        );
+    }
+}
+
+class CourseDropDown extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            categoryValue: null,
+            options: [],
+        };
+        this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.setUp = this.setUp.bind(this);
+        this.setUp();
+    }
+
+    setUp() {
+        let shiftId = this.props.shiftId;
+        console.log("shiftId");
+        console.log(shiftId);
+        let tutorData = this.props.tutorData;
+        console.log(tutorData);
+        for (let i=0; i<tutorData.length; i++) {
+            let prefer = tutorData[i].tutorPreferences.shiftPreferences.PREFER;
+            console.log("prefer");
+            console.log(prefer);
+            for (let j=0; j<prefer.length; j++) {
+                if (prefer[j].id == shiftId) {
+                    let name = tutorData[i].firstName + " " + tutorData[i].lastName + ", Preferred"
+                    this.state.options.push({
+                        value: tutorData[i].id,
+                        label: name
+                    });
+                }
+            }
+            let willing = tutorData[i].tutorPreferences.shiftPreferences.WILLING;
+            console.log("willing");
+            console.log(willing);
+            for (let j=0; j<willing.length; j++) {
+                if (willing[j].id == shiftId) {
+                    let name = tutorData[i].firstName + " " + tutorData[i].lastName + ", Willing";
+                    this.state.options.push({
+                        value: tutorData[i].id,
+                        label: name
+                    });
+                }
+            }
+            console.log("this.state.options");
+            console.log(this.state.options);
+        }
+    }
+
+    handleSelectChange(value){
+        console.log("in handleSelectChange");
+        console.log("value");
+        console.log(value);
+        this.setState({ categoryValue: value });
+        this.props.setTutorId(parseInt(value));
+    };
+
+    render() {
+        let reactSelect = props => (
+            <Select
+                {...props}
+            />
+        );
+        console.log("this.state.categoryValue");
+        console.log(this.state.categoryValue);
+        // console.log(this.state.categoryValue.length);
+
+        return (
+            <div className="form__row">
+                <div className="form__label">
+                    <span className="form__title">
+                        {this.props.title}
+                        {this.props.isRequired ? (
+                            <span className="form__required">*</span>
+                        ) : (
+                            ''
+                        )}
+                    </span>
+                </div>
+                <Control.custom
+                    model={this.props.model}
+                    mapProps={
+                        {
+                            onChange: (props) => props.onChange
+                        }
+                    }
+                    id={this.props.model}
+                    component={reactSelect}
+                    simpleValue
+                    multi
+                    value={this.state.categoryValue}
+                    options={this.state.options}
+                    onChange={this.handleSelectChange}
+                    joinValues
+                    name={this.props.model}
+                    required
+                />
+            </div>
+        );
+    }
+}
 
 class Container extends React.Component{
     constructor(props){
@@ -17,11 +231,21 @@ class Container extends React.Component{
             setContainerDataList: this.props.setContainerDataList.bind(this),
             printc: this.props.printc.bind(this),
             day: this.props.day,
+            modal : false,
             deleteMessageModal: false,
+            tutorId: null,
         };
         this.setCard = this.setCard.bind(this);
+        this.toggleGridModal = this.toggleGridModal.bind(this);
         this.toggleDeleteMessageModal = this.toggleDeleteMessageModal.bind(this);
+        this.setTutorId = this.setTutorId.bind(this);
   	}
+
+    toggleGridModal() {
+        this.setState({
+            modal : ! this.state.modal
+        })
+    }
 
     toggleDeleteMessageModal() {
         this.setState({
@@ -46,6 +270,16 @@ class Container extends React.Component{
         this.props.setContainerDataList(this.props.id - 1, this.state.cards);
         this.props.printc();
         console.log("exiting deleteCard");
+    }
+
+    handleSubmit(e){
+        console.log(e);
+    };
+
+    setTutorId(id) {
+        this.setState({
+            tutorId : id
+        })
     }
 
 	pushCard(card) {
@@ -129,6 +363,37 @@ class Container extends React.Component{
                             />
                     );
                 })}
+
+                <button type="button" className="btn btn-success btn-block" onClick={this.toggleGridModal}
+                        style={{background: "#c5050c", "textAlign": "center"}} > Add Assignment </button>
+
+                <Modal isOpen={this.state.modal} toggle={this.toggleGridModal}>
+                    <ModalHeader toggle={this.toggleGridModal} >
+                        <div style={{"textAlign": "left", "fontSize": "40px"}}>
+                            <h3>Shift {this.state.day}</h3>
+                        </div>
+                    </ModalHeader>
+                    <ModalBody>
+                        <Provider store={store}>
+                            <div>
+                                <h4>Add Tutor Assignment</h4>
+                                <div>Select a tutor available for this shift</div>
+                                <div>
+                                    <Form model="user" onSubmit={this.handleSubmit}>
+                                        <TutorDropDown model="user.category" tutorData={this.props.tutorData}
+                                                       shiftId={this.props.shiftId} setTutorId={this.setTutorId}/>
+                                    </Form>
+                                </div>
+                            </div>
+                        </Provider>
+                    </ModalBody>
+                    <ModalFooter>
+                        <button type="button" className="btn btn-success btn-block" onClick={this.savePopUp}
+                                style={{"textAlign": "center"}} > Save </button>
+                        <button type="button" className="btn btn-success btn-block" onClick={this.deleteCard.bind(this)}
+                                style={{"textAlign": "center"}} > Cancel </button>
+                    </ModalFooter>
+                </Modal>
 
                 <Modal isOpen={this.state.deleteMessageModal} toggle={this.toggleDeleteMessageModal}>
                     <ModalHeader toggle={this.toggleDeleteMessageModal} >
