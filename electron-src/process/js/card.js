@@ -44,7 +44,8 @@ class WillCourseList extends React.Component {
                 <Form model="user" onSubmit={this.handleSubmit}>
                     <MultiSelect model="user.category" tutorCourse={this.state.tutorCourse}
                                  tutorId={this.state.tutorId} isWilling={true}
-                                 setCoursesAssigned={this.props.setWillCoursesAssigned}/>
+                                 setCoursesAssigned={this.props.setWillCoursesAssigned}
+                                tutorData={this.props.tutorData}/>
                 </Form>
             </div>
         );
@@ -199,10 +200,14 @@ class Card extends React.Component {
                                 <h4>Add/Delete</h4>
                                 <div>Prefer Course List of {tutorName}</div>
                                 <PrefCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}
-                                                setPreferCoursesAssigned={this.setPreferCoursesAssigned}/>
+                                                setPreferCoursesAssigned={this.setPreferCoursesAssigned}
+                                                tutorData = {this.props.tutorData}
+                                />
                                 <div>Willing Course List of {tutorName}</div>
                                 <WillCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}
-                                                setWillCoursesAssigned={this.setWillCoursesAssigned}/>
+                                                setWillCoursesAssigned={this.setWillCoursesAssigned}
+                                                tutorData = {this.props.tutorData}
+                                    />
                             </div>
                         </Provider>
                     </ModalBody>

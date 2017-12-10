@@ -8,7 +8,7 @@ import Select from 'react-select';
 let fs = require('fs');
 
 let tutorLocation = require('path').resolve(__dirname, '..', '..','data', 'mockTutorData.json');
-let loadTutorData = JSON.parse(fs.readFileSync(tutorLocation));
+// let loadTutorData = JSON.parse(fs.readFileSync(tutorLocation));
 
 class MultiSelect extends React.Component {
     constructor(props) {
@@ -20,6 +20,7 @@ class MultiSelect extends React.Component {
             idToIndex: {}
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.setUp = this.setUp.bind(this);
         this.setUp();
         this.preload();
     }
@@ -29,6 +30,7 @@ class MultiSelect extends React.Component {
         console.log("targetId");
         console.log(targetId);
         console.log("loadTurorData");
+        let loadTutorData = this.props.tutorData;
         console.log(loadTutorData);
         let result = null;
         for (let i=0; i<loadTutorData.length; i++){
