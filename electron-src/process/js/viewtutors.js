@@ -8,7 +8,7 @@ let requireLocal = ( localModule ) =>{
 //     return require(path.resolve( __dirname,localModule))
 // };
 
-let dataLocation = require('path').resolve(__dirname, '..','..', 'data', 'data.json');
+let dataLocation = require('path').resolve(__dirname, '..', 'data', 'data.json');
 let mockData = require('path').resolve(__dirname, '..', 'data', 'mockTutorData.json');
 let ReactDOM = require('react-dom');
 let React = require('react');
@@ -16,7 +16,9 @@ let ViewToolBar = requireLocal('./viewtoolbar');
 let TutorTable = requireLocal('./tutortable');
 let CourseTable = requireLocal('./coursetable');
 let fs = require('fs');
-//let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
+let scheLocation = require('path').resolve(__dirname, '..','data', 'scheduleData.json');
+let sche = JSON.parse(fs.readFileSync(scheLocation));
+// let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
 let mock = JSON.parse(fs.readFileSync(mockData));
 let electron = require('electron');
 let ipc = electron.ipcRenderer;
@@ -51,6 +53,7 @@ class ViewInfo extends React.Component {
     ipc.on("get-tutor-data",  (event, text) => {
       let d = JSON.parse(text);
       let p = new Parser();
+      this.props.setTutorData(d);
       this.setState({
           tutors: p.getTutors(d),
           tutorData: d,
@@ -169,13 +172,15 @@ class MainInterface extends React.Component{
         this.state = {
             pageName: "info",
             waiting: false,
-            tutorData: null
+            tutorData: null,
+            scheduleData: null
         };
-
+        this.tutorData = mock;
         ipc.on("receive-schedule-data", (event, data) => {
             this.setState({
                 pageName: "schedules",
-                waiting: false
+                waiting: false,
+                scheduleData: sche
             });
         });
         ipc.on("post_success", (event, data) => {
@@ -185,11 +190,16 @@ class MainInterface extends React.Component{
             );
         });
         this.showViewSchedules = this.showViewSchedules.bind(this);
+        this.setTutorData = this.setTutorData.bind(this);
     }
 
     showViewSchedules(excludedIds){
         ipc.send("post_generate", excludedIds);
         console.log("post generate")
+    }
+
+    setTutorData(data){
+        //this.tutorData = data;
     }
 
     componentWillUpdate(){
@@ -201,10 +211,10 @@ class MainInterface extends React.Component{
         console.log("Rendering");
         console.log(this.state.pageName);
         if (this.state.pageName === "info"){
-            component = <ViewInfo showSchedules = {this.showViewSchedules}/>
+            component = <ViewInfo showSchedules = {this.showViewSchedules} setTutorData = {this.setTutorData}/>
         }
         else if (this.state.pageName === "schedules"){
-            component = <ViewSchedulePage/>
+            component = <ViewSchedulePage scheduleData={this.state.scheduleData} tutorData={this.tutorData}/>
         }
 
         return(
