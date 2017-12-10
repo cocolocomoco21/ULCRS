@@ -51,6 +51,7 @@ class Container extends React.Component{
 			}
 		}));
 
+		console.log(this.state.cards);
         this.props.printc();
         this.props.setContainerDataList(this.props.id - 1, this.state.cards);
         this.props.printc();
