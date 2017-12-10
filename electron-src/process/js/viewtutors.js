@@ -10,6 +10,7 @@ let requireLocal = ( localModule ) =>{
 
 let dataLocation = require('path').resolve(__dirname, '..','..', 'data', 'data.json');
 let mockData = require('path').resolve(__dirname, '..', 'data', 'mockTutorData.json');
+let mockCourses= require('path').resolve(__dirname, '..', 'data', 'mockCourseData.json');
 let ReactDOM = require('react-dom');
 let React = require('react');
 let ViewToolBar = requireLocal('./viewtoolbar');
@@ -17,6 +18,7 @@ let TutorTable = requireLocal('./tutortable');
 let CourseTable = requireLocal('./coursetable');
 let fs = require('fs');
 //let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
+let loadCourses = JSON.parse(fs.readFileSync(mockCourses));
 let mock = JSON.parse(fs.readFileSync(mockData));
 let electron = require('electron');
 let ipc = electron.ipcRenderer;
@@ -37,9 +39,11 @@ class ViewInfo extends React.Component {
       this.state = {
        // tutors: loadTutors,
         tutorData: null,
+        // courseData: null,
         courseData: null,
-        tutors: [],
-      courses: [],
+
+          tutors: [],
+      courses: (new Parser()).getCourses(loadCourses),
       view: "tutor", // view will only be tutor or course
       proceeding: false
     };
@@ -153,6 +157,8 @@ class ViewInfo extends React.Component {
                     </Modal>
 
 
+                </div>
+                <div className="row" style={{height:"20%"}}>
                 </div>
             </div>
 
