@@ -127,11 +127,11 @@ class Card extends React.Component {
         this.setTutorCourse();
     }
 
-    removeCard() {
-        console.log("in remove card");
+    deleteCard() {
+        console.log("in delete card");
         console.log("this.props.index");
         console.log(this.props.index);
-        this.props.removeCard(this.props.index);
+        this.props.deleteCard(this.props.index);
     }
 
     toggleGridModal() {
@@ -224,7 +224,7 @@ class Card extends React.Component {
                     <ModalFooter>
                         <button type="button" className="btn btn-success btn-block" onClick={this.savePopUp}
                                 style={{"textAlign": "center"}} > Save </button>
-                        <button type="button" className="btn btn-success btn-block" onClick={this.removeCard.bind(this)}
+                        <button type="button" className="btn btn-success btn-block" onClick={this.deleteCard.bind(this)}
                                 style={{"textAlign": "center"}} > Delete Shift </button>
                     </ModalFooter>
                 </Modal>

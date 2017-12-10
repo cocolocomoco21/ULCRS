@@ -27,6 +27,16 @@ class Container extends React.Component{
         this.props.setContainerDataList(this.props.id - 1, cards);
     }
 
+    deleteCard(index) {
+        console.log("in deleteCard");
+        this.state.cards.splice(index, 1);
+        console.log(this.state.cards);
+        this.props.printc();
+        this.props.setContainerDataList(this.props.id - 1, this.state.cards);
+        this.props.printc();
+        console.log("exiting deleteCard");
+    }
+
 	pushCard(card) {
         console.log("in pushCard");
 		this.setState(update(this.state, {
@@ -100,6 +110,7 @@ class Container extends React.Component{
                             card={card}
                             setCard={this.setCard}
                             day={this.state.day}
+                            deleteCard={this.deleteCard.bind(this)}
                             removeCard={this.removeCard.bind(this)}
                             moveCard={this.moveCard.bind(this)}
                             tutorData={this.props.tutorData}
