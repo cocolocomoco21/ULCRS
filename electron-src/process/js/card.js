@@ -20,35 +20,35 @@ import PrefCourseList from './editlistmodule';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialUser = {};
 const store = createStore(
-  combineForms({
-    user: initialUser
-  })
+    combineForms({
+        user: initialUser
+    })
 );
 
 class WillCourseList extends React.Component {
-  constructor(props){
-      super(props);
-      this.state = {
-          preLoadOption: this.props.tutorCourse,
-          tutorId: this.props.tutorId
-      };
-  }
+    constructor(props){
+        super(props);
+        this.state = {
+            tutorCourse: this.props.tutorCourse,
+            tutorId: this.props.tutorId
+        };
+    }
 
-  handleSubmit(e){
-    console.log(e);
-  };
+    handleSubmit(e){
+        console.log(e);
+    };
 
-  render() {
-
-    return (
-      <div>
-        <Form model="user" onSubmit={this.handleSubmit}>
-          <MultiSelect model="user.category" options={this.state.preLoadOption}
-          tutorId={this.state.tutorId} isWilling={true}/>
-        </Form>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <Form model="user" onSubmit={this.handleSubmit}>
+                    <MultiSelect model="user.category" tutorCourse={this.state.tutorCourse}
+                                 tutorId={this.state.tutorId} isWilling={true}
+                                 setCoursesAssigned={this.props.setWillCoursesAssigned}/>
+                </Form>
+            </div>
+        );
+    }
 }
 
 const style = {
@@ -60,116 +60,172 @@ const style = {
 };
 
 class Card extends React.Component {
-  constructor(props){
-      super(props);
-      this.state = {
-          modal : false,
-          saveMessageModal: false,
-          card : this.props.card,
-          day : this.props.day
-      };
-  this.toggleMessageModal = this.toggleMessageModal.bind(this);
-  this.toggleGridModal = this.toggleGridModal.bind(this);
-  //this.changeCourses = this.changeCourses.bind(this);
+    constructor(props){
+        super(props);
+        this.state = {
+            modal : false,
+            saveMessageModal: false,
+            card : this.props.card,
+            day : this.props.day,
+            willCoursesAssigned : [],
+            preferCoursesAssigned : [],
+        };
+    this.toggleMessageModal = this.toggleMessageModal.bind(this);
+    this.toggleGridModal = this.toggleGridModal.bind(this);
+    this.setPreferCoursesAssigned = this.setPreferCoursesAssigned.bind(this);
+    this.setWillCoursesAssigned = this.setWillCoursesAssigned.bind(this);
+    this.savePopUp = this.savePopUp.bind(this);
 }
 
-  // changeCourses(c){
-  //   this.setState({
-  //     card.tutorCourse : c
-  //   })
-  // }
+    setTutorCourse() {
+        console.log("in setTutorCourse");
+        let tutorCourse = this.state.preferCoursesAssigned.concat(this.state.willCoursesAssigned);
+        console.log("tutorCourse");
+        console.log(tutorCourse);
+        if (tutorCourse.length > 0) {
+            let card = this.state.card;
+            card.tutorCourse = tutorCourse;
+            console.log("card");
+            console.log(card);
+            this.props.setCard(this.props.index, card);
+            this.toggleMessageModal();
+            this.toggleGridModal();
+        }
+    }
 
-  toggleGridModal(){
-      this.setState({
-          modal : ! this.state.modal
-      })
-  }
+    setWillCoursesAssigned(courses) {
+        console.log("in setWillCoursesAssigned");
+        console.log("this.state.willCoursesAssigned before");
+        console.log(this.state.willCoursesAssigned);
+        console.log("courses");
+        console.log(courses);
+        this.setState({
+            willCoursesAssigned: courses
+        });
+        console.log("this.state.willCoursesAssigned after");
+        console.log(this.state.willCoursesAssigned);
+    }
 
-  toggleMessageModal(){
-      this.setState({
-          saveMessageModal: ! this.state.saveMessageModal
-      })
-  }
+    setPreferCoursesAssigned(courses) {
+        console.log("in setPreferCoursesAssigned");
+        console.log("this.state.preferCoursesAssigned before");
+        console.log(this.state.preferCoursesAssigned);
+        console.log("courses");
+        console.log(courses);
+        this.setState({
+            preferCoursesAssigned: courses
+        });
+        console.log("this.state.preferCoursesAssigned after");
+        console.log(this.state.preferCoursesAssigned);
+    }
+
+    savePopUp() {
+        console.log("in save pop up");
+        console.log(this.state.preferCoursesAssigned);
+        console.log(this.state.willCoursesAssigned);
+        this.setTutorCourse();
+    }
+
+    toggleGridModal() {
+        this.setState({
+            modal : ! this.state.modal
+        })
+    }
+
+    toggleMessageModal() {
+        this.setState({
+            saveMessageModal: ! this.state.saveMessageModal
+        })
+    }
 
 	render() {
-    const card = this.state.card;
+        const card = this.state.card;
 		const { isDragging, connectDragSource, connectDropTarget } = this.props;
 		const opacity = isDragging ? 0 : 1;
 
 		let course = [];
 		let tutorName = card.tutor.firstName + " " + card.tutor.lastName;
 		if (card.tutorCourse.length == 1) {
-		    course.push(<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
-        <a style={{color: "black"}}>
-          {card.tutorCourse[0].name}
-        </a>
-        </li>);
+		    course.push(
+		        <li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
+                    <a style={{color: "black"}}>
+                        {card.tutorCourse[0].name}
+                    </a>
+                </li>
+            );
         }
         else if (card.tutorCourse.length == 2) {
-            course.push(<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
-            <a style={{color: "black"}}>
-            {card.tutorCourse[0].name + ", " + card.tutorCourse[1].name}
-            </a>
-        </li>);
+            course.push(
+                <li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
+                    <a style={{color: "black"}}>
+                        {card.tutorCourse[0].name + ", " + card.tutorCourse[1].name}
+                    </a>
+                </li>
+            );
         }
         else {
 		    let tooltip = card.tutorCourse[0].name;
 		    for (let index=1; index<card.tutorCourse.length; index++) {
                 tooltip = tooltip + ", " + card.tutorCourse[index].name;
             }
-		    course.push(<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
-                <a href="#" data-toggle="tooltip" title={tooltip} style={{color: "black"}}>
-                    {card.tutorCourse[0].name + "...."}
-                </a>
-            </li>);
+		    course.push(
+		        <li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
+                    <a href="#" data-toggle="tooltip" title={tooltip} style={{color: "black"}}>
+                        {card.tutorCourse[0].name + "...."}
+                    </a>
+                </li>
+            );
         }
 
 		return connectDragSource(connectDropTarget(
-    <div style={{ style, opacity }}>
-			<div>
-				<ul className="list-group" onClick={this.toggleGridModal}style={{"textAlign": "center"}}>
-					<li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
-          <a style={{color: "black"}}>
-          {tutorName}
-           </a>
-          </li>
-          {course}
-				</ul>
-			</div>
+            <div style={{ style, opacity }}>
+                <div>
+                    <ul className="list-group" onClick={this.toggleGridModal} style={{"textAlign": "center"}}>
+                        <li className="list-group-item" style={{backgroundColor: "#f9f9f9"}}>
+                            <a style={{color: "black"}}>
+                                {tutorName}
+                            </a>
+                        </li>
+                        {course}
+                    </ul>
+                </div>
 
-      <Modal isOpen={this.state.modal} toggle={this.toggleGridModal}>
-          <ModalHeader toggle={this.toggleGridModal} >
-              <div style={{"textAlign": "left", "fontSize": "40px"}}>
-                  <h3>Shift {this.state.day} of {tutorName}</h3>
-              </div>
-          </ModalHeader>
-          <ModalBody>
-          <Provider store={store}>
-            <div>
-              <h4>Add/Delete</h4>
-                <div>Prefer Course List of {tutorName}</div>
-                    <PrefCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}/>
-                <div>Willing Course List of {tutorName}</div>
-                  <WillCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}/>
+                <Modal isOpen={this.state.modal} toggle={this.toggleGridModal}>
+                    <ModalHeader toggle={this.toggleGridModal} >
+                        <div style={{"textAlign": "left", "fontSize": "40px"}}>
+                            <h3>Shift {this.state.day} of {tutorName}</h3>
+                        </div>
+                    </ModalHeader>
+                    <ModalBody>
+                        <Provider store={store}>
+                            <div>
+                                <h4>Add/Delete</h4>
+                                <div>Prefer Course List of {tutorName}</div>
+                                <PrefCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}
+                                                setPreferCoursesAssigned={this.setPreferCoursesAssigned}/>
+                                <div>Willing Course List of {tutorName}</div>
+                                <WillCourseList tutorCourse={card.tutorCourse} tutorId={card.tutor.id}
+                                                setWillCoursesAssigned={this.setWillCoursesAssigned}/>
+                            </div>
+                        </Provider>
+                    </ModalBody>
+                    <ModalFooter>
+                        <button type="button" className="btn btn-success btn-block" onClick={this.savePopUp}
+                                style={{"textAlign": "center"}} > Save </button>
+                    </ModalFooter>
+                </Modal>
+
+                <Modal isOpen={this.state.saveMessageModal} toggle={this.toggleMessageModal}>
+                    <ModalHeader toggle={this.toggleMessageModal} >
+                        <div style={{"textAlign": "center", "fontSize": "20px"}}>
+                            Shift {this.state.day} of {tutorName}
+                        </div>
+                    </ModalHeader>
+                    <ModalBody>
+                        <div id="message-content"> Succesfully Modified </div>
+                    </ModalBody>
+                </Modal>
             </div>
-          </Provider>
-          </ModalBody>
-          <ModalFooter>
-            <button type="button" className="btn btn-success btn-block" onClick={this.toggleMessageModal} style={{"textAlign": "center"}} > Save </button>
-          </ModalFooter>
-
-          <Modal isOpen={this.state.saveMessageModal} toggle={this.toggleMessageModal}>
-              <ModalHeader toggle={this.toggleMessageModal} >
-                  <div style={{"textAlign": "center", "fontSize": "20px"}}>
-                      Shift {this.state.day} of {tutorName}
-                  </div>
-              </ModalHeader>
-              <ModalBody>
-                  <div id="message-content"> Succesfully Modified </div>
-              </ModalBody>
-          </Modal>
-      </Modal>
-    </div>
 		));
 	}
 }
