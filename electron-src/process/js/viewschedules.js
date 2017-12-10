@@ -112,7 +112,7 @@ class ViewSchedulePage  extends React.Component {
                     </div>
 
                     <div className="col-10 padding-0">
-                        <ScheduleTable schedules={this.state.schedules} index={this.state.index}/>
+                        <ScheduleTable schedules={this.state.schedules} index={this.state.index} tutorData={this.props.tutorData}/>
                     </div>
                     <div className="w-100"></div>
                     <div className="col-2 p-0">

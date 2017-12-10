@@ -100,7 +100,9 @@ class Container extends React.Component{
                             setCard={this.setCard}
                             day={this.state.day}
                             removeCard={this.removeCard.bind(this)}
-                            moveCard={this.moveCard.bind(this)} />
+                            moveCard={this.moveCard.bind(this)}
+                            tutorData={this.props.tutorData}
+                            />
                     );
                 })}
             </div>
