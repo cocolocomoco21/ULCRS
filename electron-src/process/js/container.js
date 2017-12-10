@@ -69,11 +69,12 @@ class TutorDropDown extends React.Component {
     }
 
     handleSelectChange(value){
-        console.log("in handleSelectChange");
+        console.log("in TutorDropDown.handleSelectChange");
         console.log("value");
         console.log(value);
         this.setState({ categoryValue: value });
         this.props.setTutorId(parseInt(value));
+        console.log(parseInt(value));
     };
 
     render() {
@@ -126,58 +127,53 @@ class CourseDropDown extends React.Component {
         super(props);
         this.state = {
             categoryValue: null,
+            tutorId: this.props.tutorId,
             options: [],
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
-        this.setUp = this.setUp.bind(this);
-        this.setUp();
-    }
-
-    setUp() {
-        let shiftId = this.props.shiftId;
-        console.log("shiftId");
-        console.log(shiftId);
-        let tutorData = this.props.tutorData;
-        console.log(tutorData);
-        for (let i=0; i<tutorData.length; i++) {
-            let prefer = tutorData[i].tutorPreferences.shiftPreferences.PREFER;
-            console.log("prefer");
-            console.log(prefer);
-            for (let j=0; j<prefer.length; j++) {
-                if (prefer[j].id == shiftId) {
-                    let name = tutorData[i].firstName + " " + tutorData[i].lastName + ", Preferred"
-                    this.state.options.push({
-                        value: tutorData[i].id,
-                        label: name
-                    });
-                }
-            }
-            let willing = tutorData[i].tutorPreferences.shiftPreferences.WILLING;
-            console.log("willing");
-            console.log(willing);
-            for (let j=0; j<willing.length; j++) {
-                if (willing[j].id == shiftId) {
-                    let name = tutorData[i].firstName + " " + tutorData[i].lastName + ", Willing";
-                    this.state.options.push({
-                        value: tutorData[i].id,
-                        label: name
-                    });
-                }
-            }
-            console.log("this.state.options");
-            console.log(this.state.options);
-        }
     }
 
     handleSelectChange(value){
-        console.log("in handleSelectChange");
+        console.log("in CourseDropDown.handleSelectChange");
         console.log("value");
         console.log(value);
         this.setState({ categoryValue: value });
-        this.props.setTutorId(parseInt(value));
+        this.props.setTutorCourse(parseInt(value));
     };
 
     render() {
+        console.log("in CourseDropDown render");
+        let tutorId = this.props.tutorId;
+        let tutorData = this.props.tutorData;
+        console.log("tutorId, tutorData");
+        console.log(tutorId);
+        console.log(this.props.tutorId);
+        console.log(tutorData);
+        this.state.options = [];
+        if (tutorId != null) {
+            for (let i=0; i<tutorData.length; i++) {
+                if (tutorId == tutorData[i].id) {
+                    let prefer = tutorData[i].tutorPreferences.coursePreferences.PREFER;
+                    for (let j=0; j<prefer.length; j++) {
+                        let name = prefer[j].name + ", Preferred";
+                        this.state.options.push({
+                            value: prefer[j].id,
+                            label: name
+                        });
+                    }
+                    let willing = tutorData[i].tutorPreferences.coursePreferences.WILLING;
+                    for (let j=0; j<willing.length; j++) {
+                        let name = willing[j].name + ", Willing";
+                        this.state.options.push({
+                            value: willing[j].id,
+                            label: name
+                        });
+                    }
+                    break;
+                }
+            }
+        }
+
         let reactSelect = props => (
             <Select
                 {...props}
@@ -234,11 +230,13 @@ class Container extends React.Component{
             modal : false,
             deleteMessageModal: false,
             tutorId: null,
+            tutorCourse: null,
         };
         this.setCard = this.setCard.bind(this);
         this.toggleGridModal = this.toggleGridModal.bind(this);
         this.toggleDeleteMessageModal = this.toggleDeleteMessageModal.bind(this);
         this.setTutorId = this.setTutorId.bind(this);
+        this.setTutorCourse = this.setTutorCourse.bind(this);
   	}
 
     toggleGridModal() {
@@ -279,6 +277,12 @@ class Container extends React.Component{
     setTutorId(id) {
         this.setState({
             tutorId : id
+        })
+    }
+
+    setTutorCourse(courses) {
+        this.setState({
+            tutorCourse : courses
         })
     }
 
@@ -382,6 +386,14 @@ class Container extends React.Component{
                                     <Form model="user" onSubmit={this.handleSubmit}>
                                         <TutorDropDown model="user.category" tutorData={this.props.tutorData}
                                                        shiftId={this.props.shiftId} setTutorId={this.setTutorId}/>
+                                    </Form>
+                                </div>
+                                <div>Select a course for the tutor</div>
+                                <div>
+                                    <Form model="user" onSubmit={this.handleSubmit}>
+                                        <CourseDropDown model="user.category" tutorData={this.props.tutorData}
+                                                        tutorId={this.state.tutorId}
+                                                        setTutorCourse={this.setTutorCourse}/>
                                     </Form>
                                 </div>
                             </div>
