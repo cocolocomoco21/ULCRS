@@ -45,20 +45,33 @@ class ViewInfo extends React.Component {
           tutors: (new Parser()).getTutors(mock),
       courses: (new Parser()).getCourses(loadCourses),
       view: "tutor", // view will only be tutor or course
-      proceeding: false
+      proceeding: false,
+          showNotAuthorized: false,
+          loading: true
     };
 
     this.clickViewButton = this.clickViewButton.bind(this);
     this.prepareView = this.prepareView.bind(this);
     this.proceedToGenerate = this.proceedToGenerate.bind(this);
     this.toggleProceeding = this.toggleProceeding.bind(this);
+    this.toggleAuthorized = this.toggleAuthorized.bind(this);
     ipc.on("get-tutor-data",  (event, text) => {
-      let d = JSON.parse(text);
-      let p = new Parser();
-      this.setState({
-          tutors: p.getTutors(d),
-          tutorData: d,
-      });
+
+
+        try {
+            let d = JSON.parse(text);
+            let p = new Parser();
+            this.setState({
+                tutors: p.getTutors(d),
+                tutorData: d,
+                loading:false
+            });
+        }catch (e) {
+            this.setState({
+                showNotAuthorized:true,
+                loading:false
+            })
+        }
     });
 
     this.excludedIds = new Set();
@@ -116,6 +129,12 @@ class ViewInfo extends React.Component {
         console.log(this.excludedIds)
     }
 
+    toggleAuthorized(){
+        this.setState({
+            showNotAuthorized: false
+        })
+    }
+
     render() {
         return (
             <div className="container-fluid ">
@@ -155,6 +174,45 @@ class ViewInfo extends React.Component {
                             </Button>
                         </ModalFooter>
                     </Modal>
+
+                    <Modal isOpen={this.state.loading}>
+                        <ModalHeader >
+
+                            <div style={{"textAlign": "center", "fontSize": "40px"}}>
+                                Loading data
+                            </div>
+
+                        </ModalHeader>
+                        <ModalBody>
+                            <div style={{"textAlign": "center"}}>
+                                <i className="fa fa-spinner fa-spin" style={{"fontSize":"48px"}}/>
+                            </div>
+
+                        </ModalBody>
+                    </Modal>
+
+                    <Modal isOpen={this.state.showNotAuthorized}>
+                        <ModalHeader >
+
+                            <div style={{"textAlign": "center", "fontSize": "40px"}}>
+                                Warning
+                            </div>
+
+                        </ModalHeader>
+                        <ModalBody>
+                            <div style={{"textAlign": "center"}}>
+                                You are not authorized to view data.
+                            </div>
+
+                        </ModalBody>
+
+                        <ModalFooter>
+                            <Button color="second" onClick={this.toggleAuthorized}>
+                                OK
+                            </Button>
+                        </ModalFooter>
+                    </Modal>
+
 
 
                 </div>
