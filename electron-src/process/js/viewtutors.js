@@ -42,8 +42,10 @@ class ViewInfo extends React.Component {
         // courseData: null,
         courseData: null,
 
-          tutors: (new Parser()).getTutors(mock),
-      courses: (new Parser()).getCourses(loadCourses),
+      //     tutors: (new Parser()).getTutors(mock),
+      // courses: (new Parser()).getCourses(loadCourses),
+        tutors: [],
+        courses:[],
       view: "tutor", // view will only be tutor or course
       proceeding: false,
           showNotAuthorized: false,
