@@ -50,7 +50,7 @@ class ViewInfo extends React.Component {
       proceeding: false,
           showNotAuthorized: false,
           // TODO: turn it to true when I push
-          loading: false,
+          loading: true,
           existing: true
     };
 
@@ -74,10 +74,10 @@ class ViewInfo extends React.Component {
             });
         }catch (e) {
             //TODO: decomment it when push
-            // this.setState({
-            //     showNotAuthorized:true,
-            //     loading:false
-            // })
+            this.setState({
+                showNotAuthorized:true,
+                loading:false
+            })
         }
     });
 
