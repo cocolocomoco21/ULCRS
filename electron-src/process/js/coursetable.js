@@ -31,9 +31,9 @@ class CourseTable extends React.Component {
                     <h3 className="card-header">
                         Review your courses
                     </h3>
-                    <div className="card-body p-0 " style={{height:"100%"}}>
+                    <div className="card-body p-0 " style={{height:"90%"}}>
                         <div className="container-fluid table-scroll p-0" style={{height:"100%"}}>
-                            <div className="row" style={{height:"100%"}}>
+                            <div className="row pl-3" style={{height:"100%"}}>
                             <table className="table table-striped" style={{height:"100%"}} >
                             <thead style={{backgroundColor: "#9b0000",
                                 color: "#f9f9f9"}}>

@@ -61,7 +61,7 @@ class TutorTable extends React.Component {
                         Review your tutors
                     </h3>
 
-                    <div className = "card-body p-0" style={{height:"100%"}}>
+                    <div className = "card-body p-0" style={{height:"90%"}}>
                         <div className="container-fluid table-scroll p-0 m-0" style={{height:"100%"}}>
                         <table className="table table-striped p-0" style={{background: "#c5050c", border: "#ffffff", color: "#ffffff"}}>
                             <thead className="thead" style={{backgroundColor: "#9b0000",

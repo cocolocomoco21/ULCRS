@@ -9,7 +9,7 @@ let requireLocal = ( localModule ) =>{
 // };
 
 let dataLocation = require('path').resolve(__dirname, '..','..', 'data', 'data.json');
-let mockData = require('path').resolve(__dirname, '..', 'data', 'mockTutorData.json');
+let mockData = require('path').resolve(__dirname, '..', 'data', 'mockTutorData2.json');
 let mockCourses= require('path').resolve(__dirname, '..', 'data', 'mockCourseData.json');
 let ReactDOM = require('react-dom');
 let React = require('react');
@@ -42,7 +42,7 @@ class ViewInfo extends React.Component {
         // courseData: null,
         courseData: null,
 
-          tutors: [],
+          tutors: (new Parser()).getTutors(mock),
       courses: (new Parser()).getCourses(loadCourses),
       view: "tutor", // view will only be tutor or course
       proceeding: false
