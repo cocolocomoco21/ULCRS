@@ -9,7 +9,7 @@ let requireLocal = ( localModule ) =>{
 // };
 
 let dataLocation = require('path').resolve(__dirname, '..','..', 'data', 'data.json');
-let mockData = require('path').resolve(__dirname, '..', 'data', 'mockTutorData2.json');
+let mockData = require('path').resolve(__dirname, '..', 'data', 'mockTutorData.json');
 let mockCourses= require('path').resolve(__dirname, '..', 'data', 'mockCourseData.json');
 let ReactDOM = require('react-dom');
 let React = require('react');
