@@ -50,7 +50,8 @@ class ViewInfo extends React.Component {
       proceeding: false,
           showNotAuthorized: false,
           // TODO: turn it to true when I push
-          loading: false
+          loading: false,
+          existing: true
     };
 
     this.clickViewButton = this.clickViewButton.bind(this);
@@ -58,6 +59,8 @@ class ViewInfo extends React.Component {
     this.proceedToGenerate = this.proceedToGenerate.bind(this);
     this.toggleProceeding = this.toggleProceeding.bind(this);
     this.toggleAuthorized = this.toggleAuthorized.bind(this);
+    this.toggleExiting = this.toggleExiting.bind(this);
+    this.exit = this.exit.bind(this);
     ipc.on("get-tutor-data",  (event, text) => {
 
 
@@ -96,6 +99,12 @@ class ViewInfo extends React.Component {
     });
 
   }
+
+    toggleExiting(){
+        this.setState({
+            exiting: !this.state.exiting
+        })
+    }
 
   clickViewButton(v){
       if (this.state.view === v){
@@ -139,10 +148,14 @@ class ViewInfo extends React.Component {
         })
     }
 
+    exit(){
+        ipc.send("kill-app");
+    }
+
     render() {
         return (
             <div className="container-fluid ">
-                <div className="row" style={{height:"80%"}}>
+                <div className="row" style={{height:"85%"}}>
                     <div className="col-2 pr-0 pl-0">
                         <ViewToolBar clickViewButton={this.clickViewButton}/>
                     </div>
@@ -153,11 +166,6 @@ class ViewInfo extends React.Component {
                             {this.prepareView()}
                         </div>
                     </div>
-
-                    <button color= "#0479a8" type="button" className="btn btn-lg" id="generate-button-pos" onClick={this.toggleProceeding} >
-                            Generate Schedules!
-
-                    </button>
 
                     <Modal isOpen={this.state.proceeding}>
                         <ModalHeader>
@@ -218,10 +226,37 @@ class ViewInfo extends React.Component {
                     </Modal>
 
 
+                </div>
+                <div className="row" style={{height:"15%"}}>
+                    <div className="col-2 d-flex align-items-center justify-content-center">
+                        <button className="btn btn-exit btn-sm" onClick={this.toggleExiting}
+                                style={{"textAlign": "center", width:"100%", height:"60%",
+                                    fontSize: "1.7rem"
+                                }} >
+                            Exit </button>
+                    </div>
+                    <div className="col-6">
+                    </div>
+
+                    <div className="col-4 d-flex justify-content-center align-items-center" style={{height:"100%"}}>
+                        <button type="button" className="btn btn-success btn-lg" onClick={this.toggleProceeding}
+                                style={{"textAlign": "center", width:"100%", height:"60%"}} > Generate Schedules!</button>
+                    </div>
 
                 </div>
-                <div className="row" style={{height:"20%"}}>
-                </div>
+
+                <Modal isOpen={this.state.exiting} toggle={this.toggleExiting} >
+                    <ModalHeader toggle={this.toggleExiting}>
+                        Warning
+                    </ModalHeader>
+                    <ModalBody>
+                        <div> Are you sure you want to exit ULCRS? </div>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="danger" onClick={this.exit}>Exit</Button>{' '}
+                        <Button color="secondary" onClick={this.toggleExiting}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
             </div>
 
         )
@@ -254,6 +289,7 @@ class MainInterface extends React.Component{
         });
         this.showViewSchedules = this.showViewSchedules.bind(this);
     }
+
 
     showViewSchedules(excludedIds){
         ipc.send("post_generate", excludedIds);
