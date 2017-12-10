@@ -44,6 +44,24 @@ class ViewSchedulePage  extends React.Component {
         this.exit = this.exit.bind(this);
         this.toggleExiting = this.toggleExiting.bind(this);
         this.changeIndex = this.changeIndex.bind(this);
+
+        this.isAlphanum = this.isAlphanum.bind(this);
+    }
+
+    isAlphanum(value) {
+        for(var i=0; i<value.length; i++)
+        {
+            var char1 = value.charAt(i);
+            var cc = char1.charCodeAt(0);
+
+            if((cc>47 && cc<58) || (cc>64 && cc<91) || (cc>96 && cc<123))
+            {
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
     }
 
     toggleExiting() {
@@ -83,19 +101,34 @@ class ViewSchedulePage  extends React.Component {
     }
 
     exportSchedule(value){
-        let filename = document.getElementById("filename");
         if (value === 0) {
             this.toggleSaveModal();
-        } else {
-            this.toggleSaveModal();
+        }
+        let filename = document.getElementById("filename");
+        let errorMessage = "";
+        // Check filename
+        if (filename.value.length >= 20) {
+            value = -1;
+            errorMessage = "Please enter less than or equal to 20 characters";
+        } else if (!this.isAlphanum(filename.value)) {
+            value = -1;
+            errorMessage = "Filename only allows numbers and/or letters";
+        }
+        // Process save
+        if(value === -1) {
+            return errorMessage;
+        }
+        this.toggleSaveModal();
+        if (value === 1) {
+            this.state.saveMessage = "Session saved: " + filename.value;
             this.toggleMessageModal();
-            if (value === 1) {
-                this.state.saveMessage = "Session saved: " + filename.value;
-            } else if (value === 2) {
-                this.state.saveMessage = "Uploaded to server: " + filename.value;
-            }
+            ipc.send("save-session", filename.value, this.state.schedules[0]);
+        } else if (value === 2) {
+            this.state.saveMessage = "Uploaded to server: " + filename.value;
+            this.toggleMessageModal();
             ipc.send("save-session", filename.value, this.state.schedules[0]);
         }
+        return errorMessage;
     }
 
     exit(){
