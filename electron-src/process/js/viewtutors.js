@@ -16,6 +16,8 @@ let ViewToolBar = requireLocal('./viewtoolbar');
 let TutorTable = requireLocal('./tutortable');
 let CourseTable = requireLocal('./coursetable');
 let fs = require('fs');
+let scheLocation = require('path').resolve(__dirname, '..','data', 'scheduleData.json');
+let sche = JSON.parse(fs.readFileSync(scheLocation));
 //let loadTutors = JSON.parse(fs.readFileSync(dataLocation));
 let mock = JSON.parse(fs.readFileSync(mockData));
 let electron = require('electron');
@@ -169,13 +171,15 @@ class MainInterface extends React.Component{
         this.state = {
             pageName: "info",
             waiting: false,
-            tutorData: null
+            tutorData: null,
+            scheduleData: null
         };
 
         ipc.on("receive-schedule-data", (event, data) => {
             this.setState({
                 pageName: "schedules",
-                waiting: false
+                waiting: false,
+                scheduleData: sche
             });
         });
         ipc.on("post_success", (event, data) => {
@@ -204,7 +208,7 @@ class MainInterface extends React.Component{
             component = <ViewInfo showSchedules = {this.showViewSchedules}/>
         }
         else if (this.state.pageName === "schedules"){
-            component = <ViewSchedulePage/>
+            component = <ViewSchedulePage scheduleData={this.state.scheduleData}/>
         }
 
         return(

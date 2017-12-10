@@ -58,8 +58,9 @@ class ViewToolbar extends React.Component {
                         <i className="fa fa-book" aria-hidden="true"></i>  Course
                     </h5>
                 </div>
+
             </div>
-            )
+        )
     }
 }
 

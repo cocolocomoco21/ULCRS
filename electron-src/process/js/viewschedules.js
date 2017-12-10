@@ -29,13 +29,13 @@ class ViewSchedulePage  extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            schedules : loadSchedules,
+            // schedules : loadSchedules,
+            schedules:props.scheduleData,
             modal : false,
             saveMessage: "",
             saveMessageModal: false,
             exiting: false,
-            index : 0,
-            schedule : null
+            index : 0
         };
         this.toggleSaveModal = this.toggleSaveModal.bind(this);
         this.toggleMessageModal = this.toggleMessageModal.bind(this);
@@ -46,14 +46,19 @@ class ViewSchedulePage  extends React.Component {
         this.changeIndex = this.changeIndex.bind(this);
     }
 
-    toggleExiting(){
+    toggleExiting() {
         this.setState({
             exiting: !this.state.exiting
         })
 
     }
-
-
+    componentWillReceiveProps(nextProps){
+        if (nextProps.scheduleData !== null){
+            this.setState(
+                {schedules:nextProps.scheduleData}
+            )
+        }
+    }
 
     toggleSaveModal(){
         this.setState({
