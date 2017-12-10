@@ -51,7 +51,7 @@ public class ULCCourseRequirements {
          */
 
         Set<Shift> requiredShifts = new HashSet<Shift>();
-        Map<Shift, Integer> numTutorsPerShift = new HashMap<>();
+        Map<Integer, Integer> numTutorsPerShift = new HashMap<>();
 
         this.specifics.forEach(specific -> {
             int shiftId = specific.getShiftId();
@@ -60,7 +60,7 @@ public class ULCCourseRequirements {
             Shift shift = shifts.get(shiftId);
             if (shift != null) {
                 requiredShifts.add(shift);
-                numTutorsPerShift.put(shift, numTutors);
+                numTutorsPerShift.put(shift.getId(), numTutors);
             }
         });
 

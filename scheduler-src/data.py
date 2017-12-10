@@ -1,16 +1,27 @@
 import json
 
 
-def get_tutors():
-    with open('resources/mockTutors_FrontendExpects.json', 'r') as f:
+def read_tutors(tutor_file):
+    with open(tutor_file, 'r') as f:
         raw_tutors = json.loads(f.read())
         tutors = [tutor for tutor in raw_tutors if tutor['tutorStatus'] == 'ACTIVE']
         return tutors
 
 
-def get_courses():
-    with open('resources/mockCourses_FrontendExpects.json', 'r') as f:
+def read_courses(course_file):
+    with open(course_file, 'r') as f:
         return json.loads(f.read())
+
+
+def read_shifts(shift_file):
+    with open(shift_file, 'r') as f:
+        return json.loads(f.read())
+
+
+def write_results(schedule_file, results):
+    with open(schedule_file, 'w') as f:
+        f.write(json.dumps(results, indent=2, separators=(',', ': ')))
+        f.close()
 
 
 def get_prefer_courses(tutor):
@@ -42,11 +53,15 @@ def get_willing_shifts(tutor):
 
 
 def get_prefer_shift_freq(tutor):
-    return int(tutor['tutorPreferences']['shiftFrequencyPreferences']['PREFER'])
+    if 'PREFER' in tutor['tutorPreferences']['shiftFrequencyPreferences']:
+        return int(tutor['tutorPreferences']['shiftFrequencyPreferences']['PREFER'])
+    return 0
 
 
 def get_willing_shift_freq(tutor):
-    return int(tutor['tutorPreferences']['shiftFrequencyPreferences']['WILLING'])
+    if 'WILLING' in tutor['tutorPreferences']['shiftFrequencyPreferences']:
+        return int(tutor['tutorPreferences']['shiftFrequencyPreferences']['WILLING'])
+    return 0
 
 
 def get_required_shifts(course):
@@ -69,9 +84,9 @@ def get_intensity(course):
 
 
 def get_required_tutor_amount(course, day):
-    for shift in course['courseRequirements']['requiredShifts']:
-        if shift['id'] == day:
-            return int(shift['requiredTutorAmount'])
+    for shift in course['courseRequirements']['numTutorsPerShift']:
+        if str(day) == shift:
+            return int(course['courseRequirements']['numTutorsPerShift'][shift])
     return 0
 
 
@@ -80,3 +95,7 @@ def get_preferred_tutor_amount(course, day):
         if shift['id'] == day:
             return int(shift['preferredTutorAmount'])
     return 0
+
+
+def get_shift_id(shift):
+    return shift['id']

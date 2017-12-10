@@ -25,7 +25,7 @@
       "shiftPreferences": {
         "PREFER": [
           {
-            "id": 0,
+            "id": 5,
             "day": "MONDAY"
           },
           {
@@ -87,7 +87,7 @@
         ],
         "WILLING": [
           {
-            "id": 0,
+            "id": 5,
             "day": "MONDAY"
           }
         ]
@@ -147,7 +147,7 @@
         ],
         "WILLING": [
           {
-            "id": 0,
+            "id": 5,
             "day": "MONDAY"
           },
           {
@@ -180,7 +180,7 @@
       "shiftPreferences": {
         "PREFER": [
           {
-            "id": 0,
+            "id": 5,
             "day": "MONDAY"
           }
         ],

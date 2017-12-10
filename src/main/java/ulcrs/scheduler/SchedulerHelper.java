@@ -35,7 +35,7 @@ public class SchedulerHelper {
             isScheduling = true;
 
             // Run scheduling algorithm
-            generatedSchedules = Scheduler.schedule(tutors, courses, shifts);
+            generatedSchedules = ORToolsScheduler.schedule(tutors, courses, shifts);
             isScheduling = false;
         });
         scheduleThread.start();
