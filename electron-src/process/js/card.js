@@ -132,6 +132,7 @@ class Card extends React.Component {
         console.log("this.props.index");
         console.log(this.props.index);
         this.props.deleteCard(this.props.index);
+        this.props.toggleDeleteMessageModal();
     }
 
     toggleGridModal() {
@@ -236,7 +237,7 @@ class Card extends React.Component {
                         </div>
                     </ModalHeader>
                     <ModalBody>
-                        <div id="message-content"> Succesfully Modified </div>
+                        <div id="message-content"> Successfully Modified </div>
                     </ModalBody>
                 </Modal>
             </div>

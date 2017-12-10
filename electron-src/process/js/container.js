@@ -3,7 +3,10 @@ let React = require('react');
 let update = require('react-addons-update');
 
 let DropTarget = require('react-dnd').DropTarget;
-
+let reactstrap = require('reactstrap');
+let Modal = reactstrap.Modal;
+let ModalHeader = reactstrap.ModalHeader;
+let ModalBody = reactstrap.ModalBody;
 
 class Container extends React.Component{
     constructor(props){
@@ -13,10 +16,18 @@ class Container extends React.Component{
             tutorData: this.props.tutorData,
             setContainerDataList: this.props.setContainerDataList.bind(this),
             printc: this.props.printc.bind(this),
-            day: this.props.day
+            day: this.props.day,
+            deleteMessageModal: false,
         };
         this.setCard = this.setCard.bind(this);
+        this.toggleDeleteMessageModal = this.toggleDeleteMessageModal.bind(this);
   	}
+
+    toggleDeleteMessageModal() {
+        this.setState({
+            deleteMessageModal: !this.state.deleteMessageModal
+        })
+    }
 
   	setCard(index, card) {
         console.log("in setCard");
@@ -114,9 +125,21 @@ class Container extends React.Component{
                             removeCard={this.removeCard.bind(this)}
                             moveCard={this.moveCard.bind(this)}
                             tutorData={this.props.tutorData}
+                            toggleDeleteMessageModal={this.toggleDeleteMessageModal}
                             />
                     );
                 })}
+
+                <Modal isOpen={this.state.deleteMessageModal} toggle={this.toggleDeleteMessageModal}>
+                    <ModalHeader toggle={this.toggleDeleteMessageModal} >
+                        <div style={{"textAlign": "center", "fontSize": "20px"}}>
+                            Shift Deletion
+                        </div>
+                    </ModalHeader>
+                    <ModalBody>
+                        <div id="message-content"> Shift Successfully Deleted </div>
+                    </ModalBody>
+                </Modal>
             </div>
         );
     }
