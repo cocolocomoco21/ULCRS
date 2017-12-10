@@ -266,7 +266,7 @@
 				"assignments":
 				[
 					{
-						"tutor": { "id": 1, "firstName": "Jason", "lastName": "Terry"},
+						"tutor": { "id": 0, "firstName": "Bilbo", "lastName": "Baggins"},
 						"courses":
 						[
 							{
@@ -286,13 +286,17 @@
 						]
 					},
 					{
-						"tutor": { "id": 3, "firstName": "Ian", "lastName": "Lee"},
+						"tutor": { "id": 10, "firstName": "Chili", "lastName": "Sauce"},
 						"courses":
 						[
 							{
-								"id": 1,
-								"name": "CS 200"
-							}
+								"id": 14,
+								"name": "FRI 256"
+							},
+                            {
+                                "id": 15,
+                                "name": "RIC 512"
+                            }
 						]
 					},
 					{
@@ -312,7 +316,11 @@
 							{
 								"id": 7,
 								"name": "ECE 506"
-							}
+							},
+                            {
+                                "id": 11,
+                                "name": "BB 17"
+                            }
 						]
 					}
 				]
@@ -326,58 +334,66 @@
 			{
 				"shift": { "id": 1, "day": "Sunday 1" },
 				"assignments":
-				[
-					{
-						"tutor": { "id": 1, "firstName": "Jason", "lastName": "Terry"},
-						"courses":
-						[
-							{
-								"id": 1,
-								"name": "CS 302"
-							}
-						]
-					},
-					{
-						"tutor": { "id": 2, "firstName": "Steve", "lastName": "Balmer"},
-						"courses":
-						[
-							{
-								"id": 0,
-								"name": "CS 301"
-							}
-						]
-					},
-					{
-						"tutor": { "id": 3, "firstName": "Ian", "lastName": "Lee"},
-						"courses":
-						[
-							{
-								"id": 1,
-								"name": "CS 200"
-							}
-						]
-					},
-					{
-						"tutor": { "id": 3, "firstName": "Senator", "lastName": "Palpatine"},
-						"courses":
-						[
-							{
-								"id": 9,
-								"name": "PSY 100"
-							}
-						]
-					},
-					{
-						"tutor": { "id": -1, "firstName": "Amy", "lastName": "Sherman"},
-						"courses":
-						[
-							{
-								"id": 7,
-								"name": "ECE 506"
-							}
-						]
-					}
-				]
+                [
+                    {
+                        "tutor": { "id": 0, "firstName": "Bilbo", "lastName": "Baggins"},
+                        "courses":
+                        [
+                            {
+                                "id": 1,
+                                "name": "CS 302"
+                            }
+                        ]
+                    },
+                    {
+                        "tutor": { "id": 2, "firstName": "Steve", "lastName": "Balmer"},
+                        "courses":
+                        [
+                            {
+                                "id": 0,
+                                "name": "CS 301"
+                            }
+                        ]
+                    },
+                    {
+                        "tutor": { "id": 10, "firstName": "Chili", "lastName": "Sauce"},
+                        "courses":
+                        [
+                            {
+                                "id": 14,
+                                "name": "FRI 256"
+                            },
+                            {
+                                "id": 15,
+                                "name": "RIC 512"
+                            }
+                        ]
+                    },
+                    {
+                        "tutor": { "id": 3, "firstName": "Senator", "lastName": "Palpatine"},
+                        "courses":
+                        [
+                            {
+                                "id": 9,
+                                "name": "PSY 100"
+                            }
+                        ]
+                    },
+                    {
+                        "tutor": { "id": -1, "firstName": "Amy", "lastName": "Sherman"},
+                        "courses":
+                        [
+                            {
+                                "id": 7,
+                                "name": "ECE 506"
+                            },
+                            {
+                                "id": 11,
+                                "name": "BB 17"
+                            }
+                        ]
+                    }
+                ]
 			},
 			{
 				"shift": { "id": 2, "day": "Sunday 2" },
@@ -560,58 +576,46 @@
 			{
 				"shift": { "id": 6, "day": "Wednesday" },
 				"assignments":
-				[
-					{
-						"tutor": { "id": 1, "firstName": "Jason", "lastName": "Terry"},
-						"courses":
-						[
-							{
-								"id": 1,
-								"name": "CS 302"
-							}
-						]
-					},
-					{
-						"tutor": { "id": 2, "firstName": "Steve", "lastName": "Balmer"},
-						"courses":
-						[
-							{
-								"id": 0,
-								"name": "CS 301"
-							}
-						]
-					},
-					{
-						"tutor": { "id": 3, "firstName": "Ian", "lastName": "Lee"},
-						"courses":
-						[
-							{
-								"id": 1,
-								"name": "CS 200"
-							}
-						]
-					},
-					{
-						"tutor": { "id": 3, "firstName": "Senator", "lastName": "Palpatine"},
-						"courses":
-						[
-							{
-								"id": 9,
-								"name": "PSY 100"
-							}
-						]
-					},
-					{
-						"tutor": { "id": -1, "firstName": "Amy", "lastName": "Sherman"},
-						"courses":
-						[
-							{
-								"id": 7,
-								"name": "ECE 506"
-							}
-						]
-					}
-				]
+                [
+                    {
+                        "tutor": { "id": 2, "firstName": "Steve", "lastName": "Balmer"},
+                        "courses":
+                        [
+                            {
+                                "id": 0,
+                                "name": "CS 301"
+                            }
+                        ]
+                    },
+                    {
+                        "tutor": { "id": 5, "firstName": "Ben", "lastName": "Jerry"},
+                        "courses":
+                        [
+                            {
+                                "id": 13,
+                                "name": "CS 500"
+                            }
+                        ]
+                    },
+                    {
+                        "tutor": { "id": -1, "firstName": "Amy", "lastName": "Sherman"},
+                        "courses":
+                        [
+                            {
+                                "id": 6,
+                                "name": "MEME 404"
+                            },
+                            {
+                                "id": 7,
+                                "name": "ECE 506"
+                            },
+                            {
+                                "id": 11,
+                                "name": "BB 17"
+                            }
+                        ]
+                    }
+                ]
 			},
 			{
 				"shift": { "id": 7, "day": "Thursday" },

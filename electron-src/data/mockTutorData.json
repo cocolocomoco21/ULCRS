@@ -1,5 +1,48 @@
 [
   {
+    "id": -1,
+    "firstName": "Amy",
+    "lastName": "Sherman",
+    "tutorPreferences": {
+      "coursePreferences": {
+        "PREFER": [
+          {
+            "id": 11,
+            "name": "BB 17"
+          },
+          {
+            "id": 6,
+            "name": "MEME 404"
+          },
+          {
+            "id": 5,
+            "name": "CS 577"
+          }
+        ],
+        "WILLING": [
+          {
+            "id": 7,
+            "name": "ECE 506"
+          }
+        ]
+      },
+      "shiftPreferences": {
+        "PREFER": [
+          {
+            "id": 3,
+            "day": "THURSDAY"
+          }
+        ],
+        "WILLING": []
+      },
+      "shiftFrequencyPreferences": {
+        "PREFER": 1,
+        "WILLING": 1
+      }
+    },
+    "tutorStatus": "GHOST"
+  },
+  {
     "id": 0,
     "firstName": "Bilbo",
     "lastName": "Baggins",
@@ -205,49 +248,6 @@
       }
     },
     "tutorStatus": "ACTIVE"
-  },
-  {
-    "id": -1,
-    "firstName": "Amy",
-    "lastName": "Sherman",
-    "tutorPreferences": {
-      "coursePreferences": {
-        "PREFER": [
-          {
-            "id": 11,
-            "name": "BB 17"
-          },
-          {
-            "id": 6,
-            "name": "MEME 404"
-          },
-          {
-            "id": 5,
-            "name": "CS 577"
-          }
-        ],
-        "WILLING": [
-          {
-            "id": 7,
-            "name": "ECE 506"
-          }
-        ]
-      },
-      "shiftPreferences": {
-        "PREFER": [
-          {
-            "id": 3,
-            "day": "THURSDAY"
-          }
-        ],
-        "WILLING": []
-      },
-      "shiftFrequencyPreferences": {
-        "PREFER": 1,
-        "WILLING": 1
-      }
-    },
-    "tutorStatus": "GHOST"
   },
   {
     "id": 5,
