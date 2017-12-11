@@ -1,5 +1,8 @@
 package ulcrs.controllers;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,11 +16,15 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 import spark.Request;
 import spark.Response;
+import ulcrs.GsonFactory;
+import ulcrs.models.schedule.Schedule;
 import ulcrs.models.session.Session;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +36,8 @@ public class SessionControllerTest {
     private static final String TEST_WORKSPACE_PATH = "src/test/resources/sessions/";
 
     private SessionController sessionControllerTest;
+
+    private Gson gson = GsonFactory.getGson();
 
     @Mock
     private Request requestMock;
@@ -49,6 +58,13 @@ public class SessionControllerTest {
         fileReaderTest = new FileReader(TEST_WORKSPACE_PATH + "2.json");
 
         Mockito.when(requestMock.params(Mockito.eq(":name"))).thenReturn("2");
+
+        InputStream is = SessionController.class.getClassLoader().getResourceAsStream("mockSessionSchedule.json");
+        JsonReader reader = new JsonReader(new InputStreamReader(is));
+        Schedule schedule = gson.fromJson(reader, new TypeToken<Schedule>() {
+        }.getType());
+        String scheduleStrTest = gson.toJson(schedule);
+        Mockito.when(requestMock.body()).thenReturn(scheduleStrTest);
 
         PowerMockito.whenNew(File.class).withParameterTypes(String.class)
                 .withArguments(Mockito.eq(WORKSPACE_PATH)).thenReturn(directoryTest);
