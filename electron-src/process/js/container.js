@@ -31,6 +31,7 @@ class TutorDropDown extends React.Component {
         this.handleSelectChange = this.handleSelectChange.bind(this);
         this.setUp = this.setUp.bind(this);
         this.setUp();
+        this.props.setTutorId(null);
     }
 
     setUp() {
@@ -157,6 +158,7 @@ class CourseDropDown extends React.Component {
             valueToIndex: {},
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.props.setTutorCourse(null);
     }
 
     handleSelectChange(value){
@@ -291,6 +293,7 @@ class Container extends React.Component{
         this.setCard = this.setCard.bind(this);
         this.toggleGridModal = this.toggleGridModal.bind(this);
         this.toggleDeleteMessageModal = this.toggleDeleteMessageModal.bind(this);
+        this.toggleMessageModal = this.toggleMessageModal.bind(this);
         this.setTutorId = this.setTutorId.bind(this);
         this.setTutorCourse = this.setTutorCourse.bind(this);
         this.savePopUp = this.savePopUp.bind(this);
@@ -376,6 +379,7 @@ class Container extends React.Component{
         this.props.setContainerDataList(this.props.id - 1, this.state.cards);
         this.props.printc();
         this.toggleGridModal();
+        this.toggleMessageModal();
         console.log("exiting save pop up");
     }
 
