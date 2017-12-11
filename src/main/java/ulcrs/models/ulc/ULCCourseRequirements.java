@@ -5,11 +5,12 @@ import ulcrs.models.course.CourseIntensity;
 import ulcrs.models.course.CourseRequirements;
 import ulcrs.models.shift.Shift;
 
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class ULCCourseRequirements {
 
@@ -41,17 +42,8 @@ public class ULCCourseRequirements {
 
     // Although this is not the cleanest, courses inherently depend on shifts, so pass in the already-parsed Shifts here
     public CourseRequirements toCourseRequirements(HashMap<Integer, Shift> shifts) {
-        /*
-        numTutors = min number of tutors required per week
-
-        Set<Shift> requiredShifts   :   in specifics array
-        int requiredShiftAmount     :   timesPerWeek
-        int preferredShiftAmount    :   ?
-        CourseIntensity intensity   :   intensity
-         */
-
-        Set<Shift> requiredShifts = new HashSet<Shift>();
         Map<Integer, Integer> numTutorsPerShift = new HashMap<>();
+        Set<Shift> requiredShifts = new TreeSet<>(Comparator.comparingInt(Shift::getId));
 
         this.specifics.forEach(specific -> {
             int shiftId = specific.getShiftId();

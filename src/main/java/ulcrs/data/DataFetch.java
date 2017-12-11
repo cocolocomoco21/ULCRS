@@ -1,5 +1,8 @@
 package ulcrs.data;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStream;
@@ -21,6 +24,13 @@ class DataFetch {
     private final static String COOKIE = "Cookie";
     private final static String CONTENT_LENGTH = "Content-Length";
     private final static String CONTENT_LANGUAGE = "Content-Language";
+
+    // Constants for request to direct JSON file
+    private final static String DROP_IN_JSON_URL = "https://dropin.engr.wisc.edu/services/ulcrs-requirements.json";
+    private final static String DROP_IN_JSON_REQUEST_TYPE = "GET";
+
+    private static Logger log = LoggerFactory.getLogger(DataFetch.class);
+
 
     /**
      * Fetch data from the ULC server and return response in form of List<String>.
@@ -53,26 +63,28 @@ class DataFetch {
             // For now, we are accessing a json file on the ULC server directly to get this ULC data since this file
             // has the necessary course requirement information, while the endpoint does not yet.
 
-//            // Initialize HTTP request
-//            URL url = new URL(DROP_IN_REQUEST_URL);
-//            connection = (HttpURLConnection) url.openConnection();
-//            connection.setRequestMethod(DROP_IN_REQUEST_REQUEST_TYPE);
-//            connection.setRequestProperty(CONTENT_TYPE, DROP_IN_REQUEST_CONTENT_TYPE);
-//            connection.setRequestProperty(COOKIE, cookie);
-//            connection.setRequestProperty(CONTENT_LENGTH, Integer.toString(DROP_IN_REQUEST_DATA.getBytes().length));
-//            connection.setRequestProperty(CONTENT_LANGUAGE, DROP_IN_REQUEST_CONTENT_LANGUAGE);
-//            connection.setUseCaches(false);
-//            connection.setDoOutput(true);
-//
-//            // Send request
-//            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
-//            wr.writeBytes(DROP_IN_REQUEST_DATA);
-//            wr.close();
+            /*
+            // Initialize HTTP request
+            URL url = new URL(DROP_IN_REQUEST_URL);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod(DROP_IN_REQUEST_REQUEST_TYPE);
+            connection.setRequestProperty(CONTENT_TYPE, DROP_IN_REQUEST_CONTENT_TYPE);
+            connection.setRequestProperty(COOKIE, cookie);
+            connection.setRequestProperty(CONTENT_LENGTH, Integer.toString(DROP_IN_REQUEST_DATA.getBytes().length));
+            connection.setRequestProperty(CONTENT_LANGUAGE, DROP_IN_REQUEST_CONTENT_LANGUAGE);
+            connection.setUseCaches(false);
+            connection.setDoOutput(true);
+
+            // Send request
+            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+            wr.writeBytes(DROP_IN_REQUEST_DATA);
+            wr.close();
+            */
 
             // Initialize HTTP request
-            URL url = new URL("https://dropin.engr.wisc.edu/services/ulcrs-requirements.json");
+            URL url = new URL(DROP_IN_JSON_URL);
             connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
+            connection.setRequestMethod(DROP_IN_JSON_REQUEST_TYPE);
             connection.setRequestProperty(COOKIE, cookie);
 
             int responseCode = connection.getResponseCode();
@@ -81,13 +93,15 @@ class DataFetch {
             InputStream is = connection.getInputStream();
             BufferedReader rd = new BufferedReader(new InputStreamReader(is));
 
+            log.info("Response code: " + responseCode + " from ULC fetch");
+
             // Parse response
             List<String> response = new ArrayList<String>();
             StringBuilder builder = new StringBuilder();
             String line;
             while ((line = rd.readLine()) != null)
             {
-                //response.add(line);
+                //response.add(line);   // Commented from ULC endpoint code - left as reference.
                 builder.append(line.trim());
             }
             rd.close();

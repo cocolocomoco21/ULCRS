@@ -6,8 +6,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import ulcrs.models.course.Course;
 import ulcrs.models.course.CourseRequirements;
+import ulcrs.models.rank.Rank;
 import ulcrs.models.shift.Shift;
 import ulcrs.models.tutor.Tutor;
+import ulcrs.models.tutor.TutorPreferences;
 import ulcrs.models.ulc.ULCCourse;
 import ulcrs.models.ulc.ULCCourseRequirements;
 import ulcrs.models.ulc.ULCShift;
@@ -18,6 +20,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DataParse {
@@ -57,9 +60,61 @@ public class DataParse {
         tutorsList.sort(Comparator.comparingInt(Tutor::getId));
         parsed.setTutors(new ArrayList<>(tutorsList));
 
-        return parsed;
+        return filter(parsed);
     }
 
+    private static ParsedULCResponse filter(ParsedULCResponse parsed) {
+        // Tutors
+        List<Tutor> tutors = parsed.getTutors();
+        List<Tutor> tutorsFiltered = new ArrayList<>();
+        for (Tutor tutor: tutors) {
+            TutorPreferences preferences = tutor.getTutorPreferences();
+
+            // Tutor does not prefer any courses
+            Set<Course> prefCourse = preferences.getCoursePreferences().get(Rank.PREFER);
+            if (prefCourse == null || prefCourse.isEmpty()) {
+                continue;
+            }
+
+            // Tutor does not prefer any shifts
+            Set<Shift> prefShift = preferences.getShiftPreferences().get(Rank.PREFER);
+            if (prefShift == null || prefShift.isEmpty()) {
+                continue;
+            }
+
+            // Tutor has empty shift frequency preferences
+            Integer prefShiftAmount = preferences.getShiftFrequencyPreferences().get(Rank.PREFER);
+            Integer willingShiftAmount = preferences.getShiftFrequencyPreferences().get(Rank.WILLING);
+            if (prefShiftAmount == null || willingShiftAmount == null ||
+                    (prefShiftAmount == 0 && willingShiftAmount == 0)) {
+                continue;
+            }
+
+            tutorsFiltered.add(tutor);
+        }
+        parsed.setTutors(tutorsFiltered);
+
+        // Courses
+        List<Course> courses = parsed.getCourses();
+        List<Course> coursesFiltered = new ArrayList<>();
+        for (Course course : courses) {
+            CourseRequirements requirements = course.getCourseRequirements();
+
+            // Course has empty specifics AND requiredShiftAmount and numTutors from ULC
+            Map<Shift, Integer> numTutorsPerShift = requirements.getNumTutorsPerShift();
+            int requiredShiftAmount = requirements.getRequiredShiftAmount();
+            int numTutorsPerWeek = requirements.getNumTutorsPerWeek();
+            if (numTutorsPerShift == null || numTutorsPerShift.isEmpty() &&
+                    (requiredShiftAmount == 0 && numTutorsPerWeek == 0)) {
+                continue;
+            }
+
+            coursesFiltered.add(course);
+        }
+        parsed.setCourses(coursesFiltered);
+
+        return parsed;
+    }
     /**
      * Parse shifts.
      *
@@ -97,14 +152,14 @@ public class DataParse {
         List<ULCCourse> ulcCourses = new Gson().fromJson(coursesJson, new TypeToken<List<ULCCourse>>() {}.getType());
         List<ULCCourseRequirements> ulcCourseRequirementsList = new Gson().fromJson(courseRequirementsJson, new TypeToken<List<ULCCourseRequirements>>() {}.getType());
 
-        Map<Integer, ULCCourseRequirements> ulcCourseRequirements = ulcCourseRequirementsList.stream()
+        // Map course id to ULCCourseRequirements object for that course
+        Map<Integer, ULCCourseRequirements> courseIdToULCCourseRequirements = ulcCourseRequirementsList.stream()
                 .collect(Collectors.toMap(ULCCourseRequirements::getCourseId, item -> item));
 
         // Transform json courses into Course objects
         HashMap<Integer, Course> courses = new HashMap<>();
         ulcCourses.forEach(ulcCourse -> {
-            ULCCourseRequirements ulcCourseRequirement = ulcCourseRequirements.get(ulcCourse.getId());
-            //CourseRequirements courseRequirement = courseRequirements.get(ulcCourse.getId());
+            ULCCourseRequirements ulcCourseRequirement = courseIdToULCCourseRequirements.get(ulcCourse.getId());
             if (ulcCourseRequirement != null) {
                 CourseRequirements courseRequirement = ulcCourseRequirement.toCourseRequirements(shifts);
                 Course course = ulcCourse.toCourse(courseRequirement);
