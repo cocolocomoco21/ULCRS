@@ -96,16 +96,11 @@ class TutorDropDown extends React.Component {
         // console.log(this.state.categoryValue.length);
 
         let options = this.state.options;
-        console.log("options before");
-        console.log(options);
-        let categoryValueList = this.state.categoryValue.split();
+        let categoryValueList = this.state.categoryValue.split(",");
         console.log("categoryValueList");
         console.log(categoryValueList);
         if (categoryValueList[0] != "") {
             let value = parseInt(categoryValueList[0]);
-            console.log(value);
-            console.log(this.state.valueToIndex);
-            console.log(this.state.valueToIndex[value]);
             options = [options[this.state.valueToIndex[value]]];
         }
         console.log("options");
@@ -153,6 +148,7 @@ class CourseDropDown extends React.Component {
             categoryValue: null,
             tutorId: this.props.tutorId,
             options: [],
+            valueToIndex: {},
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
     }
@@ -162,7 +158,27 @@ class CourseDropDown extends React.Component {
         console.log("value");
         console.log(value);
         this.setState({ categoryValue: value });
-        this.props.setTutorCourse(parseInt(value));
+        let valueList = value.split(",");
+        console.log("valueList");
+        console.log(valueList);
+
+        let courses = [];
+        for (let i=0; i<valueList.length; i++) {
+            value = valueList[i];
+            if (value == "") {
+                continue;
+            }
+            let index = this.state.valueToIndex[parseInt(value)];
+            let option = this.state.options[index];
+            courses.push({
+                id : parseInt(value),
+                name : option.label.split(",")[0]
+            });
+        }
+        console.log("courses");
+        console.log(courses);
+
+        this.props.setTutorCourse(courses);
     };
 
     render() {
@@ -174,6 +190,7 @@ class CourseDropDown extends React.Component {
         console.log(tutorData);
         this.state.options = [];
         if (tutorId != null) {
+            let index = 0;
             for (let i=0; i<tutorData.length; i++) {
                 if (tutorId == tutorData[i].id) {
                     let prefer = tutorData[i].tutorPreferences.coursePreferences.PREFER;
@@ -183,6 +200,8 @@ class CourseDropDown extends React.Component {
                             value: prefer[j].id,
                             label: name
                         });
+                        this.state.valueToIndex[prefer[j].id] = index;
+                        index++;
                     }
                     let willing = tutorData[i].tutorPreferences.coursePreferences.WILLING;
                     for (let j=0; j<willing.length; j++) {
@@ -191,6 +210,8 @@ class CourseDropDown extends React.Component {
                             value: willing[j].id,
                             label: name
                         });
+                        this.state.valueToIndex[willing[j].id] = index;
+                        index++;
                     }
                     break;
                 }
@@ -254,12 +275,14 @@ class Container extends React.Component{
             deleteMessageModal: false,
             tutorId: null,
             tutorCourse: null,
+            cardKey: 1000,
         };
         this.setCard = this.setCard.bind(this);
         this.toggleGridModal = this.toggleGridModal.bind(this);
         this.toggleDeleteMessageModal = this.toggleDeleteMessageModal.bind(this);
         this.setTutorId = this.setTutorId.bind(this);
         this.setTutorCourse = this.setTutorCourse.bind(this);
+        this.savePopUp = this.savePopUp.bind(this);
   	}
 
     toggleGridModal() {
@@ -307,6 +330,32 @@ class Container extends React.Component{
         this.setState({
             tutorCourse : courses
         })
+    }
+
+    savePopUp() {
+        console.log("in save pop up");
+        let tutorId = this.state.tutorId;
+        let tutorData = this.state.tutorData;
+        let tutor = null;
+        for (let i=0; i<tutorData.length; i++) {
+            if (tutorData[i].id == tutorId) {
+                tutor = tutorData[i]
+            }
+        }
+        this.state.cards.push({
+            id: this.state.cardKey,
+            tutor: {
+                id: tutor.id,
+                firstName: tutor.firstName,
+                lastName: tutor.lastName
+            },
+            tutorCourse: this.state.tutorCourse
+        })
+        this.state.cardKey++;
+        this.props.printc();
+        this.props.setContainerDataList(this.props.id - 1, this.state.cards);
+        this.props.printc();
+        console.log("exiting save pop up");
     }
 
 	pushCard(card) {
@@ -425,7 +474,7 @@ class Container extends React.Component{
                     <ModalFooter>
                         <button type="button" className="btn btn-success btn-block" onClick={this.savePopUp}
                                 style={{"textAlign": "center"}} > Save </button>
-                        <button type="button" className="btn btn-success btn-block" onClick={this.deleteCard.bind(this)}
+                        <button type="button" className="btn btn-success btn-block" onClick={this.toggleGridModal}
                                 style={{"textAlign": "center"}} > Cancel </button>
                     </ModalFooter>
                 </Modal>
