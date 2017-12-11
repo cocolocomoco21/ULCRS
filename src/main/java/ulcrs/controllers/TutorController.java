@@ -59,14 +59,14 @@ public class TutorController extends BaseController {
         List<Tutor> tutors = DataStore.getTutors(cookie);
 
         // Apply limit if it exists
-        if (limitParam != null && tutors.isEmpty()) {
+        if (limitParam != null && !tutors.isEmpty()) {
             int limit = Integer.parseUnsignedInt(limitParam);
             tutors = tutors.stream()
                     .limit(limit)
                     .collect(Collectors.toList());
         }
 
-         return tutors;
+        return tutors;
     }
 
     private Tutor getTutor(Request request, Response response) {

@@ -22,13 +22,17 @@ import java.util.List;
 public class DataStore {
 
     private static Logger log = LoggerFactory.getLogger(DataStore.class);
-
+    private static DataStore dataStore;
     private List<Tutor> tutors;
     private List<Course> courses;
     private List<Shift> shifts;
     private LocalDateTime timeFetched = LocalDateTime.MIN;
 
-    private static DataStore dataStore;
+    private DataStore() {
+        this.courses = new ArrayList<>();
+        this.shifts = new ArrayList<>();
+        this.tutors = new ArrayList<>();
+    }
 
     private static DataStore getInstance() {
         if (dataStore == null) {
@@ -37,15 +41,9 @@ public class DataStore {
         return dataStore;
     }
 
-    private DataStore() {
-        this.courses = new ArrayList<>();
-        this.shifts = new ArrayList<>();
-        this.tutors = new ArrayList<>();
-    }
-
-
     /**
      * Get the tutor of the specified id
+     *
      * @param id - id of the tutor
      * @return Tutor - the Tutor with the specified id, if it exists. Otherwise, null.
      */
@@ -59,6 +57,7 @@ public class DataStore {
 
     /**
      * Get the course of the specified id
+     *
      * @param id - id of the course
      * @return Course - the Course with the specified id, if it exists. Otherwise, null.
      */
@@ -72,6 +71,7 @@ public class DataStore {
 
     /**
      * Get the shift of the specified id
+     *
      * @param id - id of the shift
      * @return Shift - the shift with the specified id, if it exists. Otherwise, null.
      */
@@ -85,6 +85,7 @@ public class DataStore {
 
     /**
      * Get all tutors, fetching from ULC if necessary.
+     *
      * @return List<Tutor> - list of all tutors
      */
     public static List<Tutor> getTutors(String cookie) {
@@ -94,6 +95,7 @@ public class DataStore {
 
     /**
      * Get all courses, fetching from ULC if necessary.
+     *
      * @return List<Course> - list of all courses
      */
     public static List<Course> getCourses(String cookie) {
@@ -103,6 +105,7 @@ public class DataStore {
 
     /**
      * Get all shifts, fetching from ULC if necessary.
+     *
      * @return List<Shift> - list of all shifts
      */
     public static List<Shift> getShifts(String cookie) {
@@ -112,8 +115,9 @@ public class DataStore {
 
     /**
      * Check if data is cached (i.e. has already been fetched. If not, fetch from the ULC server.
+     *
      * @param reference - reference being checked if it has been fetched
-     * @param <T> - generic type for reference
+     * @param <T>       - generic type for reference
      */
     private static <T> void fetchIfRequired(List<T> reference, String cookie) {
         if (!isCached(reference)) {
@@ -129,8 +133,9 @@ public class DataStore {
 
     /**
      * Check if the reference is cached. If null or an empty array, it has not been cached.
+     *
      * @param reference - reference being checked for if it is cached
-     * @param <T> - generic type for reference
+     * @param <T>       - generic type for reference
      * @return boolean - return if reference has been cached or not. If no, reference is null or empty array.
      */
     private static <T> boolean isCached(List<T> reference) {
@@ -141,6 +146,7 @@ public class DataStore {
     /**
      * Populates and "caches" the data fetched from the ULC server. This parses the response data, which is saved as
      * JSON, and updates the data saved in the DataStore instance. As such, it "populates" the data.
+     *
      * @param response List<String> - response from ULC server
      * @return boolean - returns success of parsing and saving the data
      */
@@ -170,19 +176,21 @@ public class DataStore {
 
     /**
      * Fetch local mock data and update the data saved in the DataStore instance. This "caches" the data that is fetched.
-     *
+     * <p>
      * TODO delete - kept here to provide easy way for frontend to use the simple dataset they've originally developed with
      */
     private static void fetchLocalMockData() {
         // Tutor
         InputStream is = DataStore.class.getClassLoader().getResourceAsStream("mockTutors_Full.json");
         JsonReader reader = new JsonReader(new InputStreamReader(is));
-        getInstance().tutors = new Gson().fromJson(reader, new TypeToken<List<Tutor>>() {}.getType());
+        getInstance().tutors = new Gson().fromJson(reader, new TypeToken<List<Tutor>>() {
+        }.getType());
 
         // Course
         is = DataStore.class.getClassLoader().getResourceAsStream("mockCourses_Full.json");
         reader = new JsonReader(new InputStreamReader(is));
-        getInstance().courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
+        getInstance().courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {
+        }.getType());
 
         // TODO using tutors and courses, get all shift information and save into getInstance().shifts
         // Shift

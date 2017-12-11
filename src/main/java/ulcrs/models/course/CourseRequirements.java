@@ -22,14 +22,14 @@ public class CourseRequirements {
     private CourseIntensity intensity;
 
     @Expose
-    private Map<Integer, Integer> numTutorsPerShift;
+    private Map<Shift, Integer> numTutorsPerShift;
 
     @Expose
     private int numTutorsPerWeek;
 
 
     public CourseRequirements(Set<Shift> requiredShifts, int requiredShiftAmount, int preferredShiftAmount, CourseIntensity intensity,
-                              Map<Integer, Integer> numTutorsPerShift, int numTutorsPerWeek) {
+                              Map<Shift, Integer> numTutorsPerShift, int numTutorsPerWeek) {
         this.requiredShifts = requiredShifts;
         this.requiredShiftAmount = requiredShiftAmount;
         this.preferredShiftAmount = preferredShiftAmount;
@@ -70,7 +70,7 @@ public class CourseRequirements {
         this.intensity = intensity;
     }
 
-    public Map<Integer, Integer> getNumTutorsPerShift() {
+    public Map<Shift, Integer> getNumTutorsPerShift() {
         return numTutorsPerShift;
     }
 

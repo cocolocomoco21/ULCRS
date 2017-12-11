@@ -1,7 +1,5 @@
 package ulcrs.models.ulc;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.annotations.SerializedName;
 import ulcrs.models.course.Course;
 import ulcrs.models.rank.Rank;
@@ -10,10 +8,11 @@ import ulcrs.models.tutor.Tutor;
 import ulcrs.models.tutor.TutorPreferences;
 import ulcrs.models.tutor.TutorStatus;
 
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class ULCTutor {
 
@@ -33,27 +32,26 @@ public class ULCTutor {
     private Integer prefShiftAmount;
     private Integer willingShiftAmount;
 
-    public ULCTutor(int id, String firstName, String lastName, String role,
-                    List<Integer> prefCourses, List<Integer> willingCourses,
-                    List<Integer> prefShfits, List<Integer> willingShifts,
-                    Integer prefShiftAmount, Integer willingShiftAmount) {
+    public ULCTutor(int id, String firstName, String lastName, String role, List<Integer> prefCourses, List<Integer> willingCourses,
+                    List<Integer> prefShifts, List<Integer> willingShifts, Integer prefShiftAmount, Integer willingShiftAmount) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
         this.prefCourses = prefCourses;
         this.willingCourses = willingCourses;
-        this.prefShifts = prefShfits;
+        this.prefShifts = prefShifts;
         this.willingShifts = willingShifts;
         this.prefShiftAmount = prefShiftAmount;
         this.willingShiftAmount = willingShiftAmount;
     }
 
+    // Although this is not the cleanest, tutors inherently depend on shifts and courses, so pass in the already-parsed shifts and courses here
     public Tutor toTutor(HashMap<Integer, Shift> shifts, HashMap<Integer, Course> courses) {
         // Shift preference
         HashMap<Rank, Set<Shift>> shiftPreferences = new HashMap<>();
 
-        HashSet<Shift> preferredShifts = new HashSet<>();
+        TreeSet<Shift> preferredShifts = new TreeSet<>(Comparator.comparingInt(Shift::getId));
         this.prefShifts.forEach(shiftId -> {
             Shift shift = shifts.get(shiftId);
 
@@ -63,7 +61,7 @@ public class ULCTutor {
             }
         });
 
-        HashSet<Shift> willingShifts = new HashSet<>();
+        TreeSet<Shift> willingShifts = new TreeSet<>(Comparator.comparingInt(Shift::getId));
         this.willingShifts.forEach(shiftId -> {
             Shift shift = shifts.get(shiftId);
 
@@ -79,7 +77,7 @@ public class ULCTutor {
         // Course preference
         HashMap<Rank, Set<Course>> coursePreferences = new HashMap<>();
 
-        HashSet<Course> preferredCourses = new HashSet<>();
+        TreeSet<Course> preferredCourses = new TreeSet<>(Comparator.comparingInt(Course::getId));
         this.prefCourses.forEach(courseId -> {
             Course course = courses.get(courseId);
 
@@ -89,7 +87,7 @@ public class ULCTutor {
             }
         });
 
-        HashSet<Course> willingCourses = new HashSet<>();
+        TreeSet<Course> willingCourses = new TreeSet<>(Comparator.comparingInt(Course::getId));
         this.willingCourses.forEach(courseId -> {
             Course course = courses.get(courseId);
 
