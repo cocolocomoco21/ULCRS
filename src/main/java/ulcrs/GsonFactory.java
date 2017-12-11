@@ -7,7 +7,6 @@ public class GsonFactory {
 
     private static Gson gson;
     private static Gson exposeOnlyGson;
-    private static Gson exposeOnlyShiftIdAsKeyGson;
 
     public static Gson getGson() {
         if (gson == null) {

@@ -13,6 +13,11 @@ public class Schedule {
     @Expose
     private double rating;
 
+    public Schedule(Set<ScheduledShift> scheduledShifts) {
+        this.scheduledShifts = scheduledShifts;
+        this.rating = 0.0;  // TODO
+    }
+
     private void rate() {
         // TODO: implement
     }

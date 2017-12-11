@@ -201,7 +201,6 @@ app.on('ready', function () {
         fetch('http://localhost:4567/ulcrs/tutor/', addCookieOption)
             .then(res => res.text())
             .then(body => event.sender.send("get-tutor-data", body));
-        // });
     });
     ipc.on("request-course-data", (event, args) => {
         let addCookieOption = {

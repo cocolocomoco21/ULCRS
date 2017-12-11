@@ -24,4 +24,18 @@ public enum CourseIntensity {
         }
         return null;
     }
+
+    public int toWeightedValue() {
+        // TODO this can be done better
+        switch (this) {
+            case LOW:
+                return 1;
+            case MEDIUM:
+                return 3;
+            case HIGH:
+                return 6;
+            default:
+                return 0;
+        }
+    }
 }

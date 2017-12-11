@@ -141,7 +141,7 @@ public class DataParse {
     /**
      * Parse courses. This depends on shifts.
      *
-     * @param input  - JsonObject response from ULC to parse into ULCRS data.
+     * @param input - JsonObject response from ULC to parse into ULCRS data.
      * @param shifts - HashMap of shifts for easy lookup for already-parsed shifts.
      * @return HashMap - return HashMap of id:course for courses parsed from input.
      */
@@ -176,9 +176,9 @@ public class DataParse {
     /**
      * Parse tutors. This depends on courses and shifts.
      *
-     * @param input   - JsonObject response from ULC to parse into ULCRS data.
+     * @param input - JsonObject response from ULC to parse into ULCRS data.
      * @param courses - HashMap of courses for easy lookup for already-parsed courses.
-     * @param shifts  - HashMap of shifts for easy lookup for already-parsed shifts.
+     * @param shifts - HashMap of shifts for easy lookup for already-parsed shifts.
      * @return HashMap - return HashMap of id:tutor for tutors parsed from input.
      */
     private static HashMap<Integer, Tutor> parseTutors(JsonObject input, HashMap<Integer, Shift> shifts, HashMap<Integer, Course> courses) {

@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import ulcrs.models.course.Course;
 import ulcrs.models.shift.Shift;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class Tutor {
@@ -90,5 +91,32 @@ public class Tutor {
      */
     public int findPossibleShiftFrequency() {
         return this.tutorPreferences.findPossibleShiftFrequency();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Tutor{");
+        sb.append("id=").append(id);
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", tutorPreferences=").append(tutorPreferences);
+        sb.append(", tutorStatus=").append(tutorStatus);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tutor tutor = (Tutor) o;
+        return id == tutor.id &&
+                Objects.equals(firstName, tutor.firstName) &&
+                Objects.equals(lastName, tutor.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName);
     }
 }

@@ -12,21 +12,20 @@ import ulcrs.models.tutor.Tutor;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DataStore {
 
     private static Logger log = LoggerFactory.getLogger(DataStore.class);
-    private static DataStore dataStore;
+
     private List<Tutor> tutors;
     private List<Course> courses;
     private List<Shift> shifts;
     private LocalDateTime timeFetched = LocalDateTime.MIN;
+
+    private static DataStore dataStore;
 
     private DataStore() {
         this.courses = new ArrayList<>();
@@ -114,10 +113,9 @@ public class DataStore {
     }
 
     /**
-     * Check if data is cached (i.e. has already been fetched. If not, fetch from the ULC server.
+     * Check if data is cached (i.e. has already been fetched). If not, fetch from the ULC server.
      *
-     * @param reference - reference being checked if it has been fetched
-     * @param <T>       - generic type for reference
+     * @param reference - reference being checked if it has been fetched.
      */
     private static <T> void fetchIfRequired(List<T> reference, String cookie) {
         if (!isCached(reference)) {
@@ -135,7 +133,6 @@ public class DataStore {
      * Check if the reference is cached. If null or an empty array, it has not been cached.
      *
      * @param reference - reference being checked for if it is cached
-     * @param <T>       - generic type for reference
      * @return boolean - return if reference has been cached or not. If no, reference is null or empty array.
      */
     private static <T> boolean isCached(List<T> reference) {
@@ -176,7 +173,7 @@ public class DataStore {
 
     /**
      * Fetch local mock data and update the data saved in the DataStore instance. This "caches" the data that is fetched.
-     * <p>
+     *
      * TODO delete - kept here to provide easy way for frontend to use the simple dataset they've originally developed with
      */
     private static void fetchLocalMockData() {
@@ -192,17 +189,9 @@ public class DataStore {
         getInstance().courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {
         }.getType());
 
-        // TODO using tutors and courses, get all shift information and save into getInstance().shifts
-        // Shift
-        LocalTime startTime = LocalTime.of(6, 30);
-        LocalTime endTime = LocalTime.of(9, 0);
-
-        getInstance().shifts = Arrays.asList(
-                new Shift(0, DayOfWeek.SUNDAY, startTime, endTime),
-                new Shift(1, DayOfWeek.MONDAY, startTime, endTime),
-                new Shift(2, DayOfWeek.TUESDAY, startTime, endTime),
-                new Shift(3, DayOfWeek.WEDNESDAY, startTime, endTime),
-                new Shift(4, DayOfWeek.THURSDAY, startTime, endTime));
+        is = DataStore.class.getClassLoader().getResourceAsStream("mockShifts_Full.json");
+        reader = new JsonReader(new InputStreamReader(is));
+        getInstance().shifts = new Gson().fromJson(reader, new TypeToken<List<Shift>>() {}.getType());
 
         getInstance().timeFetched = LocalDateTime.now();
     }

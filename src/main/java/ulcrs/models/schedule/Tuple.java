@@ -4,6 +4,8 @@ import ulcrs.models.course.Course;
 import ulcrs.models.shift.Shift;
 import ulcrs.models.tutor.Tutor;
 
+import java.util.Objects;
+
 /**
  * Immutable object representing a tuple of tutor-course-shift, used for scheduling.
  */
@@ -33,29 +35,39 @@ public class Tuple {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        // Tutor
-        builder.append("Tutor: ")
+        StringBuilder builder = new StringBuilder("Tuple{");
+        builder.append("tutor=")
                 .append(tutor.getId())
                 .append(", ")
                 .append(tutor.getFirstName())
                 .append(" ")
                 .append(tutor.getLastName())
                 .append(" | ");
-
-        // Course
-        builder.append("Course: ")
+        builder.append("course=")
                 .append(course.getId())
                 .append(", ")
                 .append(course.getName())
                 .append(" | ");
-
-        // Shift
-        builder.append("Shift: ")
+        builder.append("shift=")
                 .append(shift.getId())
                 .append(", ")
                 .append(shift.getDay().name());
-
+        builder.append("}");
         return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tuple tuple = (Tuple) o;
+        return Objects.equals(tutor, tuple.tutor) &&
+                Objects.equals(course, tuple.course) &&
+                Objects.equals(shift, tuple.shift);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tutor, course, shift);
     }
 }

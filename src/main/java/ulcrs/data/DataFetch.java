@@ -32,7 +32,7 @@ class DataFetch {
 
     /**
      * Fetch data from the ULC server and return response in form of List<String>.
-     * <p>
+     *
      * Specifically, this hits the Drop-In endpoint to retrieve course, shift, tutor, and tutor preference data.
      * However, Drop-In a peculiar way of doing requests, so we issue an HTTP POST as follows:
      * - URL: https://dropin-dev.engr.wisc.edu/services/DIMainController.php
