@@ -2,7 +2,7 @@ let requireLocal = ( localModule ) =>{
     let path = require("path");
     return require(path.resolve( __dirname, localModule))
 };
-let  Container = requireLocal ('./container'); // droppable container
+let Container = requireLocal ('./container'); // droppable container
 let React = require('react');
 let DragDropContext = require('react-dnd').DragDropContext;
 let HTML5Backend = require('react-dnd-html5-backend');
@@ -132,7 +132,9 @@ class ScheduleTable extends React.Component {
                                                        id={col + 1} list={this.state.containerDataList[col]}
                                                         setContainerDataList={this.setContainerDataList}
                                                        printc={this.printContainerDataList}
+
                                                         day={scheduledShifts[col].shift.day}
+                                                       shiftId={scheduledShifts[col].shift.id}
                                                        tutorData={this.props.tutorData}/>
                                         </div>
                                     </div>
