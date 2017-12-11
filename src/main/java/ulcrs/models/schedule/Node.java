@@ -77,19 +77,16 @@ public class Node {
             }
 
             // Add to course -> shifts map
-            Set<Integer> scheduledCourses = courseOnShifts.get(course);
-            if (scheduledCourses == null) {
-                scheduledCourses = new HashSet<>();
+            if (!courseOnShifts.containsKey(course)) {
+                courseOnShifts.put(course, new HashSet<>());
             }
-            scheduledCourses.add(shift.getId());
-            courseOnShifts.put(course, scheduledCourses);
+            courseOnShifts.get(course).add(shift.getId());
 
             // Add to tutor -> numShifts map
-            Integer currNumShifts = tutorToNumShifts.get(tutor);
-            if (currNumShifts == null) {
-                currNumShifts = 0;
+            if (!tutorToNumShifts.containsKey(tutor)) {
+                tutorToNumShifts.put(tutor, 0);
             }
-            currNumShifts++;
+            Integer currNumShifts = tutorToNumShifts.get(tutor) + 1;
             tutorToNumShifts.put(tutor, currNumShifts);
 
             // Add to shift -> {tutor -> courses} map
@@ -154,6 +151,14 @@ public class Node {
         return numViolatedConstraints;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Node{");
+        sb.append("num tuples=").append(tuples.size());
+        sb.append(", cost=").append(cost);
+        sb.append('}');
+        return sb.toString();
+    }
 
     @Override
     public boolean equals(Object o) {

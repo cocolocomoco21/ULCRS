@@ -131,6 +131,8 @@ public class Scheduler {
         List<Node> successorCandidates = new ArrayList<>();
         List<Node> successors = new ArrayList<>();
 
+        int parentCost = node.generateCost();
+
         // generate successor candidates
         // tuple = tutor-course-shift tuple
         for (Tuple tuple : node.getTuples()) {
@@ -142,9 +144,16 @@ public class Scheduler {
             child.removeTuple(tuple);
 
             // Only candidate if not explored
-            if (!explored.contains(child)) {
-                successorCandidates.add(child);
+            if (explored.contains(child)) {
+                continue;
             }
+
+            // Don't add more expensive children
+            if (child.generateCost() > parentCost) {
+                continue;
+            }
+
+            successorCandidates.add(child);
         }
 
         // Only return sufficient successor candidates
