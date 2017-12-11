@@ -31,7 +31,22 @@ public class ScheduleController extends BaseController {
 
     private boolean generateSchedule(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
-        return SchedulerHelper.generateSchedule();
+
+        int timeLimitInSecond = 10;
+        String timeLimitInSecondParam = request.queryParams("timeLimitInSecond");
+        if (timeLimitInSecondParam != null) {
+            timeLimitInSecond = Integer.parseInt(timeLimitInSecondParam);
+        }
+        log.info("timeLimitInSecond: " + timeLimitInSecondParam);
+
+        int solutionLimit = 50;
+        String solutionLimitParam = request.queryParams("solutionLimit");
+        if (solutionLimitParam != null) {
+            solutionLimit = Integer.parseInt(solutionLimitParam);
+        }
+        log.info("solutionLimit: " + solutionLimitParam);
+
+        return SchedulerHelper.generateSchedule(timeLimitInSecond, solutionLimit);
     }
 
     private boolean validateSchedule(Request request, Response response) {

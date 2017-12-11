@@ -3,9 +3,6 @@ import sys
 
 import data
 
-SOLUTION_LIMIT = 50
-TIME_LIMIT_IN_SECOND = 10
-
 SOLUTION_WIDTH = 20
 TRAILS = 10
 
@@ -17,7 +14,7 @@ def normalize_score(row_score):
     return round(adjusted_score, 2)
 
 
-def main(tutor_file, course_file, shift_file, schedule_file):
+def main(tutor_file, course_file, shift_file, schedule_file, time_limit_in_second, solution_limit):
     # Creates the solver.
     solver = pywrapcp.Solver('schedule_shifts')
 
@@ -152,8 +149,8 @@ def main(tutor_file, course_file, shift_file, schedule_file):
     collector.Add(score)
     collector.AddObjective(score)
 
-    solutions_limit = solver.SolutionsLimit(SOLUTION_LIMIT)
-    time_limit = solver.TimeLimit(TIME_LIMIT_IN_SECOND * 1000)
+    solutions_limit = solver.SolutionsLimit(solution_limit)
+    time_limit = solver.TimeLimit(time_limit_in_second * 1000)
 
     if solver.Solve(db, [objective, collector, solutions_limit, time_limit]):
         solution_count = collector.SolutionCount()
@@ -221,6 +218,7 @@ def main(tutor_file, course_file, shift_file, schedule_file):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 5:
-        print 'Usage: python scheduler.py <tutor file> <course file> <shift file>'
-    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+    if len(sys.argv) != 7:
+        print 'Usage: python scheduler.py' \
+              ' <tutor file> <course file> <shift file> <time limit in second> <solution limit>'
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], int(sys.argv[5]), int(sys.argv[6]))

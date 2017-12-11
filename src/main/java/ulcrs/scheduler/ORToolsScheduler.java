@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import ulcrs.GsonFactory;
 import ulcrs.models.course.Course;
 import ulcrs.models.schedule.Schedule;
-import ulcrs.models.shift.ScheduledShift;
 import ulcrs.models.shift.Shift;
 import ulcrs.models.tutor.Tutor;
 
@@ -35,7 +34,8 @@ public class ORToolsScheduler {
     private static org.slf4j.Logger log = LoggerFactory.getLogger(ORToolsScheduler.class);
     private static Gson gson = GsonFactory.getExposeOnlyGson();
 
-    protected static List<Schedule> schedule(List<Tutor> tutors, List<Course> courses, List<Shift> shifts) {
+    protected static List<Schedule> schedule(List<Tutor> tutors, List<Course> courses, List<Shift> shifts,
+                                             int timeLimitInSecond, int solutionLimit) {
 
         List<Schedule> emptyList = new ArrayList<>();
 
@@ -49,7 +49,7 @@ public class ORToolsScheduler {
         }
 
         try {
-            callScheduler();
+            callScheduler(timeLimitInSecond, solutionLimit);
         } catch (InterruptedException e) {
             log.warn("Scheduler script interrupted", e);
             return emptyList;
@@ -79,14 +79,16 @@ public class ORToolsScheduler {
         bufferedWriter.close();
     }
 
-    private static void callScheduler() throws IOException, InterruptedException {
+    private static void callScheduler(int timeLimitInSecond, int solutionLimit) throws IOException, InterruptedException {
         String command = String.join(" ", new String[]{
                 "python",
                 SCHEDULER_SCRIPT_PATH,
                 SCHEDULER_RESOURCE_PATH + TUTOR_FILENAME,
                 SCHEDULER_RESOURCE_PATH + COURSE_FILENAME,
                 SCHEDULER_RESOURCE_PATH + SHIFT_FILENAME,
-                SCHEDULER_RESOURCE_PATH + SCHEDULE_FILENAME
+                SCHEDULER_RESOURCE_PATH + SCHEDULE_FILENAME,
+                Integer.toString(timeLimitInSecond),
+                Integer.toString(solutionLimit)
         });
         log.info("Running command: " + command);
         Process p = Runtime.getRuntime().exec(command);
@@ -96,7 +98,8 @@ public class ORToolsScheduler {
     private static List<Schedule> loadSchedulesFromScheduler() throws IOException {
         FileReader fileReader = new FileReader(SCHEDULER_RESOURCE_PATH + SCHEDULE_FILENAME);
         JsonReader reader = new JsonReader(fileReader);
-        List<Schedule> schedules = gson.fromJson(reader, new TypeToken<List<Schedule>>(){}.getType());
+        List<Schedule> schedules = gson.fromJson(reader, new TypeToken<List<Schedule>>() {
+        }.getType());
         reader.close();
         fileReader.close();
         return schedules;

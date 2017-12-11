@@ -18,7 +18,7 @@ public class SchedulerHelper {
     private static boolean isScheduling = false;
     private static LocalDateTime schedulingStart;
 
-    public static boolean generateSchedule() {
+    public static boolean generateSchedule(int timeLimitInSecond, int solutionLimit) {
         // TODO implement
         // This is where the algorithm's entry point will be. This will call the scheduling algorithm with the
         // specified tutors, courses, and shifts from DataStore, and return the list of schedules generated from
@@ -35,7 +35,7 @@ public class SchedulerHelper {
             isScheduling = true;
 
             // Run scheduling algorithm
-            generatedSchedules = ORToolsScheduler.schedule(tutors, courses, shifts);
+            generatedSchedules = ORToolsScheduler.schedule(tutors, courses, shifts, timeLimitInSecond, solutionLimit);
             isScheduling = false;
         });
         scheduleThread.start();
