@@ -181,16 +181,31 @@ class Card extends React.Component {
             </a>);
         }
 
+        let tutorNameBox = null;
+        if (tutorName.length > 15){
+
+            tutorNameBox = (
+                            <a href="#" className="list-group-item list-group-item-action  px-1" >
+                                <a className="font-weight-bold" href="#" data-toggle="tooltip" title={tutorName} style={{fontSize:"0.94rem",color: "#494949", textAlign:"center"}}>
+                                    {tutorName.substring(0, 12)+"...."}
+                                </a>
+                            </a>)
+        }else{
+            tutorNameBox =(<a href="#" className="list-group-item list-group-item-action  px-1" >
+                <a className="font-weight-bold" style={{fontSize:"0.94rem",color: "#494949", textAlign:"center"}}>
+                    {tutorName}
+                </a>
+            </a>)
+        }
+
+
+
 		return connectDragSource(connectDropTarget(
     <div style={{ style, opacity }}>
 			<div>
 				<ul className="list-group" onClick={this.toggleGridModal} style={{"textAlign": "center"}}>
 					<div>
-                    <a href="#" className="list-group-item list-group-item-action  px-1" >
-                     <a className="font-weight-bold" style={{fontSize:"0.94rem",color: "#494949", textAlign:"center"}}>
-                         {tutorName}
-                     </a>
-                    </a>
+                        {tutorNameBox}
                      {course}
                     </div>
                 </ul>

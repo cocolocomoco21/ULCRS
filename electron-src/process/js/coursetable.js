@@ -38,12 +38,12 @@ class CourseTable extends React.Component {
                             <thead style={{backgroundColor: "#9b0000",
                                 color: "#f9f9f9"}}>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Required Shifts</th>
-                                <th>Shift Freq. Required</th>
-                                <th>Shift Freq. Preferred</th>
-                                <th>Intensity</th>
+                                <th className="no-wrap">ID</th>
+                                <th className="no-wrap">Name</th>
+                                <th className="no-wrap">Required Shifts</th>
+                                <th className="no-wrap">Shift Freq. Required</th>
+                                <th className="no-wrap">Shift Freq. Preferred</th>
+                                <th className="no-wrap">Intensity</th>
                             </tr>
                             </thead>
                             <tbody style={{height:"100%"}}>
