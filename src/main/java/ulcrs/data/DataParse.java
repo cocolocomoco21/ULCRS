@@ -152,14 +152,14 @@ public class DataParse {
         List<ULCCourse> ulcCourses = new Gson().fromJson(coursesJson, new TypeToken<List<ULCCourse>>() {}.getType());
         List<ULCCourseRequirements> ulcCourseRequirementsList = new Gson().fromJson(courseRequirementsJson, new TypeToken<List<ULCCourseRequirements>>() {}.getType());
 
-        Map<Integer, ULCCourseRequirements> ulcCourseRequirements = ulcCourseRequirementsList.stream()
+        // Map course id to ULCCourseRequirements object for that course
+        Map<Integer, ULCCourseRequirements> courseIdToULCCourseRequirements = ulcCourseRequirementsList.stream()
                 .collect(Collectors.toMap(ULCCourseRequirements::getCourseId, item -> item));
 
         // Transform json courses into Course objects
         HashMap<Integer, Course> courses = new HashMap<>();
         ulcCourses.forEach(ulcCourse -> {
-            ULCCourseRequirements ulcCourseRequirement = ulcCourseRequirements.get(ulcCourse.getId());
-            //CourseRequirements courseRequirement = courseRequirements.get(ulcCourse.getId());
+            ULCCourseRequirements ulcCourseRequirement = courseIdToULCCourseRequirements.get(ulcCourse.getId());
             if (ulcCourseRequirement != null) {
                 CourseRequirements courseRequirement = ulcCourseRequirement.toCourseRequirements(shifts);
                 Course course = ulcCourse.toCourse(courseRequirement);

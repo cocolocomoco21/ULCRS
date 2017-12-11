@@ -41,7 +41,7 @@ public class CourseControllerTest {
     }
 
     @Test
-    public void successGetCourseList() throws Exception {
+    public void successGetEmptyCourseList() throws Exception {
         List<Course> courseListTest = new ArrayList<>();
 
         when(requestMock.headers("Set-Cookie")).thenReturn("cookie");
@@ -49,6 +49,24 @@ public class CourseControllerTest {
 
         List<Course> getCourseListResult = Whitebox.invokeMethod(courseControllerTest, "getCourseList", requestMock, responseMock);
         Assert.assertEquals(courseListTest, getCourseListResult);
+    }
+
+    @Test
+    public void successGetFullCourseList() throws Exception {
+        List<Course> courseListTest = new ArrayList<>();
+        courseListTest.add(new Course(1, "CS302", null));
+        courseListTest.add(new Course(2, "CS301", null));
+
+        List<Course> expectedCourseListTest = new ArrayList<>();
+        expectedCourseListTest.add(new Course(1, "CS302", null));
+
+        when(requestMock.headers("Set-Cookie")).thenReturn("cookie");
+        when(requestMock.queryParamOrDefault("limit", null)).thenReturn("1");
+        when(DataStore.getCourses("cookie")).thenReturn(courseListTest);
+
+        List<Course> getCourseListResult = Whitebox.invokeMethod(courseControllerTest, "getCourseList", requestMock, responseMock);
+
+        Assert.assertEquals(expectedCourseListTest, getCourseListResult);
     }
 
     @Test
