@@ -1,5 +1,48 @@
 [
   {
+    "id": -1,
+    "firstName": "Amy",
+    "lastName": "Sherman",
+    "tutorPreferences": {
+      "coursePreferences": {
+        "PREFER": [
+          {
+            "id": 11,
+            "name": "BB 17"
+          },
+          {
+            "id": 6,
+            "name": "MEME 404"
+          },
+          {
+            "id": 5,
+            "name": "CS 577"
+          }
+        ],
+        "WILLING": [
+          {
+            "id": 7,
+            "name": "ECE 506"
+          }
+        ]
+      },
+      "shiftPreferences": {
+        "PREFER": [
+          {
+            "id": 3,
+            "day": "THURSDAY"
+          }
+        ],
+        "WILLING": []
+      },
+      "shiftFrequencyPreferences": {
+        "PREFER": 1,
+        "WILLING": 1
+      }
+    },
+    "tutorStatus": "GHOST"
+  },
+  {
     "id": 0,
     "firstName": "Bilbo",
     "lastName": "Baggins",
@@ -18,7 +61,7 @@
         "WILLING": [
           {
             "id": 2,
-            "name": "CS 577"
+            "name": "CS 507"
           }
         ]
       },
@@ -67,6 +110,10 @@
           {
             "id": 4,
             "name": "ECE 230"
+          },
+          {
+            "id": 6,
+            "name": "MEME 404"
           }
         ]
       },
@@ -111,22 +158,22 @@
             "name": "CS 301"
           },
           {
-            "id": 1,
-            "name": "CS 302"
+            "id": 10,
+            "name": "CS 537"
           },
           {
-            "id": 2,
+            "id": 5,
             "name": "CS 577"
           }
         ],
         "WILLING": [
           {
-            "id": 3,
-            "name": "EMA 201"
+            "id": 7,
+            "name": "ECE 506"
           },
           {
-            "id": 4,
-            "name": "ECE 230"
+            "id": 8,
+            "name": "MATH 204"
           }
         ]
       },
@@ -171,8 +218,8 @@
       "coursePreferences": {
         "PREFER": [
           {
-            "id": 3,
-            "name": "EMA 201"
+            "id": 9,
+            "name": "PSY 100"
           }
         ],
         "WILLING": []
@@ -203,15 +250,19 @@
     "tutorStatus": "ACTIVE"
   },
   {
-    "id": -1,
-    "firstName": "Constraint",
-    "lastName": "Filler",
+    "id": 5,
+    "firstName": "Ben",
+    "lastName": "Jerry",
     "tutorPreferences": {
       "coursePreferences": {
         "PREFER": [
           {
-            "id": 3,
-            "name": "EMA 201"
+            "id": 12,
+            "name": "PHY 202"
+          },
+          {
+            "id": 13,
+            "name": "CS 500"
           }
         ],
         "WILLING": []
@@ -219,17 +270,69 @@
       "shiftPreferences": {
         "PREFER": [
           {
+            "id": 0,
+            "day": "MONDAY"
+          }
+        ],
+        "WILLING": [
+          {
+            "id": 1,
+            "day": "TUESDAY"
+          },
+          {
             "id": 3,
             "day": "THURSDAY"
+          }
+        ]
+      },
+      "shiftFrequencyPreferences": {
+        "PREFER": 1,
+        "WILLING": 2
+      }
+    },
+    "tutorStatus": "ACTIVE"
+  },
+  {
+    "id": 10,
+    "firstName": "Chili",
+    "lastName": "Sauce",
+    "tutorPreferences": {
+      "coursePreferences": {
+        "PREFER": [
+          {
+            "id": 14,
+            "name": "FRI 256"
+          },
+          {
+            "id": 15,
+            "name": "RIC 512"
           }
         ],
         "WILLING": []
       },
+      "shiftPreferences": {
+        "PREFER": [
+          {
+            "id": 0,
+            "day": "MONDAY"
+          }
+        ],
+        "WILLING": [
+          {
+            "id": 1,
+            "day": "TUESDAY"
+          },
+          {
+            "id": 3,
+            "day": "THURSDAY"
+          }
+        ]
+      },
       "shiftFrequencyPreferences": {
         "PREFER": 1,
-        "WILLING": 1
+        "WILLING": 2
       }
     },
-    "tutorStatus": "GHOST"
+    "tutorStatus": "ACTIVE"
   }
 ]

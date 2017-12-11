@@ -29,31 +29,57 @@ class ViewSchedulePage  extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            schedules : loadSchedules,
+            // schedules : loadSchedules,
+            schedules:props.scheduleData,
             modal : false,
             saveMessage: "",
             saveMessageModal: false,
             exiting: false,
             index : 0,
             schedule : null
-        };
+        }
         this.toggleSaveModal = this.toggleSaveModal.bind(this);
         this.toggleMessageModal = this.toggleMessageModal.bind(this);
         this.getSchedule = this.getSchedule.bind(this);
+        this.updateSchedule = this.updateSchedule.bind(this);
         this.exportSchedule = this.exportSchedule.bind(this);
         this.exit = this.exit.bind(this);
         this.toggleExiting = this.toggleExiting.bind(this);
         this.changeIndex = this.changeIndex.bind(this);
+
+        this.isAlphanum = this.isAlphanum.bind(this);
+        this.handleNullScheduleData = this.handleNullScheduleData.bind(this);
     }
 
-    toggleExiting(){
+    isAlphanum(value) {
+        for(var i=0; i<value.length; i++)
+        {
+            var char1 = value.charAt(i);
+            var cc = char1.charCodeAt(0);
+
+            if((cc>47 && cc<58) || (cc>64 && cc<91) || (cc>96 && cc<123))
+            {
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    toggleExiting() {
         this.setState({
             exiting: !this.state.exiting
         })
 
     }
-
-
+    componentWillReceiveProps(nextProps){
+        if (nextProps.scheduleData !== null){
+            this.setState(
+                {schedules:nextProps.scheduleData}
+            )
+        }
+    }
 
     toggleSaveModal(){
         this.setState({
@@ -77,46 +103,83 @@ class ViewSchedulePage  extends React.Component {
         this.state.schedule = input;
     }
 
+    updateSchedule(s) {
+        this.state.schedule = s;
+    }
+
     exportSchedule(value){
-        let filename = document.getElementById("filename");
         if (value === 0) {
             this.toggleSaveModal();
-        } else {
-            this.toggleSaveModal();
-            this.toggleMessageModal();
-            if (value === 1) {
-                this.state.saveMessage = "Session saved: " + filename.value;
-            } else if (value === 2) {
-                this.state.saveMessage = "Uploaded to server: " + filename.value;
-            }
-            ipc.send("save-session", filename.value, this.state.schedules[0]);
         }
+        let filename = document.getElementById("filename");
+        let errorMessage = "";
+        // Check filename
+        if (filename.value.length >= 20) {
+            value = -1;
+            errorMessage = "Please enter less than or equal to 20 characters";
+        } else if (!this.isAlphanum(filename.value)) {
+            value = -1;
+            errorMessage = "Filename only allows numbers and/or letters";
+        }
+        // Process save
+        if(value === -1) {
+            return errorMessage;
+        }
+        this.toggleSaveModal();
+        if (value === 1) {
+            this.state.saveMessage = "Session saved: " + filename.value;
+            this.toggleMessageModal();
+            ipc.send("save-session", filename.value, this.state.schedule);
+        } else if (value === 2) {
+            this.state.saveMessage = "Uploaded to server: " + filename.value;
+            this.toggleMessageModal();
+            ipc.send("save-session", filename.value, this.state.schedule);
+        }
+        return errorMessage;
     }
 
     exit(){
         ipc.send("kill-app");
     }
 
+    handleNullScheduleData(scheduleData){
+        if (scheduleData=== null || scheduleData.length === 0){
+            return (<div></div>)
+        }
+
+        return (<ScheduleTable schedules={this.state.schedules} updateSchedule={this.updateSchedule} index={this.state.index} tutorData={this.props.tutorData}/>)
+    }
+
     render(){
 
         return (
             <div className="container-fluid">
-                <div className="row">
-                    <div className="col-2 padding-0">
+                <div className="row" style={{height:"85%"}}>
+                    <div className="col-2 p-0">
                         <ScheduleToolbar schedules={this.state.schedules} changeIndex={this.changeIndex}/>
                     </div>
 
-                    <div className="col-10 padding-0">
-                        <ScheduleTable schedules={this.state.schedules} index={this.state.index}/>
-                    </div>
-                    <div className="w-100"></div>
-                    <div className="col-2 p-0">
-                        <button type="button" className="btn btn-success btn-block" onClick={this.toggleSaveModal} style={{"textAlign": "center"}} > Save </button>
-                        <button className="btn btn-danger btn-block" onClick={this.toggleExiting} style={{"textAlign": "center"}} > Exit </button>
+                    <div className="col-10 pl-3 pr-1" style={{height:"100%"}}>
+                        {this.handleNullScheduleData(this.state.schedules)}
                     </div>
 
                 </div>
-
+                <div className="row" style={{height:"15%"}}>
+                    <div className="col-2 d-flex align-items-center justify-content-center">
+                        <button className="btn btn-exit btn-sm" onClick={this.toggleExiting}
+                                style={{"textAlign": "center", width:"100%", height:"60%",
+                                        fontSize: "1.7rem"
+                                        }} >
+                                Exit
+                        </button>
+                    </div>
+                    <div className="col-6">
+                    </div>
+                    <div className="col-4 d-flex justify-content-center align-items-center" style={{height:"100%"}}>
+                        <button type="button" className="btn btn-lg" onClick={this.toggleSaveModal}
+                                style={{"textAlign": "center", width:"100%", height:"60%"}} > Save this Schedule</button>
+                    </div>
+                </div>
                 <Modal isOpen={this.state.modal} toggle={this.toggleSaveModal}>
 
                     <ModalHeader toggle={this.toggleSaveModal} >

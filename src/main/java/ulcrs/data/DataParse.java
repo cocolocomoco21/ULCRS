@@ -39,7 +39,7 @@ public class DataParse {
      * @param input - JsonObject response from ULC to parse into ULCRS data.
      * @return ParsedULCResponse - parsed response Json received from ULC.
      */
-    static ParsedULCResponse parse(JsonObject input) {
+    public static ParsedULCResponse parse(JsonObject input) {
         ParsedULCResponse parsed = new ParsedULCResponse();
 
         // Shifts
