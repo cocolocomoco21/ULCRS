@@ -1,7 +1,7 @@
 [
 	{
 		"rating": 5,
-		"scheduleShifts":
+		"scheduledShifts":
 		[
 			{
 				"shift": { "id": 1, "day": "Sunday 1" },
@@ -329,7 +329,7 @@
 	},
 	{
 		"rating": 1.6,
-		"scheduleShifts":
+		"scheduledShifts":
 		[
 			{
 				"shift": { "id": 1, "day": "Sunday 1" },

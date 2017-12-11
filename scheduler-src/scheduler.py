@@ -7,6 +7,16 @@ SOLUTION_WIDTH = 10
 TRAILS = 10
 
 
+def normalize_score(row_score):
+
+    adjusted_score = 100 * 1 / float(1 + row_score)
+
+    if adjusted_score > 1:
+
+        return round(adjusted_score,1)
+
+    return round(adjusted_score, 2)
+
 def main(tutor_file, course_file, shift_file, schedule_file):
     # Creates the solver.
     solver = pywrapcp.Solver('schedule_shifts')
@@ -165,7 +175,7 @@ def main(tutor_file, course_file, shift_file, schedule_file):
     results = []
     for solution in range(collector.SolutionCount()):
         result = {
-            'rating': int(collector.Value(solution, score)),
+            'rating': normalize_score(int(collector.Value(solution, score))),
             'scheduledShifts': []
         }
         for j in range(num_shifts):

@@ -151,7 +151,7 @@ app.on('ready', function () {
                 headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
             })
             .then(res => {
-                console.log(res);
+                //console.log(res);
                 event.sender.send("post_success");});
 
         // Need error handling
@@ -171,7 +171,7 @@ app.on('ready', function () {
                     console.log(data);
                     if (data !== "null") {
                         console.log("received data");
-                        event.sender.send("receive-schedule-data", data);
+                        event.sender.send("receive-schedule-data", JSON.parse(data));
                         clearInterval(polling_schedules);
                     }
                 });
@@ -200,7 +200,7 @@ app.on('ready', function () {
 
         fetch('http://localhost:4567/ulcrs/tutor/', addCookieOption)
             .then(res => res.text())
-            .then(body => {console.log(body); event.sender.send("get-tutor-data", body);});
+            .then(body => { event.sender.send("get-tutor-data", body);});
     });
     ipc.on("request-course-data", (event, args) => {
         let addCookieOption = {

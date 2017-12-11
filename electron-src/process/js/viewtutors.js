@@ -34,7 +34,7 @@ let ModalHeader = Reactstrap.ModalHeader;
 let ModalBody= Reactstrap.ModalBody;
 let ModalFooter = Reactstrap.ModalFooter;
 let Button = Reactstrap.Button;
-
+let _ = require("lodash");
 
 class ViewInfo extends React.Component {
   constructor(props){
@@ -277,14 +277,16 @@ class MainInterface extends React.Component{
             pageName: "info",
             waiting: false,
             tutorData: null,
-            scheduleData: null
+            scheduleData: []
         };
         this.tutorData = mock;
         ipc.on("receive-schedule-data", (event, data) => {
+            //sort data based on rate
+            let sortedDataHighToLow = _.reverse(_.sortBy(data, (d)=>d.rating));
             this.setState({
                 pageName: "schedules",
                 waiting: false,
-                scheduleData: sche
+                scheduleData: sortedDataHighToLow
             });
         });
         ipc.on("post_success", (event, data) => {

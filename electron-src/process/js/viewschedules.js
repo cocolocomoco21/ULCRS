@@ -46,6 +46,7 @@ class ViewSchedulePage  extends React.Component {
         this.changeIndex = this.changeIndex.bind(this);
 
         this.isAlphanum = this.isAlphanum.bind(this);
+        this.handleNullScheduleData = this.handleNullScheduleData.bind(this);
     }
 
     isAlphanum(value) {
@@ -135,7 +136,16 @@ class ViewSchedulePage  extends React.Component {
         ipc.send("kill-app");
     }
 
+    handleNullScheduleData(scheduleData){
+        if (scheduleData=== null || scheduleData.length === 0){
+            return (<div></div>)
+        }
+
+        return (<ScheduleTable schedules={this.state.schedules} index={this.state.index} tutorData={this.props.tutorData}/>)
+    }
+
     render(){
+
 
         return (
             <div className="container-fluid">
@@ -145,7 +155,7 @@ class ViewSchedulePage  extends React.Component {
                     </div>
 
                     <div className="col-10 pl-3 pr-1" style={{height:"100%"}}>
-                        <ScheduleTable schedules={this.state.schedules} index={this.state.index} tutorData={this.props.tutorData}/>
+                        {this.handleNullScheduleData(this.state.schedules)}
                     </div>
 
                 </div>
@@ -155,7 +165,8 @@ class ViewSchedulePage  extends React.Component {
                                 style={{"textAlign": "center", width:"100%", height:"60%",
                                         fontSize: "1.7rem"
                                         }} >
-                                Exit </button>
+                                Exit
+                        </button>
                     </div>
                     <div className="col-6">
                     </div>
