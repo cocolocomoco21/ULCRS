@@ -9,6 +9,7 @@ let startWindow, viewTutorsWindow, authWindow = null;
 let engrCookie = null;
 let fetch = require("node-fetch");
 let os = require("os");
+let path = require("path");
 let initialStartWindow = ()=>{
     startWindow = new BrowserWindow({
         width: 400,
@@ -16,7 +17,9 @@ let initialStartWindow = ()=>{
         show: false,
         webPreferences: {
             preload: __dirname + '/preload.js'
-        }
+        },
+        icon: path.join(__dirname,"..","..","img","ulcrs_logo.png")
+
     });
     startWindow.loadURL('file://' + __dirname + '/index.html');
     startWindow.once('ready-to-show', function () {
@@ -81,7 +84,8 @@ let setupAuthenticWindow = () => {
         height: 506,
         transparent: false,
         show: false,
-        frame: true
+        frame: true,
+        icon: path.join(__dirname,"..","..","img","ulcrs_logo.png")
     });
 
     ipc.on("ShowViewTutor", function (event, args) {
@@ -126,9 +130,11 @@ let setupViewTutorWindow = (width, height)=>{
         height: height,
         transparent: false,
         show: false,
-        frame: true
+        frame: true,
+        icon: path.join(__dirname,"..","img","ulcrs_logo.png")
     });
-}
+    console.log("dirname" +  path.join(__dirname,"..","img","ulcrs_logo.png"));
+};
 
 app.on('ready', function () {
 
@@ -151,7 +157,7 @@ app.on('ready', function () {
                 headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
             })
             .then(res => {
-                console.log(res);
+                //console.log(res);
                 event.sender.send("post_success");});
 
         // Need error handling
@@ -166,12 +172,12 @@ app.on('ready', function () {
                             headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
                         }
                  )
-                .then(res => res.text())
+                 .then(res => res.text())
                 .then(data => {
                     console.log(data);
                     if (data !== "null") {
                         console.log("received data");
-                        event.sender.send("receive-schedule-data", data);
+                        event.sender.send("receive-schedule-data", JSON.parse(data));
                         clearInterval(polling_schedules);
                     }
                 });
@@ -200,7 +206,7 @@ app.on('ready', function () {
 
         fetch('http://localhost:4567/ulcrs/tutor/', addCookieOption)
             .then(res => res.text())
-            .then(body => event.sender.send("get-tutor-data", body));
+            .then(body => { event.sender.send("get-tutor-data", body);});
     });
     ipc.on("request-course-data", (event, args) => {
         let addCookieOption = {
@@ -213,10 +219,13 @@ app.on('ready', function () {
 
     ipc.on("save-session", (event, filename, schedule) => {
         let addCookieOption = {
-            //headers: {"Set-Cookie": [engrCookie.name + "=" + engrCookie.value]},
+            headers: {"Set-Cookie": [engrCookie.name + "=" + engrCookie.value]},
             method: 'POST',
             body: JSON.stringify(schedule)
         };
+        console.log("==============================JSON===================================");
+        console.log(addCookieOption.body);
+        console.log("==============================JSON===================================");
         fetch('http://localhost:4567/ulcrs/session/' + filename, addCookieOption);
     })
 }); //app is ready

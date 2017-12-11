@@ -109,11 +109,14 @@ class ScheduleToolbar extends React.Component {
                                   changeIndex = {this.props.changeIndex} rate = {this.props.schedules[i].rating} key={i}/>);
         }
         return (
-            <div id="schedule-tool-bar" className="card" style={{backgroundColor:"#c5050c"}}>
+            <div id="schedule-tool-bar" className="card p-0" style={{backgroundColor:"#c5050c", height:"85%", overflowY:"auto"}}>
                 <h3 className="card-header" style={{color:"#f9f9f9"}}>
                     Schedules
                 </h3>
-                {tabs}
+
+                <div className="container-fluid p-0" style={{height:"90%", overflowY:"auto"}}>
+                    {tabs}
+                </div>
             </div>
         )
     }

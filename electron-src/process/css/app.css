@@ -492,14 +492,42 @@
 }
 
 .btn-lg{
-  padding: 1rem 8rem;
-  font-size: 30px;
+  font-size: 1.7rem;
+  color: #f9f9f9;
   background-color: #0479a8;
+  border-color: #0492cc;
 }
 .btn-lg:hover {
-  color: #fff;
-  background-color: #0492cc;
+  color: #f9f9f9;
+  background-color: #045f82;
   border-color: #0492cc;
+
+}
+
+.btn-primary {
+  background-color: #0479a8;
+}
+
+.btn-danger {
+  background-color: #c5050c;
+}
+
+.btn-lg:active{
+  color: #f9f9f9;
+  background-color: #045f82;
+  border-color: #0492cc;
+}
+
+.btn-exit{
+  background-color: #c5050c;
+  color: #f7f7f7;
+  border-color: #c5050c;
+}
+
+.btn-exit:hover{
+  background-color: #9b0000;
+  color: #f7f7f7;
+  border-color: #c5050c;
 }
 
 .top-buffer {
@@ -516,7 +544,7 @@
     white-space: nowrap;
     display: inline-block;
     width:100%;
-    height:100%
+    height:100%;
 }
 
 .container-scroll > .col > .row > .col-2 {
@@ -536,7 +564,31 @@
 }
 
 .table-scroll {
-    height: 550px;
-    overflow-y: scroll;
-    overflow-x: scroll;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+html, body {
+  height: 100%;
+}
+
+.Flipped, .Flipped .Content
+{
+  transform:rotateX(180deg);
+  -ms-transform:rotateX(180deg); /* IE 9 */
+  -webkit-transform:rotateX(180deg); /* Safari and Chrome */
+}
+
+.list-group-item-action {
+  background-color: #f9f9f9;
+}
+
+.save-button{
+   background-color: #0479a8;
+   color: #f7f7f7;
+}
+
+.save-button:hover{
+  background-color: #046180;
+  color: #f7f7f7;
 }

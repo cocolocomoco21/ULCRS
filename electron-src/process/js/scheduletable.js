@@ -16,8 +16,10 @@ class ScheduleTable extends React.Component {
         this.state = {
             schedules : this.props.schedules,
             index : this.props.index,
+            curIndex : null,
             tutors: [],
-            tutorData: null
+            tutorData: null,
+            containerDataList: null
         };
         ipc.on("get-tutor-data",  (event, text) => {
           let d = JSON.parse(text);
@@ -29,6 +31,8 @@ class ScheduleTable extends React.Component {
         });
         this.scheduleName = this.scheduleName.bind(this);
         this.passSchedule = this.passSchedule.bind(this);
+        this.setContainerDataList = this.setContainerDataList.bind(this);
+        this.printContainerDataList = this.printContainerDataList.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -38,78 +42,115 @@ class ScheduleTable extends React.Component {
     }
 
     passSchedule(schedule) {
+        this.setState();
         this.props.getSchedule(schedule);
+    }
+
+    parseContainerDataList() {
+        console.log("in parseContainerDataList");
+        let schedule = this.state.schedules[this.state.curIndex];
+        for (let col=0; col<this.state.containerDataList.length; col++) {
+            let containerData = this.state.containerDataList[col];
+            let assignments = [];
+            for (let row=0; row<containerData.length; row++) {
+                assignments.push({
+                    tutor: containerData[row].tutor,
+                    courses: containerData[row].tutorCourse
+                });
+            }
+            schedule.scheduledShifts[col].assignments = assignments;
+        }
+        console.log("schedule");
+        console.log(schedule);
+        console.log("exiting parseContainerDataList");
+        return schedule;
     }
 
     scheduleName() {
         return "Schedule " + (this.state.index+1);
     }
 
+    setContainerDataList(index, list) {
+        console.log("in setContainerDataList");
+        let dataList = this.state.containerDataList;
+        dataList[index] = list;
+        this.setState({
+            containerDataList : dataList
+        });
+        this.printContainerDataList();
+        console.log("exiting setContainerDataList");
+    }
+
+    printContainerDataList(){
+        console.log("in printContainerDataList: printing this.state.containerDataList");
+        console.log(this.state.containerDataList);
+    }
+
     render() {
+        if (this.state.index !== this.state.curIndex) {
+            this.state.containerDataList = [];
+            console.log("this.state.schedule");
+            console.log(this.state.schedules);
+            let scheduledShifts = this.state.schedules[this.state.index].scheduledShifts;
+            this.state.curIndex = this.state.index;
+            console.log(scheduledShifts);
+            let index = 1;
+            for (let col = 0; col < scheduledShifts.length; col++) {
+                console.log(col);
+                let containerDataList = [];
+                let assignments = scheduledShifts[col].assignments;
 
-        let colors = [["#428BCA", "#5CC3E1"], ["#468847", "#46A546"],
-                        ["#F89406", "#FBB450"], ["#C3325F", "#EE5F5B"]];
-
-
-        console.log(this.state.schedules);
+                for (let row = 0; row < assignments.length; row++) {
+                    containerDataList.push(
+                        {
+                            id: index,
+                            tutor: assignments[row].tutor,
+                            tutorCourse: assignments[row].courses
+                        });
+                    index++;
+                }
+                this.state.containerDataList.push(containerDataList);
+            }
+            console.log("this.state.containerDataList");
+            console.log(this.state.containerDataList);
+        }
         let containerList = [];
-        let scheduleShifts = this.state.schedules[this.state.index].scheduleShifts;
-        console.log(scheduleShifts);
-        let index = 1;
-        let indexIncr = 0;
-        for (let col = 0; col < scheduleShifts.length; col++){
+        let scheduledShifts = this.state.schedules[this.state.index].scheduledShifts;
+        this.parseContainerDataList();
+        for (let col = 0; col < this.state.containerDataList.length; col++){
             console.log(col);
-            let containerDataList = [];
-            let assignments = scheduleShifts[col].assignments;
-            console.log(assignments);
-
-            if (col % 2 == 0) {
-                indexIncr += 1;
-            }
-            else {
-                indexIncr += 2;
-            }
-            for (let row = 0; row < assignments.length; row++){
-                let tutor = assignments[row].tutor.firstName + " " + assignments[row].tutor.lastName;
-                let color = colors[(indexIncr + row) % 4];
-                containerDataList.push(
-                    {
-                        id: index,
-                        day: scheduleShifts[col].shift.day,
-                        tutorName: tutor,
-                        tutorCourse: assignments[row].courses,
-                        nameColor: color[1],
-                        courseColor: color[0]
-                    });
-                index++;
-            }
-            console.log(containerDataList);
             containerList.push(<div className="col-2">
                                     <div className="row">
                                         <div className="col text-center"
                                              style={{background: "#c5050c", color: "#f9f9f9", padding:12}}>
-                                            {scheduleShifts[col].shift.day}
+                                            {scheduledShifts[col].shift.day}
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col">
                                             <Container key={this.state.index * 100 + col + 1}
-                                                       id={col + 1} list={containerDataList}/>
+                                                       id={col + 1} list={this.state.containerDataList[col]}
+                                                        setContainerDataList={this.setContainerDataList}
+                                                       printc={this.printContainerDataList}
+
+                                                        day={scheduledShifts[col].shift.day}
+                                                       shiftId={scheduledShifts[col].shift.id}
+                                                       tutorData={this.props.tutorData}/>
                                         </div>
                                     </div>
                                 </div>);
         }
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="card">
+            <div className="container-fluid px-0 " style={{width:"100%",height:"100%"}}>
+                <div className="row p-0" style={{height:"100%"}}>
+                    <div className="card" style={{width:"100%"}}>
                         <div className="card-header" style={{background: "#c5050c", color: "#f9f9f9"}}>
                                 <h3> {this.scheduleName()} </h3>
                                 <h5> Rating: {this.state.schedules[this.state.index].rating} </h5>
                         </div>
-                        <div className="row container-scroll">
+                        <div className="row container-scroll" style={{height:"100%"}}>
                             <div className="col">
-                                <div className="row" style={{margin: 0, width: "100%", height: "500px"}}>
+                                <div className="row" style={{margin: 0, width: "100%"}}>
                                     {containerList}
                                 </div>
                             </div>
