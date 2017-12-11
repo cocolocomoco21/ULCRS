@@ -466,7 +466,7 @@ class Container extends React.Component{
                 })}
 
                 <button type="button" className="btn btn-success btn-block" onClick={this.toggleGridModal}
-                        style={{background: "#c5050c", "textAlign": "center"}} > Add Assignment </button>
+                        style={{"textAlign": "center"}} > Add Assignment </button>
 
                 <Modal isOpen={this.state.modal} toggle={this.toggleGridModal}>
                     <ModalHeader toggle={this.toggleGridModal} >
