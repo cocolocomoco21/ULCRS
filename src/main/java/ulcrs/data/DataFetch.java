@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -15,15 +14,22 @@ import java.util.List;
 class DataFetch {
 
     // Constants for request
-    private final static String DROP_IN_REQUEST_URL = "https://dropin.engr.wisc.edu/services/DIMainController.php";
-    private final static String DROP_IN_REQUEST_DATA = "service=ScheduleService&function=exportSchedulerInformation";
-    private final static String DROP_IN_REQUEST_REQUEST_TYPE = "POST";
-    private final static String DROP_IN_REQUEST_CONTENT_TYPE = "application/x-www-form-urlencoded";
-    private final static String DROP_IN_REQUEST_CONTENT_LANGUAGE = "en-US";
-    private final static String CONTENT_TYPE = "Content-Type";
-    private final static String COOKIE = "Cookie";
-    private final static String CONTENT_LENGTH = "Content-Length";
-    private final static String CONTENT_LANGUAGE = "Content-Language";
+    private static final String DROP_IN_REQUEST_URL = "https://dropin.engr.wisc.edu/services/DIMainController.php";
+    private static final String DROP_IN_REQUEST_DATA = "service=ScheduleService&function=exportSchedulerInformation";
+    private static final String DROP_IN_REQUEST_REQUEST_TYPE = "POST";
+    private static final String DROP_IN_REQUEST_CONTENT_TYPE = "application/x-www-form-urlencoded";
+    private static final String DROP_IN_REQUEST_CONTENT_LANGUAGE = "en-US";
+    private static final String CONTENT_TYPE = "Content-Type";
+    private static final String COOKIE = "Cookie";
+    private static final String CONTENT_LENGTH = "Content-Length";
+    private static final String CONTENT_LANGUAGE = "Content-Language";
+
+    // Constants for request to direct JSON file
+    private static final String DROP_IN_JSON_URL = "https://dropin.engr.wisc.edu/services/ulcrs-requirements.json";
+    private static final String DROP_IN_JSON_REQUEST_TYPE = "GET";
+
+    private static Logger log = LoggerFactory.getLogger(DataFetch.class);
+
 
     // Constants for request to direct JSON file
     private final static String DROP_IN_JSON_URL = "https://dropin.engr.wisc.edu/services/ulcrs-requirements.json";
@@ -34,18 +40,18 @@ class DataFetch {
 
     /**
      * Fetch data from the ULC server and return response in form of List<String>.
-     *
+     * <p>
      * Specifically, this hits the Drop-In endpoint to retrieve course, shift, tutor, and tutor preference data.
      * However, Drop-In a peculiar way of doing requests, so we issue an HTTP POST as follows:
-     *      - URL: https://dropin-dev.engr.wisc.edu/services/DIMainController.php
-     *      - Set Content-Type to application/x-www-form-urlencoded
-     *      - Set request data to: service=ScheduleService&function=exportSchedulerInformation
-     *      - You must include the shibboleth cookie/credentials (passed as String)
-     *      - You must have admin credentials on the dev website (I believe Matt and Jason have this).
+     * - URL: https://dropin-dev.engr.wisc.edu/services/DIMainController.php
+     * - Set Content-Type to application/x-www-form-urlencoded
+     * - Set request data to: service=ScheduleService&function=exportSchedulerInformation
+     * - You must include the shibboleth cookie/credentials (passed as String)
+     * - You must have admin credentials on the dev website (I believe Matt and Jason have this).
      *
      * @param cookie String - shibboleth cookie used for authenticating with the UW NetID Service, to validate the call.
      * @return List<String> - the response from the ULC server call. Should contain one line of JSON. In case of
-     *          failure, returns empty List.
+     * failure, returns empty List.
      */
     static List<String> fetchFromULCServer(String cookie) {
         if (cookie == null || cookie.equals("")) {
@@ -55,8 +61,7 @@ class DataFetch {
 
         HttpURLConnection connection = null;
 
-        try
-        {
+        try {
             // Note:
             // The below commented code is the code required to hit the ULC endpoint to get ULC data.
             //
@@ -99,8 +104,7 @@ class DataFetch {
             List<String> response = new ArrayList<String>();
             StringBuilder builder = new StringBuilder();
             String line;
-            while ((line = rd.readLine()) != null)
-            {
+            while ((line = rd.readLine()) != null) {
                 //response.add(line);   // Commented from ULC endpoint code - left as reference.
                 builder.append(line.trim());
             }
@@ -108,16 +112,13 @@ class DataFetch {
             response.add(builder.toString());
 
             return response;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }
-        finally
-        {
-            if (connection != null)
+        } finally {
+            if (connection != null) {
                 connection.disconnect();
+            }
         }
     }
 }
