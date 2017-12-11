@@ -35,11 +35,13 @@ class ViewSchedulePage  extends React.Component {
             saveMessage: "",
             saveMessageModal: false,
             exiting: false,
-            index : 0
-        };
+            index : 0,
+            schedule : null
+        }
         this.toggleSaveModal = this.toggleSaveModal.bind(this);
         this.toggleMessageModal = this.toggleMessageModal.bind(this);
         this.getSchedule = this.getSchedule.bind(this);
+        this.updateSchedule = this.updateSchedule.bind(this);
         this.exportSchedule = this.exportSchedule.bind(this);
         this.exit = this.exit.bind(this);
         this.toggleExiting = this.toggleExiting.bind(this);
@@ -100,6 +102,10 @@ class ViewSchedulePage  extends React.Component {
         this.state.schedule = input;
     }
 
+    updateSchedule(s) {
+        this.state.schedule = s;
+    }
+
     exportSchedule(value){
         if (value === 0) {
             this.toggleSaveModal();
@@ -122,11 +128,11 @@ class ViewSchedulePage  extends React.Component {
         if (value === 1) {
             this.state.saveMessage = "Session saved: " + filename.value;
             this.toggleMessageModal();
-            ipc.send("save-session", filename.value, this.state.schedules[0]);
+            ipc.send("save-session", filename.value, this.state.schedule);
         } else if (value === 2) {
             this.state.saveMessage = "Uploaded to server: " + filename.value;
             this.toggleMessageModal();
-            ipc.send("save-session", filename.value, this.state.schedules[0]);
+            ipc.send("save-session", filename.value, this.state.schedule);
         }
         return errorMessage;
     }
@@ -145,7 +151,7 @@ class ViewSchedulePage  extends React.Component {
                     </div>
 
                     <div className="col-10 padding-0">
-                        <ScheduleTable schedules={this.state.schedules} index={this.state.index} tutorData={this.props.tutorData}/>
+                        <ScheduleTable schedules={this.state.schedules} updateSchedule={this.updateSchedule} index={this.state.index} tutorData={this.props.tutorData}/>
                     </div>
                     <div className="w-100"></div>
                     <div className="col-2 p-0">

@@ -214,10 +214,13 @@ app.on('ready', function () {
 
     ipc.on("save-session", (event, filename, schedule) => {
         let addCookieOption = {
-            //headers: {"Set-Cookie": [engrCookie.name + "=" + engrCookie.value]},
+            headers: {"Set-Cookie": [engrCookie.name + "=" + engrCookie.value]},
             method: 'POST',
             body: JSON.stringify(schedule)
         };
+        console.log("==============================JSON===================================");
+        console.log(addCookieOption.body);
+        console.log("==============================JSON===================================");
         fetch('http://localhost:4567/ulcrs/session/' + filename, addCookieOption);
     })
 }); //app is ready
