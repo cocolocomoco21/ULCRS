@@ -4,6 +4,8 @@ import ulcrs.models.course.Course;
 import ulcrs.models.shift.Shift;
 import ulcrs.models.tutor.Tutor;
 
+import java.util.Objects;
+
 /**
  * Immutable object representing a tuple of tutor-course-shift, used for scheduling.
  */
@@ -57,5 +59,20 @@ public class Tuple {
                 .append(shift.getDay().name());
 
         return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tuple tuple = (Tuple) o;
+        return Objects.equals(tutor, tuple.tutor) &&
+                Objects.equals(course, tuple.course) &&
+                Objects.equals(shift, tuple.shift);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tutor, course, shift);
     }
 }

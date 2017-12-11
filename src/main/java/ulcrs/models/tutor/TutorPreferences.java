@@ -76,11 +76,11 @@ public class TutorPreferences {
     }
 
     public int findPossibleShiftFrequency() {
-        return this.shiftFrequencyPreferences.entrySet()
-                .stream()
-                .filter(entry -> Arrays.asList(Rank.PREFER, Rank.WILLING).contains(entry.getKey()))
-                .collect(Collectors.toSet())
-                .size();
+        Integer possibleShiftAmount = this.shiftFrequencyPreferences.get(Rank.WILLING);
+        if (possibleShiftAmount == null) {
+            possibleShiftAmount = 0;
+        }
+        return possibleShiftAmount;
     }
 
     @Override

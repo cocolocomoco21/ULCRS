@@ -2,6 +2,7 @@ package ulcrs.models.shift;
 
 import com.google.gson.annotations.Expose;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class ScheduledShift {
@@ -14,6 +15,7 @@ public class ScheduledShift {
 
     public ScheduledShift(Shift shift) {
         this.shift = shift;
+        this.assignments = new HashSet<>();
     }
 
     public Shift getShift() {
@@ -34,5 +36,9 @@ public class ScheduledShift {
 
     public void addAssignment(Assignment assignment) {
         this.assignments.add(assignment);
+    }
+
+    public int getShiftId() {
+        return this.shift.getId();
     }
 }

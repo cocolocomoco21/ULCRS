@@ -184,17 +184,9 @@ public class DataStore {
         reader = new JsonReader(new InputStreamReader(is));
         getInstance().courses = new Gson().fromJson(reader, new TypeToken<List<Course>>() {}.getType());
 
-        // TODO using tutors and courses, get all shift information and save into getInstance().shifts
-        // Shift
-        LocalTime startTime = LocalTime.of(6, 30);
-        LocalTime endTime = LocalTime.of(9, 0);
-
-        getInstance().shifts = Arrays.asList(
-                new Shift(0, DayOfWeek.SUNDAY, startTime, endTime),
-                new Shift(1, DayOfWeek.MONDAY, startTime, endTime),
-                new Shift(2, DayOfWeek.TUESDAY, startTime, endTime),
-                new Shift(3, DayOfWeek.WEDNESDAY, startTime, endTime),
-                new Shift(4, DayOfWeek.THURSDAY, startTime, endTime));
+        is = DataStore.class.getClassLoader().getResourceAsStream("mockShifts_Full.json");
+        reader = new JsonReader(new InputStreamReader(is));
+        getInstance().shifts = new Gson().fromJson(reader, new TypeToken<List<Shift>>() {}.getType());
 
         getInstance().timeFetched = LocalDateTime.now();
     }
