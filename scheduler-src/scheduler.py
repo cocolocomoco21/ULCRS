@@ -170,7 +170,7 @@ def main(tutor_file, course_file, shift_file, schedule_file, time_limit_in_secon
                     if collector.Value(best_solution, schedule[(i, j, k)]):
                         # assignment.append(str(tutors[i]['id']))
                         assignment.append(tutors[i]['firstName'][0] + tutors[i]['lastName'][0])
-                print '/'.join(assignment).ljust(SOLUTION_WIDTH),
+                # print '/'.join(assignment).ljust(SOLUTION_WIDTH),
             print
         print 'Score:', collector.Value(best_solution, score)
     else:
