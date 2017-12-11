@@ -35,11 +35,13 @@ class ViewSchedulePage  extends React.Component {
             saveMessage: "",
             saveMessageModal: false,
             exiting: false,
-            index : 0
-        };
+            index : 0,
+            schedule : null
+        }
         this.toggleSaveModal = this.toggleSaveModal.bind(this);
         this.toggleMessageModal = this.toggleMessageModal.bind(this);
         this.getSchedule = this.getSchedule.bind(this);
+        this.updateSchedule = this.updateSchedule.bind(this);
         this.exportSchedule = this.exportSchedule.bind(this);
         this.exit = this.exit.bind(this);
         this.toggleExiting = this.toggleExiting.bind(this);
@@ -101,6 +103,10 @@ class ViewSchedulePage  extends React.Component {
         this.state.schedule = input;
     }
 
+    updateSchedule(s) {
+        this.state.schedule = s;
+    }
+
     exportSchedule(value){
         if (value === 0) {
             this.toggleSaveModal();
@@ -123,11 +129,11 @@ class ViewSchedulePage  extends React.Component {
         if (value === 1) {
             this.state.saveMessage = "Session saved: " + filename.value;
             this.toggleMessageModal();
-            ipc.send("save-session", filename.value, this.state.schedules[0]);
+            ipc.send("save-session", filename.value, this.state.schedule);
         } else if (value === 2) {
             this.state.saveMessage = "Uploaded to server: " + filename.value;
             this.toggleMessageModal();
-            ipc.send("save-session", filename.value, this.state.schedules[0]);
+            ipc.send("save-session", filename.value, this.state.schedule);
         }
         return errorMessage;
     }
@@ -141,11 +147,10 @@ class ViewSchedulePage  extends React.Component {
             return (<div></div>)
         }
 
-        return (<ScheduleTable schedules={this.state.schedules} index={this.state.index} tutorData={this.props.tutorData}/>)
+        return (<ScheduleTable schedules={this.state.schedules} updateSchedule={this.updateSchedule} index={this.state.index} tutorData={this.props.tutorData}/>)
     }
 
     render(){
-
 
         return (
             <div className="container-fluid">
@@ -174,13 +179,6 @@ class ViewSchedulePage  extends React.Component {
                         <button type="button" className="btn btn-lg" onClick={this.toggleSaveModal}
                                 style={{"textAlign": "center", width:"100%", height:"60%"}} > Save this Schedule</button>
 
-                    </div>
-                    {/*<div className="col-2">*/}
-                        {/*<div className="d-flex align-items-center justify-content-center">*/}
-                            {/*<button className="btn btn-danger btn-block" onClick={this.toggleExiting}*/}
-                                    {/*style={{"textAlign": "center", width:"200px", height:"100px"}} > Exit </button>*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
                 </div>
                 <Modal isOpen={this.state.modal} toggle={this.toggleSaveModal}>
 

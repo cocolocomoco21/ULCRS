@@ -222,6 +222,9 @@ app.on('ready', function () {
             method: 'POST',
             body: JSON.stringify(schedule)
         };
+        console.log("==============================JSON===================================");
+        console.log(addCookieOption.body);
+        console.log("==============================JSON===================================");
         fetch('http://localhost:4567/ulcrs/session/' + filename, addCookieOption);
     })
 }); //app is ready

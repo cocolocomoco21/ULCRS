@@ -140,21 +140,6 @@ class ScheduleTable extends React.Component {
                                     </div>
                                 </div>);
         }
-        //
-        // if (containerList.length < 6){
-        //     for (let i =0; i < 6 - containerList.length; i++){
-        //         containerList.push(<div className="col-2">
-        //                                 <div className="row">
-        //                                     <div className="col text-center"
-        //                                          style={{background: "#c5050c", color: "#f9f9f9", padding:12}}>
-        //                                         ""
-        //                                     </div>
-        //                                 </div>
-        //                             </div>
-        //             );
-        //     }
-        // }
-
         return (
             <div className="container-fluid px-0 " style={{width:"100%",height:"100%"}}>
                 <div className="row p-0" style={{height:"100%"}}>
