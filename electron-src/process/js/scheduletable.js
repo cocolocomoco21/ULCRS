@@ -116,7 +116,7 @@ class ScheduleTable extends React.Component {
         }
         let containerList = [];
         let scheduledShifts = this.state.schedules[this.state.index].scheduledShifts;
-        this.parseContainerDataList();
+        this.props.updateSchedule(this.parseContainerDataList());
         for (let col = 0; col < this.state.containerDataList.length; col++){
             console.log(col);
             containerList.push(<div className="col-2">

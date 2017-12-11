@@ -174,7 +174,7 @@ app.on('ready', function () {
                  )
                  .then(res => res.text())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     if (data !== "null") {
                         console.log("received data");
                         event.sender.send("receive-schedule-data", JSON.parse(data));
