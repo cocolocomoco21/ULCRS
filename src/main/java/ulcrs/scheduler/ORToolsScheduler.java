@@ -22,9 +22,7 @@ import java.util.List;
 public class ORToolsScheduler {
 
     private static final String SCHEDULER_PATH = "../scheduler-src/";
-    // TODO: change folder name from "examples" to "resources" to use real data
-    private static final String SCHEDULER_RESOURCE_PATH = SCHEDULER_PATH + "examples/";
-    private static final String CODEC = "UTF-8";
+    private static final String SCHEDULER_RESOURCE_PATH = SCHEDULER_PATH + "resources/";
     private static final int BUFFER_SIZE = 4096;
 
     private static final String TUTOR_FILENAME = "tutor.json";
@@ -41,15 +39,14 @@ public class ORToolsScheduler {
 
         List<Schedule> emptyList = new ArrayList<>();
 
-        // TODO: uncomment use real data
-        /*try {
+        try {
             writeJsonToScheduler(TUTOR_FILENAME, tutors);
             writeJsonToScheduler(COURSE_FILENAME, courses);
             writeJsonToScheduler(SHIFT_FILENAME, shifts);
         } catch (IOException e) {
             log.warn("Cannot save file to scheduler resource folder", e);
             return emptyList;
-        }*/
+        }
 
         try {
             callScheduler();

@@ -3,7 +3,10 @@ import sys
 
 import data
 
-SOLUTION_WIDTH = 10
+SOLUTION_LIMIT = 50
+TIME_LIMIT_IN_SECOND = 10
+
+SOLUTION_WIDTH = 20
 TRAILS = 10
 
 
@@ -34,7 +37,7 @@ def main(tutor_file, course_file, shift_file, schedule_file):
                      range(num_courses)]
 
     # scoring expression
-    score = solver.IntVar(0, 1000000, 'score')
+    score = solver.IntVar(0, 10000000, 'score')
 
     # tutor only tutors certain courses
     tutor_course_scores = []
@@ -48,7 +51,7 @@ def main(tutor_file, course_file, shift_file, schedule_file):
                     solver.Add(schedule[(i, j, k)] == False)
         if willing_courses:
             tutor_course_scores.append(sum([schedule[(i, j, course_idx[course_id])] for j in range(num_shifts)
-                                            for course_id in willing_courses]))
+                                            for course_id in willing_courses if course_id in course_idx]))
 
     # tutor only tutors on certain shifts
     tutor_shift_scores = []
@@ -76,8 +79,8 @@ def main(tutor_file, course_file, shift_file, schedule_file):
             tutor_shift = solver.BoolVar('tutor %d on shift %d' % (i, j))
             solver.Add(tutor_shift == (sum([schedule[(i, j, k)] for k in range(num_courses)]) > 0))
             tutor_shifts.append(tutor_shift)
-        solver.Add(sum(tutor_shifts) < willing_freq)
-        tutor_shift_freq_scores.append(abs(sum(tutor_shifts) - prefer_freq))
+        solver.Add(sum(tutor_shifts) <= willing_freq)
+        tutor_shift_freq_scores.append(solver.Max(sum(tutor_shifts) - prefer_freq, 0))
 
     # course has enough shifts in week
     course_shift_scores = []
@@ -88,8 +91,9 @@ def main(tutor_file, course_file, shift_file, schedule_file):
             course_shift = solver.BoolVar('course %d on shift %d' % (k, j))
             solver.Add(course_shift == (sum([schedule[(i, j, k)] for i in range(num_tutors)]) > 0))
             course_shifts.append(course_shift)
-        solver.Add(sum(course_shifts) >= data.get_required_shift_amount(course))
-        course_shift_scores.append(abs(data.get_preferred_shift_amount(course) - sum(course_shifts)))
+        # solver.Add(sum(course_shifts) >= data.get_required_shift_amount(course))
+        course_shift_scores.append(solver.Max(data.get_required_shift_amount(course) - sum(course_shifts), 0) * 100)
+        course_shift_scores.append(solver.Max(data.get_preferred_shift_amount(course) - sum(course_shifts), 0))
 
     # tutor has maximum course intensity limit
     tutor_intensity_scores = []
@@ -113,18 +117,22 @@ def main(tutor_file, course_file, shift_file, schedule_file):
         tutor_intensity_scores.append(6 - sum(course_intensities))
 
     # course has enough tutor on required shifts
+    course_tutor_amount_scores = []
     for j in range(num_shifts):
         shift = data.get_shift_id(shifts[j])
         for k in range(num_courses):
             course = courses[k]
             if shift in data.get_required_shifts(course):
                 tutor_num = sum([schedule[(i, j, k)] for i in range(num_tutors)])
-                solver.Add(tutor_num >= data.get_required_tutor_amount(course, shift))
+                # solver.Add(tutor_num >= data.get_required_tutor_amount(course, shift))
+                course_tutor_amount_scores.append(
+                    solver.Max(data.get_required_tutor_amount(course, shift) - tutor_num, 0) * 100)
 
     solver.Add(score == sum(tutor_course_scores)
                + sum(tutor_shift_freq_scores)
                + sum(course_shift_scores)
-               + sum(tutor_intensity_scores))
+               + sum(tutor_intensity_scores)
+               + sum(course_tutor_amount_scores))
     objective = solver.Minimize(score, 1)
 
     # Create the decision builder.
@@ -137,7 +145,10 @@ def main(tutor_file, course_file, shift_file, schedule_file):
     collector.Add(score)
     collector.AddObjective(score)
 
-    if solver.Solve(db, [objective, collector]):
+    solutions_limit = solver.SolutionsLimit(SOLUTION_LIMIT)
+    time_limit = solver.TimeLimit(TIME_LIMIT_IN_SECOND * 1000)
+
+    if solver.Solve(db, [objective, collector, solutions_limit, time_limit]):
         solution_count = collector.SolutionCount()
         print 'Solutions found:', solution_count, '\n'
 
@@ -150,13 +161,14 @@ def main(tutor_file, course_file, shift_file, schedule_file):
 
         for k in range(num_courses):
             course = courses[k]
-            print str(course['id']).ljust(SOLUTION_WIDTH),
+            print str(course['name']).ljust(SOLUTION_WIDTH),
             for j in range(num_shifts):
                 assignment = []
                 for i in range(num_tutors):
                     if collector.Value(best_solution, schedule[(i, j, k)]):
-                        assignment.append(str(tutors[i]['id']))
-                print ''.join(assignment).ljust(SOLUTION_WIDTH),
+                        # assignment.append(str(tutors[i]['id']))
+                        assignment.append(tutors[i]['firstName'][0] + tutors[i]['lastName'][0])
+                print '/'.join(assignment).ljust(SOLUTION_WIDTH),
             print
         print 'Score:', collector.Value(best_solution, score)
     else:

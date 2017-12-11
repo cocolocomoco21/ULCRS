@@ -101,7 +101,7 @@ public class DataParse {
             CourseRequirements requirements = course.getCourseRequirements();
 
             // Course has empty specifics AND requiredShiftAmount and numTutors from ULC
-            Map<Shift, Integer> numTutorsPerShift = requirements.getNumTutorsPerShift();
+            Map<Integer, Integer> numTutorsPerShift = requirements.getNumTutorsPerShift();
             int requiredShiftAmount = requirements.getRequiredShiftAmount();
             int numTutorsPerWeek = requirements.getNumTutorsPerWeek();
             if (numTutorsPerShift == null || numTutorsPerShift.isEmpty() &&
