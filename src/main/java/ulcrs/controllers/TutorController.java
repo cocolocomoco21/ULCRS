@@ -66,7 +66,7 @@ public class TutorController extends BaseController {
                     .collect(Collectors.toList());
         }
 
-         return tutors;
+        return tutors;
     }
 
     private Tutor getTutor(Request request, Response response) {

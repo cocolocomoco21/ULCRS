@@ -26,7 +26,7 @@ public class SchedulerHelper {
      *
      * @return boolean - status of generation of schedules.
      */
-    public static boolean generateSchedule() {
+    public static boolean generateSchedule(int timeLimitInSecond, int solutionLimit) {
         // TODO handle getting data when it has not been fetched (i.e. don't use empty string for cookie in order to get this data)
         List<Tutor> tutors = DataStore.getTutors("");
         List<Course> courses = DataStore.getCourses("");
@@ -40,7 +40,7 @@ public class SchedulerHelper {
             log.info("Starting scheduling at " + LocalDateTime.now().toLocalTime().toString() + "...");
 
             // Run scheduling algorithm
-            generatedSchedules = Scheduler.schedule(tutors, courses, shifts);
+            generatedSchedules = ORToolsScheduler.schedule(tutors, courses, shifts, timeLimitInSecond, solutionLimit);
             isScheduling = false;
 
             log.info("Ending scheduling at " + LocalDateTime.now().toLocalTime().toString() + "...");

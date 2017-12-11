@@ -301,7 +301,7 @@ public class Scheduler {
         List<Course> courses;
         List<Shift> shifts;
 
-        boolean useReal = true;
+        boolean useReal = false;
 
         if (useReal) {
             // Note: this file is not committed and should not be. If you don't make this file yourself (i.e. copy this from the ULC, you will have problems).
