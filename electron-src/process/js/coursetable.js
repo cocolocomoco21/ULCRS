@@ -26,29 +26,31 @@ class CourseTable extends React.Component {
             )
         }.bind(this));
         return (
-            <div className="card card-inverse" style={{background: "#c5050c", border: "#ffffff", color: "#ffffff"}}>
-                <div className="card-block">
+            <div className="card card-inverse" style={{height:"100%",width:"100%", background: "#c5050c", border: "#ffffff", color: "#ffffff"}}>
+                <div className="card-block"  style={{height:"100%"}}>
                     <h3 className="card-header">
                         Review your courses
                     </h3>
-                    <div className="card-body p-0">
-                        <div className="container table-scroll p-0">
-                        <table className="table table-striped" >
+                    <div className="card-body p-0 " style={{height:"90%"}}>
+                        <div className="container-fluid table-scroll p-0" style={{height:"100%"}}>
+                            <div className="row pl-3" style={{height:"100%"}}>
+                            <table className="table table-striped" style={{height:"100%"}} >
                             <thead style={{backgroundColor: "#9b0000",
                                 color: "#f9f9f9"}}>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Required Shifts</th>
-                                <th>Shift Freq. Required</th>
-                                <th>Shift Freq. Preferred</th>
-                                <th>Intensity</th>
+                                <th className="no-wrap">ID</th>
+                                <th className="no-wrap">Name</th>
+                                <th className="no-wrap">Required Shifts</th>
+                                <th className="no-wrap">Shift Freq. Required</th>
+                                <th className="no-wrap">Shift Freq. Preferred</th>
+                                <th className="no-wrap">Intensity</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody style={{height:"100%"}}>
                             {courses}
                             </tbody>
                         </table>
+                            </div>
                         </div>
                     </div> {/*tool bar */}
                 </div>

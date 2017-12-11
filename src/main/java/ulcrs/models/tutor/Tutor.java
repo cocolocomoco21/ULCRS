@@ -1,6 +1,11 @@
 package ulcrs.models.tutor;
 
 import com.google.gson.annotations.Expose;
+import ulcrs.models.course.Course;
+import ulcrs.models.shift.Shift;
+
+import java.util.Objects;
+import java.util.Set;
 
 public class Tutor {
 
@@ -65,5 +70,53 @@ public class Tutor {
 
     public void setTutorStatus(TutorStatus tutorStatus) {
         this.tutorStatus = tutorStatus;
+    }
+
+    /**
+     * Return all courses that are possible for the tutor, i.e. all Rank=Preferred or Willing.
+     */
+    public Set<Course> findPossibleCourses() {
+        return this.tutorPreferences.findPossibleCourses();
+    }
+
+    /**
+     * Return all shifts that are possible for the tutor, i.e. all shifts with Rank=Preferred or Willing.
+     */
+    public Set<Shift> findPossibleShifts() {
+        return this.tutorPreferences.findPossibleShifts();
+    }
+
+    /**
+     * Return the possible shift frequency for the tutor, i.e. the sum of shift frequency preferences with Rank=Preferred or Willing
+     */
+    public int findPossibleShiftFrequency() {
+        return this.tutorPreferences.findPossibleShiftFrequency();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Tutor{");
+        sb.append("id=").append(id);
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", tutorPreferences=").append(tutorPreferences);
+        sb.append(", tutorStatus=").append(tutorStatus);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tutor tutor = (Tutor) o;
+        return id == tutor.id &&
+                Objects.equals(firstName, tutor.firstName) &&
+                Objects.equals(lastName, tutor.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName);
     }
 }

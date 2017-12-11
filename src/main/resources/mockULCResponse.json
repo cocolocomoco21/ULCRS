@@ -1,0 +1,2494 @@
+{
+    "courses": [
+        {
+            "id": 2122,
+            "name": "ISYE 313"
+        },
+        {
+            "id": 2673,
+            "name": "CBE 310"
+        },
+        {
+            "id": 2675,
+            "name": "CBE 250"
+        },
+        {
+            "id": 2677,
+            "name": "CBE 311"
+        },
+        {
+            "id": 2678,
+            "name": "CBE 320"
+        },
+        {
+            "id": 2749,
+            "name": "CHEM 103"
+        },
+        {
+            "id": 2750,
+            "name": "CHEM 104"
+        },
+        {
+            "id": 2755,
+            "name": "CHEM 109"
+        },
+        {
+            "id": 2761,
+            "name": "CHEM 327"
+        },
+        {
+            "id": 2762,
+            "name": "CHEM 329"
+        },
+        {
+            "id": 2765,
+            "name": "CHEM 341"
+        },
+        {
+            "id": 2767,
+            "name": "CHEM 343"
+        },
+        {
+            "id": 2769,
+            "name": "CHEM 345"
+        },
+        {
+            "id": 3306,
+            "name": "CIVENGR 310"
+        },
+        {
+            "id": 3307,
+            "name": "CIVENGR 311"
+        },
+        {
+            "id": 3310,
+            "name": "CIVENGR 320"
+        },
+        {
+            "id": 3319,
+            "name": "CIVENGR 340"
+        },
+        {
+            "id": 4244,
+            "name": "ECE 354"
+        },
+        {
+            "id": 4246,
+            "name": "COMPSCI 367"
+        },
+        {
+            "id": 6287,
+            "name": "ECE 230"
+        },
+        {
+            "id": 6324,
+            "name": "ECE 330"
+        },
+        {
+            "id": 6330,
+            "name": "ECE 340"
+        },
+        {
+            "id": 6332,
+            "name": "ECE 342"
+        },
+        {
+            "id": 6337,
+            "name": "ECE 352"
+        },
+        {
+            "id": 6339,
+            "name": "ECE 353"
+        },
+        {
+            "id": 6350,
+            "name": "ECE 376"
+        },
+        {
+            "id": 6573,
+            "name": "EMA 201"
+        },
+        {
+            "id": 6574,
+            "name": "EMA 202"
+        },
+        {
+            "id": 6582,
+            "name": "EMA 303"
+        },
+        {
+            "id": 10227,
+            "name": "ISYE 315"
+        },
+        {
+            "id": 10235,
+            "name": "ISYE 323"
+        },
+        {
+            "id": 11616,
+            "name": "MATH 171"
+        },
+        {
+            "id": 11623,
+            "name": "MATH 221"
+        },
+        {
+            "id": 11624,
+            "name": "MATH 222"
+        },
+        {
+            "id": 11628,
+            "name": "MATH 234"
+        },
+        {
+            "id": 11645,
+            "name": "MATH 319"
+        },
+        {
+            "id": 11646,
+            "name": "MATH 320"
+        },
+        {
+            "id": 11655,
+            "name": "MATH 340"
+        },
+        {
+            "id": 11945,
+            "name": "ME 231"
+        },
+        {
+            "id": 11948,
+            "name": "ME 240"
+        },
+        {
+            "id": 11960,
+            "name": "ME 306"
+        },
+        {
+            "id": 11975,
+            "name": "ME 340"
+        },
+        {
+            "id": 11991,
+            "name": "ME 361"
+        },
+        {
+            "id": 11995,
+            "name": "ME 363"
+        },
+        {
+            "id": 11996,
+            "name": "ME 364"
+        },
+        {
+            "id": 12616,
+            "name": "MSE 330"
+        },
+        {
+            "id": 12621,
+            "name": "MSE 350"
+        },
+        {
+            "id": 12622,
+            "name": "MSE 351"
+        },
+        {
+            "id": 13796,
+            "name": "NE 305"
+        },
+        {
+            "id": 15599,
+            "name": "PHYSICS 201"
+        },
+        {
+            "id": 15600,
+            "name": "PHYSICS 202"
+        },
+        {
+            "id": 15602,
+            "name": "PHYSICS 205"
+        },
+        {
+            "id": 15606,
+            "name": "PHYSICS 241"
+        },
+        {
+            "id": 18438,
+            "name": "STAT 224"
+        },
+        {
+            "id": 18443,
+            "name": "STAT 311"
+        },
+        {
+            "id": 18444,
+            "name": "STAT 312"
+        },
+        {
+            "id": 21159,
+            "name": "STAT 324"
+        },
+        {
+            "id": 21682,
+            "name": "ECE 551"
+        },
+        {
+            "id": 22784,
+            "name": "ECE 252"
+        },
+        {
+            "id": 23133,
+            "name": "CBE 255"
+        },
+        {
+            "id": 23741,
+            "name": "ECE 203"
+        },
+        {
+            "id": 23743,
+            "name": "ECE 219"
+        },
+        {
+            "id": 24209,
+            "name": "COMPSCI 301"
+        },
+        {
+            "id": 24794,
+            "name": "COMPSCI 200"
+        },
+        {
+            "id": 24795,
+            "name": "COMPSCI 300"
+        }
+    ],
+    "shifts": [
+        {
+            "id": 1,
+            "day": 0,
+            "startTime": "2017-12-07T18:30:00",
+            "endTime": "2017-12-07T21:00:00"
+        },
+        {
+            "id": 2,
+            "day": 1,
+            "startTime": "2017-12-07T18:30:00",
+            "endTime": "2017-12-07T21:00:00"
+        },
+        {
+            "id": 3,
+            "day": 2,
+            "startTime": "2017-12-07T18:30:00",
+            "endTime": "2017-12-07T21:00:00"
+        },
+        {
+            "id": 4,
+            "day": 3,
+            "startTime": "2017-12-07T18:30:00",
+            "endTime": "2017-12-07T21:00:00"
+        },
+        {
+            "id": 5,
+            "day": 4,
+            "startTime": "2017-12-07T18:30:00",
+            "endTime": "2017-12-07T21:00:00"
+        }
+    ],
+    "tutors": [
+        {
+            "id": "788586",
+            "firstName": "Darth",
+            "lastName": "Vader",
+            "role": "ADMIN_HEAD_TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "4850785",
+            "firstName": "Luke",
+            "lastName": "Skywalker",
+            "role": "TUTOR",
+            "prefCourses": [
+                "11995",
+                "11996"
+            ],
+            "willingCourses": [
+                "2749",
+                "2750",
+                "11991",
+                "15599",
+                "15600",
+                "15602",
+                "15606"
+            ],
+            "prefShift": [
+                "5"
+            ],
+            "willingShift": [
+                "1",
+                "2"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "3"
+        },
+        {
+            "id": "4955683",
+            "firstName": "Obi-Wan",
+            "lastName": "Kenobi",
+            "role": "TUTOR",
+            "prefCourses": [
+                "11655",
+                "11645",
+                "11646"
+            ],
+            "willingCourses": [
+                "11628"
+            ],
+            "prefShift": [
+                "2"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "4957048",
+            "firstName": "Leia",
+            "lastName": "Organa",
+            "role": "TUTOR",
+            "prefCourses": [
+                "11628"
+            ],
+            "willingCourses": [
+                "2767",
+                "2769",
+                "2749",
+                "2750"
+            ],
+            "prefShift": [
+                "1"
+            ],
+            "willingShift": [
+                "2",
+                "4"
+            ],
+            "prefShiftAmount": "0",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5035438",
+            "firstName": "R2-D2",
+            "lastName": "",
+            "role": "TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5043485",
+            "firstName": "Jango",
+            "lastName": "Fett",
+            "role": "TUTOR",
+            "prefCourses": [
+                "11991",
+                "12621",
+                "6350"
+            ],
+            "willingCourses": [
+                "11623",
+                "15599",
+                "11624"
+            ],
+            "prefShift": [
+                "2"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5047827",
+            "firstName": "Padme",
+            "lastName": "Amidala",
+            "role": "ADMIN_TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5049836",
+            "firstName": "Wedge",
+            "lastName": "Antilles",      
+            "role": "TUTOR",
+            "prefCourses": [
+                "12616",
+                "12622",
+                "2767",
+                "2769",
+                "15599",
+                "15600"
+            ],
+            "willingCourses": [
+                "11623",
+                "11624",
+                "11628",
+                "11645"
+            ],
+            "prefShift": [
+                "2"
+            ],
+            "willingShift": [
+                "3"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5050627",
+            "firstName": "Sheev",
+            "lastName": "Palpatine",
+            "role": "HEAD_TUTOR",
+            "prefCourses": [
+                "11948",
+                "11991",
+                "11995",
+                "11996",
+                "11975",
+                "6573",
+                "6574"
+            ],
+            "willingCourses": [
+                "11960",
+                "11945"
+            ],
+            "prefShift": [
+                "3",
+                "4"
+            ],
+            "willingShift": [
+                "5"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5050704",
+            "firstName": "Poe",
+            "lastName": "Dameron",
+            "role": "TUTOR",
+            "prefCourses": [
+                "11960",
+                "24794",
+                "24795",
+                "15599",
+                "15600",
+                "11975"
+            ],
+            "willingCourses": [
+                "11945",
+                "11995",
+                "11996",
+                "4246",
+                "11623",
+                "11624",
+                "11616"
+            ],
+            "prefShift": [
+                "4"
+            ],
+            "willingShift": [
+                "3",
+                "5"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5053219",
+            "firstName": "General",
+            "lastName": "Grevious",
+            "role": "ADMIN_HEAD_TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5060854",
+            "firstName": "Qui-Gon",
+            "lastName": "Jinn",
+            "role": "TUTOR",
+            "prefCourses": [
+                "6573",
+                "6574",
+                "6582",
+                "4239"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "3",
+                "5"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "2",
+            "willingShiftAmount": "0"
+        },
+        {
+            "id": "5066036",
+            "firstName": "Admiral",
+            "lastName": "Ackbar",
+            "role": "TUTOR",
+            "prefCourses": [
+                "2749",
+                "2750",
+                "2755",
+                "2761",
+                "2762",
+                "15599",
+                "15600"
+            ],
+            "willingCourses": [
+                "2675",
+                "23133",
+                "11616",
+                "11623",
+                "11624"
+            ],
+            "prefShift": [
+                "2",
+                "5"
+            ],
+            "willingShift": [
+                "3"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "0"
+        },
+        {
+            "id": "5071162",
+            "firstName": "Mace",
+            "lastName": "Windu",
+            "role": "TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5098649",
+            "firstName": "Anakin",
+            "lastName": "Skywalker",
+            "role": "TUTOR",
+            "prefCourses": [
+                "15599",
+                "15600",
+                "11948",
+                "6574"
+            ],
+            "willingCourses": [
+                "15602",
+                "6573"
+            ],
+            "prefShift": [
+                "1",
+                "3",
+                "4"
+            ],
+            "willingShift": [
+                "5"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5099781",
+            "firstName": "General Moff",
+            "lastName": "Tarkin",
+            "role": "HEAD_TUTOR",
+            "prefCourses": [
+                "11628",
+                "18444",
+                "10227",
+                "2122"
+            ],
+            "willingCourses": [
+                "11616",
+                "11623",
+                "11624"
+            ],
+            "prefShift": [
+                "3"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5104493",
+            "firstName": "Han",
+            "lastName": "Solo",
+            "role": "TUTOR",
+            "prefCourses": [
+                "3319",
+                "6582"
+            ],
+            "willingCourses": [
+                "3307"
+            ],
+            "prefShift": [
+                "1"
+            ],
+            "willingShift": [
+                "3"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5107685",
+            "firstName": "Jabba",
+            "lastName": "the Hut",
+            "role": "TUTOR",
+            "prefCourses": [
+                "2122",
+                "10227",
+                "10235"
+            ],
+            "willingCourses": [
+                "18443",
+                "18444"
+            ],
+            "prefShift": [
+                "3"
+            ],
+            "willingShift": [
+                "2"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5111348",
+            "firstName": "Lando",
+            "lastName": "Calrissian",
+            "role": "ADMIN_HEAD_TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": "0",
+            "willingShiftAmount": "0"
+        },
+        {
+            "id": "5115831",
+            "firstName": "Darth",
+            "lastName": "Maul",
+            "role": "HEAD_TUTOR",
+            "prefCourses": [
+                "6573",
+                "11991",
+                "11995"
+            ],
+            "willingCourses": [
+                "6582"
+            ],
+            "prefShift": [
+                "4",
+                "2"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "2",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5119932",
+            "firstName": "Ki Adi",
+            "lastName": "Mundi",
+            "role": "TUTOR",
+            "prefCourses": [
+                "6287",
+                "6330",
+                "6350",
+                "6582",
+                "11960"
+            ],
+            "willingCourses": [
+                "24794",
+                "24795",
+                "4246",
+                "6573"
+            ],
+            "prefShift": [
+                "3",
+                "5"
+            ],
+            "willingShift": [
+                "4",
+                "1"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5151406",
+            "firstName": "Jar Jar",
+            "lastName": "Binks",
+            "role": "TUTOR",
+            "prefCourses": [
+                "3310",
+                "6574",
+                "11624",
+                "11646"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "1",
+                "2"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5159531",
+            "firstName": "Aayla",
+            "lastName": "Secura",
+            "role": "TUTOR",
+            "prefCourses": [
+                "6287",
+                "6330",
+                "6350",
+                "21682",
+                "6324",
+                "23741",
+                "4246"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "3",
+                "4",
+                "5"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "2",
+            "willingShiftAmount": "3"
+        },
+        {
+            "id": "5160037",
+            "firstName": "Plo",
+            "lastName": "Koon",
+            "role": "TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5173284",
+            "firstName": "Commander",
+            "lastName": "Cody",
+            "role": "TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5190681",
+            "firstName": "Gonk",
+            "lastName": "Droid",
+            "role": "TUTOR",
+            "prefCourses": [
+                "2678"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "1"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "0"
+        },
+        {
+            "id": "5191211",
+            "firstName": "Medic",
+            "lastName": "Droid",
+            "role": "HEAD_TUTOR",
+            "prefCourses": [
+                "6573",
+                "11616",
+                "11623",
+                "11624"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "2",
+                "3",
+                "5"
+            ],
+            "willingShift": [
+                "1"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5208384",
+            "firstName": "C-3PO",
+            "lastName": "",
+            "role": "TUTOR",
+            "prefCourses": [
+                "2749",
+                "2750",
+                "2767",
+                "2769"
+            ],
+            "willingCourses": [
+                "11623",
+                "2761",
+                "2762"
+            ],
+            "prefShift": [],
+            "willingShift": [
+                "2"
+            ],
+            "prefShiftAmount": "0",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5210955",
+            "firstName": "Greedo",
+            "lastName": "",
+            "role": "HEAD_TUTOR",
+            "prefCourses": [
+                "11991",
+                "11995"
+            ],
+            "willingCourses": [
+                "11960",
+                "6573",
+                "6582"
+            ],
+            "prefShift": [
+                "2",
+                "4"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "2",
+            "willingShiftAmount": "0"
+        },
+        {
+            "id": "5213760",
+            "firstName": "Saw",
+            "lastName": "Gerrera",
+            "role": "TUTOR",
+            "prefCourses": [
+                "11616",
+                "11623",
+                "11624",
+                "18438",
+                "18443",
+                "21159"
+            ],
+            "willingCourses": [
+                "11646",
+                "11655",
+                "18444"
+            ],
+            "prefShift": [
+                "4"
+            ],
+            "willingShift": [
+                "3"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5248630",
+            "firstName": "Bodhi",
+            "lastName": "Rook",
+            "role": "HEAD_TUTOR",
+            "prefCourses": [
+                "3306",
+                "3307",
+                "3310",
+                "6573"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "2",
+                "5"
+            ],
+            "willingShift": [
+                "3"
+            ],
+            "prefShiftAmount": "2",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5249773",
+            "firstName": "Supreme Leader",
+            "lastName": "Snoke",
+            "role": "TUTOR",
+            "prefCourses": [
+                "2749",
+                "2750",
+                "2767",
+                "2769",
+                "6573"
+            ],
+            "willingCourses": [
+                "2761",
+                "11960"
+            ],
+            "prefShift": [
+                "4",
+                "5"
+            ],
+            "willingShift": [
+                "3"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5250335",
+            "firstName": "",
+            "lastName": "Sebulba",
+            "role": "TUTOR",
+            "prefCourses": [
+                "11628",
+                "6582",
+                "11960"
+            ],
+            "willingCourses": [
+                "2749",
+                "11616",
+                "11623",
+                "15599",
+                "15600"
+            ],
+            "prefShift": [
+                "2",
+                "3"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5250760",
+            "firstName": "Rancor",
+            "lastName": "Pit",
+            "role": "TUTOR",
+            "prefCourses": [
+                "2749",
+                "2750",
+                "2767",
+                "2769",
+                "2755",
+                "12621"
+            ],
+            "willingCourses": [
+                "6582"
+            ],
+            "prefShift": [
+                "5"
+            ],
+            "willingShift": [
+                "4"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5250891",
+            "firstName": "Shmi",
+            "lastName": "Skywalker",
+            "role": "HEAD_TUTOR",
+            "prefCourses": [
+                "11996",
+                "13796",
+                "11991",
+                "24222",
+                "24221"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "4",
+                "5"
+            ],
+            "willingShift": [
+                "2",
+                "3",
+                "1"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5255484",
+            "firstName": "Bib",
+            "lastName": "Fortuna",
+            "role": "TUTOR",
+            "prefCourses": [
+                "2122",
+                "10235"
+            ],
+            "willingCourses": [
+                "18443",
+                "18444"
+            ],
+            "prefShift": [
+                "3",
+                "2"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5258973",
+            "firstName": "Gamorrean",
+            "lastName": "Guards",
+            "role": "TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5260756",
+            "firstName": "Uncle",
+            "lastName": "Owen",
+            "role": "TUTOR",
+            "prefCourses": [
+                "2678",
+                "11646",
+                "11645",
+                "11655",
+                "11623"
+            ],
+            "willingCourses": [
+                "6582",
+                "11624",
+                "11628"
+            ],
+            "prefShift": [
+                "3",
+                "4"
+            ],
+            "willingShift": [
+                "5"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5264485",
+            "firstName": "Aunt",
+            "lastName": "Beru",
+            "role": "ADMIN_HEAD_TUTOR",
+            "prefCourses": [
+                "24795",
+                "24794"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "5",
+                "4"
+            ],
+            "willingShift": [
+                "3"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5266351",
+            "firstName": "Sarlacc",
+            "lastName": "pit",
+            "role": "TUTOR",
+            "prefCourses": [
+                "6573",
+                "15600"
+            ],
+            "willingCourses": [
+                "6582"
+            ],
+            "prefShift": [
+                "2"
+            ],
+            "willingShift": [
+                "1"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5271227",
+            "firstName": "Bothan",
+            "lastName": "Spy",
+            "role": "TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5277861",
+            "firstName": "General",
+            "lastName": "Hux",
+            "role": "TUTOR",
+            "prefCourses": [
+                "11975",
+                "6573"
+            ],
+            "willingCourses": [
+                "11623",
+                "11991"
+            ],
+            "prefShift": [
+                "1"
+            ],
+            "willingShift": [
+                "2",
+                "4"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5278074",
+            "firstName": "Admiral",
+            "lastName": "Motti",
+            "role": "TUTOR",
+            "prefCourses": [
+                "12616",
+                "11948",
+                "11628",
+                "6574"
+            ],
+            "willingCourses": [
+                "11623",
+                "11624",
+                "6350"
+            ],
+            "prefShift": [
+                "2"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "0",
+            "willingShiftAmount": "0"
+        },
+        {
+            "id": "5279904",
+            "firstName": "Captain",
+            "lastName": "Phasma",
+            "role": "HEAD_TUTOR",
+            "prefCourses": [
+                "6582",
+                "11960"
+            ],
+            "willingCourses": [
+                "6573",
+                "3306"
+            ],
+            "prefShift": [
+                "1",
+                "3",
+                "4",
+                "5"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5286709",
+            "firstName": "An",
+            "lastName": "Ewok",
+            "role": "TUTOR",
+            "prefCourses": [
+                "6573"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "1",
+                "3"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5297072",
+            "firstName": "Jyn",
+            "lastName": "Erso",
+            "role": "TUTOR",
+            "prefCourses": [
+                "24794",
+                "24795",
+                "4246",
+                "11616",
+                "11623",
+                "11624",
+                "11628",
+                "11655",
+                "22784",
+                "6337",
+                "6339",
+                "4244",
+                "23743"
+            ],
+            "willingCourses": [
+                "6287",
+                "23741"
+            ],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": "0",
+            "willingShiftAmount": "0"
+        },
+        {
+            "id": "5297301",
+            "firstName": "",
+            "lastName": "K-2S0",
+            "role": "TUTOR",
+            "prefCourses": [
+                "12616",
+                "12621",
+                "12622",
+                "12619",
+                "11628",
+                "11624",
+                "11646"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "2",
+                "3"
+            ],
+            "willingShift": [
+                "4"
+            ],
+            "prefShiftAmount": "2",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5303934",
+            "firstName": "Tusken",
+            "lastName": "Raider #1",
+            "role": "TUTOR",
+            "prefCourses": [
+                "6582",
+                "11960",
+                "4239"
+            ],
+            "willingCourses": [
+                "6574",
+                "11948",
+                "15599",
+                "11996"
+            ],
+            "prefShift": [
+                "3",
+                "5"
+            ],
+            "willingShift": [
+                "1"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5309185",
+            "firstName": "BB-8",
+            "lastName": "",
+            "role": "ADMIN_HEAD_TUTOR",
+            "prefCourses": [
+                "24480",
+                "24221"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "2",
+                "4"
+            ],
+            "willingShift": [
+                "3"
+            ],
+            "prefShiftAmount": "2",
+            "willingShiftAmount": "3"
+        },
+        {
+            "id": "5316069",
+            "firstName": "Maura",
+            "lastName": "McDonagh",
+            "role": "TUTOR",
+            "prefCourses": [
+                "6573",
+                "2749",
+                "2750",
+                "11646"
+            ],
+            "willingCourses": [
+                "15600",
+                "11960",
+                "11628"
+            ],
+            "prefShift": [
+                "1",
+                "4"
+            ],
+            "willingShift": [
+                "3"
+            ],
+            "prefShiftAmount": "2",
+            "willingShiftAmount": "3"
+        },
+        {
+            "id": "5316456",
+            "firstName": "Rey",
+            "lastName": "",
+            "role": "ADMIN_HEAD_TUTOR",
+            "prefCourses": [
+                "11623",
+                "11628",
+                "11646",
+                "15600",
+                "15602"
+            ],
+            "willingCourses": [
+                "11991",
+                "15599",
+                "15606",
+                "11633",
+                "24221"
+            ],
+            "prefShift": [
+                "3",
+                "1"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5317328",
+            "firstName": "Chewbacca",
+            "lastName": "",
+            "role": "TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5317777",
+            "firstName": "Yoda",
+            "lastName": "",
+            "role": "TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5336366",
+            "firstName": "George",
+            "lastName": "Lucas",
+            "role": "TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5354129",
+            "firstName": "X-Wing",
+            "lastName": "Pilot",
+            "role": "TUTOR",
+            "prefCourses": [
+                "11616",
+                "11623",
+                "11624",
+                "11628",
+                "11645",
+                "11646",
+                "11655",
+                "24223"
+            ],
+            "willingCourses": [
+                "15599",
+                "15600",
+                "24794",
+                "24795",
+                "24209",
+                "4246",
+                "2749",
+                "24221",
+                "2750",
+                "2755"
+            ],
+            "prefShift": [],
+            "willingShift": [
+                "2"
+            ],
+            "prefShiftAmount": "0",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5364899",
+            "firstName": "AT-AT",
+            "lastName": "Driver",
+            "role": "TUTOR",
+            "prefCourses": [
+                "6573",
+                "2767",
+                "2769"
+            ],
+            "willingCourses": [
+                "11624",
+                "2750",
+                "2749"
+            ],
+            "prefShift": [
+                "2"
+            ],
+            "willingShift": [
+                "3",
+                "5",
+                "4"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5401999",
+            "firstName": "R2-",
+            "lastName": "D4",
+            "role": "TUTOR",
+            "prefCourses": [
+                "23741",
+                "6324",
+                "23743",
+                "11616",
+                "11623",
+                "11624"
+            ],
+            "willingCourses": [
+                "11655",
+                "11628",
+                "15599",
+                "15600"
+            ],
+            "prefShift": [
+                "2",
+                "4",
+                "3"
+            ],
+            "willingShift": [
+                "1"
+            ],
+            "prefShiftAmount": "2",
+            "willingShiftAmount": "3"
+        },
+        {
+            "id": "5410447",
+            "firstName": "Clone",
+            "lastName": "Trooper",
+            "role": "TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5415110",
+            "firstName": "Storm",
+            "lastName": "Trooper",
+            "role": "TUTOR",
+            "prefCourses": [
+                "2767",
+                "2769",
+                "11646",
+                "6573"
+            ],
+            "willingCourses": [
+                "2749",
+                "2750",
+                "2755"
+            ],
+            "prefShift": [
+                "2",
+                "4"
+            ],
+            "willingShift": [
+                "5"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5452903",
+            "firstName": "Wilhuff",
+            "lastName": "Tarkin",
+            "role": "TUTOR",
+            "prefCourses": [],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": null,
+            "willingShiftAmount": null
+        },
+        {
+            "id": "5470765",
+            "firstName": "Wampa",
+            "lastName": "",
+            "role": "TUTOR",
+            "prefCourses": [
+                "2749",
+                "12621",
+                "11655"
+            ],
+            "willingCourses": [
+                "2750",
+                "11628"
+            ],
+            "prefShift": [
+                "4",
+                "2"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5491609",
+            "firstName": "Maz",
+            "lastName": "Kanata",
+            "role": "TUTOR",
+            "prefCourses": [
+                "11628",
+                "18443",
+                "18444"
+            ],
+            "willingCourses": [
+                "24794",
+                "11623",
+                "11624",
+                "18438",
+                "21159"
+            ],
+            "prefShift": [
+                "3"
+            ],
+            "willingShift": [
+                "2",
+                "4",
+                "5"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "2"
+        },
+        {
+            "id": "5496344",
+            "firstName": "Mon",
+            "lastName": "Mothma",
+            "role": "TUTOR",
+            "prefCourses": [
+                "11645",
+                "12622"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "1"
+            ],
+            "willingShift": [
+                "2"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        },
+        {
+            "id": "5496586",
+            "firstName": "Watto",
+            "lastName": "",
+            "role": "TUTOR",
+            "prefCourses": [
+                "18438",
+                "18443",
+                "21159"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "1",
+                "2"
+            ],
+            "willingShift": [],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "0"
+        },
+        {
+            "id": "5502238",
+            "firstName": "Luminara",
+            "lastName": "Unduli",
+            "role": "TUTOR",
+            "prefCourses": [
+                "18438",
+                "18443",
+                "18444",
+                "21159"
+            ],
+            "willingCourses": [],
+            "prefShift": [
+                "4"
+            ],
+            "willingShift": [
+                "2",
+                "3"
+            ],
+            "prefShiftAmount": "2",
+            "willingShiftAmount": "3"
+        },
+        {
+            "id": "5507623",
+            "firstName": "Sebulba",
+            "lastName": "",
+            "role": "TUTOR",
+            "prefCourses": [
+                "2122",
+                "10235",
+                "10227"
+            ],
+            "willingCourses": [],
+            "prefShift": [],
+            "willingShift": [],
+            "prefShiftAmount": "0",
+            "willingShiftAmount": "0"
+        },
+        {
+            "id": "5522995",
+            "firstName": "Nute",
+            "lastName": "Gunray",
+            "role": "TUTOR",
+            "prefCourses": [],
+            "willingCourses": [
+                "23741",
+                "23743",
+                "11623",
+                "11624",
+                "11628",
+                "15600"
+            ],
+            "prefShift": [
+                "3"
+            ],
+            "willingShift": [
+                "1"
+            ],
+            "prefShiftAmount": "1",
+            "willingShiftAmount": "1"
+        }
+    ],
+    "requirements": [
+        {
+            "courseID": 2122,
+            "intensity": "Low",
+            "timesPerWeek": 3,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 2673,
+            "intensity": "Low",
+            "timesPerWeek": 3,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 2675,
+            "intensity": "Low",
+            "timesPerWeek": 3,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 2677,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 2678,
+            "intensity": "Low",
+            "timesPerWeek": 3,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 2749,
+            "intensity": "Low",
+            "timesPerWeek": 5,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 2750,
+            "intensity": "Low",
+            "timesPerWeek": 5,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 2755,
+            "intensity": "Low",
+            "timesPerWeek": 5,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 2761,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 2762,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 2765,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 2767,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 2769,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 3306,
+            "intensity": "Low",
+            "timesPerWeek": 2,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 3307,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 3310,
+            "intensity": "Low",
+            "timesPerWeek": 2,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 3319,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 4244,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 4246,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 6287,
+            "intensity": "Low",
+            "timesPerWeek": 3,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 6324,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 6330,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 6332,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 6337,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 6339,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 6350,
+            "intensity": "Low",
+            "timesPerWeek": 3,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 6573,
+            "intensity": "High",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": [
+                {
+                    "shiftID": 1,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 2,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 3
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 4
+                },
+                {
+                    "shiftID": 1,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 2,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 3
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 4
+                }
+            ]
+        },
+        {
+            "courseID": 6574,
+            "intensity": "Medium",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": [
+                {
+                    "shiftID": 1,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 2,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 1,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 1,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 2,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 1,
+                    "numTutors": 2
+                }
+            ]
+        },
+        {
+            "courseID": 6582,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": [
+                {
+                    "shiftID": 2,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 2,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 1
+                }
+            ]
+        },
+        {
+            "courseID": 10227,
+            "intensity": "Low",
+            "timesPerWeek": 3,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 10235,
+            "intensity": "Low",
+            "timesPerWeek": 3,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 11616,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 11623,
+            "intensity": "Low",
+            "timesPerWeek": 5,
+            "numTutors": 2,
+            "specifics": []
+        },
+        {
+            "courseID": 11624,
+            "intensity": "Low",
+            "timesPerWeek": 5,
+            "numTutors": 2,
+            "specifics": []
+        },
+        {
+            "courseID": 11628,
+            "intensity": "Low",
+            "timesPerWeek": 5,
+            "numTutors": 2,
+            "specifics": []
+        },
+        {
+            "courseID": 11645,
+            "intensity": "Low",
+            "timesPerWeek": 1,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 11646,
+            "intensity": "Low",
+            "timesPerWeek": 1,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 11655,
+            "intensity": "Low",
+            "timesPerWeek": 1,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 11945,
+            "intensity": "Low",
+            "timesPerWeek": 1,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 11948,
+            "intensity": "Medium",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": [
+                {
+                    "shiftID": 1,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 2,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 1,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 2,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 1
+                }
+            ]
+        },
+        {
+            "courseID": 11960,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": [
+                {
+                    "shiftID": 1,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 2,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 1,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 2,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 1
+                }
+            ]
+        },
+        {
+            "courseID": 11975,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 11991,
+            "intensity": "High",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": [
+                {
+                    "shiftID": 1,
+                    "numTutors": 3
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 1,
+                    "numTutors": 3
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 2
+                }
+            ]
+        },
+        {
+            "courseID": 11995,
+            "intensity": "Medium",
+            "timesPerWeek": 3,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 11996,
+            "intensity": "Medium",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 12616,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 12621,
+            "intensity": "Low",
+            "timesPerWeek": 3,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 12622,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 13796,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 15599,
+            "intensity": "Medium",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": [
+                {
+                    "shiftID": 1,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 2,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 1,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 2,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 1
+                }
+            ]
+        },
+        {
+            "courseID": 15600,
+            "intensity": "Medium",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": [
+                {
+                    "shiftID": 1,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 2,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 1,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 2,
+                    "numTutors": 2
+                },
+                {
+                    "shiftID": 3,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 4,
+                    "numTutors": 1
+                },
+                {
+                    "shiftID": 5,
+                    "numTutors": 1
+                }
+            ]
+        },
+        {
+            "courseID": 15602,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 15606,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 18438,
+            "intensity": "Low",
+            "timesPerWeek": 5,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 18443,
+            "intensity": "Low",
+            "timesPerWeek": 5,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 18444,
+            "intensity": "Low",
+            "timesPerWeek": 5,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 21159,
+            "intensity": "Low",
+            "timesPerWeek": 5,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 21682,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 22784,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 23133,
+            "intensity": "Low",
+            "timesPerWeek": 3,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 23741,
+            "intensity": "Low",
+            "timesPerWeek": 2,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 23743,
+            "intensity": "Low",
+            "timesPerWeek": 0,
+            "numTutors": 0,
+            "specifics": []
+        },
+        {
+            "courseID": 24209,
+            "intensity": "Low",
+            "timesPerWeek": 5,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 24794,
+            "intensity": "Low",
+            "timesPerWeek": 5,
+            "numTutors": 1,
+            "specifics": []
+        },
+        {
+            "courseID": 24795,
+            "intensity": "Low",
+            "timesPerWeek": 5,
+            "numTutors": 1,
+            "specifics": []
+        }
+    ]
+}

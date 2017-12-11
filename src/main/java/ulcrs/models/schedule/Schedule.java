@@ -1,13 +1,22 @@
 package ulcrs.models.schedule;
 
+import com.google.gson.annotations.Expose;
 import ulcrs.models.shift.ScheduledShift;
 
 import java.util.Set;
 
 public class Schedule {
 
+    @Expose
     private Set<ScheduledShift> scheduledShifts;
+
+    @Expose
     private double rating;
+
+    public Schedule(Set<ScheduledShift> scheduledShifts) {
+        this.scheduledShifts = scheduledShifts;
+        this.rating = 0.0;  // TODO
+    }
 
     private void rate() {
         // TODO: implement

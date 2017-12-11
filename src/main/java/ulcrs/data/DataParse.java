@@ -39,7 +39,7 @@ public class DataParse {
      * @param input - JsonObject response from ULC to parse into ULCRS data.
      * @return ParsedULCResponse - parsed response Json received from ULC.
      */
-    static ParsedULCResponse parse(JsonObject input) {
+    public static ParsedULCResponse parse(JsonObject input) {
         ParsedULCResponse parsed = new ParsedULCResponse();
 
         // Shifts
@@ -101,7 +101,7 @@ public class DataParse {
             CourseRequirements requirements = course.getCourseRequirements();
 
             // Course has empty specifics AND requiredShiftAmount and numTutors from ULC
-            Map<Shift, Integer> numTutorsPerShift = requirements.getNumTutorsPerShift();
+            Map<Integer, Integer> numTutorsPerShift = requirements.getNumTutorsPerShift();
             int requiredShiftAmount = requirements.getRequiredShiftAmount();
             int numTutorsPerWeek = requirements.getNumTutorsPerWeek();
             if (numTutorsPerShift == null || numTutorsPerShift.isEmpty() &&
@@ -125,7 +125,8 @@ public class DataParse {
         // Get shift JsonArray from JsonObject
         JsonArray shiftsJson = input.get(SHIFTS_KEY).getAsJsonArray();
 
-        List<ULCShift> ulcShifts = new Gson().fromJson(shiftsJson, new TypeToken<List<ULCShift>>() {}.getType());
+        List<ULCShift> ulcShifts = new Gson().fromJson(shiftsJson, new TypeToken<List<ULCShift>>() {
+        }.getType());
 
         // Transform json shifts into Shift objects
         HashMap<Integer, Shift> shifts = new HashMap<>();
@@ -149,8 +150,10 @@ public class DataParse {
         JsonArray coursesJson = input.get(COURSES_KEY).getAsJsonArray();
         JsonArray courseRequirementsJson = input.get(COURSE_REQUIREMENTS_KEY).getAsJsonArray();
 
-        List<ULCCourse> ulcCourses = new Gson().fromJson(coursesJson, new TypeToken<List<ULCCourse>>() {}.getType());
-        List<ULCCourseRequirements> ulcCourseRequirementsList = new Gson().fromJson(courseRequirementsJson, new TypeToken<List<ULCCourseRequirements>>() {}.getType());
+        List<ULCCourse> ulcCourses = new Gson().fromJson(coursesJson, new TypeToken<List<ULCCourse>>() {
+        }.getType());
+        List<ULCCourseRequirements> ulcCourseRequirementsList = new Gson().fromJson(courseRequirementsJson, new TypeToken<List<ULCCourseRequirements>>() {
+        }.getType());
 
         // Map course id to ULCCourseRequirements object for that course
         Map<Integer, ULCCourseRequirements> courseIdToULCCourseRequirements = ulcCourseRequirementsList.stream()
@@ -182,7 +185,8 @@ public class DataParse {
         // Get tutor JsonArray from JsonObject
         JsonArray tutorsJson = input.get(TUTORS_KEY).getAsJsonArray();
 
-        List<ULCTutor> ulcTutors = new Gson().fromJson(tutorsJson, new TypeToken<List<ULCTutor>>() {}.getType());
+        List<ULCTutor> ulcTutors = new Gson().fromJson(tutorsJson, new TypeToken<List<ULCTutor>>() {
+        }.getType());
 
         // Transform json tutors into Tutor objects
         HashMap<Integer, Tutor> tutors = new HashMap<>();

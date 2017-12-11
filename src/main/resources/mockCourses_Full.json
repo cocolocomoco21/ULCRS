@@ -37,7 +37,7 @@
                     }
                 }
             ],
-            "requiredShiftAmount": 1,
+            "requiredShiftAmount": 2,
             "preferredShiftAmount": 3,
             "intensity": "MEDIUM"
         }
@@ -47,22 +47,6 @@
         "name": "CS 302",
         "courseRequirements": {
             "requiredShifts": [
-                {
-                    "id": 1,
-                    "day": "TUESDAY",
-                    "startTime": {
-                        "hour": 18,
-                        "minute": 0,
-                        "second": 0,
-                        "nano": 0
-                    },
-                    "endTime": {
-                        "hour": 21,
-                        "minute": 0,
-                        "second": 0,
-                        "nano": 0
-                    }
-                },
                 {
                     "id": 3,
                     "day": "THURSDAY",
@@ -96,8 +80,8 @@
                     }
                 }
             ],
-            "requiredShiftAmount": 1,
-            "preferredShiftAmount": 2,
+            "requiredShiftAmount": 2,
+            "preferredShiftAmount": 3,
             "intensity": "HIGH"
         }
     },
@@ -148,54 +132,6 @@
                         "second": 0,
                         "nano": 0
                     }
-                },
-                {
-                    "id": 1,
-                    "day": "TUESDAY",
-                    "startTime": {
-                        "hour": 18,
-                        "minute": 0,
-                        "second": 0,
-                        "nano": 0
-                    },
-                    "endTime": {
-                        "hour": 21,
-                        "minute": 0,
-                        "second": 0,
-                        "nano": 0
-                    }
-                },
-                {
-                    "id": 3,
-                    "day": "THURSDAY",
-                    "startTime": {
-                        "hour": 18,
-                        "minute": 30,
-                        "second": 0,
-                        "nano": 0
-                    },
-                    "endTime": {
-                        "hour": 21,
-                        "minute": 30,
-                        "second": 0,
-                        "nano": 0
-                    }
-                },
-                {
-                    "id": 4,
-                    "day": "FRIDAY",
-                    "startTime": {
-                        "hour": 17,
-                        "minute": 15,
-                        "second": 0,
-                        "nano": 0
-                    },
-                    "endTime": {
-                        "hour": 20,
-                        "minute": 45,
-                        "second": 0,
-                        "nano": 0
-                    }
                 }
             ],
             "requiredShiftAmount": 1,
@@ -205,7 +141,7 @@
     },
     {
         "id": 4,
-        "name": "ECE 210",
+        "name": "ECE 230",
         "courseRequirements": {
             "requiredShifts": [
                 {
