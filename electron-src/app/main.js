@@ -84,7 +84,8 @@ let setupAuthenticWindow = () => {
         height: 506,
         transparent: false,
         show: false,
-        frame: true
+        frame: true,
+        icon: path.join(__dirname,"..","..","img","ulcrs_logo.png")
     });
 
     ipc.on("ShowViewTutor", function (event, args) {
