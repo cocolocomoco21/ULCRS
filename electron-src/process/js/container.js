@@ -81,8 +81,14 @@ class TutorDropDown extends React.Component {
         console.log("value");
         console.log(value);
         this.setState({ categoryValue: value });
-        this.props.setTutorId(parseInt(value));
-        console.log(parseInt(value));
+        let valueList = value.split(",");
+        if (valueList[0] == "") {
+            this.props.setTutorId(null);
+        }
+        else {
+            this.props.setTutorId(parseInt(valueList[0]));
+            console.log(parseInt(value));
+        }
     };
 
     render() {
@@ -177,8 +183,12 @@ class CourseDropDown extends React.Component {
         }
         console.log("courses");
         console.log(courses);
-
-        this.props.setTutorCourse(courses);
+        if (courses.length == 0) {
+            this.props.setTutorCourse(null);
+        }
+        else {
+            this.props.setTutorCourse(courses);
+        }
     };
 
     render() {
@@ -272,6 +282,7 @@ class Container extends React.Component{
             printc: this.props.printc.bind(this),
             day: this.props.day,
             modal : false,
+            saveMessageModal: false,
             deleteMessageModal: false,
             tutorId: null,
             tutorCourse: null,
@@ -293,7 +304,13 @@ class Container extends React.Component{
 
     toggleDeleteMessageModal() {
         this.setState({
-            deleteMessageModal: !this.state.deleteMessageModal
+            deleteMessageModal: ! this.state.deleteMessageModal
+        })
+    }
+
+    toggleMessageModal() {
+        this.setState({
+            saveMessageModal: ! this.state.saveMessageModal
         })
     }
 
@@ -336,6 +353,9 @@ class Container extends React.Component{
         console.log("in save pop up");
         let tutorId = this.state.tutorId;
         let tutorData = this.state.tutorData;
+        if (tutorId == null || this.state.tutorCourse == null) {
+            return;
+        }
         let tutor = null;
         for (let i=0; i<tutorData.length; i++) {
             if (tutorData[i].id == tutorId) {
@@ -350,11 +370,12 @@ class Container extends React.Component{
                 lastName: tutor.lastName
             },
             tutorCourse: this.state.tutorCourse
-        })
+        });
         this.state.cardKey++;
         this.props.printc();
         this.props.setContainerDataList(this.props.id - 1, this.state.cards);
         this.props.printc();
+        this.toggleGridModal();
         console.log("exiting save pop up");
     }
 
@@ -487,6 +508,17 @@ class Container extends React.Component{
                     </ModalHeader>
                     <ModalBody>
                         <div id="message-content"> Shift Successfully Deleted </div>
+                    </ModalBody>
+                </Modal>
+
+                <Modal isOpen={this.state.saveMessageModal} toggle={this.toggleMessageModal}>
+                    <ModalHeader toggle={this.toggleMessageModal} >
+                        <div style={{"textAlign": "center", "fontSize": "20px"}}>
+                            Add Tutor Assignment
+                        </div>
+                    </ModalHeader>
+                    <ModalBody>
+                        <div id="message-content"> Successfully Added </div>
                     </ModalBody>
                 </Modal>
             </div>
