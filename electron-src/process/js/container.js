@@ -24,8 +24,9 @@ class TutorDropDown extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            categoryValue: null,
+            categoryValue: "",
             options: [],
+            valueToIndex: {},
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
         this.setUp = this.setUp.bind(this);
@@ -38,6 +39,7 @@ class TutorDropDown extends React.Component {
         console.log(shiftId);
         let tutorData = this.props.tutorData;
         console.log(tutorData);
+        let index = 0;
         for (let i=0; i<tutorData.length; i++) {
             let prefer = tutorData[i].tutorPreferences.shiftPreferences.PREFER;
             console.log("prefer");
@@ -49,6 +51,10 @@ class TutorDropDown extends React.Component {
                         value: tutorData[i].id,
                         label: name
                     });
+                    console.log("index before");
+                    console.log(index);
+                    this.state.valueToIndex[tutorData[i].id] = index;
+                    index++;
                 }
             }
             let willing = tutorData[i].tutorPreferences.shiftPreferences.WILLING;
@@ -61,6 +67,8 @@ class TutorDropDown extends React.Component {
                         value: tutorData[i].id,
                         label: name
                     });
+                    this.state.valueToIndex[tutorData[i].id] = index;
+                    index++;
                 }
             }
             console.log("this.state.options");
@@ -87,6 +95,22 @@ class TutorDropDown extends React.Component {
         console.log(this.state.categoryValue);
         // console.log(this.state.categoryValue.length);
 
+        let options = this.state.options;
+        console.log("options before");
+        console.log(options);
+        let categoryValueList = this.state.categoryValue.split();
+        console.log("categoryValueList");
+        console.log(categoryValueList);
+        if (categoryValueList[0] != "") {
+            let value = parseInt(categoryValueList[0]);
+            console.log(value);
+            console.log(this.state.valueToIndex);
+            console.log(this.state.valueToIndex[value]);
+            options = [options[this.state.valueToIndex[value]]];
+        }
+        console.log("options");
+        console.log(options);
+
         return (
             <div className="form__row">
                 <div className="form__label">
@@ -111,7 +135,7 @@ class TutorDropDown extends React.Component {
                     simpleValue
                     multi
                     value={this.state.categoryValue}
-                    options={this.state.options}
+                    options={options}
                     onChange={this.handleSelectChange}
                     joinValues
                     name={this.props.model}
@@ -147,7 +171,6 @@ class CourseDropDown extends React.Component {
         let tutorData = this.props.tutorData;
         console.log("tutorId, tutorData");
         console.log(tutorId);
-        console.log(this.props.tutorId);
         console.log(tutorData);
         this.state.options = [];
         if (tutorId != null) {
