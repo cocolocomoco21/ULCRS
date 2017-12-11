@@ -52,6 +52,23 @@ public class TutorControllerTest {
     }
 
     @Test
+    public void successGetLimitedTutorList() throws Exception {
+        List<Tutor> tutorListTest = new ArrayList<>();
+        tutorListTest.add(new Tutor(1, "f", "l", null, null));
+        tutorListTest.add(new Tutor(2, "f", "l", null, null));
+
+        when(requestMock.headers("Set-Cookie")).thenReturn("cookie");
+        when(requestMock.queryParamOrDefault("limit", null)).thenReturn("1");
+        when(DataStore.getTutors("cookie")).thenReturn(tutorListTest);
+
+        List<Tutor> expectedTutorListTest = new ArrayList<>();
+        expectedTutorListTest.add(tutorListTest.get(0));
+
+        List<Tutor> getTutorListResult = Whitebox.invokeMethod(tutorControllerTest, "getTutorList", requestMock, responseMock);
+        Assert.assertEquals(expectedTutorListTest, getTutorListResult);
+    }
+
+    @Test
     public void successGetTutor() throws Exception {
         List<Tutor> tutorListTest = new ArrayList<>();
         tutorListTest.add(new Tutor(1, "d", "s", null, null));
