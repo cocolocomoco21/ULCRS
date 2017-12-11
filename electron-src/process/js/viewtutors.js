@@ -279,7 +279,7 @@ class MainInterface extends React.Component{
             tutorData: null,
             scheduleData: []
         };
-        this.tutorData = mock;
+        this.tutorData = null;
         ipc.on("receive-schedule-data", (event, data) => {
             //sort data based on rate
             let sortedDataHighToLow = _.reverse(_.sortBy(data, (d)=>d.rating));
@@ -305,7 +305,7 @@ class MainInterface extends React.Component{
     }
 
     setTutorData(data){
-        //this.tutorData = data;
+        this.tutorData = data;
     }
 
     componentWillUpdate(){
