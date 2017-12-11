@@ -42,13 +42,17 @@ import java.util.stream.Collectors;
 public class Scheduler {
     private static Logger log = LoggerFactory.getLogger(Scheduler.class);
 
-    private static final int GENERATE_SCHEDULE_SIZE = 10;
+    private static final int GENERATE_SCHEDULE_SIZE = 1;    // Let's make this 1 for now for simplicity
+    private static final int DESIRED_COST_LIMIT = 10;
 
     private static List<Tutor> tutorsFromInput;
     private static List<Course> coursesFromInput;
     private static List<Shift> shiftsFromInput;
 
     private static List<Schedule> generatedSchedules;
+
+    private static PriorityQueue<Node> frontier;
+    private static HashSet<Node> explored;
 
     protected static List<Schedule> schedule(List<Tutor> tutors, List<Course> courses, List<Shift> shifts) {
         tutorsFromInput = tutors;
@@ -57,12 +61,11 @@ public class Scheduler {
 
         // Start scheduling algorithm
         int desiredCost = 0;
-        int desiredCostLimit = 10;
         Node root = generateRoot(tutors, courses, shifts);
         Set<Node> result = null;
 
         // TODO this can be better
-        while (result == null && desiredCost <= desiredCostLimit) {
+        while (result == null && desiredCost <= DESIRED_COST_LIMIT) {
             result = search(root, desiredCost++);
         }
 
@@ -71,16 +74,13 @@ public class Scheduler {
             // Add Ghost tutor
             Node rootWithGhost = generateRootWithGhostTutor(tutors, courses, shifts);
             desiredCost = 0;
-            desiredCostLimit = 10;
 
-            while (result == null && desiredCost <= desiredCostLimit) {
+            while (result == null && desiredCost <= DESIRED_COST_LIMIT) {
                 result = search(rootWithGhost, desiredCost++);
             }
         }
 
-        // Finish scheduling algorithm
-        // TODO turn node into list of schedules
-
+        // Finish scheduling algorithm, turn Nodes into list of Schedules
         generatedSchedules = new ArrayList<>();
         if (result != null) {
             for (Node node : result) {
@@ -93,23 +93,24 @@ public class Scheduler {
 
     private static Set<Node> search(Node inputNode, int desiredCost) {
         log.info("Searching at desiredCost: " + desiredCost);
-        PriorityQueue<Node> frontier = new PriorityQueue<>(Comparator.comparingInt(Node::getCost));
+        frontier = new PriorityQueue<>(Comparator.comparingInt(Node::getCost));
+        explored = new HashSet<>();
+
         frontier.add(inputNode);
 
         Set<Node> success = new HashSet<>();
 
         while (frontier.size() != 0) {
-            log.info("Removing from frontier | remaining nodes on frontier: " + frontier.size());
-            //Node node = frontier.remove(0);
             Node node = frontier.remove();
-            //explored.add(node);
+            explored.add(node);
 
             int parentCost = generateCost(node);
+            log.info("Removing from frontier with cost " + parentCost+ " | remaining nodes on frontier: " + frontier.size());
+
             List<Node> successors = successors(node);
             for (Node successor : successors) {
                 int cost = generateCost(successor);
                 if (cost <= desiredCost) {
-                    boolean contains = success.contains(successor);
                     success.add(successor);
                     if (success.size() >= GENERATE_SCHEDULE_SIZE) {
                         return success;
@@ -139,10 +140,14 @@ public class Scheduler {
             }
             Node child = new Node(node);
             child.removeTuple(tuple);
-            successorCandidates.add(child);
+
+            // Only candidate if not explored
+            if (!explored.contains(child)) {
+                successorCandidates.add(child);
+            }
         }
 
-        // only return sufficient successor candidates
+        // Only return sufficient successor candidates
         for (Node candidate : successorCandidates) {
             HashMap<Course, Set<Shift>> coursesScheduled = new HashMap<>();
 
@@ -164,14 +169,23 @@ public class Scheduler {
 
             boolean broken = false;
 
-            // Course-Required Shift constraint
+            // Course-Required Shift constraints
             for (Map.Entry<Course, Set<Shift>> entry : coursesScheduled.entrySet()) {
                 Set<Shift> requiredShifts = entry.getKey().getCourseRequirements().getRequiredShifts();
                 Set<Shift> scheduledShifts = entry.getValue();
 
-                if (!scheduledShifts.containsAll(requiredShifts)) {
-                    broken = true;
-                    break;
+                if (!requiredShifts.isEmpty()) {
+                    // Use requiredShifts as constraint
+                    if (!scheduledShifts.containsAll(requiredShifts)) {
+                        broken = true;
+                        break;
+                    }
+                } else {
+                    // Use requiredShiftAmount as constraint
+                    if (entry.getKey().getCourseRequirements().getRequiredShiftAmount() > scheduledShifts.size()) {
+                        broken = true;
+                        break;
+                    }
                 }
             }
 
@@ -278,7 +292,7 @@ public class Scheduler {
         List<Course> courses;
         List<Shift> shifts;
 
-        boolean useReal = false;
+        boolean useReal = true;
 
         if (useReal) {
             // Note: this file is not committed and should not be. If you don't make this file yourself (i.e. copy this from the ULC, you will have problems).
@@ -314,8 +328,6 @@ public class Scheduler {
         LocalDateTime start = LocalDateTime.now();
         List<Schedule> generatedSchedules = schedule(tutors, courses, shifts);
         LocalDateTime end = LocalDateTime.now();
-
-        System.out.println(generatedSchedules);
     }
 
 }

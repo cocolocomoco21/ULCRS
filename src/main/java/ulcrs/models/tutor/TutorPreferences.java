@@ -23,6 +23,10 @@ public class TutorPreferences {
     @Expose
     private Map<Rank, Integer> shiftFrequencyPreferences;
 
+    private Set<Course> possibleCourses;
+    private Set<Shift> possibleShifts;
+    private Integer possibleShiftAmount;
+
     public TutorPreferences(Map<Rank, Set<Course>> coursePreferences, Map<Rank, Set<Shift>> shiftPreferences, Map<Rank, Integer> shiftFrequencyPreferences) {
         this.coursePreferences = coursePreferences;
         this.shiftPreferences = shiftPreferences;
@@ -57,30 +61,40 @@ public class TutorPreferences {
      * Return all courses that are possible for the tutor, i.e. all Rank=Prefered or Willing.
      */
     public Set<Course> findPossibleCourses() {
-        return this.coursePreferences.entrySet()
-                .stream()
-                .filter(entry -> Arrays.asList(Rank.PREFER, Rank.WILLING).contains(entry.getKey()))
-                .flatMap(entry -> entry.getValue().stream())
-                .collect(Collectors.toSet());
+        if (this.possibleCourses == null) {
+            this.possibleCourses = this.coursePreferences.entrySet()
+                    .stream()
+                    .filter(entry -> Arrays.asList(Rank.PREFER, Rank.WILLING).contains(entry.getKey()))
+                    .flatMap(entry -> entry.getValue().stream())
+                    .collect(Collectors.toSet());
+        }
+
+        return this.possibleCourses;
     }
 
     /**
      * Return all shifts that are possible for the tutor, i.e. all shifts with Rank=Prefered or Willing.
      */
     public Set<Shift> findPossibleShifts() {
-        return this.shiftPreferences.entrySet()
-                .stream()
-                .filter(entry -> Arrays.asList(Rank.PREFER, Rank.WILLING).contains(entry.getKey()))
-                .flatMap(entry -> entry.getValue().stream())
-                .collect(Collectors.toSet());
+        if (this.possibleShifts == null) {
+            this.possibleShifts = this.shiftPreferences.entrySet()
+                    .stream()
+                    .filter(entry -> Arrays.asList(Rank.PREFER, Rank.WILLING).contains(entry.getKey()))
+                    .flatMap(entry -> entry.getValue().stream())
+                    .collect(Collectors.toSet());
+        }
+        return this.possibleShifts;
     }
 
+    /**
+     * Return the possible shift frequency, i.e. the Rank=Willing frequency for the tutor.
+     */
     public int findPossibleShiftFrequency() {
-        Integer possibleShiftAmount = this.shiftFrequencyPreferences.get(Rank.WILLING);
-        if (possibleShiftAmount == null) {
-            possibleShiftAmount = 0;
+        if (this.possibleShiftAmount == null) {
+            Integer willingShiftAmount = this.shiftFrequencyPreferences.get(Rank.WILLING);
+            this.possibleShiftAmount = willingShiftAmount == null ? 0 : willingShiftAmount;
         }
-        return possibleShiftAmount;
+        return this.possibleShiftAmount;
     }
 
     @Override
