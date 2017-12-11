@@ -1,0 +1,82 @@
+[
+    {
+        "id": 0,
+        "day": "MONDAY",
+        "startTime": {
+            "hour": 16,
+            "minute": 45,
+            "second": 0,
+            "nano": 0
+        },
+        "endTime": {
+            "hour": 19,
+            "minute": 45,
+            "second": 0,
+            "nano": 0
+        }
+    },
+    {
+        "id": 1,
+        "day": "TUESDAY",
+        "startTime": {
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+        },
+        "endTime": {
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+        }
+    },
+    {
+        "id": 2,
+        "day": "WEDNESDAY",
+        "startTime": {
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+        },
+        "endTime": {
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+        }
+    },
+    {
+        "id": 3,
+        "day": "THURSDAY",
+        "startTime": {
+            "hour": 18,
+            "minute": 30,
+            "second": 0,
+            "nano": 0
+        },
+        "endTime": {
+            "hour": 21,
+            "minute": 30,
+            "second": 0,
+            "nano": 0
+        }
+    },
+    {
+        "id": 4,
+        "day": "FRIDAY",
+        "startTime": {
+            "hour": 17,
+            "minute": 15,
+            "second": 0,
+            "nano": 0
+        },
+        "endTime": {
+            "hour": 20,
+            "minute": 45,
+            "second": 0,
+            "nano": 0
+        }
+    }
+]

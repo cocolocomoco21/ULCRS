@@ -44,7 +44,7 @@
                                     }
                                 }
                             ],
-                            "requiredShiftAmount": 1,
+                            "requiredShiftAmount": 2,
                             "preferredShiftAmount": 3,
                             "intensity": "MEDIUM"
                         }
@@ -54,22 +54,6 @@
                         "name": "CS 302",
                         "courseRequirements": {
                             "requiredShifts": [
-                                {
-                                    "id": 1,
-                                    "day": "TUESDAY",
-                                    "startTime": {
-                                        "hour": 18,
-                                        "minute": 0,
-                                        "second": 0,
-                                        "nano": 0
-                                    },
-                                    "endTime": {
-                                        "hour": 21,
-                                        "minute": 0,
-                                        "second": 0,
-                                        "nano": 0
-                                    }
-                                },
                                 {
                                     "id": 3,
                                     "day": "THURSDAY",
@@ -104,7 +88,7 @@
                                 }
                             ],
                             "requiredShiftAmount": 2,
-                            "preferredShiftAmount": 2,
+                            "preferredShiftAmount": 3,
                             "intensity": "HIGH"
                         }
                     }
@@ -245,7 +229,7 @@
                                     }
                                 }
                             ],
-                            "requiredShiftAmount": 1,
+                            "requiredShiftAmount": 2,
                             "preferredShiftAmount": 3,
                             "intensity": "MEDIUM"
                         }
@@ -478,7 +462,7 @@
                                     }
                                 }
                             ],
-                            "requiredShiftAmount": 1,
+                            "requiredShiftAmount": 2,
                             "preferredShiftAmount": 3,
                             "intensity": "MEDIUM"
                         }
@@ -488,22 +472,6 @@
                         "name": "CS 302",
                         "courseRequirements": {
                             "requiredShifts": [
-                                {
-                                    "id": 1,
-                                    "day": "TUESDAY",
-                                    "startTime": {
-                                        "hour": 18,
-                                        "minute": 0,
-                                        "second": 0,
-                                        "nano": 0
-                                    },
-                                    "endTime": {
-                                        "hour": 21,
-                                        "minute": 0,
-                                        "second": 0,
-                                        "nano": 0
-                                    }
-                                },
                                 {
                                     "id": 3,
                                     "day": "THURSDAY",
@@ -538,7 +506,7 @@
                                 }
                             ],
                             "requiredShiftAmount": 2,
-                            "preferredShiftAmount": 2,
+                            "preferredShiftAmount": 3,
                             "intensity": "HIGH"
                         }
                     },

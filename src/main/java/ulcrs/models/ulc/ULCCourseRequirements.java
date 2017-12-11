@@ -42,8 +42,8 @@ public class ULCCourseRequirements {
 
     // Although this is not the cleanest, courses inherently depend on shifts, so pass in the already-parsed Shifts here
     public CourseRequirements toCourseRequirements(HashMap<Integer, Shift> shifts) {
-        Map<Integer, Integer> numTutorsPerShift = new HashMap<>();
         Set<Shift> requiredShifts = new TreeSet<>(Comparator.comparingInt(Shift::getId));
+        Map<Integer, Integer> numTutorsPerShift = new HashMap<>();
 
         this.specifics.forEach(specific -> {
             int shiftId = specific.getShiftId();

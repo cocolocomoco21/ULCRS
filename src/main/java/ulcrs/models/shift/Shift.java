@@ -60,6 +60,17 @@ public class Shift {
     }
 
     @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Shift{");
+        sb.append("id=").append(id);
+        sb.append(", day=").append(day);
+        sb.append(", startTime=").append(startTime);
+        sb.append(", endTime=").append(endTime);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

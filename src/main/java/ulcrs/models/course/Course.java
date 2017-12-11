@@ -47,6 +47,16 @@ public class Course {
     }
 
     @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Course{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", courseRequirements=").append(courseRequirements);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -56,12 +66,11 @@ public class Course {
         }
         Course course = (Course) o;
         return id == course.id &&
-                Objects.equals(name, course.name) &&
-                Objects.equals(courseRequirements, course.courseRequirements);
+                Objects.equals(name, course.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, courseRequirements);
+        return Objects.hash(id, name);
     }
 }
