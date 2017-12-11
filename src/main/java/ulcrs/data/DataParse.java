@@ -67,59 +67,6 @@ public class DataParse {
         // Tutors
         List<Tutor> tutors = parsed.getTutors();
         List<Tutor> tutorsFiltered = new ArrayList<>();
-        for (Tutor tutor : tutors) {
-            TutorPreferences preferences = tutor.getTutorPreferences();
-
-            // Tutor does not prefer any courses
-            Set<Course> prefCourse = preferences.getCoursePreferences().get(Rank.PREFER);
-            if (prefCourse == null || prefCourse.isEmpty()) {
-                continue;
-            }
-
-            // Tutor does not prefer any shifts
-            Set<Shift> prefShift = preferences.getShiftPreferences().get(Rank.PREFER);
-            if (prefShift == null || prefShift.isEmpty()) {
-                continue;
-            }
-
-            // Tutor has empty shift frequency preferences
-            Integer prefShiftAmount = preferences.getShiftFrequencyPreferences().get(Rank.PREFER);
-            Integer willingShiftAmount = preferences.getShiftFrequencyPreferences().get(Rank.WILLING);
-            if (prefShiftAmount == null || willingShiftAmount == null ||
-                    (prefShiftAmount == 0 && willingShiftAmount == 0)) {
-                continue;
-            }
-
-            tutorsFiltered.add(tutor);
-        }
-        parsed.setTutors(tutorsFiltered);
-
-        // Courses
-        List<Course> courses = parsed.getCourses();
-        List<Course> coursesFiltered = new ArrayList<>();
-        for (Course course : courses) {
-            CourseRequirements requirements = course.getCourseRequirements();
-
-            // Course has empty specifics AND requiredShiftAmount and numTutors from ULC
-            Map<Integer, Integer> numTutorsPerShift = requirements.getNumTutorsPerShift();
-            int requiredShiftAmount = requirements.getRequiredShiftAmount();
-            int numTutorsPerWeek = requirements.getNumTutorsPerWeek();
-            if (numTutorsPerShift == null || numTutorsPerShift.isEmpty() &&
-                    (requiredShiftAmount == 0 && numTutorsPerWeek == 0)) {
-                continue;
-            }
-
-            coursesFiltered.add(course);
-        }
-        parsed.setCourses(coursesFiltered);
-
-        return parsed;
-    }
-
-    private static ParsedULCResponse filter(ParsedULCResponse parsed) {
-        // Tutors
-        List<Tutor> tutors = parsed.getTutors();
-        List<Tutor> tutorsFiltered = new ArrayList<>();
         for (Tutor tutor: tutors) {
             TutorPreferences preferences = tutor.getTutorPreferences();
 
@@ -154,7 +101,7 @@ public class DataParse {
             CourseRequirements requirements = course.getCourseRequirements();
 
             // Course has empty specifics AND requiredShiftAmount and numTutors from ULC
-            Map<Shift, Integer> numTutorsPerShift = requirements.getNumTutorsPerShift();
+            Map<Integer, Integer> numTutorsPerShift = requirements.getNumTutorsPerShift();
             int requiredShiftAmount = requirements.getRequiredShiftAmount();
             int numTutorsPerWeek = requirements.getNumTutorsPerWeek();
             if (numTutorsPerShift == null || numTutorsPerShift.isEmpty() &&
