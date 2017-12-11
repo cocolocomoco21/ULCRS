@@ -213,7 +213,7 @@ app.on('ready', function () {
 
     ipc.on("save-session", (event, filename, schedule) => {
         let addCookieOption = {
-            //headers: {"Set-Cookie": [engrCookie.name + "=" + engrCookie.value]},
+            headers: {"Set-Cookie": [engrCookie.name + "=" + engrCookie.value]},
             method: 'POST',
             body: JSON.stringify(schedule)
         };
