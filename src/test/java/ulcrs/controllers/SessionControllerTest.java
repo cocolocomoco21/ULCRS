@@ -25,7 +25,7 @@ import java.util.List;
 @PrepareForTest(SessionController.class)
 public class SessionControllerTest {
 
-    private static final String WORKSPACE_PATH = "sessions/";
+    private static final String WORKSPACE_PATH = "../sessions/";
     private static final String TEST_WORKSPACE_PATH = "src/test/resources/sessions/";
 
     private SessionController sessionControllerTest;
@@ -95,22 +95,29 @@ public class SessionControllerTest {
     }
 
     @Test
-    public void successSaveSession() throws Exception {
+    public void successSaveUnnamedSession() throws Exception {
         // TODO: implement test case
-        Assert.assertTrue(true);
-
-//        Boolean updateSessionResult = Whitebox.invokeMethod(sessionControllerTest, "saveSession",
-//                requestMock, responseMock);
-//        Assert.assertEquals(false, updateSessionResult);
+        Mockito.when(requestMock.params(Mockito.eq(":name"))).thenReturn(null);
+        Boolean saveSessionResult = Whitebox.invokeMethod(sessionControllerTest, "saveSession",
+                requestMock, responseMock);
+        Assert.assertEquals(false, saveSessionResult);
     }
 
     @Test
+    public void successSaveNamedSession() throws Exception {
+        // TODO: implement test case
+        Mockito.when(requestMock.params(Mockito.eq(":name"))).thenReturn("");
+        Boolean saveSessionResult = Whitebox.invokeMethod(sessionControllerTest, "saveSession",
+                requestMock, responseMock);
+        Assert.assertEquals(false, saveSessionResult);
+    }
+
+    @Test(expected = NullPointerException.class)
     public void successDeleteSession() throws Exception {
         // TODO: implement test case
-        Assert.assertTrue(true);
-
-//        Boolean deleteSessionResult = Whitebox.invokeMethod(sessionControllerTest, "deleteSession",
-//                requestMock, responseMock);
-//        Assert.assertEquals(false, deleteSessionResult);
+        Boolean saveSessionResult = Whitebox.invokeMethod(sessionControllerTest, "saveSession",
+                requestMock, responseMock);
+        Boolean deleteSessionResult = Whitebox.invokeMethod(sessionControllerTest, "deleteSession",
+                requestMock, responseMock);
     }
 }

@@ -8,6 +8,9 @@ import org.mockito.MockitoAnnotations;
 import org.powermock.reflect.Whitebox;
 import spark.Request;
 import spark.Response;
+import ulcrs.models.schedule.Schedule;
+
+import java.util.List;
 
 public class ScheduleControllerTest {
 
@@ -24,6 +27,14 @@ public class ScheduleControllerTest {
         MockitoAnnotations.initMocks(this);
 
         scheduleControllerTest = new ScheduleController();
+    }
+
+    @Test
+    public void successFetchGeneratedSchedules() throws Exception {
+        List<Schedule> fetchGeneratedSchedules = Whitebox.invokeMethod(scheduleControllerTest,
+                "fetchGeneratedSchedules", requestMock, responseMock);
+        // TODO: implement test case
+        Assert.assertEquals(null, fetchGeneratedSchedules);
     }
 
     @Test
