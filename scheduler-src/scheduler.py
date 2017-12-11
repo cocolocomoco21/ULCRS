@@ -7,11 +7,10 @@ SOLUTION_WIDTH = 20
 TRAILS = 10
 
 
-def normalize_score(row_score):
-    adjusted_score = 100 * 1 / float(1 + row_score)
-    if adjusted_score > 1:
-        return round(adjusted_score, 1)
-    return round(adjusted_score, 2)
+def normalize_score(score, min_score, max_score):
+    if max_score == min_score:
+        return 5
+    return round(float((max_score - score)) / (max_score - min_score) * 5, 2)
 
 
 def main(tutor_file, course_file, shift_file, schedule_file, time_limit_in_second, solution_limit):
@@ -149,10 +148,9 @@ def main(tutor_file, course_file, shift_file, schedule_file, time_limit_in_secon
     collector.Add(score)
     collector.AddObjective(score)
 
-    solutions_limit = solver.SolutionsLimit(solution_limit)
     time_limit = solver.TimeLimit(time_limit_in_second * 1000)
 
-    if solver.Solve(db, [objective, collector, solutions_limit, time_limit]):
+    if solver.Solve(db, [objective, collector, time_limit]):
         solution_count = collector.SolutionCount()
         print 'Solutions found:', solution_count, '\n'
 
@@ -175,14 +173,28 @@ def main(tutor_file, course_file, shift_file, schedule_file, time_limit_in_secon
                 print '/'.join(assignment).ljust(SOLUTION_WIDTH),
             print
         print 'Score:', collector.Value(best_solution, score)
-        print 'Adjusted score:', normalize_score(collector.Value(best_solution, score))
     else:
         print 'No solution found.'
+        data.write_results(schedule_file, [])
+        return
+    print
 
+    best_score = collector.Value(best_solution, score)
+    worst_score_in_top_solutions = collector.Value(max(collector.SolutionCount() - solution_limit, 0), score)
+    worst_score_in_top_solutions_2 = collector.Value(max(collector.SolutionCount() - solution_limit * 2, 0), score)
+    worst_score = collector.Value(0, score)
+
+    print 'Best score:', best_score
+    print 'Worst score in top solutions', worst_score_in_top_solutions
+    print 'Worst score in top 2 times solutions', worst_score_in_top_solutions_2
+    print 'Worst score:', worst_score
+
+    print 'Best solutions:'
     results = []
-    for solution in range(collector.SolutionCount()):
+    for solution in reversed(range(max(collector.SolutionCount() - solution_limit, 0), collector.SolutionCount())):
+        print int(collector.Value(solution, score))
         result = {
-            'rating': normalize_score(int(collector.Value(solution, score))),
+            'rating': normalize_score(int(collector.Value(solution, score)), best_score, worst_score_in_top_solutions_2),
             'scheduledShifts': []
         }
         for j in range(num_shifts):

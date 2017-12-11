@@ -14,6 +14,9 @@ import static spark.Spark.post;
 
 public class ScheduleController extends BaseController {
 
+    private static final int DEFAULT_TIME_LIMIT_IN_SECOND = 5;
+    private static final int DEFAULT_SOLUTION_LIMIT = 5;
+
     @Override
     public RouteGroup routes() {
         return () -> {
@@ -32,14 +35,14 @@ public class ScheduleController extends BaseController {
     private boolean generateSchedule(Request request, Response response) {
         response.type(CONTENT_TYPE_JSON);
 
-        int timeLimitInSecond = 10;
+        int timeLimitInSecond = DEFAULT_TIME_LIMIT_IN_SECOND;
         String timeLimitInSecondParam = request.queryParams("timeLimitInSecond");
         if (timeLimitInSecondParam != null) {
             timeLimitInSecond = Integer.parseInt(timeLimitInSecondParam);
         }
         log.info("timeLimitInSecond: " + timeLimitInSecondParam);
 
-        int solutionLimit = 50;
+        int solutionLimit = DEFAULT_SOLUTION_LIMIT;
         String solutionLimitParam = request.queryParams("solutionLimit");
         if (solutionLimitParam != null) {
             solutionLimit = Integer.parseInt(solutionLimitParam);
