@@ -9,6 +9,7 @@ let startWindow, viewTutorsWindow, authWindow = null;
 let engrCookie = null;
 let fetch = require("node-fetch");
 let os = require("os");
+let path = require("path");
 let initialStartWindow = ()=>{
     startWindow = new BrowserWindow({
         width: 400,
@@ -16,7 +17,9 @@ let initialStartWindow = ()=>{
         show: false,
         webPreferences: {
             preload: __dirname + '/preload.js'
-        }
+        },
+        icon: path.join(__dirname,"..","..","img","ulcrs_logo.png")
+
     });
     startWindow.loadURL('file://' + __dirname + '/index.html');
     startWindow.once('ready-to-show', function () {
@@ -126,9 +129,11 @@ let setupViewTutorWindow = (width, height)=>{
         height: height,
         transparent: false,
         show: false,
-        frame: true
+        frame: true,
+        icon: path.join(__dirname,"..","img","ulcrs_logo.png")
     });
-}
+    console.log("dirname" +  path.join(__dirname,"..","img","ulcrs_logo.png"));
+};
 
 app.on('ready', function () {
 
