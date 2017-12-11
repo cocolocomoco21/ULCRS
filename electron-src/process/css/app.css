@@ -493,11 +493,28 @@
 
 .btn-lg{
   font-size: 1.7rem;
+  color: #f9f9f9;
   background-color: #0479a8;
+  border-color: #0492cc;
 }
 .btn-lg:hover {
-  color: #fff;
-  background-color: #0492cc;
+  color: #f9f9f9;
+  background-color: #045f82;
+  border-color: #0492cc;
+
+}
+
+.btn-primary {
+  background-color: #0479a8;
+}
+
+.btn-danger {
+  background-color: #c5050c;
+}
+
+.btn-lg:active{
+  color: #f9f9f9;
+  background-color: #045f82;
   border-color: #0492cc;
 }
 

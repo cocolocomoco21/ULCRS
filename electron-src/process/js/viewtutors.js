@@ -243,7 +243,7 @@ class ViewInfo extends React.Component {
                     </div>
 
                     <div className="col-4 d-flex justify-content-center align-items-center" style={{height:"100%"}}>
-                        <button type="button" className="btn btn-success btn-lg" onClick={this.toggleProceeding}
+                        <button type="button" className="btn btn-lg" onClick={this.toggleProceeding}
                                 style={{"textAlign": "center", width:"100%", height:"60%"}} > Generate Schedules!</button>
                     </div>
 

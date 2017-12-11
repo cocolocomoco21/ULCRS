@@ -171,7 +171,7 @@ class ViewSchedulePage  extends React.Component {
                     <div className="col-6">
                     </div>
                     <div className="col-4 d-flex justify-content-center align-items-center" style={{height:"100%"}}>
-                        <button type="button" className="btn btn-success btn-lg" onClick={this.toggleSaveModal}
+                        <button type="button" className="btn btn-lg" onClick={this.toggleSaveModal}
                                 style={{"textAlign": "center", width:"100%", height:"60%"}} > Save this Schedule</button>
 
                     </div>
