@@ -133,6 +133,7 @@ class ScheduleTable extends React.Component {
                                                         setContainerDataList={this.setContainerDataList}
                                                        printc={this.printContainerDataList}
                                                         day={scheduleShifts[col].shift.day}
+                                                       shiftId={scheduleShifts[col].shift.id}
                                                        tutorData={this.props.tutorData}/>
                                         </div>
                                     </div>
