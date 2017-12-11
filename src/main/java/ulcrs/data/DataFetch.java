@@ -31,6 +31,13 @@ class DataFetch {
     private static Logger log = LoggerFactory.getLogger(DataFetch.class);
 
 
+    // Constants for request to direct JSON file
+    private final static String DROP_IN_JSON_URL = "https://dropin.engr.wisc.edu/services/ulcrs-requirements.json";
+    private final static String DROP_IN_JSON_REQUEST_TYPE = "GET";
+
+    private static Logger log = LoggerFactory.getLogger(DataFetch.class);
+
+
     /**
      * Fetch data from the ULC server and return response in form of List<String>.
      * <p>
