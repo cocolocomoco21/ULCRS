@@ -74,7 +74,7 @@ public class DataParseTest {
         ParsedULCResponse response = DataParse.parse(mockObject);
 
         // Verify correctly formed Tutor
-        Tutor tutor = response.getTutors().get(0);  // Get at index 1 since Tutor at index 0 has no meaningful attributes
+        Tutor tutor = response.getTutors().get(0);
         assertThat(tutor.getId(), is(4850785));
         assertThat(tutor.getFirstName(), is("Luke"));
         assertThat(tutor.getLastName(), is("Skywalker"));

@@ -32,22 +32,21 @@ public class ULCTutor {
     private Integer prefShiftAmount;
     private Integer willingShiftAmount;
 
-    public ULCTutor(int id, String firstName, String lastName, String role,
-                    List<Integer> prefCourses, List<Integer> willingCourses,
-                    List<Integer> prefShfits, List<Integer> willingShifts,
-                    Integer prefShiftAmount, Integer willingShiftAmount) {
+    public ULCTutor(int id, String firstName, String lastName, String role, List<Integer> prefCourses, List<Integer> willingCourses,
+                    List<Integer> prefShifts, List<Integer> willingShifts, Integer prefShiftAmount, Integer willingShiftAmount) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
         this.prefCourses = prefCourses;
         this.willingCourses = willingCourses;
-        this.prefShifts = prefShfits;
+        this.prefShifts = prefShifts;
         this.willingShifts = willingShifts;
         this.prefShiftAmount = prefShiftAmount;
         this.willingShiftAmount = willingShiftAmount;
     }
 
+    // Although this is not the cleanest, tutors inherently depend on shifts and courses, so pass in the already-parsed shifts and courses here
     public Tutor toTutor(HashMap<Integer, Shift> shifts, HashMap<Integer, Course> courses) {
         // Shift preference
         HashMap<Rank, Set<Shift>> shiftPreferences = new HashMap<>();
