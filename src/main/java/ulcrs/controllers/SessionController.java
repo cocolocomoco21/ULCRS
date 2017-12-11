@@ -12,8 +12,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,10 +80,7 @@ public class SessionController extends BaseController {
 
     // Take a schedule, save to new session
     private boolean saveSession(Request request, Response response) {
-        // TODO: Use real schedule
-        InputStream is = SessionController.class.getClassLoader().getResourceAsStream("mockSchedule_FrontendExpects.json");
-        JsonReader reader = new JsonReader(new InputStreamReader(is));
-        List<Schedule> schedules = gson.fromJson(reader, new TypeToken<List<Schedule>>() {
+        Schedule schedule = gson.fromJson(request.body(), new TypeToken<Schedule>() {
         }.getType());
 
         String filename = addJsonExtension(request.params(":name"));
@@ -97,8 +92,8 @@ public class SessionController extends BaseController {
             session = new Session(filename);
         }
 
-        if (schedules.get(0) != null) {
-            session.setExistingSchedule(schedules.get(0));
+        if (schedule != null) {
+            session.setExistingSchedule(schedule);
         }
 
         PrintWriter printWriter = null;
