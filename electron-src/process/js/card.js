@@ -155,16 +155,16 @@ class Card extends React.Component {
 		let course = [];
 		let tutorName = card.tutor.firstName + " " + card.tutor.lastName;
 		if (card.tutorCourse.length == 1) {
-		    course.push(<a href="#" className="list-group-item list-group-item-action" >
-                <a className="font-weight-bold" style={{color: "#494949"}}>
+		    course.push(<a href="#" className="list-group-item list-group-item-action  px-1" >
+                <a className="font-weight-bold" style={{fontSize:"0.94rem", color: "#494949"}}>
                     {card.tutorCourse[0].name}
                 </a>
             </a>);
         }
         else if (card.tutorCourse.length == 2) {
             course.push(
-                <a href="#" className="list-group-item list-group-item-action">
-                    <a className="font-weight-bold"  style={{color: "#494949"}}>
+                <a href="#" className="list-group-item list-group-item-action  px-1">
+                    <a className="font-weight-bold"  style={{fontSize:"0.94rem", color: "#494949"}}>
                         {card.tutorCourse[0].name + "," + card.tutorCourse[1].name}
                     </a>
                 </a>);
@@ -174,8 +174,8 @@ class Card extends React.Component {
 		    for (let index=1; index<card.tutorCourse.length; index++) {
                 tooltip = tooltip + ", " + card.tutorCourse[index].name;
             }
-		    course.push(<a className="list-group-item list-group-item-action" >
-                <a className="font-weight-bold" href="#" data-toggle="tooltip" title={tooltip} style={{color: "#494949"}}>
+		    course.push(<a className="list-group-item list-group-item-action  px-1" >
+                <a className="font-weight-bold " href="#" data-toggle="tooltip" title={tooltip} style={{fontSize:"0.94rem", color: "#494949"}}>
                     {card.tutorCourse[0].name + "...."}
                 </a>
             </a>);
@@ -186,8 +186,8 @@ class Card extends React.Component {
 			<div>
 				<ul className="list-group" onClick={this.toggleGridModal} style={{"textAlign": "center"}}>
 					<div>
-                    <a href="#" className="list-group-item list-group-item-action" >
-                     <a className="font-weight-bold" style={{color: "#494949", textAlign:"center"}}>
+                    <a href="#" className="list-group-item list-group-item-action  px-1" >
+                     <a className="font-weight-bold" style={{fontSize:"0.94rem",color: "#494949", textAlign:"center"}}>
                          {tutorName}
                      </a>
                     </a>
