@@ -447,6 +447,8 @@ class Container extends React.Component{
 
         return connectDropTarget(
             <div id="container" style={{backgroundColor}}>
+                <button type="button" className="btn btn-info " onClick={this.toggleGridModal}
+                        style={{"textAlign": "center"}} > Add Assignment </button>
                 {cards.map((card, i) => {
                     return (
                         <Card
@@ -465,8 +467,10 @@ class Container extends React.Component{
                     );
                 })}
 
-                <button type="button" className="btn btn-success btn-block" onClick={this.toggleGridModal}
-                        style={{"textAlign": "center"}} > Add Assignment </button>
+                {/*<button type="button" className="btn btn-info " onClick={this.toggleGridModal}*/}
+                        {/*style={{"textAlign": "center"}} > Add Assignment </button>*/}
+
+
 
                 <Modal isOpen={this.state.modal} toggle={this.toggleGridModal}>
                     <ModalHeader toggle={this.toggleGridModal} >
@@ -497,10 +501,10 @@ class Container extends React.Component{
                         </Provider>
                     </ModalBody>
                     <ModalFooter>
-                        <button type="button" className="btn btn-success btn-block" onClick={this.savePopUp}
-                                style={{"textAlign": "center"}} > Save </button>
-                        <button type="button" className="btn btn-success btn-block" onClick={this.toggleGridModal}
-                                style={{"textAlign": "center"}} > Cancel </button>
+                        <button type="button" className="btn save-button my-0" onClick={this.savePopUp}
+                                style={{"textAlign": "center", width:"50%"}} > Save </button>
+                        <button type="button" className="btn btn-secondary my-0" onClick={this.toggleGridModal}
+                                style={{"textAlign": "center",width:"50%"}} > Cancel </button>
                     </ModalFooter>
                 </Modal>
 

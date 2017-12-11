@@ -527,7 +527,7 @@
     white-space: nowrap;
     display: inline-block;
     width:100%;
-    height:100%
+    height:100%;
 }
 
 .container-scroll > .col > .row > .col-2 {
@@ -564,4 +564,14 @@ html, body {
 
 .list-group-item-action {
   background-color: #f9f9f9;
+}
+
+.save-button{
+   background-color: #0479a8;
+   color: #f7f7f7;
+}
+
+.save-button:hover{
+  background-color: #046180;
+  color: #f7f7f7;
 }

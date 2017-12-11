@@ -166,7 +166,7 @@ app.on('ready', function () {
                             headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
                         }
                  )
-                .then(res => res.text())
+                 .then(res => res.text())
                 .then(data => {
                     console.log(data);
                     if (data !== "null") {

@@ -156,7 +156,7 @@ class Card extends React.Component {
 		let tutorName = card.tutor.firstName + " " + card.tutor.lastName;
 		if (card.tutorCourse.length == 1) {
 		    course.push(<a href="#" className="list-group-item list-group-item-action" >
-                <a style={{color: "black"}}>
+                <a className="font-weight-bold" style={{color: "#494949"}}>
                     {card.tutorCourse[0].name}
                 </a>
             </a>);
@@ -164,8 +164,8 @@ class Card extends React.Component {
         else if (card.tutorCourse.length == 2) {
             course.push(
                 <a href="#" className="list-group-item list-group-item-action">
-                    <a style={{color: "black"}}>
-                        {card.tutorCourse[0].name + ", " + card.tutorCourse[1].name}
+                    <a className="font-weight-bold"  style={{color: "#494949"}}>
+                        {card.tutorCourse[0].name + "," + card.tutorCourse[1].name}
                     </a>
                 </a>);
         }
@@ -175,7 +175,7 @@ class Card extends React.Component {
                 tooltip = tooltip + ", " + card.tutorCourse[index].name;
             }
 		    course.push(<a className="list-group-item list-group-item-action" >
-                <a href="#" data-toggle="tooltip" title={tooltip} style={{color: "black"}}>
+                <a className="font-weight-bold" href="#" data-toggle="tooltip" title={tooltip} style={{color: "#494949"}}>
                     {card.tutorCourse[0].name + "...."}
                 </a>
             </a>);
@@ -187,7 +187,7 @@ class Card extends React.Component {
 				<ul className="list-group" onClick={this.toggleGridModal} style={{"textAlign": "center"}}>
 					<div>
                     <a href="#" className="list-group-item list-group-item-action" >
-                     <a style={{color: "black"}}>
+                     <a className="font-weight-bold" style={{color: "#494949", textAlign:"center"}}>
                          {tutorName}
                      </a>
                     </a>
@@ -220,9 +220,9 @@ class Card extends React.Component {
                         </Provider>
                     </ModalBody>
                     <ModalFooter>
-                        <button type="button" className="btn btn-success btn-block" onClick={this.savePopUp}
+                        <button type="button" className="btn save-button btn-block my-0" onClick={this.savePopUp}
                                 style={{"textAlign": "center"}} > Save </button>
-                        <button type="button" className="btn btn-success btn-block" onClick={this.deleteCard.bind(this)}
+                        <button type="button" className="btn btn-danger btn-block my-0" onClick={this.deleteCard.bind(this)}
                                 style={{"textAlign": "center"}} > Delete Shift </button>
                     </ModalFooter>
                 </Modal>
