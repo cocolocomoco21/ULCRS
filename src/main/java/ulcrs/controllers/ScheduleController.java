@@ -1,6 +1,6 @@
 package ulcrs.controllers;
 
-import com.google.gson.JsonElement;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import spark.Request;
 import spark.Response;
@@ -56,15 +56,13 @@ public class ScheduleController extends BaseController {
         String body = request.body();
         JsonObject excludedIdsJsonObj = gson.fromJson(body, JsonObject.class);
         if (excludedIdsJsonObj != null) {
-            JsonElement excludedIdsJson = excludedIdsJsonObj.get("excludedIds");
-            if (excludedIds.size() != 0) {
-                excludedIdsJson.getAsJsonArray().forEach(element -> {
-                    excludedIds.add(element.getAsInt());
-                });
-            }
+            JsonArray excludedIdsJson = excludedIdsJsonObj.getAsJsonArray("excludedIds");
+            excludedIdsJson.forEach(element -> {
+                excludedIds.add(element.getAsInt());
+            });
         }
 
-        return SchedulerHelper.generateSchedule(timeLimitInSecond, solutionLimit);
+        return SchedulerHelper.generateSchedule(timeLimitInSecond, solutionLimit, excludedIds);
     }
 
     private boolean validateSchedule(Request request, Response response) {

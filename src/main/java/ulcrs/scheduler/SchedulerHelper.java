@@ -10,6 +10,7 @@ import ulcrs.models.tutor.Tutor;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SchedulerHelper {
     private static Logger log = LoggerFactory.getLogger(SchedulerHelper.class);
@@ -26,9 +27,11 @@ public class SchedulerHelper {
      *
      * @return boolean - status of generation of schedules.
      */
-    public static boolean generateSchedule(int timeLimitInSecond, int solutionLimit) {
+    public static boolean generateSchedule(int timeLimitInSecond, int solutionLimit, List<Integer> excludedIds) {
         // TODO handle getting data when it has not been fetched (i.e. don't use empty string for cookie in order to get this data)
-        List<Tutor> tutors = DataStore.getTutors("");
+        List<Tutor> tutors = DataStore.getTutors("").stream()
+                .filter(i -> !excludedIds.contains(i.getId()))
+                .collect(Collectors.toList());
         List<Course> courses = DataStore.getCourses("");
         List<Shift> shifts = DataStore.getShifts("");
 

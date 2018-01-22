@@ -143,7 +143,6 @@ class ViewInfo extends React.Component {
 
     proceedToGenerate(){
         this.props.showSchedules(this.excludedIds);
-        console.log(this.excludedIds)
     }
 
     toggleAuthorized(){
@@ -300,7 +299,8 @@ class MainInterface extends React.Component{
     }
 
     showViewSchedules(excludedIds){
-        ipc.send("post_generate", excludedIds);
+        let excludedIdsArray = Array.from(excludedIds);
+        ipc.send("post_generate", excludedIdsArray);
         console.log("post generate")
     }
 
