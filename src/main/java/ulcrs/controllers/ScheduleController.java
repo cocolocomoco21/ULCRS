@@ -1,11 +1,14 @@
 package ulcrs.controllers;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import spark.Request;
 import spark.Response;
 import spark.RouteGroup;
 import ulcrs.models.schedule.Schedule;
 import ulcrs.scheduler.SchedulerHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static spark.Spark.before;
@@ -48,6 +51,18 @@ public class ScheduleController extends BaseController {
             solutionLimit = Integer.parseInt(solutionLimitParam);
         }
         log.info("solutionLimit: " + solutionLimitParam);
+
+        List<Integer> excludedIds = new ArrayList<>();
+        String body = request.body();
+        JsonObject excludedIdsJsonObj = gson.fromJson(body, JsonObject.class);
+        if (excludedIdsJsonObj != null) {
+            JsonElement excludedIdsJson = excludedIdsJsonObj.get("excludedIds");
+            if (excludedIds.size() != 0) {
+                excludedIdsJson.getAsJsonArray().forEach(element -> {
+                    excludedIds.add(element.getAsInt());
+                });
+            }
+        }
 
         return SchedulerHelper.generateSchedule(timeLimitInSecond, solutionLimit);
     }

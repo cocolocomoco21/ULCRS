@@ -139,9 +139,9 @@ let setupViewTutorWindow = (width, height)=>{
 app.on('ready', function () {
 
     initialStartWindow();
-    let javaServerProcess = startJavaBackendServer();
+    //let javaServerProcess = startJavaBackendServer();
     setupViewTutorWindow(1600, 900);
-    handleAppExit(javaServerProcess);
+    //handleAppExit(javaServerProcess);
     setupAuthenticWindow();
     keepPollingUntilCookieReceivedThenRedirect();
 
@@ -153,11 +153,12 @@ app.on('ready', function () {
         fetch("http://localhost:4567/ulcrs/schedule/generate",
             {
                 method: "POST",
-                body:JSON.stringify({excludeIds:excludedIds}),
+                body:JSON.stringify({"excludedIds":excludedIds}),
                 headers: {"Set-Cookie": [engrCookie.name + "="+ engrCookie.value]}
             })
             .then(res => {
                 //console.log(res);
+                console.log("exclude ids: " + JSON.stringify({"excludedIds":excludedIds}));
                 event.sender.send("post_success");});
 
         // Need error handling
